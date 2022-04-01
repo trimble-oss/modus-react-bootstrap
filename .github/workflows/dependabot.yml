@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    reviewers:
+      - msankaran0712
+     labels:
+      - dependencies
+    schedule:
+       interval: monthly
+    versioning-strategy: increase
+  - package-ecosystem: github-actions
+    directory: "/"
+    reviewers:
+      - coliff
+      - msankaran0712
+    schedule:
+      interval: weekly
+    labels:
+      - github-actions
