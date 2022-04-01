@@ -96,3 +96,6 @@ typings/
 # SonarQube
 .scannerwork/
 sonar-project.properties
+
+# Package-lock file
+package-lock.json
