@@ -4,10 +4,10 @@ updates:
     directory: "/"
     reviewers:
       - msankaran0712
-     labels:
+    labels:
       - dependencies
     schedule:
-       interval: monthly
+      interval: monthly
     versioning-strategy: increase
   - package-ecosystem: github-actions
     directory: "/"
