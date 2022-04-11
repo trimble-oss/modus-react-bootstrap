@@ -50,7 +50,7 @@
     "@trimbleinc/modus-bootstrap": "^1.4.0",
     "@types/invariant": "^2.2.35",
     "@types/prop-types": "^15.7.5",
-    "@types/react": ">=16.14.8",
+    "@types/react": ">=18.0.1",
     "@types/react-transition-group": "^4.4.1",
     "@types/warning": "^3.0.0",
     "classnames": "^2.3.1",
