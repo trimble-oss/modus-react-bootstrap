@@ -1,92 +1,114 @@
-/*!
-  Modus React Bootstrap 
-  A React-based component library developed as a common, open source platform for all of Trimble’s web applications built on React.
-  Extends React-Bootstrap v1.6.4
-  Copyright (c) 2022 Trimble Inc.
- */
-import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import Dropdown from './Dropdown';
-import Form from './Form';
-import NavItem from './NavItem';
-import NavLink from './NavLink';
-import Pagination from './Pagination';
-import { StyledTablePagination } from './styleHelpers';
+import React, { useCallback } from "react"
+import PropTypes from "prop-types"
+import classNames from "classnames"
+import {
+  Dropdown,
+  Form,
+  NavItem,
+  NavLink,
+  Pagination,
+  PaginationProps,
+} from "@trimbleinc/modus-react-bootstrap"
+import TablePaginationStyled from "./TablePaginationStyled"
 
-export interface TablePaginationProps extends React.HTMLProps<HTMLDivElement> {
-  totalPages: number;
-  pageIndex: number;
-  pageSize: number;
-  pageSizeOptions: number[];
-  onPageSizeChange: (...args: any[]) => void;
-  onPageChange: (...args: any[]) => void;
-  pageLimit?: number;
+type size = "sm" | "lg"
+export interface TablePaginationProps
+  extends Omit<React.HTMLProps<HTMLDivElement>, "size" | "as"> {
+  count: number
+  pageIndex: number
+  pageSize: number
+  pageSizeOptions: number[]
+  onPageSizeChange: (size: number) => void
+  onPageChange: (page: number) => void
+  pageLimit?: number
+  size?: string
 }
 
 const propTypes = {
   /**
-   * Pages total count
-   */
-  totalPages: PropTypes.number.isRequired,
+   * @default 'pagination'
+   * */
+  bsPrefix: PropTypes.string,
 
   /**
-   * Current Page Index
+   * Set's the size of all PageItems.
+   *
+   * @type {'sm'|'lg'}
+   */
+  size: PropTypes.string,
+  /**
+   * Total number of rows.
+   */
+  count: PropTypes.number.isRequired,
+
+  /**
+   * Current Page Index.
    */
   pageIndex: PropTypes.number.isRequired,
 
   /**
-   * Callback for Page change event
-   */
-  onPageChange: PropTypes.func.isRequired,
-
-  /**
-   * Default Page Size
+   * Default Page Size.
    */
   pageSize: PropTypes.number.isRequired,
 
   /**
-   * An array of page size options
+   * An array of page size options.
    */
   pageSizeOptions: PropTypes.array.isRequired,
 
   /**
-   * Callback for Page size change event
-   */
-  onPageSizeChange: PropTypes.func.isRequired,
-
-  /**
-   * Number of visible page numbers
+   * Number of visible page numbers.
    */
   pageLimit: PropTypes.number,
-};
+
+  /**
+   * Callback for Page change event.
+   *
+   * ```js
+   * function onPageChange(page: number) => void
+   *  page - selected page index
+   * ```
+   */
+  onPageChange: PropTypes.func.isRequired,
+
+  /**
+   * Callback for Page size change event.
+   *
+   * ```js
+   * function onPageSizeChange(size: number) => void
+   *  size - selected page size
+   * ```
+   */
+  onPageSizeChange: PropTypes.func.isRequired,
+}
 
 const getRange = (start: number, end: number): number[] => {
   /* generate a range : [start, start+1, ..., end-1, end] */
-  const len = end - start + 1;
-  const a = new Array(len);
-  for (let i = 0; i < len; i++) a[i] = start + i;
-  return a;
-};
+  const len = end - start + 1
+  const a = new Array(len)
+  for (let i = 0; i < len; i++) a[i] = start + i
+  return a
+}
 
 const getPaginationGroup = (
   currentPage: number,
   totalPages: number,
-  pageLimit = 5,
+  pageLimit = 5
 ) => {
-  const start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
+  const start = Math.floor((currentPage - 1) / pageLimit) * pageLimit
   const len =
     totalPages < Math.ceil(currentPage / pageLimit) * pageLimit
       ? totalPages % pageLimit
-      : pageLimit;
+      : pageLimit
 
-  return new Array(len).fill(0).map((_, idx) => start + idx + 1);
-};
+  return new Array(len).fill(0).map((_, idx) => start + idx + 1)
+}
 
 type MorePagesDropdownProps = {
-  pages: number[];
-  onPageSelection: (...args: any[]) => void;
-};
+  pages: number[]
+  onPageSelection: (...args: any[]) => void
+}
+
 const MorePagesDropdown: React.FunctionComponent<MorePagesDropdownProps> = ({
   pages,
   onPageSelection,
@@ -96,28 +118,28 @@ const MorePagesDropdown: React.FunctionComponent<MorePagesDropdownProps> = ({
       <Dropdown.Toggle as={NavLink} variant="text-primary" bsPrefix="">
         <i className="modus-icons">more_horizontal</i>
       </Dropdown.Toggle>
-      <Dropdown.Menu className="dropdown-menu-sm" style={{ minWidth: '5rem' }}>
-        {pages.map((item) => {
+      <Dropdown.Menu className="dropdown-menu-sm" style={{ minWidth: "5rem" }}>
+        {pages.map(item => {
           return (
             <Dropdown.Item
               key={item}
               onClick={() => {
-                onPageSelection(item);
+                onPageSelection(item)
               }}
             >
               {item}
             </Dropdown.Item>
-          );
+          )
         })}
       </Dropdown.Menu>
     </Dropdown>
-  );
-};
+  )
+}
 
 const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
   (
     {
-      totalPages,
+      count,
       pageIndex,
       onPageChange,
       pageSize,
@@ -125,66 +147,81 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
       onPageSizeChange,
       pageLimit = 5,
       className,
+      size,
       ...props
     },
-    ref,
+    ref
   ) => {
+    const totalPages = Math.ceil(count / pageSize)
     const paginationGroup = getPaginationGroup(
       pageIndex + 1,
       totalPages || 1,
-      pageLimit,
-    );
+      pageLimit
+    )
 
-    const firstPage = paginationGroup[0];
-    const lastPage = paginationGroup[paginationGroup.length - 1];
-    const morePagesLeft = firstPage > 1 && getRange(1, firstPage - 1);
+    const firstPage = paginationGroup[0]
+    const lastPage = paginationGroup[paginationGroup.length - 1]
+    const morePagesLeft = firstPage > 1 && getRange(1, firstPage - 1)
+
     const morePagesRight =
-      totalPages &&
+      totalPages > 0 &&
       lastPage !== totalPages &&
-      getRange(lastPage + 1, totalPages);
+      getRange(lastPage + 1, totalPages)
 
     const handlePreviousPage = useCallback(() => {
-      onPageChange(pageIndex - 1);
-    }, [pageIndex]);
+      onPageChange(pageIndex - 1)
+    }, [pageIndex])
+
     const handleNextPage = useCallback(() => {
-      onPageChange(pageIndex + 1);
-    }, [pageIndex]);
-    const handleGotoPage = useCallback((page) => {
-      onPageChange(page - 1);
-    }, []);
+      onPageChange(pageIndex + 1)
+    }, [pageIndex])
+
+    const handleGotoPage = useCallback(page => {
+      onPageChange(page - 1)
+    }, [])
 
     return (
-      <StyledTablePagination>
+      <TablePaginationStyled>
         <div
           className={classNames(
             className,
-            'd-flex justify-content-end container',
+            "d-flex justify-content-end container"
           )}
           {...props}
           ref={ref}
         >
-          <div className="d-inline-flex align-items-center mr-2">
-            <span className="mr-2">Page Size:</span>
-            <div>
-              <Form.Control
-                as="select"
-                custom
-                value={pageSize}
-                onChange={(e) => {
-                  onPageSizeChange(Number(e.target.value));
-                }}
-              >
-                {pageSizeOptions.map((size) => (
-                  <option key={size} value={size}>
-                    {size}
-                  </option>
-                ))}
-              </Form.Control>
-            </div>
+          <div className="mr-2">
+            <Form inline>
+              <Form.Group>
+                <Form.Label
+                  className={classNames(
+                    "mr-2",
+                    size === "sm" ? "label-sm" : "label-lg"
+                  )}
+                >
+                  Page Size:
+                </Form.Label>
+                <Form.Control
+                  size={size as size}
+                  as="select"
+                  custom
+                  value={pageSize}
+                  onChange={e => {
+                    onPageSizeChange(Number(e.target.value))
+                  }}
+                >
+                  {pageSizeOptions.map(size => (
+                    <option key={size} value={size}>
+                      {size}
+                    </option>
+                  ))}
+                </Form.Control>
+              </Form.Group>
+            </Form>
           </div>
           <div>
             <nav aria-label="Pagination">
-              <Pagination className="mb-0">
+              <Pagination className="mb-0" size={size as size}>
                 <Pagination.Item
                   disabled={pageIndex === 0}
                   onClick={handlePreviousPage}
@@ -201,18 +238,18 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
                   </Pagination.Item>
                 )}
 
-                {paginationGroup.map((item) => {
+                {paginationGroup.map(item => {
                   return (
                     <Pagination.Item
                       key={item}
                       active={item === pageIndex + 1}
                       onClick={() => {
-                        handleGotoPage(item);
+                        handleGotoPage(item)
                       }}
                     >
                       {item}
                     </Pagination.Item>
-                  );
+                  )
                 })}
 
                 {morePagesRight && (
@@ -234,12 +271,12 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
             </nav>
           </div>
         </div>
-      </StyledTablePagination>
-    );
-  },
-);
+      </TablePaginationStyled>
+    )
+  }
+)
 
-TablePagination.propTypes = propTypes;
-TablePagination.displayName = 'TablePagination';
+TablePagination.propTypes = propTypes
+TablePagination.displayName = "TablePagination"
 
-export default TablePagination;
+export default TablePagination

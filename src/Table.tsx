@@ -1,36 +1,24 @@
-/*!
-  React-Bootstrap v1.6.4 (https://react-bootstrap-v4.netlify.app/)
-  Copyright (c) 2014-present Stephen J. Collings, Matthew Honnibal, Pieter Vanderwerff
-  Licensed under MIT (https://github.com/react-bootstrap/react-bootstrap/blob/master/LICENSE)
-
-  Modus React Bootstrap 
-  A React-based component library developed as a common, open source platform for all of Trimble’s web applications built on React.
-  Extends React-Bootstrap v1.6.4
-  Copyright (c) 2022 Trimble Inc.
- */
-
-import React, { useContext } from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import { useBootstrapPrefix } from './ThemeProvider';
+import React, { useContext } from "react"
+import classNames from "classnames"
+import PropTypes from "prop-types"
+import { useBootstrapPrefix } from "./ThemeProvider"
 
 import {
   BsPrefixAndClassNameOnlyProps,
   BsPrefixRefForwardingComponent,
-} from './helpers';
-import { TableContext } from './TableContext';
+} from "./helpers"
 
 export interface TableProps extends BsPrefixAndClassNameOnlyProps {
-  striped?: boolean;
-  bordered?: boolean;
-  borderless?: boolean;
-  hover?: boolean;
-  size?: string;
-  variant?: string;
-  responsive?: boolean | string;
+  striped?: boolean
+  bordered?: boolean
+  borderless?: boolean
+  hover?: boolean
+  size?: string
+  variant?: string
+  responsive?: boolean | string
 }
 
-type Table = BsPrefixRefForwardingComponent<'table', TableProps>;
+type Table = BsPrefixRefForwardingComponent<"table", TableProps>
 
 const propTypes = {
   /**
@@ -80,7 +68,7 @@ const propTypes = {
    * behave normally and not scroll horizontally.
    */
   responsive: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-};
+}
 
 const Table: Table = React.forwardRef<HTMLTableElement, TableProps>(
   (
@@ -96,9 +84,9 @@ const Table: Table = React.forwardRef<HTMLTableElement, TableProps>(
       responsive,
       ...props
     }: TableProps,
-    ref,
+    ref
   ) => {
-    const decoratedBsPrefix = useBootstrapPrefix(bsPrefix, 'table');
+    const decoratedBsPrefix = useBootstrapPrefix(bsPrefix, "table")
     const classes = classNames(
       className,
       decoratedBsPrefix,
@@ -107,28 +95,23 @@ const Table: Table = React.forwardRef<HTMLTableElement, TableProps>(
       striped && `${decoratedBsPrefix}-striped`,
       bordered && `${decoratedBsPrefix}-bordered`,
       borderless && `${decoratedBsPrefix}-borderless`,
-      hover && `${decoratedBsPrefix}-hover`,
-    );
+      hover && `${decoratedBsPrefix}-hover`
+    )
 
-    const tableInstance = useContext(TableContext);
-    const tableProps = tableInstance && tableInstance.getTableProps();
-
-    const table = (
-      <table {...tableProps} {...props} className={classes} ref={ref} />
-    );
+    const table = <table {...props} className={classes} ref={ref} />
     if (responsive) {
-      let responsiveClass = `${decoratedBsPrefix}-responsive`;
-      if (typeof responsive === 'string') {
-        responsiveClass = `${responsiveClass}-${responsive}`;
+      let responsiveClass = `${decoratedBsPrefix}-responsive`
+      if (typeof responsive === "string") {
+        responsiveClass = `${responsiveClass}-${responsive}`
       }
 
-      return <div className={responsiveClass}>{table}</div>;
+      return <div className={responsiveClass}>{table}</div>
     }
 
-    return table;
-  },
-);
+    return table
+  }
+)
 
-Table.propTypes = propTypes;
+Table.propTypes = propTypes
 
-export default Table;
+export default Table

@@ -1,10 +1,4 @@
-/*!
-  Modus React Bootstrap 
-  A React-based component library developed as a common, open source platform for all of Trimble’s web applications built on React.
-  Extends React-Bootstrap v1.6.4
-  Copyright (c) 2022 Trimble Inc.
- */
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler } from "react"
 import {
   TableInstance,
   UseColumnOrderInstanceProps,
@@ -27,21 +21,29 @@ import {
   UseSortByInstanceProps,
   UseSortByOptions,
   UseSortByState,
-} from 'react-table';
+  UseFiltersColumnOptions,
+  UseFiltersColumnProps,
+  UseFiltersInstanceProps,
+  UseFiltersOptions,
+  UseFiltersState,
+  UseGlobalFiltersInstanceProps,
+  UseGlobalFiltersOptions,
+  UseGlobalFiltersState,
+} from "react-table"
 
-declare module 'react-table' {
+declare module "react-table" {
   export interface UseFlexLayoutInstanceProps<D extends object = {}> {
-    totalColumnsMinWidth: number;
+    totalColumnsMinWidth: number
   }
 
-  export interface UseFlexLayoutColumnProps<D extends object = {}> {
-    totalMinWidth: number;
-  }
+  export interface UseFlexLayoutColumnProps<D extends object = {}>  extends UseFlexLayoutColumnPropsCustom<D>{}
 
   export interface TableOptions<D extends object = {}>
     extends UsePaginationOptions<D>,
       UseResizeColumnsOptions<D>,
       UseRowSelectOptions<D>,
+      UseFiltersOptions<D>,
+      UseGlobalFiltersOptions<D>,
       UseSortByOptions<D> {}
 
   export interface Hooks<D extends object = {}>
@@ -54,6 +56,8 @@ declare module 'react-table' {
       UseRowSelectInstanceProps<D>,
       UseFlexLayoutInstanceProps<D>,
       UsePaginationInstanceProps<D>,
+      UseFiltersInstanceProps<D>,
+      UseGlobalFiltersInstanceProps<D>,
       UseSortByInstanceProps<D> {}
 
   export interface TableState<D extends object = {}>
@@ -61,18 +65,25 @@ declare module 'react-table' {
       UsePaginationState<D>,
       UseResizeColumnsState<D>,
       UseRowSelectState<D>,
+      UseFiltersState<D>,
+      UseGlobalFiltersState<D>,
       UseSortByState<D> {
-    rowCount: number;
+    rowCount: number
   }
 
   export interface ColumnInterface<D extends object = {}>
-    extends UseResizeColumnsColumnOptions<D>,
+    extends UseFiltersColumnOptions<D>,
+      UseResizeColumnsColumnOptions<D>,
       UseSortByColumnOptions<D> {
-    align?: string;
+    align?: string
+    allowDrag?: boolean
+    allowDrop?: boolean
+    allowDropForColumns?: string[]
   }
 
   export interface ColumnInstance<D extends object = {}>
-    extends UseResizeColumnsColumnProps<D>,
+    extends UseFiltersColumnProps<D>,
+      UseResizeColumnsColumnProps<D>,
       UseFlexLayoutColumnProps<D>,
       UseSortByColumnProps<D> {}
 
@@ -81,17 +92,21 @@ declare module 'react-table' {
   export interface Row<D extends object = {}> extends UseRowSelectRowProps<D> {}
 
   export interface TableCommonProps {
-    title?: string;
-    'aria-label'?: string;
+    title?: string
+    "aria-label"?: string
   }
 
   export interface TableSortByToggleProps {
-    title?: string;
+    title?: string
   }
 
   export interface TableGroupByToggleProps {
-    title?: string;
+    title?: string
   }
 }
 
 // export type TableMouseEventHandler = (instance: TableInstance<T>) => MouseEventHandler
+
+export interface UseFlexLayoutColumnPropsCustom<D extends object = {}> {
+  totalMinWidth: number
+}
