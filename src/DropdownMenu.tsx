@@ -164,20 +164,18 @@ const DropdownMenu: DropdownMenu = React.forwardRef(
       }
     }
 
-    const [
-      menuProps,
-      { hasShown, popper, show, alignEnd, toggle },
-    ] = useDropdownMenu({
-      flip,
-      rootCloseEvent,
-      show: showProps,
-      alignEnd: alignRight,
-      usePopper: !isNavbar && alignClasses.length === 0,
-      popperConfig: {
-        ...popperConfig,
-        modifiers: marginModifiers.concat(popperConfig?.modifiers || []),
-      },
-    });
+    const [menuProps, { hasShown, popper, show, alignEnd, toggle }] =
+      useDropdownMenu({
+        flip,
+        rootCloseEvent,
+        show: showProps,
+        alignEnd: alignRight,
+        usePopper: !isNavbar && alignClasses.length === 0,
+        popperConfig: {
+          ...popperConfig,
+          modifiers: marginModifiers.concat(popperConfig?.modifiers || []),
+        },
+      });
 
     menuProps.ref = useMergedRefs(
       popperRef,

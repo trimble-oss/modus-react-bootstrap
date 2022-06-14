@@ -121,7 +121,7 @@ const defaultProps = {
   fill: false,
 };
 
-const Nav: Nav = (React.forwardRef((uncontrolledProps: NavProps, ref) => {
+const Nav: Nav = React.forwardRef((uncontrolledProps: NavProps, ref) => {
   const {
     as = 'div',
     bsPrefix: initialBsPrefix,
@@ -171,7 +171,7 @@ const Nav: Nav = (React.forwardRef((uncontrolledProps: NavProps, ref) => {
       {children}
     </AbstractNav>
   );
-}) as unknown) as Nav;
+}) as unknown as Nav;
 
 Nav.displayName = 'Nav';
 Nav.propTypes = propTypes;

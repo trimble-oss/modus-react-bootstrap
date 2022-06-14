@@ -42,7 +42,7 @@ const defaultProps = {
   listProps: {},
 };
 
-const Breadcrumb: Breadcrumb = (React.forwardRef(
+const Breadcrumb: Breadcrumb = React.forwardRef(
   (
     {
       bsPrefix,
@@ -66,7 +66,7 @@ const Breadcrumb: Breadcrumb = (React.forwardRef(
       </Component>
     );
   },
-) as unknown) as Breadcrumb;
+) as unknown as Breadcrumb;
 
 Breadcrumb.displayName = 'Breadcrumb';
 Breadcrumb.propTypes = propTypes;

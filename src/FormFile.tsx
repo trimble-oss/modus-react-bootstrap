@@ -129,7 +129,7 @@ const propTypes = {
   ),
 };
 
-const FormFile: FormFile = (React.forwardRef(
+const FormFile: FormFile = React.forwardRef(
   (
     {
       id,
@@ -225,7 +225,7 @@ const FormFile: FormFile = (React.forwardRef(
       </FormContext.Provider>
     );
   },
-) as unknown) as FormFile;
+) as unknown as FormFile;
 
 FormFile.displayName = 'FormFile';
 FormFile.propTypes = propTypes;

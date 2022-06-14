@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components"
+import styled, { css } from 'styled-components';
 
 /**
  * Note:
@@ -161,5 +161,5 @@ const DataTableStyled = styled.div`
       }
     }
   }
-`
-export default DataTableStyled
+`;
+export default DataTableStyled;

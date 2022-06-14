@@ -18,25 +18,25 @@ import {
   useCallback,
   useEffect,
   useMemo,
-} from "react"
+} from 'react';
 import {
   findIndex as _findIndex,
   every as _every,
   merge as _merge,
-} from "lodash"
-import TreeViewItemContext from "./TreeViewItemContext"
-import { TreeItem } from "./types"
+} from 'lodash';
+import TreeViewItemContext from './TreeViewItemContext';
+import { TreeItem } from './types';
 
 type DescendantProviderParam = {
-  nodeId: number
-  element: any
-  hasCheckBoxSelected?: (nodeId: number) => boolean
+  nodeId: number;
+  element: any;
+  hasCheckBoxSelected?: (nodeId: number) => boolean;
   handleCheckboxSelection?: (
     event: any,
     selected?: number[],
-    unselected?: number[]
-  ) => void
-}
+    unselected?: number[],
+  ) => void;
+};
 
 export default function useTreeViewDescendants({
   nodeId,
@@ -44,14 +44,14 @@ export default function useTreeViewDescendants({
   hasCheckBoxSelected,
   handleCheckboxSelection,
 }: DescendantProviderParam) {
-  const registeredChildren = useRef<TreeItem[]>([])
-  const hasRegisteredFlag = useRef(false)
+  const registeredChildren = useRef<TreeItem[]>([]);
+  const hasRegisteredFlag = useRef(false);
 
   // will be -1 until the node is registered in the parent
-  const [index, setIndex] = useState(-1)
+  const [index, setIndex] = useState(-1);
 
   // descendant context methods from the parent node if any
-  const treeItemContext = useContext(TreeViewItemContext)
+  const treeItemContext = useContext(TreeViewItemContext);
   const {
     parentId,
     level,
@@ -59,42 +59,42 @@ export default function useTreeViewDescendants({
     unRegisterDescendant: unRegisterOnParent,
     updateDescendant: updateParent,
     updateCheckboxSelection: updateCheckboxSelectionOnParent,
-  } = treeItemContext || {}
+  } = treeItemContext || {};
 
   const descendants = useMemo(
     () => registeredChildren.current,
-    [registeredChildren.current]
-  )
+    [registeredChildren.current],
+  );
 
   useEffect(() => {
     if (registerOnParent && element) {
-      hasRegisteredFlag.current = true
+      hasRegisteredFlag.current = true;
       const newIndex = registerOnParent(
         nodeId,
         registeredChildren.current,
-        element
-      )
-      setIndex(newIndex)
+        element,
+      );
+      setIndex(newIndex);
     }
     return () => {
-      unRegisterOnParent && unRegisterOnParent(nodeId)
-    }
-  }, [registerOnParent, unRegisterOnParent, setIndex, element])
+      unRegisterOnParent && unRegisterOnParent(nodeId);
+    };
+  }, [registerOnParent, unRegisterOnParent, setIndex, element]);
 
   const registerDescendant = useCallback(
     (id, children, descendantElement) => {
-      let newIndex = -1
+      let newIndex = -1;
 
       if (registeredChildren.current) {
-        let newItems = registeredChildren.current
-        let oldIndex = _findIndex(newItems, node => node.id === id)
+        const newItems = registeredChildren.current;
+        const oldIndex = _findIndex(newItems, (node) => node.id === id);
 
         // new index based on DOM position
-        newIndex = binaryFindElement(newItems, descendantElement)
+        newIndex = binaryFindElement(newItems, descendantElement);
 
         // If the descendant already exist, delete it and insert at the new index
         if (oldIndex >= 0) {
-          newItems.splice(oldIndex, 1)
+          newItems.splice(oldIndex, 1);
         }
         newItems.splice(newIndex, 0, {
           id,
@@ -102,44 +102,44 @@ export default function useTreeViewDescendants({
           parentId: nodeId,
           index: newIndex,
           element: descendantElement,
-        })
+        });
         newItems.forEach((item, position) => {
-          item.index = position
-        })
-        registeredChildren.current = newItems
+          item.index = position;
+        });
+        registeredChildren.current = newItems;
 
         if (updateParent && hasRegisteredFlag.current) {
-          updateParent(nodeId, registeredChildren.current, element)
+          updateParent(nodeId, registeredChildren.current, element);
         }
       }
-      return newIndex
+      return newIndex;
     },
-    [registeredChildren.current, nodeId, updateParent]
-  )
+    [registeredChildren.current, nodeId, updateParent],
+  );
 
   const unRegisterDescendant = useCallback(
-    id => {
+    (id) => {
       if (registeredChildren.current) {
         registeredChildren.current = registeredChildren.current.filter(
-          node => node.id !== id
-        )
+          (node) => node.id !== id,
+        );
         registeredChildren.current.forEach((item, position) => {
-          item.index = position
-        })
+          item.index = position;
+        });
       }
     },
-    [registeredChildren.current]
-  )
+    [registeredChildren.current],
+  );
 
   const updateDescendant = useCallback(
     (id, children, descendantElement) => {
       if (registeredChildren.current) {
-        let currentIndex = _findIndex(
+        const currentIndex = _findIndex(
           registeredChildren.current,
-          node => node.id === id
-        )
-        let newIndex =
-          currentIndex < 0 ? registeredChildren.current.length : currentIndex
+          (node) => node.id === id,
+        );
+        const newIndex =
+          currentIndex < 0 ? registeredChildren.current.length : currentIndex;
 
         registeredChildren.current.splice(newIndex, 1, {
           id,
@@ -147,10 +147,10 @@ export default function useTreeViewDescendants({
           parentId: nodeId,
           index: newIndex,
           element: descendantElement,
-        })
+        });
 
         if (updateParent && hasRegisteredFlag.current) {
-          updateParent(nodeId, registeredChildren.current, element)
+          updateParent(nodeId, registeredChildren.current, element);
         }
       }
     },
@@ -159,39 +159,39 @@ export default function useTreeViewDescendants({
       nodeId,
       updateParent,
       hasRegisteredFlag.current,
-    ]
-  )
+    ],
+  );
 
   const updateCheckboxSelection = useCallback(
     (event, descendantId, checkedArray, uncheckedArray) => {
       if (registeredChildren.current) {
         const childNodesFiltered = registeredChildren.current
-          .map(node => node.id)
-          .filter(id => id !== descendantId)
+          .map((node) => node.id)
+          .filter((id) => id !== descendantId);
 
-        let finalCheckedArray = [...checkedArray]
-        let finalUnCheckedArray = [...uncheckedArray]
-        childNodesFiltered.forEach(id => {
-          if (hasCheckBoxSelected(id)) finalCheckedArray.push(id)
-          else finalUnCheckedArray.push(id)
-        })
+        const finalCheckedArray = [...checkedArray];
+        const finalUnCheckedArray = [...uncheckedArray];
+        childNodesFiltered.forEach((id) => {
+          if (hasCheckBoxSelected(id)) finalCheckedArray.push(id);
+          else finalUnCheckedArray.push(id);
+        });
 
         // decides whether current node should be in the checked array or unchecked array
-        if (finalUnCheckedArray.length > 0) finalUnCheckedArray.push(nodeId)
-        else finalCheckedArray.push(nodeId)
+        if (finalUnCheckedArray.length > 0) finalUnCheckedArray.push(nodeId);
+        else finalCheckedArray.push(nodeId);
 
         updateCheckboxSelectionOnParent
           ? updateCheckboxSelectionOnParent(
               event,
               nodeId,
               finalCheckedArray,
-              finalUnCheckedArray
+              finalUnCheckedArray,
             )
           : handleCheckboxSelection(
               event,
               finalCheckedArray,
-              finalUnCheckedArray
-            )
+              finalUnCheckedArray,
+            );
       }
     },
     [
@@ -200,18 +200,18 @@ export default function useTreeViewDescendants({
       hasCheckBoxSelected,
       handleCheckboxSelection,
       updateCheckboxSelectionOnParent,
-    ]
-  )
+    ],
+  );
 
   function binaryFindElement(array, element) {
-    let start = 0
-    let end = array.length - 1
+    let start = 0;
+    let end = array.length - 1;
 
     while (start <= end) {
-      const middle = Math.floor((start + end) / 2)
+      const middle = Math.floor((start + end) / 2);
 
       if (array[middle].element === element) {
-        return middle
+        return middle;
       }
 
       // eslint-disable-next-line no-bitwise
@@ -220,13 +220,13 @@ export default function useTreeViewDescendants({
         array[middle].element.compareDocumentPosition(element) &
           Node.DOCUMENT_POSITION_PRECEDING
       ) {
-        end = middle - 1
+        end = middle - 1;
       } else {
-        start = middle + 1
+        start = middle + 1;
       }
     }
 
-    return start
+    return start;
   }
   return {
     parentId,
@@ -238,5 +238,5 @@ export default function useTreeViewDescendants({
     updateDescendant,
     updateCheckboxSelection,
     updateCheckboxSelectionOnParent,
-  }
+  };
 }

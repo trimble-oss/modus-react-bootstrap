@@ -124,7 +124,7 @@ const defaultProps = {
   navbar: false,
 };
 
-const Dropdown: Dropdown = (React.forwardRef((pProps: DropdownProps, ref) => {
+const Dropdown: Dropdown = React.forwardRef((pProps: DropdownProps, ref) => {
   const {
     bsPrefix,
     drop,
@@ -187,7 +187,7 @@ const Dropdown: Dropdown = (React.forwardRef((pProps: DropdownProps, ref) => {
       </BaseDropdown>
     </SelectableContext.Provider>
   );
-}) as unknown) as Dropdown;
+}) as unknown as Dropdown;
 
 Dropdown.displayName = 'Dropdown';
 Dropdown.propTypes = propTypes;

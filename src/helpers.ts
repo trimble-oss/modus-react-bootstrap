@@ -23,12 +23,12 @@ export interface BsPrefixProps<As extends React.ElementType = React.ElementType>
 }
 
 export type BsPrefixPropsWithChildren<
-  As extends React.ElementType = React.ElementType
+  As extends React.ElementType = React.ElementType,
 > = React.PropsWithChildren<BsPrefixProps<As>>;
 
 export interface BsPrefixRefForwardingComponent<
   TInitial extends React.ElementType,
-  P = unknown
+  P = unknown,
 > {
   <As extends React.ElementType = TInitial>(
     props: React.PropsWithChildren<ReplaceProps<As, BsPrefixProps<As> & P>>,
@@ -42,13 +42,13 @@ export interface BsPrefixRefForwardingComponent<
 
 export class BsPrefixComponent<
   As extends React.ElementType,
-  P = unknown
+  P = unknown,
 > extends React.Component<ReplaceProps<As, BsPrefixProps<As> & P>> {}
 
 // Need to use this instead of typeof Component to get proper type checking.
 export type BsPrefixComponentClass<
   As extends React.ElementType,
-  P = unknown
+  P = unknown,
 > = React.ComponentClass<ReplaceProps<As, BsPrefixProps<As> & P>>;
 
 export type SelectCallback = (

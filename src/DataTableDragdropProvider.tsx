@@ -4,19 +4,36 @@ import React, {
   useMemo,
   useRef,
   CSSProperties,
-} from "react"
-import PropTypes from "prop-types"
-import useForceUpdate from "@restart/hooks/useForceUpdate"
-import renderUsingPortal from "./renderUsingPortal"
+} from 'react';
+import PropTypes from 'prop-types';
+import useForceUpdate from '@restart/hooks/useForceUpdate';
+import renderUsingPortal from './renderUsingPortal';
+import { Column, ColumnInstance } from 'react-table';
 
-const POSITION = { x: 0, y: 0 }
+type Position = { x: number; y: number };
+type RegisteredColumn = { id: string; ref: any };
+type DropState = {
+  column: RegisteredColumn | null;
+  validTarget: boolean;
+};
+type DragState = {
+  isDragging: boolean;
+  visible: boolean;
+  origin: { x: number; y: number };
+  translation: { x: number; y: number };
+  width: string | number;
+  height: string | number;
+  column: ColumnInstance<any> | null;
+  columnOrder: Array<any>;
+};
+const POSITION = { x: 0, y: 0 } as Position;
 
 function getNewColumnOrder(columnIds, dragColumnId, dropColumnId): any[] {
-  let newColumnOrder = columnIds
-  newColumnOrder.splice(columnIds.indexOf(dragColumnId), 1)
-  newColumnOrder.splice(newColumnOrder.indexOf(dropColumnId), 0, dragColumnId)
+  const newColumnOrder = columnIds;
+  newColumnOrder.splice(columnIds.indexOf(dragColumnId), 1);
+  newColumnOrder.splice(newColumnOrder.indexOf(dropColumnId), 0, dragColumnId);
 
-  return newColumnOrder
+  return newColumnOrder;
 }
 
 function getDragContent(dragState, dragItemTemplate) {
@@ -29,15 +46,15 @@ function getDragContent(dragState, dragItemTemplate) {
       zIndex: 9999,
       left: 0,
       top: 0,
-      position: "fixed",
-      cursor: dragState.isDragging ? "-webkit-grabbing" : "-webkit-grab",
-      visibility: dragState.visible ? "visible" : "hidden",
-      opacity: "0.9",
-    }
+      position: 'fixed',
+      cursor: dragState.isDragging ? '-webkit-grabbing' : '-webkit-grab',
+      visibility: dragState.visible ? 'visible' : 'hidden',
+      opacity: '0.9',
+    };
     const dragContentStyle: CSSProperties = {
       width: dragState.width,
       height: dragState.height,
-    }
+    };
 
     return (
       <div style={dragContainerStyle}>
@@ -45,32 +62,34 @@ function getDragContent(dragState, dragItemTemplate) {
           dragItemTemplate(dragState.column)
         ) : (
           <div style={dragContentStyle} className="bg-gray-light p-2">
-            {dragState.column.render("Header")}
+            {dragState.column.render('Header')}
           </div>
         )}
       </div>
-    )
+    );
   }
 
-  return <></>
+  return <></>;
 }
 
 function isWithInBounds(boundingClientRect, x, y) {
   if (boundingClientRect) {
     const inVerticalBounds =
-      y >= boundingClientRect.top && y <= boundingClientRect.bottom
+      y >= boundingClientRect.top && y <= boundingClientRect.bottom;
     const inHorizontalBounds =
-      x >= boundingClientRect.left && x <= boundingClientRect.right
-    return inVerticalBounds && inHorizontalBounds
+      x >= boundingClientRect.left && x <= boundingClientRect.right;
+    return inVerticalBounds && inHorizontalBounds;
   }
-  return false
+  return false;
 }
 
-export const DataTableDragDropContext = React.createContext<{
-  dragColumnId: any
-  onHeaderDragStart: (event: any, column: any) => void
-  registerColumn: (id: string, ref: any) => void
-}>(null)
+interface DataTableDragDropContextProps {
+  dragColumnId: any;
+  onHeaderDragStart: (event: any, column: any) => void;
+  registerColumn: (id: string, ref: any) => void;
+}
+export const DataTableDragDropContext =
+  React.createContext<DataTableDragDropContextProps | null>(null);
 
 export default function DataTableDragdropProvider(props) {
   const {
@@ -79,73 +98,57 @@ export default function DataTableDragdropProvider(props) {
     setColumnOrder,
     dragItemTemplate,
     attachTo,
-  } = props
+  } = props;
 
-  const forceUpdate = useForceUpdate()
-  const registeredColumns = useRef<{ id: string; ref: any }[]>([])
-  const droppingState = useRef<{
-    column: { id: string; ref: any }
-    validTarget: boolean
-  }>({
+  const forceUpdate = useForceUpdate();
+  const registeredColumns = useRef<RegisteredColumn[]>([]);
+  const droppingState = useRef<DropState>({
     column: null,
     validTarget: false,
-  })
-  const draggingState = useRef({
+  });
+  const draggingState = useRef<DragState>({
     isDragging: false,
     visible: false,
     origin: POSITION,
     translation: POSITION,
-    width: "0px",
-    height: "0px",
+    width: '0px',
+    height: '0px',
     column: null,
-    columnOrder: visibleColumns.map(d => d.id),
-  })
-
-  useEffect(() => {
-    if (draggingState.current.isDragging) {
-      window.addEventListener("mousemove", handleMouseMove)
-      window.addEventListener("mouseup", handleMouseUp)
-    } else {
-      window.removeEventListener("mousemove", handleMouseMove)
-      window.removeEventListener("mouseup", handleMouseUp)
-    }
-  }, [draggingState.current.isDragging])
+    columnOrder: visibleColumns.map((d) => d.id),
+  });
 
   function clearDroppingState() {
-    const prevDropState = droppingState.current
+    const prevDropState = droppingState.current;
     if (droppingState.current.column) {
-      droppingState.current.column.ref.classList.remove("drop-allow")
-      droppingState.current.column.ref.classList.remove("drop-block")
+      droppingState.current.column.ref.classList.remove('drop-allow');
+      droppingState.current.column.ref.classList.remove('drop-block');
     }
-    droppingState.current = { column: null, validTarget: false }
-    return prevDropState
+    droppingState.current = { column: null, validTarget: false };
+    return prevDropState;
   }
-  const getDroppableColumn = useCallback(
-    (x, y) => {
-      const column = registeredColumns.current.find(({ ref }) => {
-        const rect = ref.getBoundingClientRect()
-        return isWithInBounds(rect, x, y)
-      })
-      return column
-    },
-    [registeredColumns.current]
-  )
+  const getDroppableColumn = useCallback((x, y) => {
+    const column = registeredColumns.current.find(({ ref }) => {
+      const rect = ref.getBoundingClientRect();
+      return isWithInBounds(rect, x, y);
+    });
+    return column;
+  }, []);
 
   const registerColumn = useCallback((id: string, ref: any) => {
-    let refs = registeredColumns.current
-      ? registeredColumns.current.filter(col => col.id !== id)
-      : []
-    refs.push({ id, ref })
-    registeredColumns.current = refs
-  }, [])
+    const refs = registeredColumns.current
+      ? registeredColumns.current.filter((col) => col.id !== id)
+      : [];
+    refs.push({ id, ref });
+    registeredColumns.current = refs;
+  }, []);
 
   const handleMouseDown = useCallback(
     (event, column) => {
-      const { clientX, clientY, target, nativeEvent } = event
-      if (nativeEvent.which !== 1) return
+      const { clientX, clientY, target, nativeEvent } = event;
+      if (nativeEvent.which !== 1) return;
 
-      const prevDragState = draggingState.current
-      clearDroppingState()
+      const prevDragState = draggingState.current;
+      clearDroppingState();
       draggingState.current = {
         ...prevDragState,
         isDragging: true,
@@ -153,80 +156,78 @@ export default function DataTableDragdropProvider(props) {
         column,
         width:
           (target && target.offsetParent && target.offsetParent.width) ||
-          "80px",
+          '80px',
         height:
           (target && target.offsetParent && target.offsetParent.height) ||
-          "3rem",
-        columnOrder: visibleColumns.map(d => d.id),
-      }
-      forceUpdate()
+          '3rem',
+        columnOrder: visibleColumns.map((d) => d.id),
+      };
+      forceUpdate();
     },
-    [draggingState.current, visibleColumns]
-  )
+    [forceUpdate, visibleColumns],
+  );
 
   const handleMouseMove = useCallback(
     ({ clientX, clientY }) => {
-      clearDroppingState()
-      const prevDragState = draggingState.current
+      clearDroppingState();
+      const prevDragState = draggingState.current;
       const translation = {
         x: clientX,
         y: clientY,
-      }
-      if (!prevDragState.column) return
+      };
+      if (!prevDragState.column) return;
 
-      let droppableColumn = getDroppableColumn(clientX, clientY)
+      const droppableColumn = getDroppableColumn(clientX, clientY);
       if (droppableColumn) {
-        let column = visibleColumns.find(d => d.id === droppableColumn.id)
+        const column = visibleColumns.find((d) => d.id === droppableColumn.id);
         const isDroppable =
           column.allowDrop ||
-          (column.allowDropForColumns || []).includes(prevDragState.column.id)
+          (column.allowDropForColumns || []).includes(prevDragState.column.id);
 
-        droppingState.current.column = droppableColumn
-        droppingState.current.validTarget = isDroppable
+        droppingState.current.column = droppableColumn;
+        droppingState.current.validTarget = isDroppable;
         droppableColumn.ref.classList.add(
-          isDroppable ? "drop-allow" : "drop-block"
-        )
+          isDroppable ? 'drop-allow' : 'drop-block',
+        );
       }
       draggingState.current = {
         ...prevDragState,
         visible: true,
         translation,
-      }
-      forceUpdate()
+      };
+      forceUpdate();
     },
-    [draggingState.current]
-  )
+    [forceUpdate, getDroppableColumn, visibleColumns],
+  );
 
-  const handleMouseUp = useCallback(
-    event => {
-      const prevDragState = draggingState.current
-      const prevDropState = droppingState.current
+  const handleMouseUp = useCallback(() => {
+    const prevDragState = draggingState.current;
+    const prevDropState = droppingState.current;
 
-      if (
-        prevDropState.validTarget &&
-        prevDropState.column &&
-        prevDropState.column.id !== prevDragState.column.id
-      ) {
-        let columnIds = getNewColumnOrder(
-          prevDragState.columnOrder,
-          prevDragState.column.id,
-          prevDropState.column.id
-        )
-        setColumnOrder(columnIds)
-      }
+    if (
+      prevDropState.validTarget &&
+      prevDropState.column &&
+      prevDragState.column &&
+      prevDropState.column.id !== prevDragState.column.id
+    ) {
+      const columnIds = getNewColumnOrder(
+        prevDragState.columnOrder,
+        prevDragState.column.id,
+        prevDropState.column.id,
+      );
+      setColumnOrder(columnIds);
+    }
 
-      draggingState.current = {
-        ...prevDragState,
-        isDragging: false,
-        visible: false,
-        translation: POSITION,
-        column: null,
-      }
-      clearDroppingState()
-      forceUpdate()
-    },
-    [draggingState.current, droppingState.current, setColumnOrder]
-  )
+    draggingState.current = {
+      ...prevDragState,
+      isDragging: false,
+      visible: false,
+      translation: POSITION,
+      column: null,
+    };
+    clearDroppingState();
+    forceUpdate();
+  }, [forceUpdate, setColumnOrder]);
 
   const value = useMemo(
     () => ({
@@ -236,8 +237,18 @@ export default function DataTableDragdropProvider(props) {
       onHeaderDragStart: handleMouseDown,
       registerColumn,
     }),
-    [draggingState.current.column, handleMouseDown, registerColumn]
-  )
+    [draggingState.current.column, handleMouseDown, registerColumn],
+  );
+
+  useEffect(() => {
+    if (draggingState.current.isDragging) {
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', handleMouseUp);
+    } else {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    }
+  }, [draggingState.current.isDragging, handleMouseMove, handleMouseUp]);
 
   return (
     <DataTableDragDropContext.Provider value={value}>
@@ -245,10 +256,10 @@ export default function DataTableDragdropProvider(props) {
       {draggingState.current.isDragging &&
         renderUsingPortal(
           getDragContent(draggingState.current, dragItemTemplate),
-          attachTo
+          attachTo,
         )}
     </DataTableDragDropContext.Provider>
-  )
+  );
 }
 
 DataTableDragdropProvider.propTypes = {
@@ -256,11 +267,5 @@ DataTableDragdropProvider.propTypes = {
   attachTo: PropTypes.any.isRequired,
   visibleColumns: PropTypes.any.isRequired,
   setColumnOrder: PropTypes.func.isRequired,
-  dragItemTemplate: PropTypes.func.isRequired,
-  registeredColumns: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      ref: PropTypes.any.isRequired,
-    })
-  ).isRequired,
-}
+  dragItemTemplate: PropTypes.func,
+};

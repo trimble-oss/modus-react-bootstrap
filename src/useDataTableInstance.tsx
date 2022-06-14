@@ -1,23 +1,23 @@
-import React, { useCallback, useMemo } from "react"
-import { HeaderGroup, IdType, useAsyncDebounce, useTable } from "react-table"
-import { DataTableColumnInstance } from "./types"
+import React, { useCallback, useMemo } from 'react';
+import { HeaderGroup, IdType, useAsyncDebounce, useTable } from 'react-table';
+import { DataTableColumnInstance } from './types';
 
 function useDataTableInstance<T extends Record<string, unknown>>(
   columns,
   data,
   options,
-  hooks
+  hooks,
 ) {
   // Handle custom props such as - sortBy
   const normalizedColumns = useMemo(
     () =>
-      columns.map(col => {
-        const { sortBy, ...columnProps } = col
-        columnProps.disableSortBy = !sortBy
-        return columnProps
+      columns.map((col) => {
+        const { sortBy, ...columnProps } = col;
+        columnProps.disableSortBy = !sortBy;
+        return columnProps;
       }),
-    [columns]
-  )
+    [columns],
+  );
 
   // Construct Table instance
   const tableInstance = useTable<T>(
@@ -26,8 +26,8 @@ function useDataTableInstance<T extends Record<string, unknown>>(
       data,
       ...options,
     },
-    ...hooks
-  )
+    ...hooks,
+  );
 
   // Header Context Menu
   // const {
@@ -57,27 +57,27 @@ function useDataTableInstance<T extends Record<string, unknown>>(
     setPageSize,
     selectedFlatRows,
     state: { pageIndex, pageSize, filters, globalFilter },
-  } = tableInstance
+  } = tableInstance;
 
   const filterColumns = useMemo(
     () =>
       allColumns
-        .filter(it => it.canFilter && it.Filter)
-        .map(props => props as DataTableColumnInstance<T>),
-    [allColumns]
-  )
+        .filter((it) => it.canFilter && it.Filter)
+        .map((props) => props as DataTableColumnInstance<T>),
+    [allColumns],
+  );
 
   const resetFilter = useCallback(
     (columnId: IdType<T>) => setFilter(columnId, undefined),
-    [setFilter]
-  )
+    [setFilter],
+  );
 
-  const resetAllFilters = useCallback(() => setAllFilters([]), [setAllFilters])
+  const resetAllFilters = useCallback(() => setAllFilters([]), [setAllFilters]);
 
   // Use useAsyncDebounce for Global filter https://react-table.tanstack.com/docs/faq#how-can-i-debounce-rapid-table-state-changes
-  const setGlobalFilterCustom = useAsyncDebounce(value => {
-    setGlobalFilter(value || undefined)
-  }, 50)
+  const setGlobalFilterCustom = useAsyncDebounce((value) => {
+    setGlobalFilter(value || undefined);
+  }, 50);
 
   // Helpers
   // To add invisible columns
@@ -85,18 +85,18 @@ function useDataTableInstance<T extends Record<string, unknown>>(
     (curr: HeaderGroup<T>[], headerGroupid: any) => {
       return allColumns
         .filter(
-          col =>
-            col.id === "selector" ||
+          (col) =>
+            col.id === 'selector' ||
             !headerGroupid ||
-            (col.parent ? col.parent.id === headerGroupid : false)
+            (col.parent ? col.parent.id === headerGroupid : false),
         )
-        .map(col => {
-          let newCol = curr.find(c => c.id === col.id)
-          return newCol || col
-        })
+        .map((col) => {
+          const newCol = curr.find((c) => c.id === col.id);
+          return newCol || col;
+        });
     },
-    [allColumns]
-  )
+    [allColumns],
+  );
 
   return {
     // tableinstance
@@ -121,7 +121,7 @@ function useDataTableInstance<T extends Record<string, unknown>>(
     selectedFlatRows,
     state: { pageIndex, pageSize, filters, globalFilter },
     getAllHeadersInAGroup,
-  }
+  };
 }
 
-export default useDataTableInstance
+export default useDataTableInstance;

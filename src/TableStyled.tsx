@@ -1,8 +1,8 @@
-import styled, { css } from "styled-components"
+import styled, { css } from 'styled-components';
 
 const TableStyled = styled.table`
-  ${props =>
-    props.className.indexOf("table-sticky-first-column") > -1 &&
+  ${(props) =>
+    props.className.indexOf('table-sticky-first-column') > -1 &&
     css`
       th:first-child,
       td:first-child {
@@ -17,14 +17,14 @@ const TableStyled = styled.table`
       }
     `}
 
-  ${props =>
-    props.className.indexOf("table-sticky-first-column") > -1 &&
-    props.className.indexOf("table-bordered") > -1 &&
+  ${(props) =>
+    props.className.indexOf('table-sticky-first-column') > -1 &&
+    props.className.indexOf('table-bordered') > -1 &&
     css`
       th:first-child,
       td:first-child {
         border-right-width: 2px !important;
       }
     `}
-`
-export default TableStyled
+`;
+export default TableStyled;

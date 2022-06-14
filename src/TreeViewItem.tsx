@@ -1,22 +1,22 @@
-import React, { useContext, useEffect, useRef, useState } from "react"
-import PropTypes from "prop-types"
-import classNames from "classnames"
-import TreeViewContext from "./TreeViewContext"
-import TreeViewItemContext from "./TreeViewItemContext"
-import { TreeItem } from "./types"
-import { TreeViewItemStyled, TreeViewItemGroupStyled } from "./TreeViewStyled"
-import useDescendants from "./useTreeViewDescendants"
-import IndeterminateCheckbox from "./IndeterminateCheckbox"
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import TreeViewContext from './TreeViewContext';
+import TreeViewItemContext from './TreeViewItemContext';
+import { TreeItem } from './types';
+import { TreeViewItemStyled, TreeViewItemGroupStyled } from './TreeViewStyled';
+import useDescendants from './useTreeViewDescendants';
+import IndeterminateCheckbox from './IndeterminateCheckbox';
 
 export interface TreeViewItemProps
-  extends Omit<React.HTMLAttributes<HTMLLIElement>, "label"> {
-  nodeId: number
-  label: React.ReactNode
-  collapseIcon?: React.ReactElement
-  expandIcon?: React.ReactElement
-  itemIcon?: React.ReactElement
-  dragIcon?: React.ReactElement
-  disabled?: boolean
+  extends Omit<React.HTMLAttributes<HTMLLIElement>, 'label'> {
+  nodeId: number;
+  label: React.ReactNode;
+  collapseIcon?: React.ReactElement;
+  expandIcon?: React.ReactElement;
+  itemIcon?: React.ReactElement;
+  dragIcon?: React.ReactElement;
+  disabled?: boolean;
 }
 
 const propTypes = {
@@ -40,20 +40,20 @@ const propTypes = {
 
   /** Disables the Tree node and its children. */
   disabled: PropTypes.bool,
-}
+};
 
 const TreeViewContent: React.FunctionComponent<
   React.HTMLProps<HTMLDivElement>
 > = ({ className, children, ...props }) => {
   return (
     <div
-      className={classNames("d-flex align-items-center", className)}
+      className={classNames('d-flex align-items-center', className)}
       {...props}
     >
       {children}
     </div>
-  )
-}
+  );
+};
 const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
   (
     {
@@ -68,7 +68,7 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
       disabled,
       ...rest
     }: TreeViewItemProps,
-    ref
+    ref,
   ) => {
     const {
       id: rootId,
@@ -92,45 +92,45 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
       expandIcon: defaultExpandIcon,
       itemIcon: defaultItemIcon,
       dragIcon: defaultDragIcon,
-    } = useContext(TreeViewContext)
+    } = useContext(TreeViewContext);
 
     const resolvedRef = (ref ||
       React.useRef<HTMLLIElement>(
-        null
-      )) as React.MutableRefObject<HTMLLIElement>
+        null,
+      )) as React.MutableRefObject<HTMLLIElement>;
 
     // Used while navigating through keyboard interactions to decide whether to trigger focus on the tree item or not
     // value will be null until a focus event occurs
-    const focusSource = useRef(null)
+    const focusSource = useRef(null);
 
     // Used by descendant context to find the index of repositioned elements
-    const [treeItemElement, setTreeItemElement] = useState(null)
+    const [treeItemElement, setTreeItemElement] = useState(null);
 
     const expandable = Boolean(
-      Array.isArray(children) ? children.length : children
-    )
-    const expanded = isExpanded ? isExpanded(nodeId) : false
-    const nodeSelected = isNodeSelected ? isNodeSelected(nodeId) : false
+      Array.isArray(children) ? children.length : children,
+    );
+    const expanded = isExpanded ? isExpanded(nodeId) : false;
+    const nodeSelected = isNodeSelected ? isNodeSelected(nodeId) : false;
     const checkBoxSelected = isCheckBoxSelected
       ? isCheckBoxSelected(nodeId)
-      : false
+      : false;
     const checkBoxIndeterminate =
       checkBoxSelection && expandable && isIndeterminate
         ? isIndeterminate(nodeId)
-        : false
-    const inFocus = isNodeInFocus(nodeId)
+        : false;
+    const inFocus = isNodeInFocus(nodeId);
 
     const finalExpandIcon = expandIcon || defaultExpandIcon || (
       <i className="modus-icons">chevron_down_thick</i>
-    )
+    );
     const finalCollapseIcon = expandIcon || defaultCollapseIcon || (
       <i className="modus-icons">chevron_right</i>
-    )
-    const finalItemIcon = itemIcon || defaultItemIcon
-    const finalDragIcon = dragIcon || defaultDragIcon
-    const blankIcon = <i className="modus-icons">blank</i>
+    );
+    const finalItemIcon = itemIcon || defaultItemIcon;
+    const finalDragIcon = dragIcon || defaultDragIcon;
+    const blankIcon = <i className="modus-icons">blank</i>;
 
-    const defaultTabIndex = disabled ? -1 : 0
+    const defaultTabIndex = disabled ? -1 : 0;
 
     const {
       parentId,
@@ -144,52 +144,60 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
       element: treeItemElement,
       hasCheckBoxSelected: isCheckBoxSelected,
       handleCheckboxSelection: toggleMultiCheckBoxSelection,
-    })
+    });
 
     useEffect(() => {
       if (registerNode)
-        registerNode({ id: nodeId, parentId, label, disabled, index })
+        registerNode({ id: nodeId, parentId, label, disabled, index });
       return () => {
-        unRegisterNode && unRegisterNode(nodeId)
-      }
-    }, [registerNode, unRegisterNode, nodeId, parentId, label, disabled, index])
+        unRegisterNode && unRegisterNode(nodeId);
+      };
+    }, [
+      registerNode,
+      unRegisterNode,
+      nodeId,
+      parentId,
+      label,
+      disabled,
+      index,
+    ]);
 
     // This effect is used for focussing the tree item element while using keyboard interactions like arrow up/down key
     useEffect(() => {
-      let ele = resolvedRef.current
+      const ele = resolvedRef.current;
       if (inFocus && !focusSource.current) {
-        ele.focus()
+        ele.focus();
       }
-    }, [inFocus])
+    }, [inFocus]);
 
     useEffect(() => {
-      setTreeItemElement(resolvedRef.current)
-    }, [resolvedRef.current])
+      setTreeItemElement(resolvedRef.current);
+    }, [resolvedRef.current]);
 
     const handleNodeSelection = React.useCallback(
       (e: any) => {
-        toggleNodeSelection(e, nodeId)
+        toggleNodeSelection(e, nodeId);
       },
-      [toggleNodeSelection]
-    )
+      [toggleNodeSelection],
+    );
 
     const handleCheckBoxSelection = React.useCallback(
       (e: any) => {
-        e.stopPropagation()
+        e.stopPropagation();
         if (multiSelectCheckBox) {
-          const all = [...getChildrenNodeIds(descendants), nodeId]
-          let checked = []
-          let unchecked = []
+          const all = [...getChildrenNodeIds(descendants), nodeId];
+          let checked = [];
+          let unchecked = [];
 
           // toggle checkbox selection on children
-          if (isCheckBoxSelected(nodeId)) unchecked = all
-          else checked = all
+          if (isCheckBoxSelected(nodeId)) unchecked = all;
+          else checked = all;
 
           // if parent is not a root node update checkbox selection state at the parent node
           if (updateCheckboxSelectionOnParent)
-            updateCheckboxSelectionOnParent(e, nodeId, checked, unchecked)
-          else toggleMultiCheckBoxSelection(e, checked, unchecked)
-        } else toggleSingleCheckBoxSelection(e, nodeId)
+            updateCheckboxSelectionOnParent(e, nodeId, checked, unchecked);
+          else toggleMultiCheckBoxSelection(e, checked, unchecked);
+        } else toggleSingleCheckBoxSelection(e, nodeId);
       },
       [
         descendants,
@@ -198,68 +206,68 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
         toggleSingleCheckBoxSelection,
         toggleMultiCheckBoxSelection,
         updateCheckboxSelectionOnParent,
-      ]
-    )
+      ],
+    );
 
     const handleExpansion = React.useCallback(
       (e: any) => {
-        e.stopPropagation()
-        toggleExpansion(e, nodeId)
+        e.stopPropagation();
+        toggleExpansion(e, nodeId);
       },
-      [toggleExpansion]
-    )
+      [toggleExpansion],
+    );
 
     const handleFocus = React.useCallback(
       (e: any) => {
         // do not update focus state if it is in a disabled state or if already in focus
-        if (disabled || inFocus) return
-        focusSource.current = e.target
-        focusNode(e, nodeId)
-        e.preventDefault()
+        if (disabled || inFocus) return;
+        focusSource.current = e.target;
+        focusNode(e, nodeId);
+        e.preventDefault();
       },
-      [disabled, inFocus, focusNode]
-    )
+      [disabled, inFocus, focusNode],
+    );
 
     const handleBlur = React.useCallback((e: any) => {
-      focusSource.current = null
-    }, [])
+      focusSource.current = null;
+    }, []);
 
     const stopPropagation = React.useCallback(
       (e, flag) => flag && e.stopPropagation(),
-      []
-    )
+      [],
+    );
 
     const getChildrenNodeIds = (array: TreeItem[]): number[] => {
-      if (!array) return []
+      if (!array) return [];
       return array.reduce((r, { id, children }) => {
-        r.push(id, ...getChildrenNodeIds(children))
-        return r
-      }, [])
-    }
+        r.push(id, ...getChildrenNodeIds(children));
+        return r;
+      }, []);
+    };
 
     return (
       <>
         <TreeViewItemStyled
           level={level}
-          checkBoxSelection={checkBoxSelection ? "true" : "false"}
-          itemIcon={finalItemIcon ? "true" : "false"}
+          checkBoxSelection={checkBoxSelection ? 'true' : 'false'}
+          itemIcon={finalItemIcon ? 'true' : 'false'}
           role="treeitem"
           aria-expanded={expandable ? expanded : null}
           aria-selected={nodeSelected}
           aria-disabled={disabled}
           aria-level={level}
           className={classNames(
-            "list-group-item list-item-leftright-control",
-            nodeSelected && "active",
-            disabled && "disabled",
-            className
+            'list-group-item list-item-leftright-control',
+            nodeSelected && 'active',
+            disabled && 'disabled',
+            className,
           )}
           tabIndex={defaultTabIndex}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          onKeyDown={e => {
+          onKeyDown={(e) => {
             if (e.target === e.currentTarget)
-              onKeyPress(e, () => toggleNodeSelection(e, nodeId))
+              onKeyPress(e, () => toggleNodeSelection(e, nodeId));
           }}
           onClick={handleNodeSelection}
           ref={resolvedRef}
@@ -267,21 +275,21 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
         >
           <TreeViewContent>
             <div
-              style={{ display: "inline-flex" }}
+              style={{ display: 'inline-flex' }}
               tabIndex={finalDragIcon ? defaultTabIndex : -1}
-              onClick={e => stopPropagation(e, finalDragIcon ? true : false)}
+              onClick={(e) => stopPropagation(e, !!finalDragIcon)}
             >
               {finalDragIcon || blankIcon}
             </div>
             <span className="tree-item-level" />
             <div
-              style={{ display: "inline-flex" }}
+              style={{ display: 'inline-flex' }}
               tabIndex={expandable ? defaultTabIndex : -1}
-              onKeyDown={e => {
-                onKeyPress(e, () => toggleExpansion(e, nodeId))
+              onKeyDown={(e) => {
+                onKeyPress(e, () => toggleExpansion(e, nodeId));
               }}
               onClick={expandable ? handleExpansion : () => {}}
-              onFocus={e => {}} // to retain focus
+              onFocus={(e) => {}} // to retain focus
             >
               {expandable
                 ? expanded
@@ -292,18 +300,18 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
           </TreeViewContent>
 
           {checkBoxSelection && (
-            <TreeViewContent onClick={e => stopPropagation(e, true)}>
+            <TreeViewContent onClick={(e) => stopPropagation(e, true)}>
               <IndeterminateCheckbox
                 checked={checkBoxSelected}
                 id={`${rootId}_cbselection_${nodeId}`}
                 indeterminate={checkBoxIndeterminate}
                 tabIndex={defaultTabIndex}
-                onKeyDown={e => {
-                  if (e.key !== " ")
-                    onKeyPress(e, () => handleCheckBoxSelection(e))
+                onKeyDown={(e) => {
+                  if (e.key !== ' ')
+                    onKeyPress(e, () => handleCheckBoxSelection(e));
                 }}
                 onClick={handleCheckBoxSelection}
-                onFocus={e => {}} // to retain focus
+                onFocus={(e) => {}} // to retain focus
                 size={size}
               />
             </TreeViewContent>
@@ -312,7 +320,7 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
           {finalItemIcon && (
             <TreeViewContent
               tabIndex={defaultTabIndex}
-              onClick={e => stopPropagation(e, true)}
+              onClick={(e) => stopPropagation(e, true)}
             >
               {finalItemIcon}
             </TreeViewContent>
@@ -330,7 +338,7 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
           >
             <TreeViewItemGroupStyled
               className="list-group"
-              expanded={expanded ? "true" : "false"}
+              expanded={expanded ? 'true' : 'false'}
               role="group"
             >
               {children}
@@ -338,11 +346,11 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
           </TreeViewItemContext.Provider>
         )}
       </>
-    )
-  }
-)
+    );
+  },
+);
 
-TreeViewItem.displayName = "TreeViewItem"
-TreeViewItem.propTypes = propTypes
+TreeViewItem.displayName = 'TreeViewItem';
+TreeViewItem.propTypes = propTypes;
 
-export default TreeViewItem
+export default TreeViewItem;

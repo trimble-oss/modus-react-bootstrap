@@ -87,7 +87,7 @@ const defaultProps = {
   body: false,
 };
 
-const Card: Card = (React.forwardRef(
+const Card: Card = React.forwardRef(
   (
     {
       bsPrefix,
@@ -134,7 +134,7 @@ const Card: Card = (React.forwardRef(
       </CardContext.Provider>
     );
   },
-) as unknown) as Card;
+) as unknown as Card;
 
 Card.displayName = 'Card';
 Card.propTypes = propTypes;

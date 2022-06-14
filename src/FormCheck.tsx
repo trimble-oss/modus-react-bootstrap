@@ -139,7 +139,7 @@ const propTypes = {
   feedback: PropTypes.node,
 };
 
-const FormCheck: FormCheck = (React.forwardRef(
+const FormCheck: FormCheck = React.forwardRef(
   (
     {
       id,
@@ -226,7 +226,7 @@ const FormCheck: FormCheck = (React.forwardRef(
       </FormContext.Provider>
     );
   },
-) as unknown) as FormCheck;
+) as unknown as FormCheck;
 
 FormCheck.displayName = 'FormCheck';
 FormCheck.propTypes = propTypes;

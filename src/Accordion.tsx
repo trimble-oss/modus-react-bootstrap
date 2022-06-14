@@ -40,7 +40,7 @@ const propTypes = {
   defaultActiveKey: PropTypes.string,
 };
 
-const Accordion = (React.forwardRef((props: AccordionProps, ref) => {
+const Accordion = React.forwardRef((props: AccordionProps, ref) => {
   const {
     // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
     as: Component = 'div',
@@ -67,7 +67,7 @@ const Accordion = (React.forwardRef((props: AccordionProps, ref) => {
       </SelectableContext.Provider>
     </AccordionContext.Provider>
   );
-}) as unknown) as Accordion;
+}) as unknown as Accordion;
 
 Accordion.displayName = 'Accordion';
 Accordion.propTypes = propTypes;

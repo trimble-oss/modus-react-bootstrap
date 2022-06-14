@@ -63,7 +63,7 @@ const propTypes = {
   bsPrefix: PropTypes.string,
 };
 
-const NavDropdown: NavDropdown = (React.forwardRef(
+const NavDropdown: NavDropdown = React.forwardRef(
   (
     {
       id,
@@ -110,7 +110,7 @@ const NavDropdown: NavDropdown = (React.forwardRef(
       </Dropdown>
     );
   },
-) as unknown) as NavDropdown;
+) as unknown as NavDropdown;
 
 NavDropdown.displayName = 'NavDropdown';
 NavDropdown.propTypes = propTypes;

@@ -1,13 +1,13 @@
-import React, { useEffect } from "react"
-import classNames from "classnames"
-import PropTypes from "prop-types"
-import { FormCheck, FormCheckProps } from "@trimbleinc/modus-react-bootstrap"
+import React, { useEffect } from 'react';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { FormCheck, FormCheckProps } from '@trimbleinc/modus-react-bootstrap';
 
 export interface IndeterminateCheckboxProps
-  extends Omit<FormCheckProps, "size"> {
-  id: string
-  indeterminate?: boolean
-  size?: string
+  extends Omit<FormCheckProps, 'size'> {
+  id: string;
+  indeterminate?: boolean;
+  size?: string;
 }
 
 const propTypes = {
@@ -23,20 +23,20 @@ const propTypes = {
    * @type {'sm'|'lg'}
    */
   size: PropTypes.string,
-}
+};
 
 const IndeterminateCheckbox = React.forwardRef<
   FormCheck,
   IndeterminateCheckboxProps
 >(({ id, size, indeterminate, ...props }, ref) => {
-  const defaultRef = React.useRef<HTMLInputElement>(null)
-  const resolvedRef = ref || defaultRef
+  const defaultRef = React.useRef<HTMLInputElement>(null);
+  const resolvedRef = ref || defaultRef;
 
   useEffect(() => {
-    ;(
+    (
       resolvedRef as React.MutableRefObject<HTMLInputElement>
-    ).current.indeterminate = indeterminate
-  }, [resolvedRef, indeterminate])
+    ).current.indeterminate = indeterminate;
+  }, [resolvedRef, indeterminate]);
 
   return (
     <FormCheck
@@ -46,10 +46,10 @@ const IndeterminateCheckbox = React.forwardRef<
       ref={resolvedRef}
       {...props}
     />
-  )
-})
+  );
+});
 
-IndeterminateCheckbox.displayName = "IndeterminateCheckbox"
-IndeterminateCheckbox.propTypes = propTypes
+IndeterminateCheckbox.displayName = 'IndeterminateCheckbox';
+IndeterminateCheckbox.propTypes = propTypes;
 
-export default IndeterminateCheckbox
+export default IndeterminateCheckbox;

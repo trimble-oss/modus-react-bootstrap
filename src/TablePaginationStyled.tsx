@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 const TablePaginationStyled = styled.div`
   div.container {
@@ -14,5 +14,5 @@ const TablePaginationStyled = styled.div`
       }
     }
   }
-`
-export default TablePaginationStyled
+`;
+export default TablePaginationStyled;
