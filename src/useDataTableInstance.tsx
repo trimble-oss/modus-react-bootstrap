@@ -29,14 +29,6 @@ function useDataTableInstance<T extends Record<string, unknown>>(
     ...hooks,
   );
 
-  // Header Context Menu
-  // const {
-  //   contextMenu,
-  //   showContextMenu,
-  //   handleHeaderContextMenu,
-  //   handleContextMenuClose,
-  // } = useDataTableContextMenu(tableInstance)
-
   const {
     getTableProps,
     getTableBodyProps,

@@ -209,7 +209,7 @@ const propTypes = {
   dragTemplate: PropTypes.func,
 };
 
-export function DataTable<T extends Record<string, unknown>>(
+function DataTable<T extends Record<string, unknown>>(
   props: React.PropsWithChildren<DataTableProps<T>> & {
     ref?: React.Ref<HTMLDivElement>;
   },

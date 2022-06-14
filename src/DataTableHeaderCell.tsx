@@ -62,7 +62,7 @@ const DataTableHeaderCell = React.forwardRef<
     if (registerColumn && header.id && resolvedRef.current) {
       registerColumn(header.id, resolvedRef.current);
     }
-  }, [header.id, resolvedRef.current, registerColumn]);
+  }, [header.id, registerColumn, resolvedRef]);
 
   // handle right-click
   const handleContextMenuClick = useCallback(
@@ -109,7 +109,7 @@ const DataTableHeaderCell = React.forwardRef<
     },
     allowDrag
       ? {
-          onMouseDown: function (e) {
+          onMouseDown(e) {
             if (onHeaderDragStart) onHeaderDragStart(e, header);
           },
         }

@@ -7,8 +7,8 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import useForceUpdate from '@restart/hooks/useForceUpdate';
+import { ColumnInstance } from 'react-table';
 import renderUsingPortal from './renderUsingPortal';
-import { Column, ColumnInstance } from 'react-table';
 
 type Position = { x: number; y: number };
 type RegisteredColumn = { id: string; ref: any };
@@ -26,7 +26,7 @@ type DragState = {
   column: ColumnInstance<any> | null;
   columnOrder: Array<any>;
 };
-const POSITION = { x: 0, y: 0 } as Position;
+const POSITION: Position = { x: 0, y: 0 };
 
 function getNewColumnOrder(columnIds, dragColumnId, dropColumnId): any[] {
   const newColumnOrder = columnIds;
@@ -237,6 +237,7 @@ export default function DataTableDragdropProvider(props) {
       onHeaderDragStart: handleMouseDown,
       registerColumn,
     }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [draggingState.current.column, handleMouseDown, registerColumn],
   );
 

@@ -3,14 +3,14 @@ import { TreeItem } from './types';
 
 export interface TreeViewContextProps {
   id: string;
-  size: string;
-  checkBoxSelection: boolean;
-  multiSelectNode: boolean;
-  multiSelectCheckBox: boolean;
-  collapseIcon: React.ReactElement;
-  expandIcon: React.ReactElement;
-  itemIcon: React.ReactElement;
-  dragIcon: React.ReactElement;
+  size?: string;
+  checkBoxSelection?: boolean;
+  multiSelectNode?: boolean;
+  multiSelectCheckBox?: boolean;
+  collapseIcon?: React.ReactElement;
+  expandIcon?: React.ReactElement;
+  itemIcon?: React.ReactElement;
+  dragIcon?: React.ReactElement;
   registerNode: (node: TreeItem) => void;
   unRegisterNode: (nodeId: number) => void;
   isExpanded: (nodeId: number) => boolean;
@@ -30,6 +30,6 @@ export interface TreeViewContextProps {
   onKeyPress: (event: any, enterKeyPressAction: () => void) => void;
 }
 
-const TreeViewContext = React.createContext<TreeViewContextProps>(null);
+const TreeViewContext = React.createContext<TreeViewContextProps | null>(null);
 
 export default TreeViewContext;

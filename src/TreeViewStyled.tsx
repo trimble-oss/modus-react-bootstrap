@@ -1,40 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
 
-interface TreeViewItemStyleWrapperProps extends React.HTMLProps<HTMLLIElement> {
-  level: number;
-  checkBoxSelection?: string;
-  itemIcon?: string;
-}
-
-interface TreeViewItemGroupStyleWrapperProps
-  extends React.HTMLProps<HTMLUListElement> {
-  expanded: string;
-}
-
-const TreeViewItemStyleWrapper = React.forwardRef<
-  HTMLLIElement,
-  TreeViewItemStyleWrapperProps
->(({ level, checkBoxSelection, itemIcon, children, ...props }, ref) => {
-  return (
-    <li ref={ref} {...props}>
-      {children}
-    </li>
-  );
-});
-
-const TreeViewItemGroupStyleWrapper = React.forwardRef<
-  HTMLUListElement,
-  TreeViewItemGroupStyleWrapperProps
->(({ expanded, children, ...props }, ref) => {
-  return (
-    <ul ref={ref} {...props}>
-      {children}
-    </ul>
-  );
-});
-
-export const TreeViewStyled = styled.ul`
+const TreeViewStyled = styled.ul`
   .modus-icons,
   .material-icons {
     cursor: pointer;
@@ -64,7 +30,11 @@ export const TreeViewStyled = styled.ul`
     }
   }
 `;
-export const TreeViewItemStyled = styled(TreeViewItemStyleWrapper)`
+export const TreeViewItemStyled = styled.li<{
+  level: number;
+  checkBoxSelection: string;
+  itemIcon: string;
+}>`
   &:focus-visible,
   &.focus-visible,
   *:focus-visible {
@@ -83,8 +53,8 @@ export const TreeViewItemStyled = styled(TreeViewItemStyleWrapper)`
     align-items: stretch !important;
 
     grid-template-columns: min-content ${(props) =>
-        props.checkBoxSelection == 'true' && 'min-content'} ${(props) =>
-        props.itemIcon == 'true' && 'min-content'} auto min-content !important;
+        props.checkBoxSelection === 'true' && 'min-content'} ${(props) =>
+        props.itemIcon === 'true' && 'min-content'} auto min-content !important;
 
     .tree-item-level {
       padding-left: ${(props) =>
@@ -92,8 +62,8 @@ export const TreeViewItemStyled = styled(TreeViewItemStyleWrapper)`
     }
   }
 `;
-export const TreeViewItemGroupStyled = styled(TreeViewItemGroupStyleWrapper)`
-  display: ${(props) => (props.expanded == 'true' ? 'block' : 'none')};
+export const TreeViewItemGroupStyled = styled.ul<{ expanded: string }>`
+  display: ${(props) => (props.expanded === 'true' ? 'block' : 'none')};
 `;
 
 export default TreeViewStyled;

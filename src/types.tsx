@@ -89,8 +89,8 @@ export type ContextMenuItem = {
 };
 export type TreeItem = {
   id: number;
-  parentId: number;
   index: number;
+  parentId?: number;
   label?: ReactNode;
   children?: TreeItem[];
   disabled?: boolean;

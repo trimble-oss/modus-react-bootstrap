@@ -8,12 +8,12 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import * as PropTypes from 'prop-types';
-import { Button, Form } from '@trimbleinc/modus-react-bootstrap';
+import { Button, Form } from '.';
 import FileUploadDropZoneStyled from './FileUploadDropZoneStyled';
 import { FileUploadDropZoneState } from './types';
 
 export interface FileUploadDropZoneProps
-  extends Omit<React.HTMLProps<HTMLDivElement>, 'accept'> {
+  extends Omit<React.HTMLProps<HTMLDivElement>, 'accept' | 'children' | 'as'> {
   id: string;
   accept?: string[];
   maxFileCount?: number;
@@ -21,7 +21,7 @@ export interface FileUploadDropZoneProps
   multiple?: boolean;
   disabled?: boolean;
   uploadIcon?: React.ReactElement | boolean;
-  onFiles?: (files: FileList, err: string) => void;
+  onFiles?: (files: FileList, err: string | null) => void;
   onDragEnter?: DragEventHandler<any> | undefined;
   onDragLeave?: DragEventHandler<any> | undefined;
   onDragOver?: DragEventHandler<any> | undefined;
@@ -30,12 +30,12 @@ export interface FileUploadDropZoneProps
 
 const propTypes = {
   /** A HTML id attribute, necessary for proper form accessibility. */
-  id: PropTypes.string,
+  id: PropTypes.string.isRequired,
 
   /**
    * Accepted File types for upload. Values should be either a valid MIME type or a file extension.
    */
-  accept: PropTypes.arrayOf(PropTypes.string),
+  accept: PropTypes.arrayOf(PropTypes.string.isRequired),
 
   /**
    * Maximum number of files can be uploaded.
@@ -111,7 +111,79 @@ type FileUploadState = {
   message?: React.ReactElement | string;
 };
 
-const DEFAULT = { value: 'default' } as FileUploadState;
+const DEFAULT: FileUploadState = { value: 'default' };
+function bytesToSize(bytes: number): string {
+  const sizes: string[] = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+  if (bytes === 0) return 'n/a';
+  const i: number = parseInt(
+    Math.floor(Math.log(bytes) / Math.log(1024)).toString(),
+    10,
+  );
+  if (i === 0) return `${bytes} ${sizes[i]}`;
+  return `${(bytes / 1024 ** i).toFixed(1)} ${sizes[i]}`;
+}
+function validateFiles(
+  files: FileList,
+  accept: string[] | undefined,
+  maxFileCount: number | undefined,
+  maxTotalFileSizeBytes: number | undefined,
+  multiple: boolean | undefined,
+) {
+  if (files) {
+    const arr = Array.from(files);
+
+    // Accepted File types
+    if (accept) {
+      const acceptedTypes = new Set(accept);
+      const fileExtensionRegExp = new RegExp('.[0-9a-z]+$', 'i');
+      const invalidType = arr.find(({ name, type }) => {
+        const hasFileExtension = fileExtensionRegExp.test(name);
+        if (!hasFileExtension) {
+          return true;
+        }
+        const [fileExtension] = name.match(fileExtensionRegExp);
+
+        if (
+          acceptedTypes.has(type) ||
+          acceptedTypes.has(fileExtension.toLowerCase())
+        ) {
+          return false;
+        }
+        return true;
+      });
+      if (invalidType) {
+        return `Some files do not match the allowed file types (${accept
+          .map((item, index) => {
+            return `${item}${index === accept.length - 1 ? '' : ','}`;
+          })
+          .join(' ')}).`;
+      }
+    }
+
+    // Files count
+    if (maxFileCount && arr.length > maxFileCount) {
+      return `Max file upload limit of ${maxFileCount} files exceeded.`;
+    }
+
+    // Multiple upload
+    if (!multiple && !maxFileCount && arr.length > 1) {
+      return `Multiple files cannot be uploaded.`;
+    }
+
+    // Total size
+    if (maxTotalFileSizeBytes) {
+      const totalSize = arr.reduce((tot, file) => {
+        return tot + file.size;
+      }, 0);
+      if (totalSize > maxTotalFileSizeBytes)
+        return `Upload size exceeds limit. Max upload size ${bytesToSize(
+          maxTotalFileSizeBytes,
+        )}.`;
+    }
+  }
+  return null;
+}
+
 const FileUploadDropZone = forwardRef<HTMLDivElement, FileUploadDropZoneProps>(
   (
     {
@@ -120,8 +192,6 @@ const FileUploadDropZone = forwardRef<HTMLDivElement, FileUploadDropZoneProps>(
       maxTotalFileSizeBytes,
       multiple,
       disabled,
-      children,
-      as,
       className,
       tabIndex,
       accept,
@@ -151,6 +221,107 @@ const FileUploadDropZone = forwardRef<HTMLDivElement, FileUploadDropZoneProps>(
       return <i className="modus-icons">cloud_upload</i>;
     }, [uploadIcon]);
 
+    const handleDragEnter = useCallback(
+      (e) => {
+        setState({
+          value: 'drop',
+          message: 'Drag files here.',
+        });
+        dragCounter.current++;
+
+        e.preventDefault();
+        if (onDragEnter) onDragEnter(e);
+      },
+      [setState, onDragEnter],
+    );
+
+    const handleDragLeave = useCallback(
+      (e) => {
+        // workaround for onDragLeave firing on parent div when dragging over a child div
+        dragCounter.current--;
+        if (dragCounter.current === 0) {
+          setState(DEFAULT);
+        }
+
+        e.preventDefault();
+        if (onDragLeave) onDragLeave(e);
+      },
+      [setState, onDragLeave],
+    );
+
+    const handleDragOver = useCallback(
+      (e) => {
+        e.preventDefault();
+        if (onDragOver) onDragOver(e);
+      },
+      [onDragOver],
+    );
+
+    const handleFiles = useCallback(
+      (files: FileList) => {
+        const err = validator
+          ? validator(files)
+          : validateFiles(
+              files,
+              accept,
+              maxFileCount,
+              maxTotalFileSizeBytes,
+              multiple,
+            );
+        if (err) {
+          setState({
+            value: 'error',
+            icon: <i className="modus-icons">no_entry</i>,
+            message: err,
+          });
+        } else setState(DEFAULT);
+
+        if (onFiles) onFiles(files, err);
+      },
+      [
+        setState,
+        onFiles,
+        validator,
+        accept,
+        maxFileCount,
+        maxTotalFileSizeBytes,
+        multiple,
+      ],
+    );
+
+    const handleDrop = useCallback(
+      (e) => {
+        e.preventDefault();
+        handleFiles(e.dataTransfer.files);
+        dragCounter.current = 0;
+      },
+      [handleFiles],
+    );
+    const handleKeyDown = useCallback(
+      (e) => {
+        if (
+          fileInputRef.current &&
+          !disabled &&
+          (e.key === 'Enter' || e.key === ' ')
+        )
+          fileInputRef.current.click();
+      },
+      [disabled],
+    );
+
+    const handleReset = useCallback(
+      (e) => {
+        if (!e.key || e.key === 'Enter' || e.key === ' ') {
+          setState(DEFAULT);
+          dragCounter.current = 0;
+
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      },
+      [setState, dragCounter],
+    );
+
     const events = useMemo(
       () =>
         disabled
@@ -172,155 +343,15 @@ const FileUploadDropZone = forwardRef<HTMLDivElement, FileUploadDropZoneProps>(
                 handleKeyDown(e);
               },
             },
-      [disabled],
+      [
+        disabled,
+        handleDragEnter,
+        handleDragOver,
+        handleDragLeave,
+        handleDrop,
+        handleKeyDown,
+      ],
     );
-
-    const handleDragEnter = useCallback(
-      (e) => {
-        setState({
-          value: 'drop',
-          message: 'Drag files here.',
-        });
-        dragCounter.current++;
-
-        e.preventDefault();
-        if (onDragEnter) onDragEnter(e);
-      },
-      [setState],
-    );
-
-    const handleDragLeave = useCallback(
-      (e) => {
-        // workaround for onDragLeave firing on parent div when dragging over a child div
-        dragCounter.current--;
-        if (dragCounter.current === 0) {
-          setState(DEFAULT);
-        }
-
-        e.preventDefault();
-        if (onDragLeave) onDragLeave(e);
-      },
-      [setState],
-    );
-
-    const handleDragOver = useCallback((e) => {
-      e.preventDefault();
-      if (onDragOver) onDragOver(e);
-    }, []);
-
-    const handleFiles = useCallback(
-      (files: FileList) => {
-        const err = validator ? validator(files) : validateFiles(files);
-        if (err) {
-          setState({
-            value: 'error',
-            icon: <i className="modus-icons">no_entry</i>,
-            message: err,
-          });
-        } else setState(DEFAULT);
-
-        if (onFiles) onFiles(files, err);
-      },
-      [setState],
-    );
-
-    const handleDrop = useCallback(
-      (e) => {
-        e.preventDefault();
-        handleFiles(e.dataTransfer.files);
-        dragCounter.current = 0;
-      },
-      [handleFiles],
-    );
-    const handleKeyDown = useCallback(
-      (e) => {
-        if (!disabled && (e.key == 'Enter' || e.key == ' '))
-          fileInputRef.current.click();
-      },
-      [fileInputRef.current, disabled],
-    );
-
-    const handleReset = useCallback(
-      (e) => {
-        if (!e.key || e.key == 'Enter' || e.key == ' ') {
-          setState(DEFAULT);
-          dragCounter.current = 0;
-
-          e.preventDefault();
-          e.stopPropagation();
-        }
-      },
-      [setState, dragCounter],
-    );
-
-    const validateFiles = useCallback(
-      (files: FileList) => {
-        if (files) {
-          const arr = Array.from(files);
-
-          // Accepted File types
-          if (accept) {
-            const acceptedTypes = new Set(accept);
-            const fileExtensionRegExp = new RegExp('.[0-9a-z]+$', 'i');
-            const invalidType = arr.find(({ name, type }) => {
-              const hasFileExtension = fileExtensionRegExp.test(name);
-              if (!hasFileExtension) {
-                return true;
-              }
-              const [fileExtension] = name.match(fileExtensionRegExp);
-
-              if (
-                acceptedTypes.has(type) ||
-                acceptedTypes.has(fileExtension.toLowerCase())
-              ) {
-                return false;
-              }
-              return true;
-            });
-            if (invalidType) {
-              return `Some files do not match the allowed file types (${accept
-                .map((item, index) => {
-                  return `\"${item}${index === accept.length - 1 ? '' : ','}\"`;
-                })
-                .join(' ')}).`;
-            }
-          }
-
-          // Files count
-          if (maxFileCount && arr.length > maxFileCount) {
-            return `Max file upload limit of ${maxFileCount} files exceeded.`;
-          }
-
-          // Multiple upload
-          if (!multiple && !maxFileCount && arr.length > 1) {
-            return `Multiple files cannot be uploaded.`;
-          }
-
-          // Total size
-          if (maxTotalFileSizeBytes) {
-            const totalSize = arr.reduce((tot, file) => {
-              return tot + file.size;
-            }, 0);
-            if (totalSize > maxTotalFileSizeBytes)
-              return `Upload size exceeds limit. Max upload size ${bytesToSize(
-                maxTotalFileSizeBytes,
-              )}.`;
-          }
-        }
-        return null;
-      },
-      [maxFileCount, maxTotalFileSizeBytes, multiple],
-    );
-
-    function bytesToSize(bytes: number): string {
-      const sizes: string[] = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-      if (bytes === 0) return 'n/a';
-      const i: number = parseInt(
-        Math.floor(Math.log(bytes) / Math.log(1024)).toString(),
-      );
-      if (i === 0) return `${bytes} ${sizes[i]}`;
-      return `${(bytes / Math.pow(1024, i)).toFixed(1)} ${sizes[i]}`;
-    }
 
     return (
       <FileUploadDropZoneStyled
@@ -370,7 +401,9 @@ const FileUploadDropZone = forwardRef<HTMLDivElement, FileUploadDropZoneProps>(
                       disabled={disabled}
                       ref={fileInputRef}
                       onChange={(e) => handleFiles(e.target.files)}
-                      multiple={multiple || (maxFileCount && maxFileCount > 1)}
+                      multiple={
+                        multiple || Boolean(maxFileCount && maxFileCount > 1)
+                      }
                     />
                   </Form.File>{' '}
                   to upload.

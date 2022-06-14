@@ -1,10 +1,9 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 /**
  * Note:
- * 1) Border styles for the Table and its cells have been modified here
- * due to border disappearing issue on scrolling with sticky top or sticky column
- * 2) the scrollable container s
+ * 1) Border styles for the Table and its cells have been override here
+ * due to border disappearing issue while scrolling with sticky top or sticky column
  */
 const DataTableStyled = styled.div`
   .container {

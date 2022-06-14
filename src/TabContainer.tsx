@@ -15,6 +15,7 @@ export interface TabContainerProps extends React.PropsWithChildren<unknown> {
   generateChildId?: (eventKey: EventKey, type: 'tab' | 'pane') => string;
   onSelect?: SelectCallback;
   activeKey?: EventKey;
+  // eslint-disable-next-line react/no-unused-prop-types
   defaultActiveKey?: EventKey;
 }
 

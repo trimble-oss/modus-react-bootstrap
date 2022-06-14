@@ -9,7 +9,9 @@ import { EventKey } from './types';
 export interface TabProps extends React.ComponentPropsWithRef<typeof TabPane> {
   eventKey?: EventKey;
   title: React.ReactNode;
+  // eslint-disable-next-line react/no-unused-prop-types
   disabled?: boolean;
+  // eslint-disable-next-line react/no-unused-prop-types
   tabClassName?: string;
 }
 

@@ -27,7 +27,7 @@ const FileUploadDropZoneStyled = styled.div<{ state: string }>`
       .file-drop-zone-overlay {
         border: 2px dotted #a3a6b1;
         background-color: ${UPLOAD_STATES[state].background};
-        opacity: ${state == 'error' || state == 'disabled' ? '50%' : '100%'};
+        opacity: ${state === 'error' || state === 'disabled' ? '50%' : '100%'};
         border-color: ${UPLOAD_STATES[state].text};
         z-index: 1;
         position: absolute;

@@ -38,6 +38,32 @@ type DescendantProviderParam = {
   ) => void;
 };
 
+function binaryFindElement(array, element) {
+  let start = 0;
+  let end = array.length - 1;
+
+  while (start <= end) {
+    const middle = Math.floor((start + end) / 2);
+
+    if (array[middle].element === element) {
+      return middle;
+    }
+
+    // eslint-disable-next-line no-bitwise
+    if (
+      array[middle].element &&
+      array[middle].element.compareDocumentPosition(element) &
+        Node.DOCUMENT_POSITION_PRECEDING
+    ) {
+      end = middle - 1;
+    } else {
+      start = middle + 1;
+    }
+  }
+
+  return start;
+}
+
 export default function useTreeViewDescendants({
   nodeId,
   element,
@@ -63,6 +89,7 @@ export default function useTreeViewDescendants({
 
   const descendants = useMemo(
     () => registeredChildren.current,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [registeredChildren.current],
   );
 
@@ -77,9 +104,9 @@ export default function useTreeViewDescendants({
       setIndex(newIndex);
     }
     return () => {
-      unRegisterOnParent && unRegisterOnParent(nodeId);
+      if (unRegisterOnParent) unRegisterOnParent(nodeId);
     };
-  }, [registerOnParent, unRegisterOnParent, setIndex, element]);
+  }, [registerOnParent, unRegisterOnParent, setIndex, element, nodeId]);
 
   const registerDescendant = useCallback(
     (id, children, descendantElement) => {
@@ -172,7 +199,8 @@ export default function useTreeViewDescendants({
         const finalCheckedArray = [...checkedArray];
         const finalUnCheckedArray = [...uncheckedArray];
         childNodesFiltered.forEach((id) => {
-          if (hasCheckBoxSelected(id)) finalCheckedArray.push(id);
+          if (hasCheckBoxSelected && hasCheckBoxSelected(id))
+            finalCheckedArray.push(id);
           else finalUnCheckedArray.push(id);
         });
 
@@ -180,18 +208,19 @@ export default function useTreeViewDescendants({
         if (finalUnCheckedArray.length > 0) finalUnCheckedArray.push(nodeId);
         else finalCheckedArray.push(nodeId);
 
-        updateCheckboxSelectionOnParent
-          ? updateCheckboxSelectionOnParent(
-              event,
-              nodeId,
-              finalCheckedArray,
-              finalUnCheckedArray,
-            )
-          : handleCheckboxSelection(
-              event,
-              finalCheckedArray,
-              finalUnCheckedArray,
-            );
+        if (updateCheckboxSelectionOnParent)
+          updateCheckboxSelectionOnParent(
+            event,
+            nodeId,
+            finalCheckedArray,
+            finalUnCheckedArray,
+          );
+        else if (handleCheckboxSelection)
+          handleCheckboxSelection(
+            event,
+            finalCheckedArray,
+            finalUnCheckedArray,
+          );
       }
     },
     [
@@ -203,31 +232,6 @@ export default function useTreeViewDescendants({
     ],
   );
 
-  function binaryFindElement(array, element) {
-    let start = 0;
-    let end = array.length - 1;
-
-    while (start <= end) {
-      const middle = Math.floor((start + end) / 2);
-
-      if (array[middle].element === element) {
-        return middle;
-      }
-
-      // eslint-disable-next-line no-bitwise
-      if (
-        array[middle].element &&
-        array[middle].element.compareDocumentPosition(element) &
-          Node.DOCUMENT_POSITION_PRECEDING
-      ) {
-        end = middle - 1;
-      } else {
-        start = middle + 1;
-      }
-    }
-
-    return start;
-  }
   return {
     parentId,
     level,

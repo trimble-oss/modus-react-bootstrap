@@ -1,17 +1,10 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {
-  Dropdown,
-  Form,
-  NavItem,
-  NavLink,
-  Pagination,
-  PaginationProps,
-} from '@trimbleinc/modus-react-bootstrap';
+import { Dropdown, Form, NavItem, NavLink, Pagination } from '.';
 import TablePaginationStyled from './TablePaginationStyled';
 
-type size = 'sm' | 'lg';
+type Size = 'sm' | 'lg';
 export interface TablePaginationProps
   extends Omit<React.HTMLProps<HTMLDivElement>, 'size' | 'as'> {
   count: number;
@@ -170,15 +163,18 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
 
     const handlePreviousPage = useCallback(() => {
       onPageChange(pageIndex - 1);
-    }, [pageIndex]);
+    }, [pageIndex, onPageChange]);
 
     const handleNextPage = useCallback(() => {
       onPageChange(pageIndex + 1);
-    }, [pageIndex]);
+    }, [pageIndex, onPageChange]);
 
-    const handleGotoPage = useCallback((page) => {
-      onPageChange(page - 1);
-    }, []);
+    const handleGotoPage = useCallback(
+      (page) => {
+        onPageChange(page - 1);
+      },
+      [onPageChange],
+    );
 
     return (
       <TablePaginationStyled>
@@ -202,7 +198,7 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
                   Page Size:
                 </Form.Label>
                 <Form.Control
-                  size={size as size}
+                  size={size as Size}
                   as="select"
                   custom
                   value={pageSize}
@@ -210,9 +206,9 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
                     onPageSizeChange(Number(e.target.value));
                   }}
                 >
-                  {pageSizeOptions.map((size) => (
-                    <option key={size} value={size}>
-                      {size}
+                  {pageSizeOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
                     </option>
                   ))}
                 </Form.Control>
@@ -221,7 +217,7 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
           </div>
           <div>
             <nav aria-label="Pagination">
-              <Pagination className="mb-0" size={size as size}>
+              <Pagination className="mb-0" size={size as Size}>
                 <Pagination.Item
                   disabled={pageIndex === 0}
                   onClick={handlePreviousPage}

@@ -2,7 +2,7 @@
 /**
  * A custom state hook for handling controlled states ex: Tree View -> `expanded` state
  */
-import React, { useEffect, useCallback, useRef, useState } from 'react';
+import { useEffect, useCallback, useRef, useState } from 'react';
 
 export default function useCustomState(prop, defaultProp) {
   const [value, setValue] = useState(defaultProp);

@@ -14,7 +14,7 @@ import useTreeViewDescendants from './useTreeViewDescendants';
 export interface TreeViewProps
   extends Omit<
     React.HTMLProps<HTMLUListElement>,
-    'expanded' | 'selected' | 'size'
+    'expanded' | 'selected' | 'size' | 'as'
   > {
   id: string;
   nodeId: number;
@@ -26,7 +26,7 @@ export interface TreeViewProps
   checkBoxSelection?: boolean;
   multiSelectNode?: boolean;
   multiSelectCheckBox?: boolean;
-  expanded?: number[];
+  expanded?: ReadonlyArray<number>;
   defaultExpanded?: number[];
   defaultSelected?: number[];
   onNodeToggle?: (event: any, expanded: number[]) => void;
@@ -70,13 +70,13 @@ const propTypes = {
   multiSelectCheckBox: PropTypes.bool,
 
   /** Tree items expanded by default. */
-  defaultExpanded: PropTypes.arrayOf(PropTypes.number),
+  defaultExpanded: PropTypes.arrayOf(PropTypes.number.isRequired),
 
   /** Tree items selected by default (if multiSelect not enabled only the first value is considered). */
-  defaultSelected: PropTypes.arrayOf(PropTypes.number),
+  defaultSelected: PropTypes.arrayOf(PropTypes.number.isRequired),
 
   /** To expand the Tree items. */
-  expanded: PropTypes.arrayOf(PropTypes.number),
+  expanded: PropTypes.arrayOf(PropTypes.number.isRequired),
 
   /**
    * Callback when a Tree item expands or collapse.
@@ -130,33 +130,30 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       expanded,
       className,
       children,
-      as,
       ...props
     },
     ref,
   ) => {
     const nodes = useRef({});
+    const defaultRef = React.useRef<HTMLUListElement>(null);
     const resolvedRef = (ref ||
-      React.useRef<HTMLUListElement>(
-        null,
-      )) as React.MutableRefObject<HTMLUListElement>;
+      defaultRef) as React.MutableRefObject<HTMLUListElement>;
     const [focusNodeId, setFocusNodeId] = useState<number>();
     const [nodesExpanded, setNodeExpanded] = useCustomState(
       expanded,
-      [].concat(defaultExpanded),
+      defaultExpanded || [],
     );
     const [nodesSelected, setNodeSelected] = useState<number[]>(
-      [].concat(
-        defaultSelected && defaultSelected.length > 1 && !multiSelectNode
-          ? [defaultSelected[0]]
-          : defaultSelected,
-      ),
+      defaultSelected && defaultSelected.length > 1 && !multiSelectNode
+        ? [defaultSelected[0]]
+        : [],
     );
     const [nodeCheckBoxSelected, setNodeCheckBoxSelected] = useState<number[]>(
       [],
     );
     // Used by descendant context to find the index of repositioned elements
-    const [treeItemElement, setTreeItemElement] = useState(null);
+    const [treeItemElement, setTreeItemElement] =
+      useState<HTMLUListElement | null>(null);
     const { registerDescendant, unRegisterDescendant, updateDescendant } =
       useTreeViewDescendants({
         nodeId,
@@ -164,8 +161,93 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       });
 
     useEffect(() => {
-      setTreeItemElement(resolvedRef.current);
-    }, [resolvedRef.current]);
+      if (resolvedRef.current) setTreeItemElement(resolvedRef.current);
+    }, [resolvedRef]);
+
+    // Helpers
+    // TODO: Replace the logic getChildrenIds(getNodesArray) to avoid performance issues if any
+    function getNodesArray(): TreeItem[] {
+      return Object.keys(nodes.current).map((key) => {
+        return nodes.current[key];
+      });
+    }
+
+    function getChildrenIds(
+      array: TreeItem[],
+      nodeIdVal: number,
+      recursive = true,
+    ): number[] {
+      return array.reduce<number[]>((r, { id: idVal, parentId }) => {
+        if (parentId === nodeIdVal) {
+          r.push(idVal, ...(recursive ? getChildrenIds(array, idVal) : []));
+        }
+        return r;
+      }, []);
+    }
+
+    function getImmediateChildrenIds(idVal) {
+      return Object.keys(nodes.current)
+        .map((key) => {
+          return nodes.current[key];
+        })
+        .filter((node) => node.parentId === idVal)
+        .sort((a, b) => a.index - b.index)
+        .map((child) => child.id);
+    }
+
+    function getParents(nodeIdVal: number): number[] {
+      let { parentId } = nodes.current[nodeIdVal];
+      const parents: number[] = [];
+      while (parentId != null) {
+        parents.push(parentId);
+        parentId = nodes.current[parentId].parentId;
+      }
+
+      return parents;
+    }
+
+    // Handlers
+    const handleMultipleSelect = useCallback(
+      (value, prevState, recursive = false): number[] => {
+        let newSelected = [];
+        const oldSelected = prevState || [];
+
+        if (recursive) {
+          const array = getNodesArray();
+          const childNodes = getChildrenIds(array, value);
+          // unselect parents and children
+          if (oldSelected.indexOf(value) !== -1) {
+            const parents = getParents(value);
+            const filtered = oldSelected.filter(
+              (id) =>
+                childNodes.indexOf(id) < 0 &&
+                id !== value &&
+                parents.indexOf(id) < 0,
+            );
+
+            newSelected = filtered;
+          }
+          // select children and parents with all child nodes selected
+          else {
+            const filtered = oldSelected.filter(
+              (id) => childNodes.indexOf(id) < 0,
+            );
+            newSelected = filtered.concat([value], childNodes);
+          }
+        } else if (oldSelected.includes(value))
+          newSelected = oldSelected.filter((id) => id !== value);
+        else newSelected = oldSelected.concat(value);
+
+        return newSelected;
+      },
+      [],
+    );
+
+    const handleSingleSelect = useCallback((value, prevState): number[] => {
+      const selection: number[] =
+        prevState && prevState.includes(value) ? [] : [value];
+      return selection;
+    }, []);
 
     // Tree view context
     // Actions
@@ -173,20 +255,20 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       nodes.current[node.id] = node;
     }, []);
 
-    const unRegisterNode = useCallback((nodeId: number) => {
+    const unRegisterNode = useCallback((nodeIdVal: number) => {
       const newNodes = { ...nodes.current };
-      delete newNodes[nodeId];
+      delete newNodes[nodeIdVal];
       nodes.current = newNodes;
     }, []);
 
     const toggleExpansion = useCallback(
-      (event: any, nodeId: number) => {
-        let newExpanded = [];
+      (event: any, nodeIdValue: number) => {
+        let newExpanded: number[] = [];
         const oldExpanded = nodesExpanded || [];
-        if (oldExpanded.indexOf(nodeId) !== -1) {
-          newExpanded = oldExpanded.filter((id) => id !== nodeId);
+        if (oldExpanded.indexOf(nodeIdValue) !== -1) {
+          newExpanded = oldExpanded.filter((id) => id !== nodeIdValue);
         } else {
-          newExpanded = [nodeId].concat(oldExpanded);
+          newExpanded = [nodeIdValue].concat(oldExpanded);
         }
         setNodeExpanded(newExpanded);
         if (onNodeToggle) {
@@ -197,28 +279,35 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
     );
 
     const toggleNodeSelection = useCallback(
-      (event: any, nodeId: number) => {
+      (event: any, nodeIdValue: number) => {
         const multiple =
           multiSelectNode && (event.shiftKey || event.ctrlKey || event.metaKey);
 
-        let newSelected = [];
+        let newSelected: number[] = [];
         if (multiple) {
-          newSelected = handleMultipleSelect(nodeId, nodesSelected);
+          newSelected = handleMultipleSelect(nodeIdValue, nodesSelected);
         } else {
-          newSelected = handleSingleSelect(nodeId, nodesSelected);
+          newSelected = handleSingleSelect(nodeIdValue, nodesSelected);
         }
 
         setNodeSelected(newSelected);
         if (onNodeSelect) onNodeSelect(event, newSelected);
       },
-      [nodesSelected, setNodeSelected, onNodeSelect],
+      [
+        nodesSelected,
+        setNodeSelected,
+        onNodeSelect,
+        handleMultipleSelect,
+        handleSingleSelect,
+        multiSelectNode,
+      ],
     );
 
     const toggleSingleCheckBoxSelection = useCallback(
-      (event: any, nodeId: number) => {
+      (event: any, nodeIdValue: number) => {
         const prevState = [...nodeCheckBoxSelected];
         const newState =
-          prevState && prevState.includes(nodeId) ? [] : [nodeId];
+          prevState && prevState.includes(nodeIdValue) ? [] : [nodeIdValue];
         setNodeCheckBoxSelected(newState);
         if (onCheckBoxSelect) onCheckBoxSelect(event, newState);
       },
@@ -240,9 +329,8 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
     );
 
     const focusNode = useCallback(
-      (event: any, nodeId: number, tabKey = false) => {
-        setFocusNodeId(nodeId);
-        // event.stopPropagation()
+      (event: any, nodeIdValue: number) => {
+        setFocusNodeId(nodeIdValue);
       },
       [setFocusNodeId],
     );
@@ -298,55 +386,65 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
     );
 
     const isNodeDisabled = useCallback(
-      (nodeId: number) => {
-        return nodes.current[nodeId] ? nodes.current[nodeId].disabled : false;
+      (nodeIdValue: number) => {
+        return nodes.current[nodeIdValue]
+          ? nodes.current[nodeIdValue].disabled
+          : false;
       },
       [nodes],
     );
 
-    // Handlers
-    const handleMultipleSelect = (
-      value,
-      prevState,
-      recursive = false,
-    ): number[] => {
-      let newSelected = [];
-      const oldSelected = prevState || [];
+    function getNavigableChildrenIds(nodeIdVal) {
+      let childrenIds = getImmediateChildrenIds(nodeIdVal);
+      childrenIds = childrenIds.filter((node) => !isNodeDisabled(node));
+      return childrenIds;
+    }
 
-      if (recursive) {
-        const array = getNodesArray();
-        const childNodes = getChildrenIds(array, value);
-        // unselect parents and children
-        if (oldSelected.indexOf(value) !== -1) {
-          const parents = getParents(value);
-          const filtered = oldSelected.filter(
-            (id) =>
-              childNodes.indexOf(id) < 0 &&
-              id !== value &&
-              parents.indexOf(id) < 0,
-          );
+    function getNextNavigatableNode(nodeIdVal) {
+      // If expanded get first child
+      if (
+        isExpanded(nodeIdVal) &&
+        getNavigableChildrenIds(nodeIdVal).length > 0
+      ) {
+        return getNavigableChildrenIds(nodeIdVal)[0];
+      }
 
-          newSelected = filtered;
+      let node = nodes.current[nodeIdVal];
+      while (node != null) {
+        // Try to get next sibling
+        const siblings = getNavigableChildrenIds(node.parentId);
+        const nextSibling = siblings[siblings.indexOf(node.id) + 1];
+
+        if (nextSibling) {
+          return nextSibling;
         }
-        // select children and parents with all child nodes selected
-        else {
-          const filtered = oldSelected.filter(
-            (id) => childNodes.indexOf(id) < 0,
-          );
-          newSelected = filtered.concat([value], childNodes);
-        }
-      } else if (oldSelected.includes(value))
-        newSelected = oldSelected.filter((id) => id !== value);
-      else newSelected = oldSelected.concat(value);
 
-      return newSelected;
-    };
+        // If the sibling does not exist, go up a level to the parent and try again.
+        node = nodes.current[node.parentId];
+      }
 
-    const handleSingleSelect = (value, prevState): number[] => {
-      let selection = [];
-      selection = prevState && prevState.includes(value) ? [] : [value];
-      return selection;
-    };
+      return nodeIdVal;
+    }
+
+    function getPreviousNavigatableNode(id) {
+      const node = nodes.current[id];
+      const siblings = getNavigableChildrenIds(node.parentId);
+      const nodeIndex = siblings.indexOf(id);
+
+      if (nodeIndex === 0) {
+        return node.parentId || id;
+      }
+
+      let currentNode = siblings[nodeIndex - 1];
+      while (
+        isExpanded(currentNode) &&
+        getNavigableChildrenIds(currentNode).length > 0
+      ) {
+        currentNode = getNavigableChildrenIds(currentNode).pop();
+      }
+
+      return currentNode;
+    }
 
     const handleKeyDown = useCallback(
       (event, enterKeyPressAction) => {
@@ -427,97 +525,6 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
         toggleNodeSelection,
       ],
     );
-
-    // Helpers
-    // TODO: Replace the logic getChildrenIds(getNodesArray) to avoid performance issues if any
-    function getNodesArray(): TreeItem[] {
-      return Object.keys(nodes.current).map((key) => {
-        return nodes.current[key];
-      });
-    }
-
-    function getChildrenIds(
-      array: TreeItem[],
-      nodeId: number,
-      recursive = true,
-    ): number[] {
-      return array.reduce((r, { id, parentId }) => {
-        if (parentId === nodeId) {
-          r.push(id, ...(recursive ? getChildrenIds(array, id) : []));
-        }
-        return r;
-      }, []);
-    }
-
-    function getImmediateChildrenIds(id) {
-      return Object.keys(nodes.current)
-        .map((key) => {
-          return nodes.current[key];
-        })
-        .filter((node) => node.parentId === id)
-        .sort((a, b) => a.index - b.index)
-        .map((child) => child.id);
-    }
-
-    function getParents(nodeId: number): number[] {
-      let { parentId } = nodes.current[nodeId];
-      const parents = [];
-      while (parentId != null) {
-        parents.push(parentId);
-        parentId = nodes.current[parentId].parentId;
-      }
-
-      return parents;
-    }
-
-    function getNavigableChildrenIds(id) {
-      let childrenIds = getImmediateChildrenIds(id);
-      childrenIds = childrenIds.filter((node) => !isNodeDisabled(node));
-      return childrenIds;
-    }
-
-    function getNextNavigatableNode(id) {
-      // If expanded get first child
-      if (isExpanded(id) && getNavigableChildrenIds(id).length > 0) {
-        return getNavigableChildrenIds(id)[0];
-      }
-
-      let node = nodes.current[id];
-      while (node != null) {
-        // Try to get next sibling
-        const siblings = getNavigableChildrenIds(node.parentId);
-        const nextSibling = siblings[siblings.indexOf(node.id) + 1];
-
-        if (nextSibling) {
-          return nextSibling;
-        }
-
-        // If the sibling does not exist, go up a level to the parent and try again.
-        node = nodes.current[node.parentId];
-      }
-
-      return id;
-    }
-
-    function getPreviousNavigatableNode(id) {
-      const node = nodes.current[id];
-      const siblings = getNavigableChildrenIds(node.parentId);
-      const nodeIndex = siblings.indexOf(id);
-
-      if (nodeIndex === 0) {
-        return node.parentId || id;
-      }
-
-      let currentNode = siblings[nodeIndex - 1];
-      while (
-        isExpanded(currentNode) &&
-        getNavigableChildrenIds(currentNode).length > 0
-      ) {
-        currentNode = getNavigableChildrenIds(currentNode).pop();
-      }
-
-      return currentNode;
-    }
 
     return (
       <TreeViewContext.Provider
