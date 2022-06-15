@@ -28,7 +28,7 @@
   },
   "scripts": {
     "bootstrap": "yarn --network-timeout 100000",
-    "build": "node tools/build.js && node tools/custom.js",
+    "build": "node tools/build.js && node tools/custom.js && node tools/postbuild.js",
     "build-types": "yarn tsc -d --emitDeclarationOnly --outDir types",
     "format": "eslint --ext tsx --ext ts src --fix",
     "lint": "eslint --ext tsx --ext ts src && tsc --noEmit",
