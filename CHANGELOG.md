@@ -1,3 +1,27 @@
+## v1.1.0 - 2022-06-20
+
+### Features
+
+- Added new components
+  - **TreeView:** A content tree root component that provides users with a way to navigate nested hierarchical information using a parent-child relationship model.
+  - **TreeViewItem:** A content tree item component.
+  - **FileUploadDropZone:** File upload drop zone allows users to upload content from their computer or device into the application by dragging a file (or files) into a target zone.
+
+### BREAKING CHANGES
+
+- Updated API for the components
+
+  - **DataTable:** A combined component that contains Table Headers and Rows.
+  - **TablePagination:** Removed `totalPages` and added `count` and `size`
+
+- Removed components
+  - TableHead
+  - TableHeaderCell
+  - TableBody
+  - TableRow
+  - TableCell
+  - TableContainer
+
 ## v1.0.0 - 2022-02-01
 
 - Added new Table components
