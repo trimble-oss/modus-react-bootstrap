@@ -1,7 +1,11 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Dropdown, Form, NavItem, NavLink, Pagination } from '.';
+import Dropdown from './Dropdown';
+import Form from './Form';
+import NavItem from './NavItem';
+import NavLink from './NavLink';
+import Pagination from './Pagination';
 import TablePaginationStyled from './TablePaginationStyled';
 
 type Size = 'sm' | 'lg';

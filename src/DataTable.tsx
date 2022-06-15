@@ -16,14 +16,15 @@ import {
 } from 'react-table';
 import classNames from 'classnames';
 
-import { DataTableColumnInstance } from './types';
+import { DataTableColumn, DataTableColumnInstance } from './types';
 import {
   DATATABLE_DEFAULT_PAGE_SIZES,
   checkBoxSelectionHook,
   getCellStyles,
   stateReducer,
 } from './DataTableHelpers';
-import { Table, TablePagination, DataTableColumn } from '.';
+import Table from './Table';
+import TablePagination from './TablePagination';
 import DataTableHeaderCell from './DataTableHeaderCell';
 import DataTableStyled from './DataTableStyled';
 import DataTableDragdropProvider from './DataTableDragdropProvider';

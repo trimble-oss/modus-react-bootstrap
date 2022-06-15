@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { HeaderGroup, IdType, useAsyncDebounce, useTable } from 'react-table';
 import { DataTableColumnInstance } from './types';
 

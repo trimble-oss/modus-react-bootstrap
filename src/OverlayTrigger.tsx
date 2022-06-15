@@ -1,3 +1,4 @@
+// @ts-nocheck
 import contains from 'dom-helpers/contains';
 import PropTypes from 'prop-types';
 import React, { cloneElement, useCallback, useRef } from 'react';
@@ -290,7 +291,6 @@ function OverlayTrigger({
     triggerProps.onMouseOver = handleMouseOver;
     triggerProps.onMouseOut = handleMouseOut;
   }
-
   return (
     <>
       {typeof children === 'function' ? (

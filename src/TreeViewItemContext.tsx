@@ -18,5 +18,6 @@ interface TreeViewItemContextProps {
     unselected: number[],
   ) => void;
 }
-const TreeViewItemContext = React.createContext<TreeViewItemContextProps>(null);
+const TreeViewItemContext =
+  React.createContext<TreeViewItemContextProps | null>(null);
 export default TreeViewItemContext;

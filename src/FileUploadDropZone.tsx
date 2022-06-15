@@ -8,7 +8,8 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import * as PropTypes from 'prop-types';
-import { Button, Form } from '.';
+import Form from './Form';
+import Button from './Button';
 import FileUploadDropZoneStyled from './FileUploadDropZoneStyled';
 import { FileUploadDropZoneState } from './types';
 
@@ -141,7 +142,7 @@ function validateFiles(
         if (!hasFileExtension) {
           return true;
         }
-        const [fileExtension] = name.match(fileExtensionRegExp);
+        const [fileExtension] = name.match(fileExtensionRegExp) || [];
 
         if (
           acceptedTypes.has(type) ||

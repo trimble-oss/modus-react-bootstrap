@@ -26,7 +26,7 @@ export interface TreeViewContextProps {
     selected?: number[],
     unselected?: number[],
   ) => void;
-  focusNode: (event: any, nodeId: number, tabKey?: boolean) => void;
+  focusNode: (nodeId: number) => void;
   onKeyPress: (event: any, enterKeyPressAction: () => void) => void;
 }
 

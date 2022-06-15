@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { FormCheck, FormCheckProps } from '@trimbleinc/modus-react-bootstrap';
+import FormCheck, { FormCheckProps } from './FormCheck';
 
 export interface IndeterminateCheckboxProps
   extends Omit<FormCheckProps, 'size'> {
@@ -12,7 +12,7 @@ export interface IndeterminateCheckboxProps
 
 const propTypes = {
   /** A HTML id attribute, necessary for proper form accessibility. */
-  id: PropTypes.string,
+  id: PropTypes.string.isRequired,
 
   /** Indeterminate state flag. */
   indeterminate: PropTypes.bool,
@@ -30,12 +30,11 @@ const IndeterminateCheckbox = React.forwardRef<
   IndeterminateCheckboxProps
 >(({ id, size, indeterminate, ...props }, ref) => {
   const defaultRef = React.useRef<HTMLInputElement>(null);
-  const resolvedRef = ref || defaultRef;
+  const resolvedRef = (ref ||
+    defaultRef) as React.MutableRefObject<HTMLInputElement>;
 
   useEffect(() => {
-    (
-      resolvedRef as React.MutableRefObject<HTMLInputElement>
-    ).current.indeterminate = indeterminate;
+    resolvedRef.current.indeterminate = indeterminate || false;
   }, [resolvedRef, indeterminate]);
 
   return (
