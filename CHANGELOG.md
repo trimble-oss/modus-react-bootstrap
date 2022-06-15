@@ -5,22 +5,23 @@
 - Added new components
   - **TreeView:** A content tree root component that provides users with a way to navigate nested hierarchical information using a parent-child relationship model.
   - **TreeViewItem:** A content tree item component.
-  - **FileUploadDropZone:** File upload drop zone allows users to upload content from their computer or device into the application by dragging a file (or files) into a target zone.
+  - **FileUploadDropZone:** A file upload drop zone component that allows users to upload content from their computer or device into the application by dragging a file (or files) into a target zone.
+- Upgraded to [Modus Bootstrap v1.5.0](https://www.npmjs.com/package/@trimbleinc/modus-bootstrap)
 
 ### BREAKING CHANGES
 
-- Updated API for the components
+- Updated API
 
-  - **DataTable:** A combined component that contains Table Headers and Rows.
-  - **TablePagination:** Removed `totalPages` and added `count` and `size`
+  - **DataTable:** A combined component containing table Headers and Rows.
+  - **TablePagination:** Removed `totalPages` and added `count` and `size`.
 
 - Removed components
-  - TableHead
-  - TableHeaderCell
-  - TableBody
-  - TableRow
-  - TableCell
-  - TableContainer
+  - **TableHead**
+  - **TableHeaderCell**
+  - **TableBody**
+  - **TableRow**
+  - **TableCell**
+  - **TableContainer**
 
 ## v1.0.0 - 2022-02-01
 
