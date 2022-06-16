@@ -31,7 +31,7 @@ const TreeViewStyled = styled.ul`
   }
 `;
 export const TreeViewItemStyled = styled.li<{
-  level?: number;
+  level: number;
   checkBoxSelection: string;
   itemIcon: string;
 }>`
@@ -58,9 +58,7 @@ export const TreeViewItemStyled = styled.li<{
 
     .tree-item-level {
       padding-left: ${(props) =>
-        (props.level || 0) > 0
-          ? ((props.level || 0) - 1) * 0.5
-          : 0}rem !important;
+        props.level > 0 ? (props.level - 1) * 0.5 : 0}rem !important;
     }
   }
 `;

@@ -156,6 +156,7 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
       hasCheckBoxSelected: isCheckBoxSelected,
       handleCheckboxSelection: toggleMultiCheckBoxSelection,
     });
+    const currentLevel = level !== undefined ? level : 0;
 
     useEffect(() => {
       if (registerNode)
@@ -254,14 +255,14 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
     return (
       <>
         <TreeViewItemStyled
-          level={level}
+          level={currentLevel}
           checkBoxSelection={checkBoxSelection ? 'true' : 'false'}
           itemIcon={finalItemIcon ? 'true' : 'false'}
           role="treeitem"
           aria-expanded={expandable ? expanded : undefined}
           aria-selected={nodeSelected}
           aria-disabled={disabled}
-          aria-level={level}
+          aria-level={currentLevel}
           className={classNames(
             'list-group-item list-item-leftright-control',
             nodeSelected && 'active',
@@ -344,7 +345,7 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
         {children && (
           <TreeViewItemContext.Provider
             value={{
-              level: level || 0 + 1,
+              level: currentLevel + 1,
               parentId: nodeId,
               ...descendantContext,
             }}

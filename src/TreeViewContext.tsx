@@ -23,8 +23,8 @@ export interface TreeViewContextProps {
   toggleSingleCheckBoxSelection: (event: any, nodeId: number) => void;
   toggleMultiCheckBoxSelection: (
     event: any,
-    selected?: number[],
-    unselected?: number[],
+    selected: number[],
+    unselected: number[],
   ) => void;
   focusNode: (nodeId: number) => void;
   onKeyPress: (event: any, enterKeyPressAction: () => void) => void;

@@ -2,6 +2,14 @@
 
 We are happy to accept contributions from the community to improve this project.
 
+## Submitting Issues
+
+Whether you're contributing directly to the code or have suggestions, submitting an issue through GitHub is needed
+for referencing changes. Please submit change items as an Issue [here](https://github.com/trimble-oss/modus-react-bootstrap/issues) by choosing a appropriate template.
+
+Also add a priority level label to the issue. The priority options are low, medium, and high.
+If you are unsure of its priority, reach out to one of the developers for their opinion.
+
 ## Editing using the GitHub Web Interface
 
 1. Open [GitHub](https://github.com/trimble-oss/modus-react-bootstrap) in your browser.
