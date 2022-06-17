@@ -5,23 +5,73 @@ We are happy to accept contributions from the community to improve this project.
 ## Submitting Issues
 
 Whether you're contributing directly to the code or have suggestions, submitting an issue through GitHub is needed
-for referencing changes. Please submit change items as an Issue [here](https://github.com/trimble-oss/modus-react-bootstrap/issues) by choosing a appropriate template.
+for referencing changes. Please submit change items as an Issue [here](https://github.com/trimble-oss/modus-react-bootstrap/issues) by choosing an appropriate template.
 
-Also add a priority level label to the issue. The priority options are low, medium, and high.
-If you are unsure of its priority, reach out to one of the developers for their opinion.
+If possible please provide screenshots and/or screencasts of the proposed change. This will help us to understand the desired change easier.
 
-## Editing using the GitHub Web Interface
+## Technologies
 
-1. Open [GitHub](https://github.com/trimble-oss/modus-react-bootstrap) in your browser.
-2. Navigate to the component under src folder that you would like to edit.
-3. To edit, first click the gray 'Show source' button in the top-right of the content preview pane.
-4. Make your text changes. When you've finished, click the blue 'Commit' button in the bottom-right.
-5. In the 'Commit file' popup modal, enter a descriptive title of the change you're making and check the 'Create a pull request for this change' checkbox (you don't need to change the branch name).
-6. On the 'Create pull request' screen you can enter a description for the change (if needed).
-7. The Documentation Team will review, merge and publish your request or contact you with any follow-up questions.
+- Node (>= v14)
+- Yarn is the package manager, check out setup
+  instructions [here](https://yarnpkg.com/en/docs/install) if you don't have it installed already.
 
-### Setup (for running the code locally and generate a npm pack)
+### NPM
 
-1. Install dependencies with `npm install`
-2. To create a build output run `npm run build` which creates lib folder with the compiled output. Sub-folders `lib/cjs` and `lib/esm` add support for CommonJS and ESM modules.
-3. To get a installable .tgz file run `npm pack`
+We are hosting this package on the public NPM registry.
+
+## Proposing a Change
+
+If you intend to make code changes, submit a pull request linking it with the issue.
+
+If you decide to fix an existing issue, please be sure to check the comment thread in case somebody is already working on a fix and if nobody is working on it leave a comment stating your work so other people don’t accidentally duplicate your effort.
+
+### Developing a component
+
+Try and be consistent with the overall style and API of the library as a whole. Use Typescript to develop the components.
+
+All components in Modus are built with accessibility in mind. If you are making changes to an existing component, make sure to follow the accessibility section in Modus styleguide for an example [Accordion accessibility](https://modus.trimble.com/components/accordions/#accessibility). For more help refer to [Modus guidelines](https://modus.trimble.com/foundations/accessibility/?q=acce#acce) on accessibility.
+
+### Submitting a Pull Request
+
+The team will review your pull request and either merge it, request changes to it, or close it with an explanation.
+
+**Before submitting a pull request**, please make sure the following is done:
+
+1. The repository should be forked with intent to contribute to the parent repository.
+2. Branch from your fork using the naming convention `{github-username}/{description}`. For example, `mygithubname/fix-table-header`.
+3. Run `yarn run bootstrap` to install all the needed dependencies.
+4. Please make sure to provide [TSDOC-style](https://tsdoc.org/) comments\* for any `propTypes` you add or change in the component.
+   Here's an example:
+
+   ```js
+   const propTypes = {
+     /**
+      * Sets the visibility of the Component
+      */
+     show: PropTypes.bool,
+
+     /**
+      * A callback fired when the visibility changes
+      * @type {func}
+      * @required
+      */
+     onHide: myCustomPropType,
+   };
+   ```
+
+5. After finishing the code changes, run `yarn run format` to format the code.
+6. Run `yarn run lint` to find problems with code
+7. Run `yarn run build` to create a build folder with compiled output.
+8. To test the compiled output, run `yarn pack` and it creates a `tgz` file which can be installed like a regular npm package.
+9. Update the `CHANGELOG.md` with notes on your changes. Breaking changes should be highlighted.
+10. Squash your commits down to a singular commit with a relevant message. If you use GitHub Desktop you can do it with this [feature](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/managing-commits/squashing-commits).
+11. Submit your PR with your branch as the `head`, and the `@trimble-oss/modus-react-bootstrap` `main` branch as the `base`.
+12. Make sure your PR is linked with the relevant issue. Check out this [article](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) on how to do it.
+
+## Documentation
+
+Please update the docs with any API changes, the code and docs should always be in sync.
+The documentation is maintained in a separate [repository](https://github.com/trimble-oss/website-modus-react-bootstrap.trimble.com) which is a Gatsby project that uses [MDX](https://www.gatsbyjs.com/docs/how-to/routing/mdx/) and deployed to the [site](https://modus-react-bootstrap.trimble.com/).
+
+- Page with interactive examples and guides for each component is found within the `pages/components` directory.
+- To update the component API details shown on the page a copy of the component file has to added to this [path](https://github.com/trimble-oss/website-modus-react-bootstrap.trimble.com/tree/main/src/api-docs/modus-react-bootstrap) and it will reflect automatically in the API section.
