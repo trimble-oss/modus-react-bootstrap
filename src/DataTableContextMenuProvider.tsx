@@ -99,7 +99,7 @@ export default function DataTableContextMenuProvider({
 
 DataTableContextMenuProvider.propTypes = {
   children: PropTypes.node,
-  attachTo: PropTypes.any.isRequired,
+  attachTo: PropTypes.any,
   allColumns: PropTypes.any.isRequired,
   toggleHideColumn: PropTypes.func.isRequired,
   toggleHideAllColumns: PropTypes.func.isRequired,

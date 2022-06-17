@@ -265,7 +265,7 @@ export default function DataTableDragdropProvider(props) {
 
 DataTableDragdropProvider.propTypes = {
   children: PropTypes.node,
-  attachTo: PropTypes.any.isRequired,
+  attachTo: PropTypes.any,
   visibleColumns: PropTypes.any.isRequired,
   setColumnOrder: PropTypes.func.isRequired,
   dragItemTemplate: PropTypes.func,
