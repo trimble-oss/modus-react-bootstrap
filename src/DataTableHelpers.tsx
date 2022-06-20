@@ -16,8 +16,7 @@ export const checkBoxSelectionHook = <T extends Record<string, unknown>>(
   hooks.visibleColumns.push((columns) => [
     {
       id: DATATABLE_CHECKBOX_SELECTOR_ID,
-      width: 25,
-      minWidth: 25,
+      width: 50,
       disableResizing: true,
       disableGroupBy: true,
       Cell: ({ row }: CellProps<T>) => {

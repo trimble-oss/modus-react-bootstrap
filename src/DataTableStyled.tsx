@@ -6,16 +6,8 @@ import styled from 'styled-components';
  * due to border disappearing issue while scrolling with sticky top or sticky column
  */
 const DataTableStyled = styled.div`
-  .container {
-    :first-child {
-      padding: 0;
-      width: 100%;
-    }
-  }
-  .scrollable.container {
-    :first-child {
-      overflow-y: auto;
-    }
+  .scrollable {
+    overflow: auto;
   }
 
   >div: first-child {

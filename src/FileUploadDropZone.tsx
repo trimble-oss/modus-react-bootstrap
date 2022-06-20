@@ -14,9 +14,8 @@ import FileUploadDropZoneStyled from './FileUploadDropZoneStyled';
 import { FileUploadDropZoneState } from './types';
 
 export interface FileUploadDropZoneProps
-  extends Omit<React.HTMLProps<HTMLDivElement>, 'accept' | 'children' | 'as'> {
+  extends Omit<React.HTMLProps<HTMLDivElement>, 'children' | 'as'> {
   id: string;
-  accept?: string[];
   maxFileCount?: number;
   maxTotalFileSizeBytes?: number;
   multiple?: boolean;
@@ -34,9 +33,10 @@ const propTypes = {
   id: PropTypes.string.isRequired,
 
   /**
-   * Accepted File types for upload. Values should be either a valid MIME type or a file extension.
+   *  A string that defines the file types the file input should accept. This string is a comma-separated list of unique file type specifiers.
+   * (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept)
    */
-  accept: PropTypes.arrayOf(PropTypes.string.isRequired),
+  accept: PropTypes.string,
 
   /**
    * Maximum number of files can be uploaded.
@@ -125,7 +125,7 @@ function bytesToSize(bytes: number): string {
 }
 function validateFiles(
   files: FileList,
-  accept: string[] | undefined,
+  accept: string | undefined,
   maxFileCount: number | undefined,
   maxTotalFileSizeBytes: number | undefined,
   multiple: boolean | undefined,
@@ -135,8 +135,10 @@ function validateFiles(
 
     // Accepted File types
     if (accept) {
-      const acceptedTypes = new Set(accept);
+      const acceptArray = accept.split(',');
+      const acceptedTypes = new Set(acceptArray);
       const fileExtensionRegExp = new RegExp('.[0-9a-z]+$', 'i');
+      const validMimeTypeExp = new RegExp(/[a-z]+\/\*/);
       const invalidType = arr.find(({ name, type }) => {
         const hasFileExtension = fileExtensionRegExp.test(name);
         if (!hasFileExtension) {
@@ -150,10 +152,21 @@ function validateFiles(
         ) {
           return false;
         }
-        return true;
+
+        const acceptedMimeTypes = acceptArray
+          .map((i) => i.match(validMimeTypeExp))
+          .filter((i) => i);
+        const hasValidMimeType = acceptedMimeTypes.find((matchArray) => {
+          const [media] = matchArray || [];
+          const mediaMatchExp = new RegExp(`(^${media})[a-zA-Z0-9_]*`);
+          if (type.match(mediaMatchExp)) return true;
+          return false;
+        });
+
+        return !hasValidMimeType;
       });
       if (invalidType) {
-        return `Some files do not match the allowed file types (${accept
+        return `Some files do not match the allowed file types (${acceptArray
           .map((item, index) => {
             return `${item}${index === accept.length - 1 ? '' : ','}`;
           })
@@ -405,6 +418,7 @@ const FileUploadDropZone = forwardRef<HTMLDivElement, FileUploadDropZoneProps>(
                       multiple={
                         multiple || Boolean(maxFileCount && maxFileCount > 1)
                       }
+                      accept={accept}
                     />
                   </Form.File>{' '}
                   to upload.

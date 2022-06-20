@@ -15,7 +15,6 @@ import {
   Row,
 } from 'react-table';
 import classNames from 'classnames';
-
 import { DataTableColumn, DataTableColumnInstance } from './types';
 import {
   DATATABLE_DEFAULT_PAGE_SIZES,
@@ -342,7 +341,7 @@ function DataTable<T extends Record<string, unknown>>(
             bordered && 'border border-tertiary',
           )}
         >
-          <div className={classNames('scrollable', 'container')}>
+          <div className={classNames('scrollable')}>
             <Table
               striped={striped}
               bordered={bordered}

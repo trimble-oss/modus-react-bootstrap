@@ -181,95 +181,90 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
     );
 
     return (
-      <TablePaginationStyled>
-        <div
-          className={classNames(
-            className,
-            'd-flex justify-content-end container',
-          )}
-          {...props}
-          ref={ref}
-        >
-          <div className="mr-2">
-            <Form inline>
-              <Form.Group>
-                <Form.Label
-                  className={classNames(
-                    'mr-2',
-                    size === 'sm' ? 'label-sm' : 'label-lg',
-                  )}
-                >
-                  Page Size:
-                </Form.Label>
-                <Form.Control
-                  size={size as Size}
-                  as="select"
-                  custom
-                  value={pageSize}
-                  onChange={(e) => {
-                    onPageSizeChange(Number(e.target.value));
-                  }}
-                >
-                  {pageSizeOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </Form.Control>
-              </Form.Group>
-            </Form>
-          </div>
-          <div>
-            <nav aria-label="Pagination">
-              <Pagination className="mb-0" size={size as Size}>
-                <Pagination.Item
-                  disabled={pageIndex === 0}
-                  onClick={handlePreviousPage}
-                >
-                  <i className="modus-icons">chevron_left</i>
-                </Pagination.Item>
-
-                {morePagesLeft && (
-                  <Pagination.Item id="morePagesLeft" as="div" className="p-0">
-                    <MorePagesDropdown
-                      pages={morePagesLeft}
-                      onPageSelection={handleGotoPage}
-                    />
-                  </Pagination.Item>
+      <TablePaginationStyled
+        className={classNames(className, 'd-flex justify-content-end  w-100')}
+        {...props}
+        ref={ref}
+      >
+        <div className="mr-2">
+          <Form inline>
+            <Form.Group>
+              <Form.Label
+                className={classNames(
+                  'mr-2',
+                  size === 'sm' ? 'label-sm' : 'label-lg',
                 )}
+              >
+                Page Size:
+              </Form.Label>
+              <Form.Control
+                size={size as Size}
+                as="select"
+                custom
+                value={pageSize}
+                onChange={(e) => {
+                  onPageSizeChange(Number(e.target.value));
+                }}
+              >
+                {pageSizeOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </Form.Control>
+            </Form.Group>
+          </Form>
+        </div>
+        <div>
+          <nav aria-label="Pagination">
+            <Pagination className="mb-0" size={size as Size}>
+              <Pagination.Item
+                disabled={pageIndex === 0}
+                onClick={handlePreviousPage}
+              >
+                <i className="modus-icons">chevron_left</i>
+              </Pagination.Item>
 
-                {paginationGroup.map((item) => {
-                  return (
-                    <Pagination.Item
-                      key={item}
-                      active={item === pageIndex + 1}
-                      onClick={() => {
-                        handleGotoPage(item);
-                      }}
-                    >
-                      {item}
-                    </Pagination.Item>
-                  );
-                })}
-
-                {morePagesRight && (
-                  <Pagination.Item id="morePagesRight" as="div" className="p-0">
-                    <MorePagesDropdown
-                      pages={morePagesRight}
-                      onPageSelection={handleGotoPage}
-                    />
-                  </Pagination.Item>
-                )}
-
-                <Pagination.Item
-                  disabled={pageIndex + 1 === totalPages}
-                  onClick={handleNextPage}
-                >
-                  <i className="modus-icons">chevron_right</i>
+              {morePagesLeft && (
+                <Pagination.Item id="morePagesLeft" as="div" className="p-0">
+                  <MorePagesDropdown
+                    pages={morePagesLeft}
+                    onPageSelection={handleGotoPage}
+                  />
                 </Pagination.Item>
-              </Pagination>
-            </nav>
-          </div>
+              )}
+
+              {paginationGroup.map((item) => {
+                return (
+                  <Pagination.Item
+                    key={item}
+                    active={item === pageIndex + 1}
+                    onClick={() => {
+                      handleGotoPage(item);
+                    }}
+                  >
+                    {item}
+                  </Pagination.Item>
+                );
+              })}
+
+              {morePagesRight && (
+                <Pagination.Item id="morePagesRight" as="div" className="p-0">
+                  <MorePagesDropdown
+                    pages={morePagesRight}
+                    onPageSelection={handleGotoPage}
+                  />
+                </Pagination.Item>
+              )}
+
+              <Pagination.Item
+                disabled={pageIndex + 1 === totalPages}
+                onClick={handleNextPage}
+              >
+                <i className="modus-icons">chevron_right</i>
+              </Pagination.Item>
+            </Pagination>
+          </nav>
         </div>
       </TablePaginationStyled>
     );
