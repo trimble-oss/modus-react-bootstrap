@@ -109,9 +109,10 @@ type MorePagesDropdownProps = {
 const MorePagesDropdown: React.FunctionComponent<MorePagesDropdownProps> = ({
   pages,
   onPageSelection,
+  ...props
 }) => {
   return (
-    <Dropdown as={NavItem}>
+    <Dropdown as={NavItem} {...props}>
       <Dropdown.Toggle as={NavLink} variant="text-primary" bsPrefix="">
         <i className="modus-icons">more_horizontal</i>
       </Dropdown.Toggle>
@@ -185,8 +186,9 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
         className={classNames(className, 'd-flex justify-content-end  w-100')}
         {...props}
         ref={ref}
+        aria-label="Table pagination"
       >
-        <div className="mr-2">
+        <div className="mr-2" aria-label="Page size options">
           <Form inline>
             <Form.Group>
               <Form.Label
@@ -205,6 +207,7 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
                 onChange={(e) => {
                   onPageSizeChange(Number(e.target.value));
                 }}
+                aria-label="Select Page size"
               >
                 {pageSizeOptions.map((option) => (
                   <option key={option} value={option}>
@@ -221,12 +224,20 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
               <Pagination.Item
                 disabled={pageIndex === 0}
                 onClick={handlePreviousPage}
+                aria-label="Previous"
+                role="button"
               >
                 <i className="modus-icons">chevron_left</i>
               </Pagination.Item>
 
               {morePagesLeft && (
-                <Pagination.Item id="morePagesLeft" as="div" className="p-0">
+                <Pagination.Item
+                  id="morePagesLeft"
+                  as="div"
+                  className="p-0"
+                  aria-label="Go to previous pages"
+                  role="button"
+                >
                   <MorePagesDropdown
                     pages={morePagesLeft}
                     onPageSelection={handleGotoPage}
@@ -242,6 +253,8 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
                     onClick={() => {
                       handleGotoPage(item);
                     }}
+                    aria-label={`Page number ${pageIndex + 1}`}
+                    role="button"
                   >
                     {item}
                   </Pagination.Item>
@@ -249,7 +262,13 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
               })}
 
               {morePagesRight && (
-                <Pagination.Item id="morePagesRight" as="div" className="p-0">
+                <Pagination.Item
+                  id="morePagesRight"
+                  as="div"
+                  className="p-0"
+                  aria-label="Go to next pages"
+                  role="button"
+                >
                   <MorePagesDropdown
                     pages={morePagesRight}
                     onPageSelection={handleGotoPage}
@@ -260,6 +279,8 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
               <Pagination.Item
                 disabled={pageIndex + 1 === totalPages}
                 onClick={handleNextPage}
+                aria-label="Next"
+                role="button"
               >
                 <i className="modus-icons">chevron_right</i>
               </Pagination.Item>
