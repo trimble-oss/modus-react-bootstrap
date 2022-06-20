@@ -324,7 +324,7 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
                   if (e.key !== ' ' && onKeyPress)
                     onKeyPress(e, () => handleCheckBoxSelection(e));
                 }}
-                onClick={handleCheckBoxSelection}
+                onChange={handleCheckBoxSelection}
                 onFocus={noop} // to retain focus
                 size={size}
               />
