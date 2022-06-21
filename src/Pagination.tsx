@@ -44,7 +44,7 @@ const propTypes = {
  * @property {PageItem} Next
  * @property {PageItem} Last
  */
-const Pagination: Pagination = (React.forwardRef<
+const Pagination: Pagination = React.forwardRef<
   HTMLUListElement,
   PaginationProps
 >(({ bsPrefix, className, children, size, ...props }: PaginationProps, ref) => {
@@ -62,7 +62,7 @@ const Pagination: Pagination = (React.forwardRef<
       {children}
     </ul>
   );
-}) as unknown) as Pagination;
+}) as unknown as Pagination;
 
 Pagination.propTypes = propTypes;
 

@@ -126,79 +126,77 @@ const propTypes = {
   isInvalid: PropTypes.bool,
 };
 
-const FormControl: BsPrefixRefForwardingComponent<
-  'input',
-  FormControlProps
-> = React.forwardRef(
-  (
-    {
-      bsPrefix,
-      bsCustomPrefix,
-      type,
-      size,
-      htmlSize,
-      id,
-      className,
-      isValid = false,
-      isInvalid = false,
-      plaintext,
-      readOnly,
-      custom,
-      // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
-      as: Component = 'input',
-      ...props
-    }: FormControlProps,
-    ref,
-  ) => {
-    const { controlId } = useContext(FormContext);
-    const [prefix, defaultPrefix] = custom
-      ? [bsCustomPrefix, 'custom']
-      : [bsPrefix, 'form-control'];
+const FormControl: BsPrefixRefForwardingComponent<'input', FormControlProps> =
+  React.forwardRef(
+    (
+      {
+        bsPrefix,
+        bsCustomPrefix,
+        type,
+        size,
+        htmlSize,
+        id,
+        className,
+        isValid = false,
+        isInvalid = false,
+        plaintext,
+        readOnly,
+        custom,
+        // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+        as: Component = 'input',
+        ...props
+      }: FormControlProps,
+      ref,
+    ) => {
+      const { controlId } = useContext(FormContext);
+      const [prefix, defaultPrefix] = custom
+        ? [bsCustomPrefix, 'custom']
+        : [bsPrefix, 'form-control'];
 
-    bsPrefix = useBootstrapPrefix(prefix, defaultPrefix);
+      bsPrefix = useBootstrapPrefix(prefix, defaultPrefix);
 
-    let classes;
-    if (plaintext) {
-      classes = { [`${bsPrefix}-plaintext`]: true };
-    } else if (type === 'file') {
-      classes = { [`${bsPrefix}-file`]: true };
-    } else if (type === 'range') {
-      classes = { [`${bsPrefix}-range`]: true };
-    } else if (Component === 'select' && custom) {
-      classes = {
-        [`${bsPrefix}-select`]: true,
-        [`${bsPrefix}-select-${size}`]: size,
-      };
-    } else {
-      classes = {
-        [bsPrefix]: true,
-        [`${bsPrefix}-${size}`]: size,
-      };
-    }
+      let classes;
+      if (plaintext) {
+        classes = { [`${bsPrefix}-plaintext`]: true };
+      } else if (type === 'file') {
+        classes = { [`${bsPrefix}-file`]: true };
+      } else if (type === 'range') {
+        classes = { [`${bsPrefix}-range`]: true };
+      } else if (Component === 'select' && custom) {
+        classes = {
+          [`${bsPrefix}-select`]: true,
+          [`${bsPrefix}-select-${size}`]: size,
+        };
+      } else {
+        classes = {
+          [bsPrefix]: true,
+          [`${bsPrefix}-${size}`]: size,
+        };
+      }
 
-    warning(
-      controlId == null || !id,
-      '`controlId` is ignored on `<FormControl>` when `id` is specified.',
-    );
+      warning(
+        controlId == null || !id,
+        '`controlId` is ignored on `<FormControl>` when `id` is specified.',
+      );
 
-    return (
-      <Component
-        {...props}
-        type={type}
-        size={htmlSize}
-        ref={ref}
-        readOnly={readOnly}
-        id={id || controlId}
-        className={classNames(
-          className,
-          classes,
-          isValid && `is-valid`,
-          isInvalid && `is-invalid`,
-        )}
-      />
-    );
-  },
-);
+      return (
+        <Component
+          {...props}
+          type={type}
+          size={htmlSize}
+          ref={ref}
+          readOnly={readOnly}
+          id={id || controlId}
+          className={classNames(
+            className,
+            classes,
+            isValid && `is-valid`,
+            isInvalid && `is-invalid`,
+          )}
+        />
+      );
+    },
+  );
 
 FormControl.displayName = 'FormControl';
 FormControl.propTypes = propTypes;

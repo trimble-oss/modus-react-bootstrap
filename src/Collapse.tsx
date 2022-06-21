@@ -1,3 +1,4 @@
+// @ts-nocheck
 import classNames from 'classnames';
 import css from 'dom-helpers/css';
 import PropTypes from 'prop-types';

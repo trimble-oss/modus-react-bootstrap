@@ -1,15 +1,4 @@
-/*!
-  React-Bootstrap v1.6.4 (https://react-bootstrap-v4.netlify.app/)
-  Copyright (c) 2014-present Stephen J. Collings, Matthew Honnibal, Pieter Vanderwerff
-  Licensed under MIT (https://github.com/react-bootstrap/react-bootstrap/blob/master/LICENSE)
-
-  Modus React Bootstrap 
-  A React-based component library developed as a common, open source platform for all of Trimble’s web applications built on React.
-  Extends React-Bootstrap v1.6.4
-  Copyright (c) 2022 Trimble Inc.
- */
-
-import React, { useContext } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { useBootstrapPrefix } from './ThemeProvider';
@@ -18,7 +7,6 @@ import {
   BsPrefixAndClassNameOnlyProps,
   BsPrefixRefForwardingComponent,
 } from './helpers';
-import { TableContext } from './TableContext';
 
 export interface TableProps extends BsPrefixAndClassNameOnlyProps {
   striped?: boolean;
@@ -110,12 +98,7 @@ const Table: Table = React.forwardRef<HTMLTableElement, TableProps>(
       hover && `${decoratedBsPrefix}-hover`,
     );
 
-    const tableInstance = useContext(TableContext);
-    const tableProps = tableInstance && tableInstance.getTableProps();
-
-    const table = (
-      <table {...tableProps} {...props} className={classes} ref={ref} />
-    );
+    const table = <table {...props} className={classes} ref={ref} />;
     if (responsive) {
       let responsiveClass = `${decoratedBsPrefix}-responsive`;
       if (typeof responsive === 'string') {

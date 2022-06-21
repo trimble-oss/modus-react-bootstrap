@@ -1,14 +1,15 @@
 /*!
-  React-Bootstrap v1.6.4 (https://react-bootstrap-v4.netlify.app/)
+  React-Bootstrap v1.6.5 (https://react-bootstrap-v4.netlify.app/)
   Copyright (c) 2014-present Stephen J. Collings, Matthew Honnibal, Pieter Vanderwerff
   Licensed under MIT (https://github.com/react-bootstrap/react-bootstrap/blob/master/LICENSE)
 
   Modus React Bootstrap 
   A React-based component library developed as a common, open source platform for all of Trimble’s web applications built on React.
-  Extends React-Bootstrap v1.6.4
+  Extends React-Bootstrap v1.6.5
   Copyright (c) 2022 Trimble Inc.
  */
 
+// Original
 export { default as Accordion } from './Accordion';
 export type { AccordionProps } from './Accordion';
 
@@ -199,35 +200,6 @@ export type { TabContainerProps } from './TabContainer';
 
 export { default as TabContent } from './TabContent';
 
-export { default as Table } from './Table';
-export type { TableProps } from './Table';
-
-export { default as DataTable } from './DataTable';
-export type { DataTableProps } from './DataTable';
-
-export { TableColumn } from './DataTable';
-
-export { default as TableHead } from './TableHead';
-export type { TableHeadProps } from './TableHead';
-
-export { default as TableHeaderCell } from './TableHeaderCell';
-export type { TableHeaderCellProps } from './TableHeaderCell';
-
-export { default as TableBody } from './TableBody';
-export type { TableBodyProps } from './TableBody';
-
-export { default as TableRow } from './TableRow';
-export type { TableRowProps } from './TableRow';
-
-export { default as TableCell } from './TableCell';
-export type { TableCellProps } from './TableCell';
-
-export { default as TableContainer } from './TableContainer';
-export type { TableContainerProps } from './TableContainer';
-
-export { default as TablePagination } from './TablePagination';
-export type { TablePaginationProps } from './TablePagination';
-
 export { default as TabPane } from './TabPane';
 export type { TabPaneProps } from './TabPane';
 
@@ -256,3 +228,24 @@ export type {
 
 export { default as Tooltip } from './Tooltip';
 export type { TooltipProps } from './Tooltip';
+
+// Modified
+export { default as Table } from './Table';
+export type { TableProps } from './Table';
+
+export type { DataTableColumn } from './types';
+
+export { default as DataTable } from './DataTable';
+export type { DataTableProps } from './DataTable';
+
+export { default as TablePagination } from './TablePagination';
+export type { TablePaginationProps } from './TablePagination';
+
+export { default as FileUploadDropZone } from './FileUploadDropZone';
+export type { FileUploadDropZoneProps } from './FileUploadDropZone';
+
+export { default as TreeView } from './TreeView';
+export type { TreeViewProps } from './TreeView';
+
+export { default as TreeViewItem } from './TreeViewItem';
+export type { TreeViewItemProps } from './TreeViewItem';

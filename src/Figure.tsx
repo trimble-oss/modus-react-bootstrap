@@ -8,9 +8,9 @@ type Figure = BsPrefixRefForwardingComponent<'figure'> & {
   Caption: typeof FigureCaption;
 };
 
-const Figure: Figure = (createWithBsPrefix('figure', {
+const Figure: Figure = createWithBsPrefix('figure', {
   Component: 'figure',
-}) as unknown) as Figure;
+}) as unknown as Figure;
 
 Figure.Image = FigureImage;
 Figure.Caption = FigureCaption;

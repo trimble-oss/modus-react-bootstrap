@@ -612,9 +612,9 @@ function CarouselFunc(uncontrolledProps: CarouselProps, ref) {
   );
 }
 
-const Carousel: Carousel = (React.forwardRef(
+const Carousel: Carousel = React.forwardRef(
   CarouselFunc,
-) as unknown) as Carousel;
+) as unknown as Carousel;
 
 Carousel.displayName = 'Carousel';
 Carousel.propTypes = propTypes;

@@ -151,7 +151,7 @@ const defaultProps = {
   collapseOnSelect: false,
 };
 
-const Navbar: Navbar = (React.forwardRef((props: NavbarProps, ref) => {
+const Navbar: Navbar = React.forwardRef((props: NavbarProps, ref) => {
   const {
     bsPrefix: initialBsPrefix,
     expand,
@@ -225,7 +225,7 @@ const Navbar: Navbar = (React.forwardRef((props: NavbarProps, ref) => {
       </SelectableContext.Provider>
     </NavbarContext.Provider>
   );
-}) as unknown) as Navbar;
+}) as unknown as Navbar;
 
 Navbar.propTypes = propTypes;
 Navbar.defaultProps = defaultProps;

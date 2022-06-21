@@ -18,6 +18,14 @@ The components will be found in the `./node_modules/@trimbleinc/modus-react-boot
 
 The SASS files will be found in the `/scss` directory. For further details refer to [Modus Bootstrap](https://bitbucket.trimble.tools/projects/TMDS/repos/modus-bootstrap).
 
+## Icons
+
+Modus icons are required for some of the components like DataTable, FileUploadDropZone, TablePagination and TreeView. To use the icons, include the following:
+
+> `<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">`
+
+> `<link rel="stylesheet" href="https://modus.trimble.com/assets/0.5.1/fonts/modus-icons.css">`
+
 ## Build Package
 
 Yarn is the package manager, check out setup

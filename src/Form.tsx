@@ -66,7 +66,7 @@ const defaultProps = {
   inline: false,
 };
 
-const FormImpl: Form = (React.forwardRef(
+const FormImpl: Form = React.forwardRef(
   (
     {
       bsPrefix,
@@ -92,7 +92,7 @@ const FormImpl: Form = (React.forwardRef(
       />
     );
   },
-) as unknown) as Form;
+) as unknown as Form;
 
 FormImpl.displayName = 'Form';
 FormImpl.propTypes = propTypes;

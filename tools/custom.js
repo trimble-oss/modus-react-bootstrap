@@ -1,7 +1,7 @@
 /*!
   Modus React Bootstrap 
   A React-based component library developed as a common, open source platform for all of Trimble’s web applications built on React.
-  Extends React-Bootstrap v1.6.4
+  Extends React-Bootstrap v1.6.5
   Copyright (c) 2022 Trimble Inc.
  */
 const { green, red } = require('chalk');
@@ -55,3 +55,7 @@ fs.readdir(srcRoot, (err, files) => {
 });
 
 console.log(green(`Built component directories`));
+
+
+
+

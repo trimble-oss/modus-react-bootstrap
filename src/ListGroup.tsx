@@ -60,7 +60,7 @@ const defaultProps = {
   horizontal: undefined,
 };
 
-const ListGroup: ListGroup = (React.forwardRef((props: ListGroupProps, ref) => {
+const ListGroup: ListGroup = React.forwardRef((props: ListGroupProps, ref) => {
   const {
     className,
     bsPrefix: initialBsPrefix,
@@ -101,7 +101,7 @@ const ListGroup: ListGroup = (React.forwardRef((props: ListGroupProps, ref) => {
       )}
     />
   );
-}) as unknown) as ListGroup;
+}) as unknown as ListGroup;
 
 ListGroup.propTypes = propTypes;
 ListGroup.defaultProps = defaultProps;

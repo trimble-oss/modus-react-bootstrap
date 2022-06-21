@@ -21,7 +21,7 @@ const propTypes = {
   as: PropTypes.elementType,
 };
 
-const Media: Media = (React.forwardRef(
+const Media: Media = React.forwardRef(
   // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
   (
     { bsPrefix, className, as: Component = 'div', ...props }: MediaProps,
@@ -37,7 +37,7 @@ const Media: Media = (React.forwardRef(
       />
     );
   },
-) as unknown) as Media;
+) as unknown as Media;
 
 Media.displayName = 'Media';
 Media.propTypes = propTypes;

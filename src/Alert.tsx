@@ -91,7 +91,7 @@ const defaultProps = {
   closeLabel: 'Close alert',
 };
 
-const Alert = (React.forwardRef<HTMLDivElement, AlertProps>(
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
   (uncontrolledProps: AlertProps, ref) => {
     const {
       bsPrefix,
@@ -142,7 +142,7 @@ const Alert = (React.forwardRef<HTMLDivElement, AlertProps>(
       </Transition>
     );
   },
-) as unknown) as Alert;
+) as unknown as Alert;
 
 Alert.displayName = 'Alert';
 Alert.defaultProps = defaultProps as any;
