@@ -32,7 +32,7 @@ export interface FileUploadDropZoneProps
   onDragEnter?: DragEventHandler<any> | undefined;
   onDragLeave?: DragEventHandler<any> | undefined;
   onDragOver?: DragEventHandler<any> | undefined;
-  validator?: (files: FileList) => string;
+  validator?: (files: FileList) => string | null;
 }
 
 const propTypes = {

@@ -36,6 +36,9 @@ const TreeViewStyled = styled.ul`
       height: 0.875rem;
     }
   }
+  .list-group-item + .list-group-item.active {
+    margin-top: unset !important;
+  }
 `;
 export const TreeViewItemStyled = styled.li<{
   level: number;
