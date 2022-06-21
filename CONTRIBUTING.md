@@ -1,6 +1,6 @@
 # Contributing
 
-We are happy to accept contributions from the community to improve this project.
+We are happy to accept contributions from the community to improve this [project](https://github.com/trimble-oss/modus-react-bootstrap).
 
 ## Submitting Issues
 

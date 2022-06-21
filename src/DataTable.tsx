@@ -1,3 +1,10 @@
+/*!
+  Modus React Bootstrap 
+  A React-based component library developed as a common, open source platform for all of Trimble’s web applications built on React.
+  Extends React-Bootstrap v1.6.5
+  Copyright (c) 2022 Trimble Inc.
+ */
+
 import React, { useCallback, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -351,11 +358,15 @@ function DataTable<T extends Record<string, unknown>>(
               variant={variant}
               responsive={responsive}
               {...getTableProps()}
+              role="table"
+              aria-colcount={allColumns.length}
+              aria-rowcount={data.length}
             >
               <thead className="bg-gray-light sticky-top">
                 {headerGroups.map((headerGroup) => (
                   <tr
                     {...headerGroup.getHeaderGroupProps()}
+                    role="row"
                     className="bg-gray-light"
                   >
                     <DataTableContextMenuProvider
@@ -373,7 +384,7 @@ function DataTable<T extends Record<string, unknown>>(
                         {getAllHeadersInAGroup(
                           headerGroup.headers,
                           headerGroup.id,
-                        ).map((column) => (
+                        ).map((column, index) => (
                           <DataTableHeaderCell
                             key={column.id}
                             header={column}
@@ -384,6 +395,15 @@ function DataTable<T extends Record<string, unknown>>(
                                 'icon-only',
                               'bg-gray-light',
                             )}
+                            role="columnheader"
+                            aria-sort={
+                              (column.isSorted &&
+                                (column.isSortedDesc
+                                  ? 'descending'
+                                  : 'ascending')) ||
+                              'none'
+                            }
+                            aria-colindex={index}
                           >
                             {column.render('Header')}
                           </DataTableHeaderCell>
@@ -401,6 +421,7 @@ function DataTable<T extends Record<string, unknown>>(
                       {...row.getRowProps()}
                       onClick={() => handleRowClick(row)}
                       className={classNames(row.isSelected && 'selected')}
+                      role="row"
                     >
                       {row.cells.map((cell, index) => {
                         return (
@@ -411,6 +432,8 @@ function DataTable<T extends Record<string, unknown>>(
                                 index === 0 &&
                                 'icon-only',
                             )}
+                            role="cell"
+                            aria-rowindex={index}
                           >
                             {cell.render('Cell')}
                           </td>

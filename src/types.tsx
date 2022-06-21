@@ -1,3 +1,14 @@
+/*!
+  React-Bootstrap v1.6.5 (https://react-bootstrap-v4.netlify.app/)
+  Copyright (c) 2014-present Stephen J. Collings, Matthew Honnibal, Pieter Vanderwerff
+  Licensed under MIT (https://github.com/react-bootstrap/react-bootstrap/blob/master/LICENSE)
+
+  Modus React Bootstrap 
+  A React-based component library developed as a common, open source platform for all of Trimble’s web applications built on React.
+  Extends React-Bootstrap v1.6.5
+  Copyright (c) 2022 Trimble Inc.
+ */
+
 import { ReactNode } from 'react';
 import {
   Column,
