@@ -59,7 +59,7 @@ body:
       placeholder: 'e.g., v1.0.0'
     validations:
       required: true
-  - type: input
+  - type: dropdown
     id: priority
     attributes:
       label: Priority
