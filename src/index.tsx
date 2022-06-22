@@ -9,7 +9,7 @@
   Copyright (c) 2022 Trimble Inc.
  */
 
-// Original
+// React Bootstrap Components
 export { default as Accordion } from './Accordion';
 export type { AccordionProps } from './Accordion';
 
@@ -229,10 +229,10 @@ export type {
 export { default as Tooltip } from './Tooltip';
 export type { TooltipProps } from './Tooltip';
 
-// Modified
 export { default as Table } from './Table';
 export type { TableProps } from './Table';
 
+// Modus React Bootstrap Components
 export type { DataTableColumn } from './types';
 
 export { default as DataTable } from './DataTable';

@@ -1,3 +1,10 @@
+/*!
+  Modus React Bootstrap 
+  A React-based component library developed as a common, open source platform for all of Trimble’s web applications built on React.
+  Extends React-Bootstrap v1.6.5
+  Copyright (c) 2022 Trimble Inc.
+ */
+
 import React, { useRef, useCallback, useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
@@ -29,9 +36,9 @@ export interface TreeViewProps
   expanded?: ReadonlyArray<number>;
   defaultExpanded?: number[];
   defaultSelected?: number[];
-  onNodeToggle?: (event: any, expanded: number[]) => void;
-  onNodeSelect?: (event: any, selected: number[]) => void;
-  onCheckBoxSelect?: (event: any, selected: number[]) => void;
+  onNodeToggle?: (event: React.SyntheticEvent, expanded: number[]) => void;
+  onNodeSelect?: (event: React.SyntheticEvent, selected: number[]) => void;
+  onCheckBoxSelect?: (event: React.SyntheticEvent, selected: number[]) => void;
 }
 
 const propTypes = {
@@ -576,6 +583,9 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
           }}
         >
           <TreeViewStyled
+            id={id}
+            role="tree"
+            aria-label={props['aria-label'] || 'Content Tree'}
             className={classNames(
               'list-group',
               size === 'sm'
@@ -585,8 +595,6 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
             )}
             {...props}
             ref={ref}
-            id={id}
-            role="tree"
           >
             {children}
           </TreeViewStyled>

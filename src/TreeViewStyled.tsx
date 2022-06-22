@@ -1,3 +1,10 @@
+/*!
+  Modus React Bootstrap 
+  A React-based component library developed as a common, open source platform for all of Trimble’s web applications built on React.
+  Extends React-Bootstrap v1.6.5
+  Copyright (c) 2022 Trimble Inc.
+ */
+
 import styled from 'styled-components';
 
 const TreeViewStyled = styled.ul`
@@ -28,6 +35,9 @@ const TreeViewStyled = styled.ul`
       width: 0.875rem;
       height: 0.875rem;
     }
+  }
+  .list-group-item + .list-group-item.active {
+    margin-top: unset !important;
   }
 `;
 export const TreeViewItemStyled = styled.li<{

@@ -1,3 +1,10 @@
+/*!
+  Modus React Bootstrap 
+  A React-based component library developed as a common, open source platform for all of Trimble’s web applications built on React.
+  Extends React-Bootstrap v1.6.5
+  Copyright (c) 2022 Trimble Inc.
+ */
+
 import React, {
   DragEventHandler,
   forwardRef,
@@ -25,7 +32,7 @@ export interface FileUploadDropZoneProps
   onDragEnter?: DragEventHandler<any> | undefined;
   onDragLeave?: DragEventHandler<any> | undefined;
   onDragOver?: DragEventHandler<any> | undefined;
-  validator?: (files: FileList) => string;
+  validator?: (files: FileList) => string | null;
 }
 
 const propTypes = {
@@ -400,7 +407,6 @@ const FileUploadDropZone = forwardRef<HTMLDivElement, FileUploadDropZoneProps>(
                     <Form.File.Label
                       className="p-0 m-0 text-primary browse"
                       tabIndex={0}
-                      role="button"
                       aria-label="browse"
                       aria-disabled={
                         props['aria-disabled']

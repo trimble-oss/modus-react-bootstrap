@@ -1,3 +1,10 @@
+/*!
+  Modus React Bootstrap 
+  A React-based component library developed as a common, open source platform for all of Trimble’s web applications built on React.
+  Extends React-Bootstrap v1.6.5
+  Copyright (c) 2022 Trimble Inc.
+ */
+
 import React, { useCallback, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -341,87 +348,106 @@ function DataTable<T extends Record<string, unknown>>(
             bordered && 'border border-tertiary',
           )}
         >
-          <div className={classNames('scrollable')}>
-            <Table
-              striped={striped}
-              bordered={bordered}
-              borderless={borderless}
-              hover={hover}
-              size={size}
-              variant={variant}
-              responsive={responsive}
-              {...getTableProps()}
-            >
-              <thead className="bg-gray-light sticky-top">
-                {headerGroups.map((headerGroup) => (
-                  <tr
-                    {...headerGroup.getHeaderGroupProps()}
-                    className="bg-gray-light"
-                  >
-                    <DataTableContextMenuProvider
-                      allColumns={allColumns}
-                      toggleHideAllColumns={toggleHideAllColumns}
-                      toggleHideColumn={toggleHideColumn}
-                      attachTo={bodyRef.current}
+          {
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+            <div className={classNames('scrollable')} tabIndex={0}>
+              <Table
+                striped={striped}
+                bordered={bordered}
+                borderless={borderless}
+                hover={hover}
+                size={size}
+                variant={variant}
+                responsive={responsive}
+                {...getTableProps()}
+                role="table"
+                aria-colcount={allColumns.length}
+                aria-rowcount={data.length}
+              >
+                <thead className="bg-gray-light sticky-top">
+                  {headerGroups.map((headerGroup) => (
+                    <tr
+                      {...headerGroup.getHeaderGroupProps()}
+                      role="row"
+                      className="bg-gray-light"
                     >
-                      <DataTableDragdropProvider
-                        visibleColumns={visibleColumns}
-                        setColumnOrder={setColumnOrder}
-                        dragItemTemplate={dragTemplate}
+                      <DataTableContextMenuProvider
+                        allColumns={allColumns}
+                        toggleHideAllColumns={toggleHideAllColumns}
+                        toggleHideColumn={toggleHideColumn}
                         attachTo={bodyRef.current}
                       >
-                        {getAllHeadersInAGroup(
-                          headerGroup.headers,
-                          headerGroup.id,
-                        ).map((column) => (
-                          <DataTableHeaderCell
-                            key={column.id}
-                            header={column}
-                            onToggleHideColumn={toggleHideColumn}
-                            className={classNames(
-                              checkBoxRowSelection &&
-                                column.id === 'selector' &&
-                                'icon-only',
-                              'bg-gray-light',
-                            )}
-                          >
-                            {column.render('Header')}
-                          </DataTableHeaderCell>
-                        ))}
-                      </DataTableDragdropProvider>
-                    </DataTableContextMenuProvider>
-                  </tr>
-                ))}
-              </thead>
-              <tbody {...getTableBodyProps()}>
-                {(disablePagination ? rows : page).map((row) => {
-                  prepareRow(row);
-                  return (
-                    <tr
-                      {...row.getRowProps()}
-                      onClick={() => handleRowClick(row)}
-                      className={classNames(row.isSelected && 'selected')}
-                    >
-                      {row.cells.map((cell, index) => {
-                        return (
-                          <td
-                            {...cell.getCellProps(getCellStyles)}
-                            className={classNames(
-                              checkBoxRowSelection &&
-                                index === 0 &&
-                                'icon-only',
-                            )}
-                          >
-                            {cell.render('Cell')}
-                          </td>
-                        );
-                      })}
+                        <DataTableDragdropProvider
+                          visibleColumns={visibleColumns}
+                          setColumnOrder={setColumnOrder}
+                          dragItemTemplate={dragTemplate}
+                          attachTo={bodyRef.current}
+                        >
+                          {getAllHeadersInAGroup(
+                            headerGroup.headers,
+                            headerGroup.id,
+                          ).map((column, index: number) => (
+                            <DataTableHeaderCell
+                              key={column.id}
+                              header={column}
+                              onToggleHideColumn={toggleHideColumn}
+                              className={classNames(
+                                checkBoxRowSelection &&
+                                  column.id === 'selector' &&
+                                  'icon-only',
+                                'bg-gray-light',
+                              )}
+                              role="columnheader"
+                              aria-sort={
+                                (column.isSorted &&
+                                  (column.isSortedDesc
+                                    ? 'descending'
+                                    : 'ascending')) ||
+                                'none'
+                              }
+                              aria-colindex={index + 1}
+                            >
+                              {column.render('Header')}
+                            </DataTableHeaderCell>
+                          ))}
+                        </DataTableDragdropProvider>
+                      </DataTableContextMenuProvider>
                     </tr>
-                  );
-                })}
-              </tbody>
-            </Table>
-          </div>
+                  ))}
+                </thead>
+                <tbody {...getTableBodyProps()}>
+                  {(disablePagination ? rows : page).map((row) => {
+                    prepareRow(row);
+                    return (
+                      <tr
+                        {...row.getRowProps()}
+                        onClick={() => handleRowClick(row)}
+                        className={classNames(row.isSelected && 'selected')}
+                        role="row"
+                      >
+                        {row.cells.map((cell, index: number) => {
+                          return (
+                            <td
+                              {...cell.getCellProps(getCellStyles)}
+                              className={classNames(
+                                checkBoxRowSelection &&
+                                  index === 0 &&
+                                  'icon-only',
+                              )}
+                              role="cell"
+                              aria-rowindex={index + 1}
+                            >
+                              {cell.render('Cell')}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </Table>
+            </div>
+          }
 
           {!disablePagination && (
             <TablePagination

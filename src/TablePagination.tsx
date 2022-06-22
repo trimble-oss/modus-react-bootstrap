@@ -1,3 +1,10 @@
+/*!
+  Modus React Bootstrap 
+  A React-based component library developed as a common, open source platform for all of Trimble’s web applications built on React.
+  Extends React-Bootstrap v1.6.5
+  Copyright (c) 2022 Trimble Inc.
+ */
+
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -232,7 +239,6 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
 
               {morePagesLeft && (
                 <Pagination.Item
-                  id="morePagesLeft"
                   as="div"
                   className="p-0"
                   aria-label="Go to previous pages"
@@ -263,7 +269,6 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
 
               {morePagesRight && (
                 <Pagination.Item
-                  id="morePagesRight"
                   as="div"
                   className="p-0"
                   aria-label="Go to next pages"
