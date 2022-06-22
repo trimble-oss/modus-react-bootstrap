@@ -27,8 +27,6 @@ jobs:
 
       - name: Install dependencies
         run: yarn bootstrap
-        env:
-          YARN_CACHE_FOLDER: .cache/yarn
 
       - name: Lint
         run: yarn run lint
