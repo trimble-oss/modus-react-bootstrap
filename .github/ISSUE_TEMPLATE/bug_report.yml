@@ -68,6 +68,5 @@ body:
         - High
         - Medium
         - Low
-      value: Low
     validations:
       required: true
