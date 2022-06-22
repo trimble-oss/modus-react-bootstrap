@@ -239,7 +239,6 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
 
               {morePagesLeft && (
                 <Pagination.Item
-                  id="morePagesLeft"
                   as="div"
                   className="p-0"
                   aria-label="Go to previous pages"
@@ -270,7 +269,6 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
 
               {morePagesRight && (
                 <Pagination.Item
-                  id="morePagesRight"
                   as="div"
                   className="p-0"
                   aria-label="Go to next pages"

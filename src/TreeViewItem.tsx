@@ -149,6 +149,7 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
     const blankIcon = <i className="modus-icons">blank</i>;
 
     const defaultTabIndex = disabled ? -1 : 0;
+    const ariaLabel = rest['aria-label'] || 'Tree Item';
 
     const {
       parentId,
@@ -270,7 +271,7 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
           aria-selected={nodeSelected}
           aria-disabled={disabled}
           aria-level={currentLevel}
-          aria-label="Content Tree Item"
+          aria-label={ariaLabel}
           className={classNames(
             'list-group-item list-item-leftright-control',
             nodeSelected && 'active',
@@ -324,6 +325,9 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
           {checkBoxSelection && (
             <TreeViewContent onClick={(e) => stopPropagation(e, true)}>
               <IndeterminateCheckbox
+                aria-label={`${
+                  checkBoxSelected ? 'Select' : 'Unselect'
+                } ${ariaLabel}`}
                 checked={checkBoxSelected}
                 id={`${rootId}_cbselection_${nodeId}`}
                 indeterminate={checkBoxIndeterminate}
@@ -347,10 +351,12 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
               {finalItemIcon}
             </TreeViewContent>
           )}
-          <div role="heading" aria-level={currentLevel}>
-            <div className="d-flex align-items-center" role="button">
-              {label}
-            </div>
+          <div
+            role="heading"
+            className="d-flex align-items-center"
+            aria-level={currentLevel}
+          >
+            <div role="button">{label}</div>
           </div>
         </TreeViewItemStyled>
 
@@ -365,7 +371,7 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
             <TreeViewItemGroupStyled
               className="list-group"
               expanded={expanded ? 'true' : 'false'}
-              role="group"
+              role="tree"
             >
               {children}
             </TreeViewItemGroupStyled>

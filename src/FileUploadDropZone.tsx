@@ -407,7 +407,6 @@ const FileUploadDropZone = forwardRef<HTMLDivElement, FileUploadDropZoneProps>(
                     <Form.File.Label
                       className="p-0 m-0 text-primary browse"
                       tabIndex={0}
-                      role="button"
                       aria-label="browse"
                       aria-disabled={
                         props['aria-disabled']

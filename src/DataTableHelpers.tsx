@@ -32,6 +32,7 @@ export const checkBoxSelectionHook = <T extends Record<string, unknown>>(
             size={size}
             {...row.getToggleRowSelectedProps()}
             id={`${tableId}_${DATATABLE_CHECKBOX_SELECTOR_ID}_row"${row.id}`}
+            aria-label="Select the row"
           />
         );
       },
@@ -42,6 +43,7 @@ export const checkBoxSelectionHook = <T extends Record<string, unknown>>(
               size={size}
               {...getToggleAllRowsSelectedProps()}
               id={`${tableId}_${DATATABLE_CHECKBOX_SELECTOR_ID}_header`}
+              aria-label="Select all rows"
             />
           );
         },
