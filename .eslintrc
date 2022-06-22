@@ -3,6 +3,7 @@
   "plugins": ["prettier"],
   "rules": {
     "import/extensions": "off",
-    "prettier/prettier": "warn"
+    "prettier/prettier": "warn",
+    "@typescript-eslint/naming-convention": "off"
   }
 }
