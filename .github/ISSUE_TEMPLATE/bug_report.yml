@@ -62,7 +62,7 @@ body:
   - type: input
     id: priority
     attributes:
-      label: Priority.
+      label: Priority
       multiple: true
       options:
         - High
