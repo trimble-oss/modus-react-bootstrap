@@ -8,6 +8,7 @@ on:
   workflow_dispatch:
 
 env:
+  FORCE_COLOR: 2
   NODE: 16
 
 jobs:
@@ -22,12 +23,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '${{ env.NODE }}'
-          cache: yarn
+          cache: npm
 
-      - name: Install dependencies
-        run: yarn bootstrap
-        env:
-          YARN_CACHE_FOLDER: .cache/yarn
+      - name: Install npm dependencies
+        run: npm ci
 
       - name: Lint
-        run: yarn run lint
+        run: npm run lint
