@@ -1,4 +1,5 @@
 {
+  "root": true,
   "extends": ["@react-bootstrap", "4catalyzer-typescript", "prettier"],
   "plugins": ["prettier"],
   "rules": {
