@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { DataTableDragDropContext } from './DataTableDragdropProvider';
 import { DataTableHeaderContextMenu } from './DataTableContextMenuProvider';
-import { DATATABLE_CHECKBOX_SELECTOR_ID } from './DataTableHelpers';
+import {
+  DATATABLE_CHECKBOX_SELECTOR_ID,
+  getFlexColumnStyles,
+} from './DataTableHelpers';
 
 export interface DataTableHeaderCellProps
   extends React.HTMLProps<HTMLTableCellElement> {
@@ -102,9 +105,7 @@ const DataTableHeaderCell = React.forwardRef<
       header.getSortByToggleProps && header.getSortByToggleProps(),
     ),
     {
-      style: {
-        flex: header.width ? `${header.width} 0 auto` : undefined,
-      },
+      style: getFlexColumnStyles(header),
       title: '',
     },
     allowDrag
@@ -119,10 +120,12 @@ const DataTableHeaderCell = React.forwardRef<
   return (
     <th
       className={classNames(
-        'pr-2',
+        header.id === DATATABLE_CHECKBOX_SELECTOR_ID
+          ? 'icon-only selector-cell'
+          : 'pr-2',
         className,
         allowDrag && 'draggable',
-        header.id === 'selector' && 'icon-only',
+        'bg-gray-light',
       )}
       ref={resolvedRef}
       onContextMenu={handleContextMenuClick}

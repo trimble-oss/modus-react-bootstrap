@@ -242,7 +242,8 @@ function DataTable<T extends Record<string, unknown>>(
     dragTemplate,
     ...rest
   } = props;
-  const resolvedRef = (useRef<HTMLDivElement>(null) ||
+  const defaultRef = useRef<HTMLDivElement>(null);
+  const resolvedRef = (defaultRef ||
     ref) as React.MutableRefObject<HTMLDivElement>;
 
   const bodyRef = useRef<any>(null);
@@ -350,6 +351,9 @@ function DataTable<T extends Record<string, unknown>>(
               size={size}
               variant={variant}
               responsive={responsive}
+              className={classNames(
+                checkBoxRowSelection && 'checkbox-row-selection',
+              )}
               {...getTableProps()}
             >
               <thead className="bg-gray-light sticky-top">
@@ -378,12 +382,6 @@ function DataTable<T extends Record<string, unknown>>(
                             key={column.id}
                             header={column}
                             onToggleHideColumn={toggleHideColumn}
-                            className={classNames(
-                              checkBoxRowSelection &&
-                                column.id === 'selector' &&
-                                'icon-only',
-                              'bg-gray-light',
-                            )}
                           >
                             {column.render('Header')}
                           </DataTableHeaderCell>
@@ -405,12 +403,12 @@ function DataTable<T extends Record<string, unknown>>(
                       {row.cells.map((cell, index) => {
                         return (
                           <td
-                            {...cell.getCellProps(getCellStyles)}
                             className={classNames(
                               checkBoxRowSelection &&
                                 index === 0 &&
-                                'icon-only',
+                                'icon-only selector-cell',
                             )}
+                            {...cell.getCellProps(getCellStyles)}
                           >
                             {cell.render('Cell')}
                           </td>
