@@ -1,6 +1,7 @@
 {
   "name": "sample-workspace",
   "version": "0.1.0",
+  "description": "A sample working space to test components.",
   "private": true,
   "devDependencies": {
     "@babel/core": "^7.16.0",
