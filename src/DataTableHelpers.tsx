@@ -23,7 +23,6 @@ export const checkBoxSelectionHook = <T extends Record<string, unknown>>(
   hooks.visibleColumns.push((columns) => [
     {
       id: DATATABLE_CHECKBOX_SELECTOR_ID,
-      width: 50,
       disableResizing: true,
       disableGroupBy: true,
       Cell: ({ row }: CellProps<T>) => {
@@ -32,7 +31,6 @@ export const checkBoxSelectionHook = <T extends Record<string, unknown>>(
             size={size}
             {...row.getToggleRowSelectedProps()}
             id={`${tableId}_${DATATABLE_CHECKBOX_SELECTOR_ID}_row"${row.id}`}
-            aria-label="Select the row"
           />
         );
       },
@@ -43,7 +41,6 @@ export const checkBoxSelectionHook = <T extends Record<string, unknown>>(
               size={size}
               {...getToggleAllRowsSelectedProps()}
               id={`${tableId}_${DATATABLE_CHECKBOX_SELECTOR_ID}_header`}
-              aria-label="Select all rows"
             />
           );
         },
@@ -65,14 +62,17 @@ export const stateReducer = {
     return newState;
   },
 };
+
+export const getFlexColumnStyles = (column: any) => ({
+  flex: column.width ? `${column.width} 0 auto` : undefined,
+});
+
 export const getCellStyles = <T extends Record<string, unknown>>(
   props: any,
   { cell }: Meta<T, { cell: Cell<T> }>,
 ) => [
   props,
   {
-    style: {
-      flex: cell.column.width ? `${cell.column.width} 0 auto` : undefined,
-    },
+    style: getFlexColumnStyles(cell.column),
   },
 ];
