@@ -23,15 +23,23 @@ The SASS files will be found in the `/scss` directory. For further details refer
 Modus icons are required for some of the components like DataTable, FileUploadDropZone, TablePagination and TreeView. To use the icons, include the following:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://modus.trimble.com/assets/0.5.1/fonts/modus-icons.css">
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+/>
+<link
+  rel="stylesheet"
+  href="https://modus.trimble.com/assets/0.5.1/fonts/modus-icons.css"
+/>
 ```
 
 ## Build Package
 
 Yarn is the package manager, check out setup
 instructions [here](https://yarnpkg.com/en/docs/install) if you don't have it installed already.
-After that you can run `yarn run bootstrap` to install all the needed dependencies and build a local copy of the library with `yarn run build`
+After that you can run `yarn run bootstrap` to install all the needed dependencies and build a local copy of the library with `yarn run build`.
+
+To test the changes on a browser locally you can use the test project **sample-workspace** and `yarn start` will start a development site.
 
 ## Contributions
 
