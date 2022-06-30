@@ -226,7 +226,8 @@ const FileUploadDropZone = forwardRef<HTMLDivElement, FileUploadDropZoneProps>(
     }: FileUploadDropZoneProps,
     ref,
   ) => {
-    const resolvedRef = (useRef<HTMLDivElement>(null) ||
+    const defaultRef = useRef<HTMLDivElement>(null);
+    const resolvedRef = (defaultRef ||
       ref) as React.MutableRefObject<HTMLDivElement>;
     const fileInputRef = useRef<HTMLInputElement>(null);
 
