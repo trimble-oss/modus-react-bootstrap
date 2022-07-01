@@ -5,7 +5,7 @@
   Copyright (c) 2022 Trimble Inc.
  */
 
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import TreeViewContext from './TreeViewContext';
@@ -56,10 +56,12 @@ function getAllNodeIds(array: TreeItem[] | undefined): number[] {
     return r;
   }, []);
 }
-const noop = () => {
+
+function noop() {
   // do nothing
-};
-const TreeViewContent: React.FunctionComponent<
+}
+
+const ContentWrapper: React.FunctionComponent<
   React.HTMLProps<HTMLDivElement>
 > = ({ className, children, ...props }) => {
   return (
@@ -71,6 +73,7 @@ const TreeViewContent: React.FunctionComponent<
     </div>
   );
 };
+
 const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
   (
     {
@@ -185,14 +188,25 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
     // This effect is used for focussing the tree item element while using keyboard interactions like arrow up/down key
     useEffect(() => {
       const ele = resolvedRef.current;
-      if (inFocus && !focusSource.current) {
-        ele.focus();
+      if (inFocus && !focusSource.current && ele) {
+        (ele.firstChild as HTMLDivElement).focus();
       }
     }, [inFocus, resolvedRef]);
 
     useEffect(() => {
       if (resolvedRef.current) setTreeItemElement(resolvedRef.current);
     }, [resolvedRef]);
+
+    const showIndicator = useMemo(() => {
+      if (!isNodeSelected) return false;
+      if (isNodeSelected(nodeId)) return true;
+
+      return (
+        !expanded &&
+        descendants &&
+        getAllNodeIds(descendants).find((d) => isNodeSelected(d))
+      );
+    }, [descendants, isNodeSelected, nodeId, expanded]);
 
     const handleNodeSelection = React.useCallback(
       (e: any) => {
@@ -256,16 +270,24 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
     }, []);
 
     const stopPropagation = React.useCallback(
-      (e, flag) => flag && e.stopPropagation(),
+      (e: any, flag: boolean) => flag && e.stopPropagation(),
       [],
     );
 
     return (
-      <>
+      <li
+        className={classNames(
+          'd-flex flex-column item-container',
+          showIndicator && 'selected-indicator',
+          className,
+        )}
+        ref={resolvedRef}
+        {...rest}
+      >
         <TreeViewItemStyled
           level={currentLevel}
-          checkBoxSelection={checkBoxSelection ? 'true' : 'false'}
-          itemIcon={finalItemIcon ? 'true' : 'false'}
+          hasCheckBoxSelection={checkBoxSelection ? 'true' : 'false'}
+          hasItemIcon={finalItemIcon ? 'true' : 'false'}
           role="treeitem"
           aria-expanded={expandable ? expanded : undefined}
           aria-selected={nodeSelected}
@@ -273,7 +295,7 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
           aria-level={currentLevel}
           aria-label={ariaLabel}
           className={classNames(
-            'list-group-item list-item-leftright-control',
+            'list-group-item list-item-leftright-control w-100',
             nodeSelected && 'active',
             disabled && 'disabled',
             className,
@@ -290,22 +312,21 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
               onKeyPress(e, () => toggleNodeSelection(e, nodeId));
           }}
           onClick={handleNodeSelection}
-          ref={resolvedRef}
-          {...rest}
+          style={{ marginTop: '-1px', marginBottom: '-1px' }}
         >
-          <TreeViewContent>
+          <ContentWrapper>
             <div
-              style={{ display: 'inline-flex' }}
+              className="d-inline-flex"
               tabIndex={finalDragIcon ? defaultTabIndex : -1}
               onClick={(e) => stopPropagation(e, !!finalDragIcon)}
               role="button"
               aria-label="Drag the item"
+              aria-hidden={!finalDragIcon}
             >
               {finalDragIcon || blankIcon}
             </div>
-            <span className="tree-item-level" />
             <div
-              style={{ display: 'inline-flex' }}
+              className="d-inline-flex item-indent h-100 align-items-center"
               tabIndex={expandable ? defaultTabIndex : -1}
               onKeyDown={(e) => {
                 if (onKeyPress && toggleExpansion)
@@ -315,15 +336,15 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
               onFocus={noop} // to retain focus
               role="button"
               aria-label="Expand/Collapse"
+              aria-hidden={!expandable}
             >
               {expandable
                 ? (expanded && finalExpandIcon) || finalCollapseIcon
                 : blankIcon}
             </div>
-          </TreeViewContent>
-
+          </ContentWrapper>
           {checkBoxSelection && (
-            <TreeViewContent onClick={(e) => stopPropagation(e, true)}>
+            <ContentWrapper onClick={(e) => stopPropagation(e, true)}>
               <IndeterminateCheckbox
                 aria-label={`${
                   checkBoxSelected ? 'Select' : 'Unselect'
@@ -340,24 +361,21 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
                 onFocus={noop} // to retain focus
                 size={size}
               />
-            </TreeViewContent>
+            </ContentWrapper>
           )}
-
           {finalItemIcon && (
-            <TreeViewContent
+            <ContentWrapper
               tabIndex={defaultTabIndex}
               onClick={(e) => stopPropagation(e, true)}
             >
               {finalItemIcon}
-            </TreeViewContent>
+            </ContentWrapper>
           )}
-          <div
-            role="heading"
-            className="d-flex align-items-center"
-            aria-level={currentLevel}
-          >
-            <div role="button">{label}</div>
-          </div>
+          <ContentWrapper role="heading" aria-level={currentLevel}>
+            <div role="button" className="w-100">
+              {label}
+            </div>
+          </ContentWrapper>
         </TreeViewItemStyled>
 
         {children && (
@@ -369,15 +387,16 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
             }}
           >
             <TreeViewItemGroupStyled
-              className="list-group"
               expanded={expanded ? 'true' : 'false'}
               role="tree"
+              className="list-group w-100 h-100"
+              style={{ marginTop: '-1px', marginBottom: '-1px' }}
             >
               {children}
             </TreeViewItemGroupStyled>
           </TreeViewItemContext.Provider>
         )}
-      </>
+      </li>
     );
   },
 );

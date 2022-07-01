@@ -156,12 +156,14 @@ const DataTableStyled = styled.div`
     }
   }
   &.table-sticky-first-column {
+    td:first-child {
+      background-color: #fff;
+    }
     th:first-child,
     td:first-child {
       left: 0;
       z-index: 2;
       position: sticky !important;
-      background-color: #fff;
     }
 
     tbody tr:hover {

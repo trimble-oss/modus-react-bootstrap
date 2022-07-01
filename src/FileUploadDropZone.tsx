@@ -393,7 +393,10 @@ const FileUploadDropZone = forwardRef<HTMLDivElement, FileUploadDropZoneProps>(
       >
         {state && (
           <>
-            <div className="w-100 h-100 file-drop-zone-overlay" />
+            <div
+              className="w-100 h-100 file-drop-zone-overlay"
+              aria-hidden="true"
+            />
             <div className="file-drop-zone-content text-center p-3">
               {state.icon || finalUploadIcon}
               <div>

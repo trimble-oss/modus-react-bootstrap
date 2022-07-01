@@ -395,6 +395,7 @@ function DataTable<T extends Record<string, unknown>>(
                                     : 'ascending')) ||
                                 'none'
                               }
+                              className="bg-gray-light"
                               aria-colindex={index + 1}
                             >
                               {column.render('Header')}
