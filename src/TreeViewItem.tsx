@@ -56,10 +56,10 @@ function getAllNodeIds(array: TreeItem[] | undefined): number[] {
     return r;
   }, []);
 }
-const noop = () => {
+function noop() {
   // do nothing
-};
-const TreeViewContent: React.FunctionComponent<
+}
+const ContentWrapper: React.FunctionComponent<
   React.HTMLProps<HTMLDivElement>
 > = ({ className, children, ...props }) => {
   return (
@@ -235,9 +235,10 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
     const handleExpansion = React.useCallback(
       (e: any) => {
         e.stopPropagation();
+
         if (toggleExpansion) toggleExpansion(e, nodeId);
       },
-      [toggleExpansion, nodeId],
+      [expanded, toggleExpansion, nodeId],
     );
 
     const handleFocus = React.useCallback(
@@ -256,7 +257,7 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
     }, []);
 
     const stopPropagation = React.useCallback(
-      (e, flag) => flag && e.stopPropagation(),
+      (e: any, flag: boolean) => flag && e.stopPropagation(),
       [],
     );
 
@@ -264,8 +265,8 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
       <>
         <TreeViewItemStyled
           level={currentLevel}
-          checkBoxSelection={checkBoxSelection ? 'true' : 'false'}
-          itemIcon={finalItemIcon ? 'true' : 'false'}
+          hasCheckBoxSelection={checkBoxSelection ? 'true' : 'false'}
+          hasItemIcon={finalItemIcon ? 'true' : 'false'}
           role="treeitem"
           aria-expanded={expandable ? expanded : undefined}
           aria-selected={nodeSelected}
@@ -293,7 +294,7 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
           ref={resolvedRef}
           {...rest}
         >
-          <TreeViewContent>
+          <ContentWrapper>
             <div
               style={{ display: 'inline-flex' }}
               tabIndex={finalDragIcon ? defaultTabIndex : -1}
@@ -303,7 +304,7 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
             >
               {finalDragIcon || blankIcon}
             </div>
-            <span className="tree-item-level" />
+            <span className="item-indent" />
             <div
               style={{ display: 'inline-flex' }}
               tabIndex={expandable ? defaultTabIndex : -1}
@@ -320,10 +321,10 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
                 ? (expanded && finalExpandIcon) || finalCollapseIcon
                 : blankIcon}
             </div>
-          </TreeViewContent>
+          </ContentWrapper>
 
           {checkBoxSelection && (
-            <TreeViewContent onClick={(e) => stopPropagation(e, true)}>
+            <ContentWrapper onClick={(e) => stopPropagation(e, true)}>
               <IndeterminateCheckbox
                 aria-label={`${
                   checkBoxSelected ? 'Select' : 'Unselect'
@@ -340,24 +341,24 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
                 onFocus={noop} // to retain focus
                 size={size}
               />
-            </TreeViewContent>
+            </ContentWrapper>
           )}
 
           {finalItemIcon && (
-            <TreeViewContent
+            <ContentWrapper
               tabIndex={defaultTabIndex}
               onClick={(e) => stopPropagation(e, true)}
             >
               {finalItemIcon}
-            </TreeViewContent>
+            </ContentWrapper>
           )}
-          <div
+          <ContentWrapper
             role="heading"
-            className="d-flex align-items-center"
             aria-level={currentLevel}
+            className={classNames(expanded && 'font-weight-bold')}
           >
             <div role="button">{label}</div>
-          </div>
+          </ContentWrapper>
         </TreeViewItemStyled>
 
         {children && (
