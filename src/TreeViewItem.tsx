@@ -235,10 +235,9 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
     const handleExpansion = React.useCallback(
       (e: any) => {
         e.stopPropagation();
-
         if (toggleExpansion) toggleExpansion(e, nodeId);
       },
-      [expanded, toggleExpansion, nodeId],
+      [toggleExpansion, nodeId],
     );
 
     const handleFocus = React.useCallback(
@@ -352,11 +351,7 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
               {finalItemIcon}
             </ContentWrapper>
           )}
-          <ContentWrapper
-            role="heading"
-            aria-level={currentLevel}
-            className={classNames(expanded && 'font-weight-bold')}
-          >
+          <ContentWrapper role="heading" aria-level={currentLevel}>
             <div role="button">{label}</div>
           </ContentWrapper>
         </TreeViewItemStyled>
