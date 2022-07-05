@@ -38,12 +38,12 @@ export interface TreeViewProps
   defaultSelected?: number[];
   onNodeToggle?: (
     event: React.SyntheticEvent,
-    expanded: number[],
+    expandedNodes: number[],
     nodeInFocus: number,
   ) => void;
   onNodeSelect?: (
     event: React.SyntheticEvent,
-    selected: number[],
+    selectedNodes: number[],
     nodeInFocus: number,
   ) => void;
   onCheckBoxSelect?: (event: React.SyntheticEvent, selected: number[]) => void;
@@ -97,8 +97,9 @@ const propTypes = {
    * Callback when a Tree item expands or collapse.
    *
    * ```js
-   * function onNodeToggle(event: React.SyntheticEvent, expanded: number[]) => void
-   *  expanded: An array of nodeId(s) of expanded Tree Items
+   * function onNodeToggle(event: React.SyntheticEvent, expandedNodes: number[], nodeInFocus: number) => void
+   *  expandedNodes: An array of nodeId(s) of expanded Tree Items.
+   *  nodeInFocus: The current Tree item that is expanded.
    * ```
    */
   onNodeToggle: PropTypes.func,
@@ -107,8 +108,9 @@ const propTypes = {
    * Callback when Tree item(s) selected.
    *
    * ```js
-   * function onNodeSelect(event: React.SyntheticEvent, selected: number[]) => void
-   *  selected: An array of nodeId(s) of selected Tree Items
+   * function onNodeSelect(event: React.SyntheticEvent, selectedNodes: number[], nodeInFocus: number) => void
+   *  selectedNodes: An array of nodeId(s) of selected Tree Items
+   *  nodeInFocus: The current Tree item that is selected.
    * ```
    */
   onNodeSelect: PropTypes.func,
