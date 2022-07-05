@@ -295,17 +295,17 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
         >
           <ContentWrapper>
             <div
-              style={{ display: 'inline-flex' }}
+              className="d-inline-flex"
               tabIndex={finalDragIcon ? defaultTabIndex : -1}
               onClick={(e) => stopPropagation(e, !!finalDragIcon)}
               role="button"
               aria-label="Drag the item"
+              aria-hidden={!finalDragIcon}
             >
               {finalDragIcon || blankIcon}
             </div>
-            <span className="item-indent" />
             <div
-              style={{ display: 'inline-flex' }}
+              className="d-inline-flex item-indent"
               tabIndex={expandable ? defaultTabIndex : -1}
               onKeyDown={(e) => {
                 if (onKeyPress && toggleExpansion)
@@ -315,6 +315,7 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
               onFocus={noop} // to retain focus
               role="button"
               aria-label="Expand/Collapse"
+              aria-hidden={!expandable}
             >
               {expandable
                 ? (expanded && finalExpandIcon) || finalCollapseIcon

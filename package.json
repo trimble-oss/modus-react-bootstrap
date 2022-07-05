@@ -35,7 +35,7 @@
     "lint": "eslint --ext tsx --ext ts src && tsc --noEmit",
     "prepublishOnly": "npm run build",
     "release": "rollout",
-    "start": "yarn --cwd sample-workspace start"
+    "start": "yarn run build && yarn --cwd sample-workspace start"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --fix"
