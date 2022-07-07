@@ -366,11 +366,7 @@ function DataTable<T extends Record<string, unknown>>(
               >
                 <thead className="bg-gray-light sticky-top">
                   {headerGroups.map((headerGroup) => (
-                    <tr
-                      {...headerGroup.getHeaderGroupProps()}
-                      role="row"
-                      className="bg-gray-light"
-                    >
+                    <tr {...headerGroup.getHeaderGroupProps()} role="row">
                       <DataTableContextMenuProvider
                         allColumns={allColumns}
                         toggleHideAllColumns={toggleHideAllColumns}
@@ -391,12 +387,6 @@ function DataTable<T extends Record<string, unknown>>(
                               key={column.id}
                               header={column}
                               onToggleHideColumn={toggleHideColumn}
-                              className={classNames(
-                                checkBoxRowSelection &&
-                                  column.id === 'selector' &&
-                                  'icon-only',
-                                'bg-gray-light',
-                              )}
                               role="columnheader"
                               aria-sort={
                                 (column.isSorted &&
@@ -405,6 +395,7 @@ function DataTable<T extends Record<string, unknown>>(
                                     : 'ascending')) ||
                                 'none'
                               }
+                              className="bg-gray-light"
                               aria-colindex={index + 1}
                             >
                               {column.render('Header')}
@@ -432,7 +423,7 @@ function DataTable<T extends Record<string, unknown>>(
                               className={classNames(
                                 checkBoxRowSelection &&
                                   index === 0 &&
-                                  'icon-only',
+                                  'icon-only selector-cell',
                               )}
                               role="cell"
                               aria-rowindex={index + 1}

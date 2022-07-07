@@ -39,11 +39,25 @@ const TreeViewStyled = styled.ul`
   .list-group-item + .list-group-item.active {
     margin-top: unset !important;
   }
+
+  .item-container {
+    position: relative;
+    &.selected-indicator:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 0.3rem;
+      height: 100%;
+      z-index: 5;
+      box-shadow: inset 0.3rem 0 0 0 #217cbb;
+    }
+  }
 `;
-export const TreeViewItemStyled = styled.li<{
+export const TreeViewItemStyled = styled.div<{
   level: number;
-  checkBoxSelection: string;
-  itemIcon: string;
+  hasCheckBoxSelection: string;
+  hasItemIcon: string;
 }>`
   &:focus-visible,
   &.focus-visible,
@@ -57,19 +71,18 @@ export const TreeViewItemStyled = styled.li<{
     }
   }
 
-  &.list-group-item {
-    padding: 5px 16px 5px 0 !important;
-    cursor: pointer;
-    align-items: stretch !important;
+  padding: 5px 16px 5px 0 !important;
+  cursor: pointer;
+  align-items: stretch !important;
 
-    grid-template-columns: min-content ${(props) =>
-        props.checkBoxSelection === 'true' && 'min-content'} ${(props) =>
-        props.itemIcon === 'true' && 'min-content'} auto min-content !important;
+  grid-template-columns: min-content ${(props) =>
+      props.hasCheckBoxSelection === 'true' && 'min-content'} ${(props) =>
+      props.hasItemIcon === 'true' &&
+      'min-content'} auto min-content !important;
 
-    .tree-item-level {
-      padding-left: ${(props) =>
-        props.level > 0 ? (props.level - 1) * 0.5 : 0}rem !important;
-    }
+  .item-indent {
+    padding-left: ${(props) =>
+      props.level > 0 ? (props.level - 1) * 0.5 : 0}rem !important;
   }
 `;
 export const TreeViewItemGroupStyled = styled.ul<{ expanded: string }>`

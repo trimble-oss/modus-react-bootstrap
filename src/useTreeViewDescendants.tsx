@@ -37,12 +37,12 @@ type DescendantProviderParam = {
   hasCheckBoxSelected?: (nodeId: number) => boolean;
   handleCheckboxSelection?: (
     event: any,
-    selected?: number[],
-    unselected?: number[],
+    selected: number[],
+    unselected: number[],
   ) => void;
 };
 
-function binaryFindElement(array, findElement) {
+function binaryFindElement(array: TreeItem[], findElement: any) {
   let start = 0;
   let end = array.length - 1;
 
@@ -114,7 +114,7 @@ export default function useTreeViewDescendants({
   }, [registerOnParent, unRegisterOnParent, setIndex, element, nodeId]);
 
   const registerDescendant = useCallback(
-    (id, children, descendantElement) => {
+    (id: number, children: TreeItem[], descendantElement: any) => {
       let newIndex = -1;
 
       if (registeredChildren.current) {
@@ -149,7 +149,7 @@ export default function useTreeViewDescendants({
     [registeredChildren.current, nodeId, updateParent, element],
   );
 
-  const unRegisterDescendant = useCallback((id) => {
+  const unRegisterDescendant = useCallback((id: number) => {
     if (registeredChildren.current) {
       registeredChildren.current = registeredChildren.current.filter(
         (node) => node.id !== id,
@@ -161,7 +161,7 @@ export default function useTreeViewDescendants({
   }, []);
 
   const updateDescendant = useCallback(
-    (id, children, descendantElement) => {
+    (id: number, children: TreeItem[], descendantElement: any) => {
       if (registeredChildren.current) {
         const currentIndex = _findIndex(
           registeredChildren.current,
@@ -187,7 +187,12 @@ export default function useTreeViewDescendants({
   );
 
   const updateCheckboxSelection = useCallback(
-    (event, descendantId, checkedArray, uncheckedArray) => {
+    (
+      event: any,
+      descendantId: number,
+      checkedArray: number[],
+      uncheckedArray: number[],
+    ) => {
       if (registeredChildren.current) {
         const childNodesFiltered = registeredChildren.current
           .map((node) => node.id)

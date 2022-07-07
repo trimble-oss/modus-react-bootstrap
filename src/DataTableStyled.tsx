@@ -36,6 +36,12 @@ const DataTableStyled = styled.div`
       td {
         align-items: center;
         display: flex;
+
+        &.selector-cell {
+          flex: none !important;
+          width: 3rem !important;
+          min-width: 3rem !important;
+        }
       }
 
       th .modus-icons.material-icons.sorted,
@@ -137,15 +143,27 @@ const DataTableStyled = styled.div`
         box-shadow: 0 2px 0 0 #b7b9c3;
         border-bottom: 0 !important;
       }
+
+      &.table-sm {
+        th,
+        td {
+          &.selector-cell {
+            width: 2.5rem !important;
+            min-width: 2.5rem !important;
+          }
+        }
+      }
     }
   }
   &.table-sticky-first-column {
+    td:first-child {
+      background-color: #fff;
+    }
     th:first-child,
     td:first-child {
       left: 0;
       z-index: 2;
       position: sticky !important;
-      background-color: #fff;
     }
 
     tbody tr:hover {

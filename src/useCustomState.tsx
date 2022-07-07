@@ -11,9 +11,9 @@
  */
 import { useEffect, useCallback, useRef, useState } from 'react';
 
-export default function useCustomState(prop, defaultProp) {
-  const [value, setValue] = useState(defaultProp);
-  const ref = useRef();
+export default function useCustomState<T>(prop: T, defaultProp: T) {
+  const [value, setValue] = useState<T>(defaultProp);
+  const ref = useRef<T>();
 
   useEffect(() => {
     if (prop !== undefined && ref.current !== prop) {
@@ -22,7 +22,7 @@ export default function useCustomState(prop, defaultProp) {
     }
   }, [prop]);
 
-  const setValueFn = useCallback((newValue) => {
+  const setValueFn = useCallback((newValue: T) => {
     setValue(newValue);
   }, []);
 
