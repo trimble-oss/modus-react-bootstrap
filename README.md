@@ -4,7 +4,7 @@ The [Modus React Bootstrap](https://modus-react-bootstrap.trimble.com/getting-st
 
 ## Background
 
-Modus React Bootstrap is built upon and extends the React Bootstrap v1.6.x code framework combined with [Modus Bootstrap](https://modus-bootstrap.trimble.com/getting-started/). You can use the Modus Bootstrap CSS files as is, or integrate the SASS files into your own application if you wish to modify it further.
+Modus React Bootstrap is built upon and extends the React Bootstrap v1.6.x code framework combined with [Modus Bootstrap](https://modus-bootstrap.trimble.com/getting-started/). You can use the Modus Bootstrap CSS files as is, or integrate the Sass files into your own application if you wish to modify it further.
 
 ## Install with npm
 
@@ -14,9 +14,9 @@ Install Modus React Bootstrap Framework in your Node.js powered apps with our np
 
 The components will be found in the `./node_modules/@trimbleinc/modus-react-bootstrap/` directory and the compiled Modus Bootstrap CSS files will be in the `./node_modules/@trimbleinc/modus-bootstrap/dist` directory.
 
-## Customize Modus Bootstrap CSS using SASS
+## Customize Modus Bootstrap CSS using Sass
 
-The SASS files will be found in the `/scss` directory. For further details refer to [Modus Bootstrap](https://modus-bootstrap.trimble.com/getting-started/#customize-using-sass).
+The Sass files will be found in the `/scss` directory. For further details refer to [Modus Bootstrap](https://modus-bootstrap.trimble.com/getting-started/#customize-using-sass).
 
 ## Icons
 
@@ -43,4 +43,4 @@ To test the changes on a browser locally you can use the test project **sample-w
 
 ## Contributions
 
-See the [contributing guidelines](https://github.com/trimble-oss/modus-react-bootstrap/blob/main/CONTRIBUTING.md) for how to propose bug fixes and improvements.
+See the [contributing guidelines](https://github.com/trimble-oss/modus-react-bootstrap/blob/main/CONTRIBUTING.md) for how to propose bugfixes and improvements.
