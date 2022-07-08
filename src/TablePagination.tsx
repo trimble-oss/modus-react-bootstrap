@@ -256,6 +256,7 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
                   <Pagination.Item
                     key={item}
                     active={item === pageIndex + 1}
+                    aria-current={item === pageIndex + 1 ? 'page' : undefined}
                     onClick={() => {
                       handleGotoPage(item);
                     }}
