@@ -1,3 +1,20 @@
+## v1.1.1 - 2022-07-08
+
+### Features
+
+- TreeView:
+  - Callbacks `onNodeToggle` and `onNodeSelect` now have a new parameter `nodeInFocus` which indicates the current Tree item that triggered the event.
+  - **Selection Indicator:** A Tree item when selected will now have a blue line indicator extending to its children if it is a folder.
+- Upgraded to [Modus Bootstrap v1.5.1](https://www.npmjs.com/package/@trimbleinc/modus-bootstrap), check the [Modus Bootstrap Release notes](https://bitbucket.trimble.tools/projects/TMDS/repos/modus-bootstrap/browse/CHANGELOG.md) for more details.
+
+### Bugfixes
+
+- DataTable Component - Unnecessary space for checkbox column [#76](https://github.com/trimble-oss/modus-react-bootstrap/issues/76)
+
+### BREAKING CHANGES
+
+- **TreeViewItem** is now wrapped around by a `li.item-container` containing the label and the children.
+
 ## v1.1.0 - 2022-06-22
 
 ### Features
