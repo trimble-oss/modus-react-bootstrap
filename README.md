@@ -29,7 +29,7 @@ Modus icons are required for some of the components like DataTable, FileUploadDr
 />
 <link
   rel="stylesheet"
-  href="https://modus.trimble.com/assets/0.5.1/fonts/modus-icons.css"
+  href="https://modus.trimble.com/assets/fonts/modus-icons.css"
 />
 ```
 
