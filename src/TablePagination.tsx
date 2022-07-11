@@ -252,11 +252,12 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
               )}
 
               {paginationGroup.map((item) => {
+                const isActivePage = item === pageIndex + 1;
                 return (
                   <Pagination.Item
                     key={item}
-                    active={item === pageIndex + 1}
-                    aria-current={item === pageIndex + 1 ? 'page' : undefined}
+                    active={isActivePage}
+                    aria-current={isActivePage ? 'page' : undefined}
                     onClick={() => {
                       handleGotoPage(item);
                     }}
