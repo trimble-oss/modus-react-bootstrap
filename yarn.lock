@@ -1351,14 +1351,14 @@
     babel-plugin-transform-react-remove-prop-types "^0.4.24"
     babel-preset-env-modules "^1.0.1"
 
-"@react-bootstrap/eslint-config@^1.3.2":
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/@react-bootstrap/eslint-config/-/eslint-config-1.3.2.tgz#7f49b343cf78e3b9ed23d1de5c38656edeea05bb"
-  integrity sha512-TXC9PiX8pANW+frZ5KZJ+FZanfFIc2I0BBlMQeUgR24nhb25AtZzCO40QcuBisBtz143o4+luwZmQpAbCC64ow==
+"@react-bootstrap/eslint-config@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@react-bootstrap/eslint-config/-/eslint-config-2.0.0.tgz#dfcd8438b07e68bb9b0fca1634a3a146c2119e58"
+  integrity sha512-C1m3A8BZBFCJKSU5omo2gK6GGBoC1J8hMSx519qAUjDBqaKIESUcx8wuHR+JUWWZ/KXKUKfDPu+HSG7vryyybw==
   dependencies:
-    eslint-config-airbnb "^18.0.1"
-    eslint-config-prettier "^6.4.0"
-    eslint-plugin-react-hooks "^2.1.2"
+    eslint-config-airbnb "^18.2.1"
+    eslint-config-prettier "^8.1.0"
+    eslint-plugin-react-hooks "^4.2.0"
 
 "@restart/context@^2.1.4":
   version "2.1.4"
@@ -3709,7 +3709,7 @@ eslint-config-airbnb-base@^14.2.1:
     object.assign "^4.1.2"
     object.entries "^1.1.2"
 
-eslint-config-airbnb@^18.0.1:
+eslint-config-airbnb@^18.2.1:
   version "18.2.1"
   resolved "https://registry.yarnpkg.com/eslint-config-airbnb/-/eslint-config-airbnb-18.2.1.tgz#b7fe2b42f9f8173e825b73c8014b592e449c98d9"
   integrity sha512-glZNDEZ36VdlZWoxn/bUR1r/sdFKPd1mHPbqUtkctgNG4yT2DLLtJ3D+yCV+jzZCc2V1nBVkmdknOJBZ5Hc0fg==
@@ -3718,12 +3718,10 @@ eslint-config-airbnb@^18.0.1:
     object.assign "^4.1.2"
     object.entries "^1.1.2"
 
-eslint-config-prettier@^6.4.0:
-  version "6.15.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-6.15.0.tgz#7f93f6cb7d45a92f1537a70ecc06366e1ac6fed9"
-  integrity sha512-a1+kOYLR8wMGustcgAjdydMsQ2A/2ipRPwRKUmfYaSxc9ZPcrku080Ctl6zrZzZNs/U82MjSv+qKREkoq3bJaw==
-  dependencies:
-    get-stdin "^6.0.0"
+eslint-config-prettier@^8.1.0:
+  version "8.5.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.5.0.tgz#5a81680ec934beca02c7b1a61cf8ca34b66feab1"
+  integrity sha512-obmWKLUNCnhtQRKc+tmnYuQl0pFU1ibYJQ5BGhTVB08bHe9wC8qUeG7c08dj9XX+AuPj1YSGSQIHl1pnDHZR0Q==
 
 eslint-import-resolver-node@^0.3.6:
   version "0.3.6"
@@ -3821,12 +3819,7 @@ eslint-plugin-prettier@^4.0.0:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-plugin-react-hooks@^2.1.2:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-2.5.1.tgz#4ef5930592588ce171abeb26f400c7fbcbc23cd0"
-  integrity sha512-Y2c4b55R+6ZzwtTppKwSmK/Kar8AdLiC2f9NADCuxbcTgPPg41Gyqa6b9GppgXSvCtkRw43ZE86CT5sejKC6/g==
-
-eslint-plugin-react-hooks@^4.6.0-next-327e4a1f9-20220613:
+eslint-plugin-react-hooks@^4.2.0, eslint-plugin-react-hooks@^4.6.0-next-327e4a1f9-20220613:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.6.0.tgz#4c3e697ad95b77e93f8646aaa1630c1ba607edd3"
   integrity sha512-oFc7Itz9Qxh2x4gNHStv3BqJq54ExXmfC+a1NjAta66IAN87Wu0R/QArgIS9qKzX3dXKPI9H5crl9QchNMY9+g==
@@ -4349,11 +4342,6 @@ get-pkg-repo@^4.0.0:
     hosted-git-info "^4.0.0"
     through2 "^2.0.0"
     yargs "^16.2.0"
-
-get-stdin@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-6.0.0.tgz#9e09bf712b360ab9225e812048f71fde9c89657b"
-  integrity sha512-jp4tHawyV7+fkkSKyvjuLZswblUtz+SQKzSWnBbii16BuZksJlU1wuBYXY75r+duh/llF1ur6oNwi+2ZzjKZ7g==
 
 get-stream@^6.0.0:
   version "6.0.1"
