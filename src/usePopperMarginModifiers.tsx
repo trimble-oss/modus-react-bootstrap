@@ -48,8 +48,8 @@ export default function usePopperMarginModifiers(): [
     [popoverClass, dropdownMenuClass],
   );
 
-  const offset = useMemo(() => {
-    return {
+  const offset = useMemo(
+    () => ({
       name: 'offset',
       options: {
         offset: ({ placement }) => {
@@ -70,11 +70,12 @@ export default function usePopperMarginModifiers(): [
           }
         },
       },
-    };
-  }, [margins]);
+    }),
+    [margins],
+  );
 
-  const arrow = useMemo(() => {
-    return {
+  const arrow = useMemo(
+    () => ({
       name: 'arrow',
       options: {
         padding: () => {
@@ -94,12 +95,13 @@ export default function usePopperMarginModifiers(): [
           };
         },
       },
-    };
-  }, [arrowMargins]);
+    }),
+    [arrowMargins],
+  );
 
   // Converts popover arrow margin to arrow modifier padding
-  const popoverArrowMargins = useMemo(() => {
-    return {
+  const popoverArrowMargins = useMemo(
+    () => ({
       name: 'popoverArrowMargins',
       enabled: true,
       phase: 'main',
@@ -137,8 +139,9 @@ export default function usePopperMarginModifiers(): [
           if (state.elements.arrow) state.elements.arrow.style.margin = '';
         };
       },
-    };
-  }, [popoverClass]);
+    }),
+    [popoverClass],
+  );
 
   return [callback, [offset, arrow, popoverArrowMargins]];
 }

@@ -196,16 +196,12 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
     // Helpers
     // TODO: Replace the logic getChildrenIds(getNodesArray) to avoid performance issues if any
     function getNodesArray(): TreeItem[] {
-      return Object.keys(nodes.current).map((key) => {
-        return nodes.current[key];
-      });
+      return Object.keys(nodes.current).map((key) => nodes.current[key]);
     }
 
     function getImmediateChildrenIds(parentId: number) {
       return Object.keys(nodes.current)
-        .map((key) => {
-          return nodes.current[key];
-        })
+        .map((key) => nodes.current[key])
         .filter((node) => node.parentId === parentId)
         .sort((a, b) => a.index - b.index)
         .map((child) => child.id);
@@ -365,9 +361,7 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
     );
 
     const isNodeSelected = useCallback(
-      (nodeIdValue: number) => {
-        return nodesSelected.indexOf(nodeIdValue) !== -1;
-      },
+      (nodeIdValue: number) => nodesSelected.indexOf(nodeIdValue) !== -1,
       [nodesSelected],
     );
 
@@ -399,18 +393,15 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
     );
 
     const isNodeInFocus = useCallback(
-      (nodeIdValue: number) => {
-        return focusNodeId === nodeIdValue;
-      },
+      (nodeIdValue: number) => focusNodeId === nodeIdValue,
       [focusNodeId],
     );
 
     const isNodeDisabled = useCallback(
-      (nodeIdValue: number) => {
-        return nodes.current[nodeIdValue]
+      (nodeIdValue: number) =>
+        nodes.current[nodeIdValue]
           ? nodes.current[nodeIdValue].disabled
-          : false;
-      },
+          : false,
       [nodes],
     );
 

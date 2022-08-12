@@ -81,8 +81,8 @@ function useDataTableInstance<T extends Record<string, unknown>>(
   // Helpers
   // To add invisible columns
   const getAllHeadersInAGroup = useCallback(
-    (curr: HeaderGroup<T>[], headerGroupid: any) => {
-      return allColumns
+    (curr: HeaderGroup<T>[], headerGroupid: any) =>
+      allColumns
         .filter(
           (col) =>
             col.id === 'selector' ||
@@ -92,8 +92,7 @@ function useDataTableInstance<T extends Record<string, unknown>>(
         .map((col) => {
           const newCol = curr.find((c) => c.id === col.id);
           return newCol || col;
-        });
-    },
+        }),
     [allColumns],
   );
 

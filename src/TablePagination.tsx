@@ -108,38 +108,28 @@ const getPaginationGroup = (
   return new Array(len).fill(0).map((_, idx) => start + idx + 1);
 };
 
-type MorePagesDropdownProps = {
+const PagesDropdown: React.FunctionComponent<{
   pages: number[];
   onPageSelection: (...args: any[]) => void;
-};
-
-const MorePagesDropdown: React.FunctionComponent<MorePagesDropdownProps> = ({
-  pages,
-  onPageSelection,
-  ...props
-}) => {
-  return (
-    <Dropdown as={NavItem} {...props}>
-      <Dropdown.Toggle as={NavLink} variant="text-primary" bsPrefix="">
-        <i className="modus-icons">more_horizontal</i>
-      </Dropdown.Toggle>
-      <Dropdown.Menu className="dropdown-menu-sm" style={{ minWidth: '5rem' }}>
-        {pages.map((item) => {
-          return (
-            <Dropdown.Item
-              key={item}
-              onClick={() => {
-                onPageSelection(item);
-              }}
-            >
-              {item}
-            </Dropdown.Item>
-          );
-        })}
-      </Dropdown.Menu>
-    </Dropdown>
-  );
-};
+}> = ({ pages, onPageSelection, ...props }) => (
+  <Dropdown as={NavItem} {...props}>
+    <Dropdown.Toggle as={NavLink} variant="text-primary" bsPrefix="">
+      <i className="modus-icons">more_horizontal</i>
+    </Dropdown.Toggle>
+    <Dropdown.Menu className="dropdown-menu-sm" style={{ minWidth: '5rem' }}>
+      {pages.map((item) => (
+        <Dropdown.Item
+          key={item}
+          onClick={() => {
+            onPageSelection(item);
+          }}
+        >
+          {item}
+        </Dropdown.Item>
+      ))}
+    </Dropdown.Menu>
+  </Dropdown>
+);
 
 const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
   (
@@ -244,7 +234,7 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
                   aria-label="Go to previous pages"
                   role="button"
                 >
-                  <MorePagesDropdown
+                  <PagesDropdown
                     pages={morePagesLeft}
                     onPageSelection={handleGotoPage}
                   />
@@ -276,7 +266,7 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
                   aria-label="Go to next pages"
                   role="button"
                 >
-                  <MorePagesDropdown
+                  <PagesDropdown
                     pages={morePagesRight}
                     onPageSelection={handleGotoPage}
                   />

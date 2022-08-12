@@ -174,9 +174,9 @@ function validateFiles(
       });
       if (invalidType) {
         return `Some files do not match the allowed file types (${acceptArray
-          .map((item, index) => {
-            return `${item}${index === accept.length - 1 ? '' : ','}`;
-          })
+          .map(
+            (item, index) => `${item}${index === accept.length - 1 ? '' : ','}`,
+          )
           .join(' ')}).`;
       }
     }
@@ -193,9 +193,7 @@ function validateFiles(
 
     // Total size
     if (maxTotalFileSizeBytes) {
-      const totalSize = arr.reduce((tot, file) => {
-        return tot + file.size;
-      }, 0);
+      const totalSize = arr.reduce((tot, file) => tot + file.size, 0);
       if (totalSize > maxTotalFileSizeBytes)
         return `Upload size exceeds limit. Max upload size ${bytesToSize(
           maxTotalFileSizeBytes,

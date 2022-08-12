@@ -45,22 +45,18 @@ export default function DataTableContextMenuProvider({
           },
           {
             title: 'Show Columns',
-            children: columns.map((column) => {
-              return {
-                title: (
-                  <Form.Check
-                    label={column.render('Header')}
-                    custom
-                    id={column.id}
-                    data-indeterminate="false"
-                    {...(column.isVisible && { defaultChecked: true })}
-                    onChange={() =>
-                      toggleHideColumn(column.id, column.isVisible)
-                    }
-                  />
-                ),
-              };
-            }),
+            children: columns.map((column) => ({
+              title: (
+                <Form.Check
+                  label={column.render('Header')}
+                  custom
+                  id={column.id}
+                  data-indeterminate="false"
+                  {...(column.isVisible && { defaultChecked: true })}
+                  onChange={() => toggleHideColumn(column.id, column.isVisible)}
+                />
+              ),
+            })),
           },
           {
             title: 'Show All Columns',
