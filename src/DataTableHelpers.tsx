@@ -25,25 +25,21 @@ export const checkBoxSelectionHook = <T extends Record<string, unknown>>(
       id: DATATABLE_CHECKBOX_SELECTOR_ID,
       disableResizing: true,
       disableGroupBy: true,
-      Cell: ({ row }: CellProps<T>) => {
-        return (
+      Cell: ({ row }: CellProps<T>) => (
+        <IndeterminateCheckbox
+          size={size}
+          {...row.getToggleRowSelectedProps()}
+          id={`${tableId}_${DATATABLE_CHECKBOX_SELECTOR_ID}_row"${row.id}`}
+        />
+      ),
+      ...(multipleRowSelection && {
+        Header: ({ getToggleAllRowsSelectedProps }: HeaderProps<T>) => (
           <IndeterminateCheckbox
             size={size}
-            {...row.getToggleRowSelectedProps()}
-            id={`${tableId}_${DATATABLE_CHECKBOX_SELECTOR_ID}_row"${row.id}`}
+            {...getToggleAllRowsSelectedProps()}
+            id={`${tableId}_${DATATABLE_CHECKBOX_SELECTOR_ID}_header`}
           />
-        );
-      },
-      ...(multipleRowSelection && {
-        Header: ({ getToggleAllRowsSelectedProps }: HeaderProps<T>) => {
-          return (
-            <IndeterminateCheckbox
-              size={size}
-              {...getToggleAllRowsSelectedProps()}
-              id={`${tableId}_${DATATABLE_CHECKBOX_SELECTOR_ID}_header`}
-            />
-          );
-        },
+        ),
       }),
     },
     ...columns,

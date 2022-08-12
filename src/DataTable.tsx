@@ -416,22 +416,20 @@ function DataTable<T extends Record<string, unknown>>(
                         className={classNames(row.isSelected && 'selected')}
                         role="row"
                       >
-                        {row.cells.map((cell, index: number) => {
-                          return (
-                            <td
-                              {...cell.getCellProps(getCellStyles)}
-                              className={classNames(
-                                checkBoxRowSelection &&
-                                  index === 0 &&
-                                  'icon-only selector-cell',
-                              )}
-                              role="cell"
-                              aria-rowindex={index + 1}
-                            >
-                              {cell.render('Cell')}
-                            </td>
-                          );
-                        })}
+                        {row.cells.map((cell, index: number) => (
+                          <td
+                            {...cell.getCellProps(getCellStyles)}
+                            className={classNames(
+                              checkBoxRowSelection &&
+                                index === 0 &&
+                                'icon-only selector-cell',
+                            )}
+                            role="cell"
+                            aria-rowindex={index + 1}
+                          >
+                            {cell.render('Cell')}
+                          </td>
+                        ))}
                       </tr>
                     );
                   })}

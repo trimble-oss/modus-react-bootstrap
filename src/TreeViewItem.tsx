@@ -63,16 +63,14 @@ function noop() {
 
 const ContentWrapper: React.FunctionComponent<
   React.HTMLProps<HTMLDivElement>
-> = ({ className, children, ...props }) => {
-  return (
-    <div
-      className={classNames('d-flex align-items-center', className)}
-      {...props}
-    >
-      {children}
-    </div>
-  );
-};
+> = ({ className, children, ...props }) => (
+  <div
+    className={classNames('d-flex align-items-center', className)}
+    {...props}
+  >
+    {children}
+  </div>
+);
 
 const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
   (
@@ -282,18 +280,18 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
           className,
         )}
         ref={resolvedRef}
+        role="treeitem"
+        aria-expanded={expandable ? expanded : undefined}
+        aria-selected={nodeSelected}
+        aria-disabled={disabled}
+        aria-level={currentLevel}
+        aria-label={ariaLabel}
         {...rest}
       >
         <TreeViewItemStyled
           level={currentLevel}
           hasCheckBoxSelection={checkBoxSelection ? 'true' : 'false'}
           hasItemIcon={finalItemIcon ? 'true' : 'false'}
-          role="treeitem"
-          aria-expanded={expandable ? expanded : undefined}
-          aria-selected={nodeSelected}
-          aria-disabled={disabled}
-          aria-level={currentLevel}
-          aria-label={ariaLabel}
           className={classNames(
             'list-group-item list-item-leftright-control w-100',
             nodeSelected && 'active',
