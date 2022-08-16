@@ -2,7 +2,7 @@
 
 - Upgraded to [Modus Bootstrap v1.5.3](https://www.npmjs.com/package/@trimbleinc/modus-bootstrap), check the [Modus Bootstrap Release notes](https://bitbucket.trimble.tools/projects/TMDS/repos/modus-bootstrap/browse/CHANGELOG.md) for more details.
   - Updated to [Bootstrap v4.6.2](https://github.com/twbs/bootstrap/releases/tag/v4.6.2)
-  - Updated style for [Chips active state](/components/chips/).
+  - Updated style for [Chips active state](https://modus-react-bootstrap.trimble.com/components/chips/#SmallChips).
 
 ## v1.1.1 - 2022-07-08
 
