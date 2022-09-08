@@ -1,0 +1,32 @@
+/*!
+  Modus React Bootstrap 
+  A React-based component library developed as a common, open source platform for all of Trimble’s web applications built on React.
+  Extends React-Bootstrap v1.6.5
+  Copyright (c) 2022 Trimble Inc.
+ */
+
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700';
+
+// Bootstrap functions
+@import '../node_modules/bootstrap/scss/functions';
+
+// Modus functions
+@import '../node_modules/@trimbleinc/modus-bootstrap/scss/components/functions';
+
+// Modus variables
+@import '../node_modules/@trimbleinc/modus-bootstrap/scss/components/trimble-colors';
+@import '../node_modules/@trimbleinc/modus-bootstrap/scss/components/dark-theme';
+@import '../node_modules/@trimbleinc/modus-bootstrap/scss/components/modus-variables';
+
+// Bootstrap variables
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
+
+// Modus mixins
+@import '../node_modules/@trimbleinc/modus-bootstrap/scss/components/mixins';
+
+// Custom dark theme
+@import 'components/dark-theme';
+
+// Components
+@import 'main';

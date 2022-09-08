@@ -89,7 +89,7 @@ const DataTableHeaderCell = React.forwardRef<
 
   if (!header.isVisible) {
     return (
-      <div className="hidden-column">
+      <th className="hidden-column">
         <div
           className="d-flex flex-row align-items-center justify-content-center"
           onClick={handleShowHiddenColumn}
@@ -103,7 +103,7 @@ const DataTableHeaderCell = React.forwardRef<
             triangle_right
           </i>
         </div>
-      </div>
+      </th>
     );
   }
   const headerLabel = header.render('Header');
@@ -128,7 +128,7 @@ const DataTableHeaderCell = React.forwardRef<
     <th
       className={classNames(
         header.id === DATATABLE_CHECKBOX_SELECTOR_ID
-          ? 'icon-only selector-cell'
+          ? 'icon-only checkbox-selector-cell'
           : 'pr-2',
         className,
         allowDrag && 'draggable',

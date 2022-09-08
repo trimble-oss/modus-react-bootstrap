@@ -95,3 +95,6 @@ typings/
 # SonarQube
 .scannerwork/
 sonar-project.properties
+
+# Sample work space
+sample-workspace/

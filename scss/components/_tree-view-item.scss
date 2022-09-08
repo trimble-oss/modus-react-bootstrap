@@ -1,0 +1,41 @@
+/*!
+  Modus React Bootstrap 
+  A React-based component library developed as a common, open source platform for all of Trimble’s web applications built on React.
+  Extends React-Bootstrap v1.6.5
+  Copyright (c) 2022 Trimble Inc.
+ */
+
+.mrb-tree-view-item {
+  position: relative;
+
+  &.selected-indicator::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 0.3rem;
+    height: 100%;
+    z-index: 5;
+    box-shadow: inset 0.3rem 0 0 0 $col_blue_light;
+  }
+}
+
+.mrb-tree-view-item > .list-group-item {
+  align-items: stretch !important;
+  cursor: pointer;
+  padding: 5px 16px 5px 0 !important;
+
+  &:focus-visible,
+  &.focus-visible,
+  *:focus-visible,
+  .custom-control-input:focus-visible ~ .custom-control-label::before,
+  .custom-control-input:focus-visible ~ .custom-control-label::after {
+    outline: 2px auto $col_trimble_blue !important;
+  }
+
+  .modus-icons,
+  .material-icons {
+    cursor: pointer;
+    font-size: 16px !important;
+  }
+}

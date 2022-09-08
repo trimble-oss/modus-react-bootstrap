@@ -15,7 +15,6 @@ import { TreeItem } from './types';
 import TreeViewContext from './TreeViewContext';
 import TreeViewItemContext from './TreeViewItemContext';
 import useCustomState from './useCustomState';
-import TreeViewStyled from './TreeViewStyled';
 import useTreeViewDescendants from './useTreeViewDescendants';
 
 export interface TreeViewProps
@@ -587,12 +586,12 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
             updateDescendant,
           }}
         >
-          <TreeViewStyled
+          <ul
             id={id}
             role="tree"
             aria-label={props['aria-label'] || 'Content Tree'}
             className={classNames(
-              'list-group',
+              'mrb-tree-view list-group',
               size === 'sm'
                 ? 'list-group-condensed'
                 : size === 'lg' && 'list-group-lg',
@@ -602,7 +601,7 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
             ref={ref}
           >
             {children}
-          </TreeViewStyled>
+          </ul>
         </TreeViewItemContext.Provider>
       </TreeViewContext.Provider>
     );
