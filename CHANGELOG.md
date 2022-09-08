@@ -1,3 +1,10 @@
+## Unreleased
+
+### Features
+
+- Enabled `light` and `dark` themes
+  - Note: The react package will now include its own style sheets extending the `Modus Bootstrap v1.5.3` to apply light/dark theme on the react components.
+
 ## v1.1.2 - 2022-08-22
 
 - Upgraded to [Modus Bootstrap v1.5.3](https://www.npmjs.com/package/@trimbleinc/modus-bootstrap), check the [Modus Bootstrap Release notes](https://bitbucket.trimble.tools/projects/TMDS/repos/modus-bootstrap/browse/CHANGELOG.md) for more details.

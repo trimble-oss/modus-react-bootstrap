@@ -32,7 +32,6 @@ import {
 import Table from './Table';
 import TablePagination from './TablePagination';
 import DataTableHeaderCell from './DataTableHeaderCell';
-import DataTableStyled from './DataTableStyled';
 import DataTableDragdropProvider from './DataTableDragdropProvider';
 import DataTableContextMenuProvider from './DataTableContextMenuProvider';
 import useDataTableInstance from './useDataTableInstance';
@@ -59,6 +58,7 @@ export interface DataTableProps<T extends Record<string, unknown>>
   disableSorting?: boolean;
   disableFiltering?: boolean;
   disableDragging?: boolean;
+  stickyFirstColumn?: boolean;
   filterPanel?: (
     columns: DataTableColumnInstance<T>[],
     filters: Filters<T>,
@@ -162,6 +162,11 @@ const propTypes = {
   size: PropTypes.string,
 
   /**
+   * Pins the first column.
+   */
+  stickyFirstColumn: PropTypes.bool,
+
+  /**
    * Invert the colors of the table — with light text on dark backgrounds
    * by setting variant as `dark`.
    */
@@ -236,6 +241,7 @@ function DataTable<T extends Record<string, unknown>>(
     disableFiltering,
     disableDragging,
     striped,
+    stickyFirstColumn,
     bordered,
     borderless,
     hover,
@@ -330,7 +336,15 @@ function DataTable<T extends Record<string, unknown>>(
   );
 
   return (
-    <DataTableStyled ref={resolvedRef} className={className} {...rest}>
+    <div
+      ref={resolvedRef}
+      className={classNames(
+        'mrb-data-table',
+        bordered && 'mrb-data-table-bordered',
+        className,
+      )}
+      {...rest}
+    >
       <div className={classNames('d-flex flex-column overflow-hidden')}>
         {filterPanel &&
           !disableFiltering &&
@@ -344,8 +358,7 @@ function DataTable<T extends Record<string, unknown>>(
           )}
         <div
           className={classNames(
-            'd-flex flex-column overflow-hidden',
-            bordered && 'border border-tertiary',
+            'mrb-data-table-container d-flex flex-column overflow-hidden',
           )}
         >
           {
@@ -363,8 +376,11 @@ function DataTable<T extends Record<string, unknown>>(
                 role="table"
                 aria-colcount={allColumns.length}
                 aria-rowcount={data.length}
+                className={classNames(
+                  stickyFirstColumn && 'table-sticky-first-column',
+                )}
               >
-                <thead className="bg-gray-light sticky-top">
+                <thead className="bg-gray-light">
                   {headerGroups.map((headerGroup) => (
                     <tr {...headerGroup.getHeaderGroupProps()} role="row">
                       <DataTableContextMenuProvider
@@ -395,7 +411,7 @@ function DataTable<T extends Record<string, unknown>>(
                                     : 'ascending')) ||
                                 'none'
                               }
-                              className="bg-gray-light"
+                              className="bg-gray-light sticky-top"
                               aria-colindex={index + 1}
                             >
                               {column.render('Header')}
@@ -420,9 +436,11 @@ function DataTable<T extends Record<string, unknown>>(
                           <td
                             {...cell.getCellProps(getCellStyles)}
                             className={classNames(
-                              checkBoxRowSelection &&
-                                index === 0 &&
-                                'icon-only selector-cell',
+                              index === 0 &&
+                                `${
+                                  checkBoxRowSelection &&
+                                  'icon-only checkbox-selector-cell'
+                                }`,
                             )}
                             role="cell"
                             aria-rowindex={index + 1}
@@ -447,12 +465,11 @@ function DataTable<T extends Record<string, unknown>>(
               pageSizeOptions={pageSizeOptions || DATATABLE_DEFAULT_PAGE_SIZES}
               onPageSizeChange={setPageSize}
               size={size}
-              className="border-top border-tertiary"
             />
           )}
         </div>
       </div>
-    </DataTableStyled>
+    </div>
   );
 }
 
