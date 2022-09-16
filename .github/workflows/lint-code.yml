@@ -1,3 +1,7 @@
+# Purpose of this linter is to catch bugs/issues with some things
+# you might not think about such as YML, XML, JSON formatting issues and many others.
+# We can set it to disable (not run) on things we test elsewhere (e.g. CSS and JS).
+#
 name: Lint Code Base
 
 on:
@@ -28,4 +32,5 @@ jobs:
           VALIDATE_MARKDOWN: false
           VALIDATE_TYPESCRIPT_ES: false
           VALIDATE_TSX: false
+          VALIDATE_CSS: false
           FILTER_REGEX_EXCLUDE: .*sample-workspace/.*
