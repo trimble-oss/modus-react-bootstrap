@@ -89,7 +89,7 @@ const DataTableHeaderCell = React.forwardRef<
 
   if (!header.isVisible) {
     return (
-      <div className="hidden-column">
+      <th className="hidden-column">
         <div
           className="d-flex flex-row align-items-center justify-content-center"
           onClick={handleShowHiddenColumn}
@@ -103,7 +103,7 @@ const DataTableHeaderCell = React.forwardRef<
             triangle_right
           </i>
         </div>
-      </div>
+      </th>
     );
   }
   const headerLabel = header.render('Header');

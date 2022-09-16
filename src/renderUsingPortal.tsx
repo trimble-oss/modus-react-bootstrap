@@ -10,9 +10,9 @@ import { createPortal } from 'react-dom';
 
 function renderUsingPortal(
   content: React.ReactElement | React.ReactNode | null,
-  bodyRef: any,
+  attachTo: any,
 ) {
-  return bodyRef && createPortal(content, bodyRef);
+  return createPortal(content, attachTo);
 }
 
 export default renderUsingPortal;

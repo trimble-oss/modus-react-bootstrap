@@ -70,7 +70,7 @@ function ContextMenu(
     >
       {menu.map((item, index) =>
         item.children ? (
-          <Dropdown id={`list_item_${index}`} drop="right">
+          <Dropdown key={`list_item_${index}`} drop="right">
             <Dropdown.Toggle as="li" className="list-group-item">
               <span style={{ marginRight: '10%' }}>{item.title}</span>
             </Dropdown.Toggle>

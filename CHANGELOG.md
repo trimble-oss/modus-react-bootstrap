@@ -2,8 +2,8 @@
 
 ### Features
 
-- Enabled `light` and `dark` themes
-  - Note: The react package will now include its own style sheets extending the `Modus Bootstrap v1.5.3` to apply light/dark theme on the react components.
+- Added `light` theme and `dark` theme
+  - Added `/scss` folder with styles inherited from `Modus Bootstrap v1.5.3` to apply themes on the components.
 
 ## v1.1.2 - 2022-08-22
 

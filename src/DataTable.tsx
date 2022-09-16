@@ -258,8 +258,6 @@ function DataTable<T extends Record<string, unknown>>(
   const resolvedRef = (useRef<HTMLDivElement>(null) ||
     ref) as React.MutableRefObject<HTMLDivElement>;
 
-  const bodyRef = useRef<any>(null);
-
   const enableRowSelection =
     !disableRowSelectionOnClick || checkBoxRowSelection;
   const enableRowSelectionOnClick = !(
@@ -322,10 +320,6 @@ function DataTable<T extends Record<string, unknown>>(
       onRowSelectionChange(selectedFlatRows.map((d) => d.original));
   }, [selectedFlatRows, onRowSelectionChange]);
 
-  useEffect(() => {
-    bodyRef.current = document.body;
-  }, []);
-
   const handleRowClick = useCallback(
     (row: Row<T>) => {
       if (enableRowSelectionOnClick) {
@@ -387,13 +381,11 @@ function DataTable<T extends Record<string, unknown>>(
                         allColumns={allColumns}
                         toggleHideAllColumns={toggleHideAllColumns}
                         toggleHideColumn={toggleHideColumn}
-                        attachTo={bodyRef.current}
                       >
                         <DataTableDragdropProvider
                           visibleColumns={visibleColumns}
                           setColumnOrder={setColumnOrder}
                           dragItemTemplate={dragTemplate}
-                          attachTo={bodyRef.current}
                         >
                           {getAllHeadersInAGroup(
                             headerGroup.headers,
