@@ -17,7 +17,6 @@ import classNames from 'classnames';
 import * as PropTypes from 'prop-types';
 import Form from './Form';
 import Button from './Button';
-import FileUploadDropZoneStyled from './FileUploadDropZoneStyled';
 import { FileUploadDropZoneState } from './types';
 
 export interface FileUploadDropZoneProps
@@ -374,15 +373,15 @@ const FileUploadDropZone = forwardRef<HTMLDivElement, FileUploadDropZoneProps>(
     );
 
     return (
-      <FileUploadDropZoneStyled
+      <div
         {...events}
         {...props}
         ref={resolvedRef}
         className={classNames(
-          'd-flex flex-column  justify-content-center',
+          'mrb-file-upload-drop-zone d-flex flex-column justify-content-center text-center',
+          (disabled && 'disabled') || (state && state.value),
           className,
         )}
-        state={(disabled && 'disabled') || (state && state.value)}
         tabIndex={tabIndex || 0}
         aria-label={props['aria-label'] || 'Drop Zone'}
         aria-disabled={
@@ -391,66 +390,53 @@ const FileUploadDropZone = forwardRef<HTMLDivElement, FileUploadDropZoneProps>(
       >
         {state && (
           <>
-            <div
-              className="w-100 h-100 file-drop-zone-overlay"
-              aria-hidden="true"
-            />
-            <div className="file-drop-zone-content text-center p-3">
-              {state.icon || finalUploadIcon}
-              <div>
-                {state.message}
-                <div className={classNames(state.message && 'd-none')}>
-                  Drag files here or{' '}
-                  <Form.File
-                    id={id}
-                    className="p-0 m-0 d-inline"
-                    disabled={disabled}
-                  >
-                    <Form.File.Label
-                      className="p-0 m-0 text-primary browse"
-                      tabIndex={0}
-                      aria-label="browse"
-                      aria-disabled={
-                        props['aria-disabled']
-                          ? props['aria-disabled']
-                          : disabled
-                      }
-                    >
-                      browse
-                    </Form.File.Label>
-                    <Form.File.Input
-                      className="d-none"
-                      disabled={disabled}
-                      ref={fileInputRef}
-                      onChange={(e) => handleFiles(e.target.files)}
-                      multiple={
-                        multiple || Boolean(maxFileCount && maxFileCount > 1)
-                      }
-                      accept={accept}
-                    />
-                  </Form.File>{' '}
-                  to upload.
-                </div>
-              </div>
+            {state.icon || finalUploadIcon}
+            {state.message}
+            <div className={classNames(state.message && 'd-none')}>
+              Drag files here or{' '}
+              <Form.File
+                id={id}
+                className="p-0 m-0 d-inline"
+                disabled={disabled}
+              >
+                <Form.File.Label
+                  className="p-0 m-0 browse"
+                  tabIndex={0}
+                  aria-label="browse"
+                  aria-disabled={
+                    props['aria-disabled'] ? props['aria-disabled'] : disabled
+                  }
+                >
+                  browse
+                </Form.File.Label>
+                <Form.File.Input
+                  className="d-none"
+                  disabled={disabled}
+                  ref={fileInputRef}
+                  onChange={(e) => handleFiles(e.target.files)}
+                  multiple={
+                    multiple || Boolean(maxFileCount && maxFileCount > 1)
+                  }
+                  accept={accept}
+                />
+              </Form.File>{' '}
+              to upload.
             </div>
             {state && state.value === 'error' && (
-              <div className="file-upload-dropzone-reset">
-                <div className="reset-container">
-                  <Button
-                    variant="outline-secondary"
-                    size="sm"
-                    className="text-center"
-                    onClick={handleReset}
-                    onKeyDown={handleReset}
-                  >
-                    Reset
-                  </Button>
-                </div>
+              <div className="reset-btn-container">
+                <Button
+                  variant="outline-secondary"
+                  size="sm"
+                  onClick={handleReset}
+                  onKeyDown={handleReset}
+                >
+                  Reset
+                </Button>
               </div>
             )}
           </>
         )}
-      </FileUploadDropZoneStyled>
+      </div>
     );
   },
 );

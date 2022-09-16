@@ -13,7 +13,6 @@ import Form from './Form';
 import NavItem from './NavItem';
 import NavLink from './NavLink';
 import Pagination from './Pagination';
-import TablePaginationStyled from './TablePaginationStyled';
 
 type Size = 'sm' | 'lg';
 export interface TablePaginationProps
@@ -179,8 +178,11 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
     );
 
     return (
-      <TablePaginationStyled
-        className={classNames(className, 'd-flex justify-content-end  w-100')}
+      <div
+        className={classNames(
+          className,
+          'mrb-table-pagination d-flex justify-content-end  w-100',
+        )}
         {...props}
         ref={ref}
         aria-label="Table pagination"
@@ -284,7 +286,7 @@ const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationProps>(
             </Pagination>
           </nav>
         </div>
-      </TablePaginationStyled>
+      </div>
     );
   },
 );

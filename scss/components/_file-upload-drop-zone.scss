@@ -1,0 +1,49 @@
+/*!
+  Modus React Bootstrap 
+  A React-based component library developed as a common, open source platform for all of Trimble’s web applications built on React.
+  Extends React-Bootstrap v1.6.5
+  Copyright (c) 2022 Trimble Inc.
+ */
+
+.mrb-file-upload-drop-zone {
+  background-color: $file-upload-drop-zone-bg-color;
+  color: $file-upload-drop-zone-text-color;
+  min-height: 100px;
+  outline: 2px dotted $file-upload-drop-zone-border-color;
+  position: relative;
+
+  .browse {
+    color: $file-upload-drop-zone-browse-color !important;
+    cursor: pointer;
+    font-size: inherit;
+  }
+
+  &.disabled {
+    * {
+      cursor: no-drop !important;
+    }
+
+    background-color: $file-upload-drop-zone-disabled-bg-color;
+    color: $file-upload-drop-zone-disabled-text-color;
+    opacity: 40% !important;
+    outline: 2px dotted $file-upload-drop-zone-disabled-border-color;
+  }
+
+  &.drop {
+    background-color: $file-upload-drop-zone-drop-bg-color;
+    color: $file-upload-drop-zone-drop-text-color;
+    outline: 2px dotted $file-upload-drop-zone-drop-border-color;
+  }
+
+  &.error {
+    background-color: $file-upload-drop-zone-error-bg-color;
+    color: $file-upload-drop-zone-error-text-color;
+    outline: 2px dotted $file-upload-drop-zone-error-border-color;
+  }
+
+  .reset-btn-container {
+    top: 75%;
+    position: absolute;
+    width: 100%;
+  }
+}

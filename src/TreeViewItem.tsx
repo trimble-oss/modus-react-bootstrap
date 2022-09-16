@@ -11,7 +11,7 @@ import classNames from 'classnames';
 import TreeViewContext from './TreeViewContext';
 import TreeViewItemContext from './TreeViewItemContext';
 import { TreeItem } from './types';
-import { TreeViewItemStyled, TreeViewItemGroupStyled } from './TreeViewStyled';
+import { TreeViewItemStyled } from './TreeViewItemStyled';
 import useDescendants from './useTreeViewDescendants';
 import IndeterminateCheckbox from './IndeterminateCheckbox';
 
@@ -275,7 +275,7 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
     return (
       <li
         className={classNames(
-          'd-flex flex-column item-container',
+          'mrb-tree-view-item d-flex flex-column',
           showIndicator && 'selected-indicator',
           className,
         )}
@@ -384,14 +384,16 @@ const TreeViewItem = React.forwardRef<HTMLLIElement, TreeViewItemProps>(
               ...descendantContext,
             }}
           >
-            <TreeViewItemGroupStyled
-              expanded={expanded ? 'true' : 'false'}
+            <ul
               role="tree"
-              className="list-group w-100 h-100"
+              className={classNames(
+                'list-group w-100 h-100',
+                !expanded && 'd-none',
+              )}
               style={{ marginTop: '-1px', marginBottom: '-1px' }}
             >
               {children}
-            </TreeViewItemGroupStyled>
+            </ul>
           </TreeViewItemContext.Provider>
         )}
       </li>
