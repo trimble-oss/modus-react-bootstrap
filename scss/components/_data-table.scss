@@ -50,12 +50,23 @@
     }
 
     th {
-      &.drop-allow {
-        border-left: 2px solid #0063a3 !important;
+      &.drop-allow::before,
+      &.drop-block::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 2px;
+        height: 100%;
+        z-index: 5;
+      }
+
+      &.drop-allow::before {
+        box-shadow: inset 2px 0 0 0 $col_blue;
       }
 
       &.drop-block {
-        border-left: 2px solid red !important;
+        box-shadow: inset 2px 0 0 0 $col_red;
       }
 
       &.draggable {
@@ -92,7 +103,7 @@
     }
 
     th .table-col-resizable:hover {
-      background-color: #9bc2f7;
+      background-color: $col_gray_2;
       cursor: ew-resize !important;
     }
 
@@ -143,12 +154,15 @@
       &.table-bordered {
         th:first-child,
         td:first-child {
-          border-right-width: 2px !important;
+          border-right: 2px solid $col_gray_2 !important;
         }
       }
     }
 
     .hidden-column {
+      padding: 0 !important;
+      margin: 0 !important;
+      border: none !important;
       position: relative;
       width: 0;
 
@@ -157,7 +171,7 @@
         height: 100%;
         z-index: 9999;
         cursor: pointer;
-        background-color: #b7b9c3;
+        background-color: $col_gray_2;
         width: 3px;
 
         .modus-icons {

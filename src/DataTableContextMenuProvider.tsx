@@ -22,10 +22,8 @@ export default function DataTableContextMenuProvider({
   allColumns,
   toggleHideColumn,
   toggleHideAllColumns,
-  attachTo,
 }) {
-  const [contextMenu, setContextMenu] = useState<ContextMenuState>();
-  const [showContextMenu, setShowContextMenu] = useState(false);
+  const [contextMenu, setContextMenu] = useState<ContextMenuState | null>(null);
 
   const handleHeaderContextMenu = useCallback(
     (event, columnId) => {
@@ -40,7 +38,7 @@ export default function DataTableContextMenuProvider({
             title: 'Hide',
             onClick: () => {
               toggleHideColumn(columnId, true);
-              setShowContextMenu(false);
+              setContextMenu(null);
             },
           },
           {
@@ -62,20 +60,19 @@ export default function DataTableContextMenuProvider({
             title: 'Show All Columns',
             onClick: () => {
               toggleHideAllColumns(false);
-              setShowContextMenu(false);
+              setContextMenu(null);
             },
           },
         ],
       };
       setContextMenu(menu);
-      setShowContextMenu(true);
     },
     [allColumns, toggleHideColumn, toggleHideAllColumns],
   );
 
   const handleContextMenuClose = useCallback(() => {
-    setShowContextMenu(false);
-  }, [setShowContextMenu]);
+    setContextMenu(null);
+  }, [setContextMenu]);
 
   const value = useMemo(
     () => ({ onHeaderContextMenu: handleHeaderContextMenu }),
@@ -85,24 +82,23 @@ export default function DataTableContextMenuProvider({
   return (
     <DataTableHeaderContextMenu.Provider value={value}>
       {children}
-      {showContextMenu &&
-        contextMenu &&
-        renderUsingPortal(
+      {renderUsingPortal(
+        contextMenu ? (
           <ContextMenu
             menu={contextMenu.items}
             anchorPointX={contextMenu.positionX}
             anchorPointY={contextMenu.positionY}
             onClose={handleContextMenuClose}
-          />,
-          attachTo,
-        )}
+          />
+        ) : null,
+        document.body,
+      )}
     </DataTableHeaderContextMenu.Provider>
   );
 }
 
 DataTableContextMenuProvider.propTypes = {
   children: PropTypes.node,
-  attachTo: PropTypes.any,
   allColumns: PropTypes.any.isRequired,
   toggleHideColumn: PropTypes.func.isRequired,
   toggleHideAllColumns: PropTypes.func.isRequired,

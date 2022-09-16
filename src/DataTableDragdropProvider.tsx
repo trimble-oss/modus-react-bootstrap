@@ -99,13 +99,7 @@ export const DataTableDragDropContext =
   React.createContext<DataTableDragDropContextProps | null>(null);
 
 export default function DataTableDragdropProvider(props) {
-  const {
-    children,
-    visibleColumns,
-    setColumnOrder,
-    dragItemTemplate,
-    attachTo,
-  } = props;
+  const { children, visibleColumns, setColumnOrder, dragItemTemplate } = props;
 
   const forceUpdate = useForceUpdate();
   const registeredColumns = useRef<RegisteredColumn[]>([]);
@@ -261,18 +255,18 @@ export default function DataTableDragdropProvider(props) {
   return (
     <DataTableDragDropContext.Provider value={value}>
       {children}
-      {draggingState.current.isDragging &&
-        renderUsingPortal(
-          getDragContent(draggingState.current, dragItemTemplate),
-          attachTo,
-        )}
+      {renderUsingPortal(
+        draggingState.current.isDragging
+          ? getDragContent(draggingState.current, dragItemTemplate)
+          : null,
+        document.body,
+      )}
     </DataTableDragDropContext.Provider>
   );
 }
 
 DataTableDragdropProvider.propTypes = {
   children: PropTypes.node,
-  attachTo: PropTypes.any,
   visibleColumns: PropTypes.any.isRequired,
   setColumnOrder: PropTypes.func.isRequired,
   dragItemTemplate: PropTypes.func,
