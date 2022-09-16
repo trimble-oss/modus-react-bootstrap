@@ -16,7 +16,7 @@ The components will be found in the `~/node_modules/@trimbleinc/modus-react-boot
 
 ## CSS
 
-You can either import the compiled css files from `~/node_modules/@trimbleinc/modus-react-bootstrap/css/dist/` or use the Sass files found in `~/node_modules/@trimbleinc/modus-react-bootstrap/css/scss` directory.
+You can either import the compiled CSS files from `~/node_modules/@trimbleinc/modus-react-bootstrap/css/dist/` or use the Sass files found in `~/node_modules/@trimbleinc/modus-react-bootstrap/css/scss` directory.
 
 With Sass files, you can begin to modify any of the Sass variables and maps in your custom style sheet.
 The main file to focus on is the `_light-theme.scss` file (and/or `_dark-theme.scss` if you want a dark look).
