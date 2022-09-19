@@ -1436,10 +1436,10 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
-"@trimbleinc/modus-bootstrap@^1.5.3":
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/@trimbleinc/modus-bootstrap/-/modus-bootstrap-1.5.3.tgz#05629baf1792017e6c5ec7bfedb4d1a6d7ba3f5d"
-  integrity sha512-zMRCU6ZTp78F5dUqA4YUgRyfEFkFTSQq1K812hwfpnjtZbqvONwYbGavC8zp8dZ3htt8g5APZypGowO9Gr/siw==
+"@trimbleinc/modus-bootstrap@^1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@trimbleinc/modus-bootstrap/-/modus-bootstrap-1.5.4.tgz#d37045d884b76c11738529edf299f8144aa7fb3b"
+  integrity sha512-lNvKPkg6AlucpbZeOFzauCOf+vd1uVjCxhvuisCuWx9Zwa3NhS5+9ubmUJvZYCtrbUtS/Mr7YwWOhqVKTfNqqg==
   dependencies:
     bootstrap "4.6.2"
 
