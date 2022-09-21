@@ -1,0 +1,1277 @@
+---
+title: Flex
+description: Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with a full suite of responsive flexbox utilities. For more complex implementations, custom CSS may be necessary.
+---
+
+import {
+  FlexAlignContent,
+  FlexAlignItems,
+  FlexAlignSelf,
+  FlexAutoMargins,
+  FlexColumn,
+  FlexDirection,
+  FlexFill,
+  FlexGrowShrink,
+  FlexJustifyContent,
+  FlexOrder,
+  FlexShrink,
+  FlexWithAlignItems,
+  FlexWrap,
+} from "../../examples/utilities/Flex"
+
+<h3 id="enable-flex-behaviors" className="h2 font-weight-bold mt-3">
+  Enable flex behaviors
+  <a
+    className="header-link text-light text-decoration-none font-weight-normal"
+    href="#enable-flex-behaviors"
+    aria-label="anchor"
+  ></a>
+</h3>
+<CodeBlock
+  code={`<div className="d-flex p-2 highlighted">I'm a flexbox container!</div>`}
+>
+  Apply <code>display</code> utilities to create a flexbox container and
+  transform <strong>direct children elements</strong> into flex items. Flex
+  containers and items are able to be modified further with additional flex
+  properties.
+</CodeBlock>
+
+<CodeBlock
+  code={`<div className="d-inline-flex p-2 highlighted">I'm an inline flexbox container!</div>`}
+></CodeBlock>
+<p>
+  Responsive variations also exist for <code>{`.d-flex`}</code> and <code>{`.d-inline-flex`}</code>
+  .
+</p>
+<ul>
+  <li>
+    <p>
+      <code>{`.d-flex`}</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>{`.d-inline-flex`}</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>{`.d-sm-flex`}</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>{`.d-sm-inline-flex`}</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>{`.d-md-flex`}</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>{`.d-md-inline-flex`}</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>{`.d-lg-flex`}</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>{`.d-lg-inline-flex`}</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>{`.d-xl-flex`}</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>{`.d-xl-inline-flex`}</code>
+    </p>
+  </li>
+</ul>
+
+<CodeBlock title="Direction" code={FlexDirection}>
+  <p>
+    Set the direction of flex items in a flex container with direction
+    utilities. In most cases you can omit the horizontal class here as the
+    browser default is <code>row</code>. However, you may encounter situations
+    where you needed to explicitly set this value (like responsive layouts).
+  </p>
+  <p>
+    Use <code>.flex-row</code> to set a horizontal direction (the browser
+    default), or
+    <code>.flex-row-reverse</code> to start the horizontal direction from the opposite
+    side.
+  </p>
+</CodeBlock>
+
+<CodeBlock code={FlexColumn}>
+  <p>
+    Use <code>.flex-column</code> to set a vertical direction, or{" "}
+    <code>.flex-column-reverse</code> to start the vertical direction from the
+    opposite side.
+  </p>
+</CodeBlock>
+
+<p>
+  Responsive variations also exist for <code>flex-direction</code>.
+</p>
+<ul>
+  <li>
+    <p>
+      <code>.flex-row</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-row-reverse</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-column</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-column-reverse</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-sm-row</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-sm-row-reverse</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-sm-column</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-sm-column-reverse</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-md-row</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-md-row-reverse</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-md-column</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-md-column-reverse</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-lg-row</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-lg-row-reverse</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-lg-column</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-lg-column-reverse</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-xl-row</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-xl-row-reverse</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-xl-column</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-xl-column-reverse</code>
+    </p>
+  </li>
+</ul>
+
+<CodeBlock title="Justify Content" code={FlexJustifyContent}>
+  <p>
+    Use <code>justify-content</code> utilities on flexbox containers to change
+    the alignment of flex items on the main axis (the x-axis to start, y-axis if{" "}
+    <code>flex-direction: column</code>). Choose from <code>start</code>{" "}
+    (browser default), <code>end</code>, <code>center</code>,{" "}
+    <code>between</code>, or <code>around</code>.
+  </p>
+  <div className="bd-example">
+    <div className="d-flex justify-content-start bd-highlight mb-3">
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+    </div>
+    <div className="d-flex justify-content-end bd-highlight mb-3">
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+    </div>
+    <div className="d-flex justify-content-center bd-highlight mb-3">
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+    </div>
+    <div className="d-flex justify-content-between bd-highlight mb-3">
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+    </div>
+    <div className="d-flex justify-content-around bd-highlight">
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+    </div>
+    <div className="d-flex justify-content-evenly bd-highlight">
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+    </div>
+  </div>
+</CodeBlock>
+
+<p>
+  Responsive variations also exist for <code>justify-content</code>.
+</p>
+<ul>
+  <li>
+    <p>
+      <code>.justify-content-start</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-end</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-center</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-between</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-around</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-evenly</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-sm-start</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-sm-end</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-sm-center</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-sm-between</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-sm-around</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-sm-evenly</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-md-start</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-md-end</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-md-center</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-md-between</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-md-around</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-md-evenly</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-lg-start</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-lg-end</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-lg-center</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-lg-between</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-lg-around</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-lg-evenly</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-xl-start</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-xl-end</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-xl-center</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-xl-between</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-xl-around</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.justify-content-xl-evenly</code>
+    </p>
+  </li>
+</ul>
+
+<CodeBlock title="Align Items" code={FlexAlignItems}>
+  <p>
+    Use <code>align-items</code> utilities on flexbox containers to change the
+    alignment of flex items on the cross axis (the y-axis to start, x-axis if{" "}
+    <code>flex-direction: column</code>). Choose from <code>start</code>,{" "}
+    <code>end</code>, <code>center</code>, <code>baseline</code>, or{" "}
+    <code>stretch</code> (browser default).
+  </p>
+  <div className="bd-example">
+    <div
+      className="d-flex align-items-start bd-highlight mb-3"
+      style={{ height: "100px" }}
+    >
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+    </div>
+    <div
+      className="d-flex align-items-end bd-highlight mb-3"
+      style={{ height: "100px" }}
+    >
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+    </div>
+    <div
+      className="d-flex align-items-center bd-highlight mb-3"
+      style={{ height: "100px" }}
+    >
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+    </div>
+    <div
+      className="d-flex align-items-baseline bd-highlight mb-3"
+      style={{ height: "100px" }}
+    >
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+    </div>
+    <div
+      className="d-flex align-items-stretch bd-highlight"
+      style={{ height: "100px" }}
+    >
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+    </div>
+  </div>
+</CodeBlock>
+
+<p>
+  Responsive variations also exist for <code>align-items</code>.
+</p>
+<ul>
+  <li>
+    <p>
+      <code>.align-items-start</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-end</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-center</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-baseline</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-stretch</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-sm-start</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-sm-end</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-sm-center</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-sm-baseline</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-sm-stretch</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-md-start</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-md-end</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-md-center</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-md-baseline</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-md-stretch</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-lg-start</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-lg-end</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-lg-center</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-lg-baseline</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-lg-stretch</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-xl-start</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-xl-end</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-xl-center</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-xl-baseline</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-items-xl-stretch</code>
+    </p>
+  </li>
+</ul>
+
+<CodeBlock title="Align Self" code={FlexAlignSelf}></CodeBlock>
+
+<ul>
+  <li>
+    <code>.align-self-start</code>
+  </li>
+  <li>
+    <code>.align-self-end</code>
+  </li>
+  <li>
+    <code>.align-self-center</code>
+  </li>
+  <li>
+    <code>.align-self-baseline</code>
+  </li>
+  <li>
+    <code>.align-self-stretch</code>
+  </li>
+  <li>
+    <code>.align-self-sm-start</code>
+  </li>
+  <li>
+    <code>.align-self-sm-end</code>
+  </li>
+  <li>
+    <code>.align-self-sm-center</code>
+  </li>
+  <li>
+    <code>.align-self-sm-baseline</code>
+  </li>
+  <li>
+    <code>.align-self-sm-stretch</code>
+  </li>
+  <li>
+    <code>.align-self-md-start</code>
+  </li>
+  <li>
+    <code>.align-self-md-end</code>
+  </li>
+  <li>
+    <code>.align-self-md-center</code>
+  </li>
+  <li>
+    <code>.align-self-md-baseline</code>
+  </li>
+  <li>
+    <code>.align-self-md-stretch</code>
+  </li>
+  <li>
+    <code>.align-self-lg-start</code>
+  </li>
+  <li>
+    <code>.align-self-lg-end</code>
+  </li>
+  <li>
+    <code>.align-self-lg-center</code>
+  </li>
+  <li>
+    <code>.align-self-lg-baseline</code>
+  </li>
+  <li>
+    <code>.align-self-lg-stretch</code>
+  </li>
+  <li>
+    <code>.align-self-xl-start</code>
+  </li>
+  <li>
+    <code>.align-self-xl-end</code>
+  </li>
+  <li>
+    <code>.align-self-xl-center</code>
+  </li>
+  <li>
+    <code>.align-self-xl-baseline</code>
+  </li>
+  <li>
+    <code>.align-self-xl-stretch</code>
+  </li>
+</ul>
+
+<CodeBlock title="Fill" code={FlexFill}></CodeBlock>
+
+<p>
+  Responsive variations also exist for <code>flex-fill</code>.
+</p>
+<ul>
+  <li>
+    <p>
+      <code>.flex-fill</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-sm-fill</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-md-fill</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-lg-fill</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-xl-fill</code>
+    </p>
+  </li>
+</ul>
+
+<CodeBlock title="Grow and Shrink" code={FlexGrowShrink}>
+  <p>
+    Use <code>.flex-grow-*</code> utilities to toggle a flex item’s ability to
+    grow to fill available space. In the example below, the{" "}
+    <code>.flex-grow-1</code> elements uses all available space it can, while
+    allowing the remaining two flex items their necessary space.
+  </p>
+</CodeBlock>
+
+<CodeBlock code={FlexShrink}>
+  <p>
+    Use <code>.flex-shrink-*</code> utilities to toggle a flex item’s ability to
+    shrink if necessary. In the example below, the second flex item with{" "}
+    <code>.flex-shrink-1</code> is forced to wrap its contents to a new line,
+    “shrinking” to allow more space for the previous flex item with{" "}
+    <code>.w-100</code>.
+  </p>
+</CodeBlock>
+
+<p>
+  Responsive variations also exist for <code>flex-grow</code> and{" "}
+  <code>flex-shrink</code>.
+</p>
+<ul>
+  <li>
+    <code>{`.flex-{grow | shrink}-0`}</code>
+  </li>
+  <li>
+    <code>{`.flex-{grow | shrink}-1`}</code>
+  </li>
+  <li>
+    <code>{`.flex-sm-{grow | shrink}-0`}</code>
+  </li>
+  <li>
+    <code>{`.flex-sm-{grow | shrink}-1`}</code>
+  </li>
+  <li>
+    <code>{`.flex-md-{grow | shrink}-0`}</code>
+  </li>
+  <li>
+    <code>{`.flex-md-{grow | shrink}-1`}</code>
+  </li>
+  <li>
+    <code>{`.flex-lg-{grow | shrink}-0`}</code>
+  </li>
+  <li>
+    <code>{`.flex-lg-{grow | shrink}-1`}</code>
+  </li>
+  <li>
+    <code>{`.flex-xl-{grow | shrink}-0`}</code>
+  </li>
+  <li>
+    <code>{`.flex-xl-{grow | shrink}-1`}</code>
+  </li>
+</ul>
+
+<CodeBlock title="Auto Margins" code={FlexAutoMargins}>
+  <p>
+    Flexbox can do some pretty awesome things when you mix flex alignments with
+    auto margins. Shown below are three examples of controlling flex items via
+    auto margins: default (no auto margin), pushing two items to the right (
+    <code>.mr-auto</code>), and pushing two items to the left (
+    <code>.ml-auto</code>).
+  </p>
+  <p>
+    <strong>
+      Unfortunately, IE11 does not properly support auto margins on flex items
+      whose parent has a non-default
+    </strong>{" "}
+    <code>justify-content </code>value.{" "}
+    <a
+      href="https://stackoverflow.com/a/37535548"
+      target="_blank"
+      rel="noopener"
+    >
+      See this StackOverflow answer
+    </a>{" "}
+    for more details.
+  </p>
+</CodeBlock>
+
+<CodeBlock title="With align-items" code={FlexWithAlignItems}>
+  <p>
+    Vertically move one flex item to the top or bottom of a container by mixing{" "}
+    <code>align-items</code>, <code>flex-direction: column</code>, and{" "}
+    <code>margin-top: auto</code> or <code>margin-bottom: auto</code>.
+  </p>
+</CodeBlock>
+
+<CodeBlock title="Wrap" code={FlexWrap}>
+  <p>
+    Change how flex items wrap in a flex container. Choose from no wrapping at
+    all (the browser default) with <code>.flex-nowrap</code>, wrapping with{" "}
+    <code>.flex-wrap</code>, or reverse wrapping with{" "}
+    <code>.flex-wrap-reverse</code>.
+  </p>
+</CodeBlock>
+
+<p>
+  Responsive variations also exist for <code>flex-wrap</code>.
+</p>
+<ul>
+  <li>
+    <p>
+      <code>.flex-nowrap</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-wrap</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-wrap-reverse</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-sm-nowrap</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-sm-wrap</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-sm-wrap-reverse</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-md-nowrap</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-md-wrap</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-md-wrap-reverse</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-lg-nowrap</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-lg-wrap</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-lg-wrap-reverse</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-xl-nowrap</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-xl-wrap</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.flex-xl-wrap-reverse</code>
+    </p>
+  </li>
+</ul>
+
+<CodeBlock title="Order" code={FlexOrder}>
+  <p>
+    Change the visual order of specific flex items with a handful of{" "}
+    <code>order</code> utilities. We only provide options for making an item
+    first or last, as well as a reset to use the DOM order. As{" "}
+    <code>order</code> takes any integer value (e.g., <code>5</code>), add
+    custom CSS for any additional values needed.
+  </p>
+</CodeBlock>
+
+<p>
+  Responsive variations also exist for <code>order</code>.
+</p>
+<ul>
+  <li>
+    <p>
+      <code>.order-0</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-1</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-2</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-3</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-4</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-5</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-sm-0</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-sm-1</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-sm-2</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-sm-3</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-sm-4</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-sm-5</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-md-0</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-md-1</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-md-2</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-md-3</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-md-4</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-md-5</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-lg-0</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-lg-1</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-lg-2</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-lg-3</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-lg-4</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-lg-5</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-xl-0</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-xl-1</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-xl-2</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-xl-3</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-xl-4</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.order-xl-5</code>
+    </p>
+  </li>
+</ul>
+
+<CodeBlock title="Align Content" code={FlexAlignContent}>
+  <p>
+    Use <code>align-content</code> utilities on flexbox containers to align flex
+    items together on the cross axis. Choose from start (browser default),{" "}
+    <code>end</code>, <code>center</code>, <code>between</code>,{" "}
+    <code>around</code>, or <code>stretch</code>. To demonstrate these
+    utilities, we’ve enforced <code>flex-wrap: wrap</code> and increased the
+    number of flex items.
+  </p>
+  <p>
+    <strong>Heads up!</strong> This property has no effect on single rows of
+    flex items.
+  </p>
+</CodeBlock>
+
+<CodeBlock
+  code={`<div className="d-flex align-content-end flex-wrap">...</div>`}
+></CodeBlock>
+
+<CodeBlock
+  code={`<div className="d-flex align-content-center flex-wrap">...</div>`}
+></CodeBlock>
+
+<CodeBlock
+  code={`<div className="d-flex align-content-between flex-wrap">...</div>`}
+></CodeBlock>
+
+<div className="bd-example">
+  <div
+    className="d-flex align-content-around flex-wrap bd-highlight mb-3"
+    style={{ height: "200px" }}
+  >
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+  </div>
+</div>
+
+<CodeBlock
+  code={`<div className="d-flex align-content-around flex-wrap">...</div>`}
+></CodeBlock>
+
+<div className="bd-example">
+  <div
+    className="d-flex align-content-stretch flex-wrap bd-highlight mb-3"
+    style={{ height: "200px" }}
+  >
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+    <div className="p-2 bd-highlight">Flex item</div>
+  </div>
+</div>
+
+<CodeBlock
+  code={`<div className="d-flex align-content-stretch flex-wrap">...</div>`}
+></CodeBlock>
+
+<p>
+  Responsive variations also exist for <code>align-content</code>.
+</p>
+<ul>
+  <li>
+    <p>
+      <code>.align-content-start</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-end</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-center</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-around</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-stretch</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-sm-start</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-sm-end</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-sm-center</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-sm-around</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-sm-stretch</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-md-start</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-md-end</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-md-center</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-md-around</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-md-stretch</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-lg-start</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-lg-end</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-lg-center</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-lg-around</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-lg-stretch</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-xl-start</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-xl-end</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-xl-center</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-xl-around</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>.align-content-xl-stretch</code>
+    </p>
+  </li>
+</ul>

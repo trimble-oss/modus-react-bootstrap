@@ -1,0 +1,232 @@
+---
+title: Shadows & Depth
+description: Depth is defined through a combination of z-index, overlays, and drop shadows. Use it to focus the user’s attention on a task, provide temporary supplementary information, or define spatial relationships between content.
+---
+
+import { Modals } from "../../examples/foundations/ShadowsAndDepth"
+
+<article id="main" className="pr-3">
+  <h2 id="overview" className="h1 font-weight-bold mt-5">
+    Overview
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#overview"
+      aria-label="anchor"
+    ></a>
+  </h2>
+  <h3 id="z-index" className="h2 font-weight-bold mt-3">
+    Z-index
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#z-index"
+      aria-label="anchor"
+    ></a>
+  </h3>
+  <p>
+    Z-index is a CSS property that specifies the stack order of an element. An
+    element with greater stack order is always in front of an element with a
+    lower stack order.
+  </p>
+  <table className="table table-bordered">
+    <thead>
+      <tr>
+        <th>Z-index</th>
+        <th>Use</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <strong>1000</strong>
+        </td>
+        <td>Dropdowns</td>
+      </tr>
+      <tr>
+        <td>
+          <strong>1020</strong>
+        </td>
+        <td>Sticky Elements</td>
+      </tr>
+      <tr>
+        <td>
+          <strong>1030</strong>
+        </td>
+        <td>Fixed Elements</td>
+      </tr>
+      <tr>
+        <td>
+          <strong>1040</strong>
+        </td>
+        <td>Modal Backdrops</td>
+      </tr>
+      <tr>
+        <td>
+          <strong>1050</strong>
+        </td>
+        <td>Modal Dialogs</td>
+      </tr>
+      <tr>
+        <td>
+          <strong>1060</strong>
+        </td>
+        <td>Popovers</td>
+      </tr>
+      <tr>
+        <td>
+          <strong>1070</strong>
+        </td>
+        <td>Tooltips</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="overlays" className="h2 font-weight-bold mt-3">
+    Overlays
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#overlays"
+      aria-label="anchor"
+    ></a>
+  </h3>
+  <p>
+    Overlays work in concert with Modals and Dialogs to temporarily obstruct a
+    user’s access to the underlying page and focus their attention on the
+    content above the overlay.
+  </p>
+  <h3 id="drop-shadows" className="h2 font-weight-bold mt-3">
+    Drop Shadows
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#drop-shadows"
+      aria-label="anchor"
+    ></a>
+  </h3>
+  <p>
+    Shadows provide cues about depth, direction of movement, and surface edges.
+    A surface’s shadow is determined by its elevation and relationship to other
+    surfaces.
+  </p>
+  <p>
+    Because shadows express the degree of elevation between surfaces, they must
+    be used consistently throughout your product. Higher shadows must be
+    positioned above lower shadows in the z-index.
+  </p>
+  <p>
+    Use one of the following classes to add shadow depth; <code>shadow-sm</code>,
+    <code>shadow</code> or <code>shadow-lg</code>
+  </p>
+  <h3 id="shadow-depths" className="h2 font-weight-bold mt-3">
+    Shadow Depths
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#shadow-depths"
+      aria-label="anchor"
+    ></a>
+  </h3>
+  <div className="guide-example-block shadow-none border-0">
+    <div className="row mt-2">
+      <div className="col-12 col-md-4 mb-4">
+        <div className="card shadow-sm">
+          <div className="card-body">
+            <h3 className="text-center font-weight-bold">Shadow (small)</h3>
+          </div>
+        </div>
+      </div>
+      <div className="col-12 col-md-4 mb-4">
+        <div className="card shadow">
+          <div className="card-body">
+            <h3 className="text-center font-weight-bold">Shadow</h3>
+          </div>
+        </div>
+      </div>
+      <div className="col-12 col-md-4 mb-4">
+        <div className="card shadow-lg">
+          <div className="card-body">
+            <h3 className="text-center font-weight-bold">Shadow (large)</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h2 id="ui-examples" className="h1 font-weight-bold mt-5">
+    UI Examples
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#ui-examples"
+      aria-label="anchor"
+    ></a>
+  </h2>
+  <p>
+    Below are a few examples of shadows being used to create depth with our UI
+    Elements.
+  </p>
+  <h3 id="cards" className="h2 font-weight-bold mt-3">
+    Cards
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#cards"
+      aria-label="anchor"
+    ></a>
+  </h3>
+  <p>Use shadows to make card elements pop based on importance.</p>
+  <div className="guide-example-block shadow-none border-0">
+    <div className="row">
+      <div className="col-12 col-md-4 mb-4">
+        <div className="card p-2 shadow-sm">
+          <div className="card-header">Card Header</div>
+          <div className="card-body">
+            <h3 className="card-title">Card Title</h3>
+            <p className="card-text">
+              With supporting text below as a natural lead-in to additional
+              content.
+            </p>
+            <a href="#" className="btn btn-primary shadow">
+              Raised button
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className="col-12 col-md-4 mb-4">
+        <div className="card p-2 shadow">
+          <div className="card-header">Card Header</div>
+          <div className="card-body">
+            <h3 className="card-title">Card Title</h3>
+            <p className="card-text">
+              With supporting text below as a natural lead-in to additional
+              content.
+            </p>
+            <a href="#" className="btn btn-primary shadow">
+              Raised button
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className="col-12 col-md-4 mb-4">
+        <div className="card p-2 shadow-lg">
+          <div className="card-header">Card Header</div>
+          <div className="card-body">
+            <h3 className="card-title">Card Title</h3>
+            <p className="card-text">
+              With supporting text below as a natural lead-in to additional
+              content.
+            </p>
+            <a href="#" className="btn btn-primary shadow">
+              Raised button
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h3 id="modals" className="h2 font-weight-bold mt-3">
+    Modals
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#modals"
+      aria-label="anchor"
+    ></a>
+  </h3>
+  <p> Use shadows to separate modal dialogs from the main content layer. </p>
+  <div className="bg-light">
+    <CodeBlock code={Modals} previewOnly></CodeBlock>
+  </div>
+</article>

@@ -1,0 +1,110 @@
+---
+title: Icons
+description: Guidance and suggestions for using external Modus icon library.
+---
+
+import { ModusIconsListing } from "../../common/ModusIconsListing"
+import iconGuideGridImage from "../../assets/img/icon-guide-grid.png"
+import iconGuideStyleImage from "../../assets/img/icon-guide-style.png"
+
+<article id="main" className="pr-3">
+  <h2 id="usage-guidelines" className="h1 font-weight-bold mt-5">
+    Usage Guidelines
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#usage-guidelines"
+      aria-label="anchor"
+    ></a>
+  </h2>
+  <p>
+    The easiest way to start using our icons is to include the following code in
+    the <code>&lt;head&gt;</code> of your page.
+  </p>
+  <div className="highlight">
+    <pre tabIndex={0} className="chroma">
+      <code className="language-html" data-lang="html">
+        <span className="p">&lt;</span>
+        <span className="nt">link</span> <span className="na">rel</span>
+        <span className="o">=</span>
+        <span className="s">"stylesheet"</span> <span className="na">href</span>
+        <span className="o">=</span>
+        <span className="s">
+          "https://modus.trimble.com/assets/0.5.1/fonts/modus-icons.css"
+        </span>
+        <span className="p">&gt;</span>
+      </code>
+    </pre>
+  </div>
+  <p>
+    Then use{" "}
+    <code>
+      &lt;i className="modus-icon material-icons&gt;icon_name&lt;/i&gt;
+    </code>{" "}
+    with the name of the icon inside to insert it into your page.
+  </p>
+  <h2 id="design-guide" className="h1 font-weight-bold mt-5">
+    Design Guide
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#design-guide"
+      aria-label="anchor"
+    ></a>
+  </h2>
+  <h3 id="grid" className="h2 font-weight-bold mt-3">
+    Grid
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#grid"
+      aria-label="anchor"
+    ></a>
+  </h3>
+  <img
+    src={iconGuideGridImage}
+    width="345"
+    height="140"
+    loading="lazy"
+    alt=""
+    className="img-fluid float-right"
+  />
+  The standard icon size for the DRTrack icon set is 16px. The icons are built upon
+  a base grid structure that includes guidelines for sizing of different shaped icons.
+  These scale guidelines ensure each icon has the same visual weight so they all
+  feel the same size, regardless of their overall shapes.
+  <br />
+  <br />
+  <br />
+  <h3 id="style" className="h2 font-weight-bold mt-3">
+    Style
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#style"
+      aria-label="anchor"
+    ></a>
+  </h3>
+  <img
+    src={iconGuideStyleImage}
+    width="345"
+    height="205"
+    loading="lazy"
+    alt=""
+    className="img-fluid float-right"
+  />
+  This icon set is built with a balanced combination of crisp geometric shapes, and
+  subtle rounded corners to soften the edges and make them feel humanistic. When
+  possible, 1px gap is added to define shapes or add details.
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <h2 id="icons" className="h1 font-weight-bold mt-5">
+    Icons
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#icons"
+      aria-label="anchor"
+    ></a>
+  </h2>
+  <ModusIconsListing />
+</article>

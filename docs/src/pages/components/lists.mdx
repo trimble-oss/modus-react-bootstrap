@@ -1,0 +1,76 @@
+---
+title: Lists
+description: A list can be used to display content related to a single subject.
+---
+
+import { graphql } from "gatsby"
+import {
+  ListsBasic,
+  ListsBorderless,
+  ListsCondensed,
+  ListsItems,
+  ListsLarge,
+} from "../../examples/components/Lists"
+
+<Overview>
+  Basic code structure involves using <code>&lt;ListGroup&gt;</code> and{" "}
+  <code>&lt;ListGroup.Item&gt;</code>. Set the <code>active</code> prop to
+  indicate the list groups current active selection.
+</Overview>
+
+<CodeBlock title="Basic List" code={ListsBasic}></CodeBlock>
+
+<CodeBlock title="List Items" code={ListsItems}>
+  <p>
+    The most basic list group is an unordered list with list items and the
+    proper classes. Build upon it with the options that follow, or with your own
+    CSS as needed.
+  </p>
+  <p>
+    Use <code>.list-item-left-control</code>,
+    <code>.list-item-right-control</code>, and
+    <code>.list-item-leftright-control</code> to add custom controls, buttons, or
+    icons to list items. Be sure to include <code>.modus-icon</code> for 3rd party
+    icons.
+  </p>
+</CodeBlock>
+
+<CodeBlock title="Borderless Lists" code={ListsBorderless}>
+  Add a class of <code>.list-group-borderless</code> to your List Group for a
+  borderless variant.
+</CodeBlock>
+
+<CodeBlock title="Condensed Lists" code={ListsCondensed}>
+  Add a class of <code>.list-group-condensed </code> to your List Group for a
+  smaller variant.
+</CodeBlock>
+
+<CodeBlock title="Large Lists" code={ListsLarge}>
+  Add the <code>.list-group-lg</code> modifier class for a larger variant
+</CodeBlock>
+
+<LinkedHeading h="2" className="h1" id="lists-api">
+  API
+</LinkedHeading>
+
+<ComponentApi metadata={props.data.ListGroup} />
+<ComponentApi
+  metadata={props.data.ListGroupItem}
+  exportedBy={props.data.ListGroup}
+/>
+
+export const query = graphql`
+  query ListGroupQuery {
+    ListGroup: componentMetadata(displayName: { eq: "ListGroup" }) {
+      ...ComponentApi_metadata
+    }
+    ListGroupItem: componentMetadata(displayName: { eq: "ListGroupItem" }) {
+      ...ComponentApi_metadata
+    }
+    ListGroupItemAction: componentMetadata(
+      displayName: { eq: "ListGroupItemAction" }
+    ) {
+      ...ComponentApi_metadata
+    }
+  }
+`

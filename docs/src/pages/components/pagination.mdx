@@ -1,0 +1,63 @@
+---
+title: Pagination
+description: Pagination affords navigation between pages of content, and it highlights which page is currently in view.
+---
+
+import { graphql } from "gatsby"
+import {
+  PaginationBasic,
+  PaginationDisabledActiveStates,
+  PaginationSizing,
+} from "../../examples/components/Pagination"
+
+<Overview>
+  <>
+    We use a large block of connected links for our pagination, making links
+    hard to miss and easily scalable—all while providing large hit areas.
+    Pagination is built with list HTML elements so screen readers can announce
+    the number of available links. Use a wrapping <code>&lt;nav&gt;</code>{" "}
+    element to identify it as a navigation section to screen readers and other
+    assistive technologies.
+    <br />
+    <br />
+    In addition, as pages likely have more than one such navigation section, it’s
+    advisable to provide a descriptive <code>aria-label</code> for the
+    <code>&lt;nav&gt;</code> to reflect its purpose. For example, if the
+    pagination component is used to navigate between a set of search results, an
+    appropriate label could be <code>aria-label="Search results pages"</code>.
+  </>
+</Overview>
+
+<CodeBlock title="Example" code={PaginationBasic}>
+  Use <code>&lt;Pagination&gt;</code> and <code>&lt;Pagination.Item&gt;</code>{" "}
+  to wrap any custom paging items.
+</CodeBlock>
+
+<CodeBlock
+  title="Disabled and active states"
+  code={PaginationDisabledActiveStates}
+>
+  Use prop like <code>active</code> and <code>disabled</code> to set the states.
+  Disabled links appear un-clickable and Active to indicate the current page.
+</CodeBlock>
+
+<CodeBlock title="Pagination Sizing" code={PaginationSizing}>
+  Use <code>size</code> prop to set the size of all page items.
+</CodeBlock>
+
+<LinkedHeading h="2" id="pagination-api" className="h1">
+  API
+</LinkedHeading>
+<ComponentApi metadata={props.data.Pagination} />
+<ComponentApi metadata={props.data.PageItem} />
+
+export const query = graphql`
+  query PaginationQuery {
+    Pagination: componentMetadata(displayName: { eq: "Pagination" }) {
+      ...ComponentApi_metadata
+    }
+    PageItem: componentMetadata(displayName: { eq: "PageItem" }) {
+      ...ComponentApi_metadata
+    }
+  }
+`

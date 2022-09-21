@@ -1,0 +1,59 @@
+---
+title: Badges
+description: Badges are labels which hold small amounts of information.
+---
+
+import { graphql } from "gatsby"
+import {
+  BadgesRegular,
+  BadgesText,
+  BadgesCounter,
+  BadgesInOtherElements,
+  BadgesSizes,
+} from "../../examples/components/Badges"
+
+<Overview>
+  Badges scale to match the size of the immediate parent element by using
+  relative font sizing and em units.
+</Overview>
+
+<CodeBlock title="Regular Badges" code={BadgesRegular}>
+  Add any of the below mentioned modifier classes to change the appearance of a
+  badge.
+</CodeBlock>
+
+<CodeBlock title="Text Badges" code={BadgesText}>
+  Add a <code>text-'{"theme-color"}'</code> variant to your badge for a text
+  that maintains the same spacing, just without the background color.
+</CodeBlock>
+
+<CodeBlock title="Counter Badges" code={BadgesCounter}>
+  Use the <code>pill</code> modifier class to make badges more rounded (with a
+  larger <code>border-radius</code> and additional horizontal{" "}
+  <code>padding</code>).
+</CodeBlock>
+
+<CodeBlock title="Badges in other elements" code={BadgesInOtherElements}>
+  Badges can be inserted into other elements. Just be sure to utilize our
+  utility classes to position your badges appropriately.
+</CodeBlock>
+
+<CodeBlock title="Badge Sizes" code={BadgesSizes}>
+  By default Badges scale according to their immediate parent element but there
+  are also large and small options available, use classes{" "}
+  <code>badge-sm, badge-lg</code>.
+</CodeBlock>
+
+<LinkedHeading h="2" className="h1" id="badges-api">
+  API
+</LinkedHeading>
+<ComponentApi metadata={props.data.metadata} />
+
+export const query = graphql`
+  query BadgeQuery {
+    metadata: componentMetadata(displayName: { eq: "Badge" }) {
+      displayName
+      ...ComponentApi_metadata
+    }
+  }
+`

@@ -1,0 +1,9 @@
+#search-by {
+  transition: 0.2s all ease-in;
+}
+
+#search-by:not(:focus) {
+  background-color: transparent;
+  width: 32px;
+  transition: 0.2s all ease-in;
+}

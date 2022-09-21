@@ -1,0 +1,59 @@
+---
+title: Sliders
+description: Range Sliders select a numeric value, or range of values, by moving a handle, or set of handles, along a bar. The slider in its basic form should be accompanied by a label and a number input that doubles as a display for the slider’s current value.
+---
+
+import { graphql } from "gatsby"
+import {
+  SlidersBasic,
+  SlidersMinMax,
+  SlidersStep,
+} from "../../examples/components/Sliders"
+
+<Overview>
+  Create custom range with{" "}
+  <code>&lt;Form.Control type="range" custom /&gt;</code>
+  <br />
+  <br />
+  Only IE and Firefox currently support “filling” in their track from the left of
+  the thumb so only those browsers show that styling.
+</Overview>
+
+<CodeBlock title="Basic range" code={SlidersBasic}></CodeBlock>
+
+<CodeBlock title="Defining min and max" code={SlidersMinMax}>
+  Range inputs have implicit values for <code>min</code> and <code>max</code> -
+  <code>0</code> and <code>100</code>, respectfully. You may specify new values
+  for those using the <code>min</code> and <code>max</code> attributes.
+</CodeBlock>
+
+<CodeBlock title="Defining steps" code={SlidersStep}>
+  By default, range inputs “snap” to integer values. To change this, you can
+  specify a <code>step</code> value. In the example below, we double the number
+  of steps by using <code>step="0.5"</code>.
+</CodeBlock>
+
+<LinkedHeading h="2" className="h1" id="sliders-api">
+  API
+</LinkedHeading>
+<ComponentApi metadata={props.data.Form} />
+<ComponentApi metadata={props.data.FormGroup} exportedBy={props.data.Form} />
+<ComponentApi metadata={props.data.FormLabel} exportedBy={props.data.Form} />
+<ComponentApi metadata={props.data.FormControl} exportedBy={props.data.Form} />
+
+export const query = graphql`
+  query SlidersQuery {
+    Form: componentMetadata(displayName: { eq: "Form" }) {
+      ...ComponentApi_metadata
+    }
+    FormGroup: componentMetadata(displayName: { eq: "FormGroup" }) {
+      ...ComponentApi_metadata
+    }
+    FormControl: componentMetadata(displayName: { eq: "FormControl" }) {
+      ...ComponentApi_metadata
+    }
+    FormLabel: componentMetadata(displayName: { eq: "FormLabel" }) {
+      ...ComponentApi_metadata
+    }
+  }
+`

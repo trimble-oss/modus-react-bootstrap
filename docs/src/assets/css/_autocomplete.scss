@@ -1,0 +1,79 @@
+/*! purgecss start ignore */
+.autocomplete-suggestions {
+  cursor: default;
+  border-top: 0;
+  box-shadow: -1px 1px 3px rgb(0 0 0 / 10%);
+  position: absolute;
+  display: none;
+  z-index: 33333; // higher than navbar
+  max-height: 254px;
+  overflow: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.autocomplete-suggestion {
+  position: relative;
+  cursor: pointer;
+  padding: 7px;
+  line-height: 23px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.autocomplete-suggestion > .context {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.autocomplete-suggestion b {
+  font-weight: 400;
+  color: #1f8dd6;
+}
+
+.autocomplete-suggestion.selected {
+  background-color: rgb(133 133 133 / 30%);
+  color: #fff;
+}
+
+.autocomplete-suggestion:hover {
+  background-color: rgb(133 133 133 / 10%);
+  color: #fff;
+}
+
+html[data-theme="light"] {
+  #search-by {
+    color: #252a2e;
+  }
+
+  .autocomplete-suggestions {
+    background-color: #fff;
+    border: 1px solid #ccc;
+  }
+
+  .autocomplete-suggestion {
+    color: #353a40;
+  }
+
+  .autocomplete-suggestion:hover {
+    color: #252a2e;
+  }
+
+  .autocomplete-suggestion > .context {
+    color: #585c65;
+  }
+
+  .autocomplete-suggestion.selected > .context {
+    color: #6a6e79;
+  }
+}
+
+html[data-theme="dark"] {
+  .autocomplete-suggestions {
+    background-color: #000;
+    color: #f1f1f1;
+  }
+}
+
+/*! purgecss end ignore */

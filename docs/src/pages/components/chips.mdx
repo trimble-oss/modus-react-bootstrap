@@ -1,0 +1,66 @@
+---
+title: Chips
+description: Chips are compact elements that represent an input, attribute, or action. Chips should appear dynamically as a group of multiple interactive elements. Unlike buttons, which should be a consistent and familiar call to action, one that a user expects to appear as the same action in the same general area.
+---
+
+import { graphql } from "gatsby"
+import {
+  ChipsFilter,
+  ChipsInput,
+  ChipsLiveExample,
+  ChipsSmall,
+} from "../../examples/components/Chips"
+import chipImage from "../../assets/img/headshot.png" // relative path to image
+
+<Overview>
+  Chips are used to add information, make selections or filter content. Chips
+  should appear dynamically as a group of multiple interactive elements.
+  <p>
+    To Use Chip, add <code>&lt;Chip&gt;</code> component with{" "}
+    <code>variant</code> like,
+    <ul>
+      <li>solid</li>
+      <li>outline</li>
+      <li>reverse</li>
+    </ul>
+  </p>
+  Use <code>label</code> for adding text and <code>avatar</code>,{" "}
+  <code> icon </code> props for adding thumbnail & icon respectively.
+</Overview>
+
+<CodeBlock title="Input Chips" code={ChipsInput} scope={{ chipImage }}>
+  For input chips use the prop <code>type</code> set to <code>input</code>.
+</CodeBlock>
+
+<CodeBlock
+  title="Live Example"
+  scope={{ chipImage }}
+  noInline={true}
+  code={ChipsLiveExample}
+>
+  Chips with the <code>onClose</code> or <code>dismissible </code> prop defined
+  will display a delete icon and can also use prop <code>show</code> to control
+  the visibility of the chip.
+</CodeBlock>
+
+<CodeBlock title="Filter Chips" code={ChipsFilter}>
+  For Filter Chips, use the <code>icon</code> prop to define the icon.
+</CodeBlock>
+
+<CodeBlock title="Small Chips" code={ChipsSmall} scope={{ chipImage }}>
+  To use a small chip, use <code>size</code> prop and use <code>closeIcon</code>{" "}
+  props for custom close icon.
+</CodeBlock>
+
+<LinkedHeading h="2" className="h1" id="chip-api">
+  API
+</LinkedHeading>
+<ComponentApi metadata={props.data.Chip} />
+
+export const query = graphql`
+  query ChipQuery {
+    Chip: componentMetadata(displayName: { eq: "Chip" }) {
+      ...ComponentApi_metadata
+    }
+  }
+`

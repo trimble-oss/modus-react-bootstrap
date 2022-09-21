@@ -1,0 +1,112 @@
+---
+title: Buttons
+description: Buttons express what action will occur when the user clicks or touches it. Buttons are used to initialize an action, either in the background or foreground of an experience.
+---
+
+import { graphql } from "gatsby"
+import {
+  ButtonsDanger,
+  ButtonsDarkBackgrounds,
+  ButtonsFullWidth,
+  ButtonsIconsOnly,
+  ButtonsLarge,
+  ButtonsLight,
+  ButtonsOutline,
+  ButtonsSmall,
+  ButtonsSolid,
+  ButtonsTextAndIcons,
+  ButtonsText,
+  ButtonsYellow,
+} from "../../examples/components/Buttons"
+
+<Overview>
+  Normally <code>&lt;Button&gt;</code> components will render a HTML{" "}
+  <code>&lt;button&gt;</code> element. However, adding a href prop will
+  automatically render an <code>&lt;a&gt;</code> element. React Bootstrap will
+  take care of the proper ARIA roles for you.
+</Overview>
+
+<CodeBlock bigtitle="Button Types">
+  Modify the <code>variant</code> prop to style the button.
+</CodeBlock>
+
+<CodeBlock title="Solid Buttons" code={ButtonsSolid}>
+  Solid buttons should only be used with the Primary, Secondary, and Tertiary
+  theme colors.
+</CodeBlock>
+
+<CodeBlock title="Outline Buttons" code={ButtonsOutline}>
+  Outline buttons should only be used with the Primary, and Dark theme colors.
+</CodeBlock>
+
+<CodeBlock title="Text Buttons" code={ButtonsText}>
+  Text buttons should only be used with the Primary theme color.
+</CodeBlock>
+
+<CodeBlock bigtitle="Icon Buttons">
+  Modus has built in support for both icon only buttons and buttons with both
+  icons and text.
+</CodeBlock>
+
+<CodeBlock title="Text and Icons" code={ButtonsTextAndIcons}>
+  Icons can be used within buttons by giving the icon a class of{" "}
+  <code>.modus-icon </code>
+  in addition to a class of either <code>.left-icon</code> or <code>
+    .right-icon
+  </code>, depending on the desired position.
+</CodeBlock>
+
+<CodeBlock title="Icon Only Buttons " code={ButtonsIconsOnly}>
+  When using Icon Only Buttons, DO NOT add any additional text inside the
+  button. Give the variant <code>icon-only</code> and give the icon a class of{" "}
+  <code>.modus-icon</code>. <code>icon-only </code>buttons can be used with the
+  Primary or Dark theme color.
+</CodeBlock>
+
+<CodeBlock bigtitle="Button Sizes">
+  Buttons default to “medium” size but there are also large and small options
+  available.
+</CodeBlock>
+
+<CodeBlock title="Small Buttons" code={ButtonsSmall}></CodeBlock>
+
+<CodeBlock title="Large Buttons" code={ButtonsLarge}></CodeBlock>
+
+<CodeBlock title="Full-width (Block) Buttons" code={ButtonsFullWidth}>
+  Create block level buttons—those that span the full width of a parent—by
+  adding <code>block</code>.
+</CodeBlock>
+
+<LinkedHeading id="specialUseCase" h="2" className="h1">
+  Special Use Cases
+</LinkedHeading>
+
+<CodeBlock title="Danger Button" code={ButtonsDanger}>
+  A danger button should be used for permanent, destructive actions like delete.
+</CodeBlock>
+
+<LinkedHeading h="2" className="h1" id="buttons-api">
+  API
+</LinkedHeading>
+<ComponentApi metadata={props.data.Button} />
+<ComponentApi metadata={props.data.ToggleButtonGroup} />
+<ComponentApi metadata={props.data.ToggleButton} />
+
+export const query = graphql`
+  query ButtonQuery {
+    Button: componentMetadata(displayName: { eq: "Button" }) {
+      displayName
+      ...ComponentApi_metadata
+    }
+    ToggleButtonGroup: componentMetadata(
+      displayName: { eq: "ToggleButtonGroup" }
+    ) {
+      displayName
+      ...ComponentApi_metadata
+    }
+    ToggleButton: componentMetadata(displayName: { eq: "ToggleButton" }) {
+      displayName
+      ...ComponentApi_metadata
+    }
+  }
+`

@@ -1,0 +1,31 @@
+.code-sample {
+  font-weight: 700;
+  font-size: 12px !important;
+}
+
+.list:empty::before {
+  display: block;
+  color: #464b52;
+  width: 100%;
+  padding: 100px 2rem;
+  margin-right: 15px;
+  margin-left: 15px;
+  text-align: center;
+  content: "Nothing found, try searching again.";
+  background-color: rgb(133 133 133 / 10%);
+  border-radius: 0.5rem;
+}
+
+html[data-theme="dark"] {
+  .list:empty::before {
+    color: #f1f1f1;
+  }
+}
+
+#icons-list {
+  min-height: 300px;
+}
+
+#icons-list i {
+  font-size: 48px;
+}

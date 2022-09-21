@@ -1,0 +1,51 @@
+---
+title: Navbar
+description: The navbar provides context through globally accessible menu options.
+---
+
+import { graphql } from "gatsby"
+import { NavbarBasic } from "../../examples/components/Navbar"
+
+<h2 className="h1 font-weight-bold" id="Overview">
+  Overview
+</h2>
+<CodeBlock style={{ padding: "0px" }} code={NavbarBasic}>
+  The navbar or the app header provides context through globally accessible menu
+  options and positions a consistent component to connect various Trimble
+  applications and contains the main navigation for your application.
+</CodeBlock>
+
+<LinkedHeading h="2" className="h1" id="navbar-api">
+  API
+</LinkedHeading>
+
+<ComponentApi metadata={props.data.Navbar} />
+<ComponentApi
+  metadata={props.data.NavbarBrand}
+  exportedBy={props.data.Navbar}
+/>
+<ComponentApi
+  metadata={props.data.NavbarToggle}
+  exportedBy={props.data.Navbar}
+/>
+<ComponentApi
+  metadata={props.data.NavbarCollapse}
+  exportedBy={props.data.Navbar}
+/>
+
+export const query = graphql`
+  query NavbarQuery {
+    Navbar: componentMetadata(displayName: { eq: "Navbar" }) {
+      ...ComponentApi_metadata
+    }
+    NavbarBrand: componentMetadata(displayName: { eq: "NavbarBrand" }) {
+      ...ComponentApi_metadata
+    }
+    NavbarToggle: componentMetadata(displayName: { eq: "NavbarToggle" }) {
+      ...ComponentApi_metadata
+    }
+    NavbarCollapse: componentMetadata(displayName: { eq: "NavbarCollapse" }) {
+      ...ComponentApi_metadata
+    }
+  }
+`

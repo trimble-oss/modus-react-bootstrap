@@ -1,0 +1,58 @@
+---
+title: Breadcrumbs
+description: The breadcrumb component is a secondary navigation pattern that shows hierarchy among content or traces a user’s path.
+---
+
+import { graphql } from "gatsby"
+import {
+  BreadcrumbsBasic,
+  BreadcrumbsWithIcons,
+  BreadcrumbsAccessibleOptions,
+  BreadcrumbsBehaviours,
+} from "../../examples/components/Breadcrumbs"
+
+<Overview>
+  Add <code>active</code> prop to active <code>Breadcrumb.Item</code>. Do not
+  set both <code>active</code> and <code>href</code> attributes.{" "}
+  <code>active</code>
+  overrides <code>href</code> and <code>span</code> element is rendered instead of{" "}
+  <code>a</code>.
+</Overview>
+
+<CodeBlock title="Default" code={BreadcrumbsBasic}></CodeBlock>
+
+<CodeBlock
+  title="Breadcrumbs with Icons"
+  code={BreadcrumbsWithIcons}
+></CodeBlock>
+
+<CodeBlock title="Accessible Option" code={BreadcrumbsAccessibleOptions}>
+  For accessible underlined links add class <code>breadcrumb-underline</code> to{" "}
+  <code>Breadcrumb </code>.
+</CodeBlock>
+
+<CodeBlock title="Behavious" code={BreadcrumbsBehaviours}>
+  For implementations with large numbers of sub-directories, make use of
+  dropdown that appears on click of ellipses as shown in the example below
+</CodeBlock>
+
+<LinkedHeading h="2" className="h1" id="bd-api">
+  API
+</LinkedHeading>
+<ComponentApi metadata={props.data.Breadcrumb} />
+
+<ComponentApi
+  metadata={props.data.BreadcrumbItem}
+  exportedBy={props.data.Breadcrumb}
+/>
+
+export const query = graphql`
+  query BreadcrumbQuery {
+    BreadcrumbItem: componentMetadata(displayName: { eq: "BreadcrumbItem" }) {
+      ...ComponentApi_metadata
+    }
+    Breadcrumb: componentMetadata(displayName: { eq: "Breadcrumb" }) {
+      ...ComponentApi_metadata
+    }
+  }
+`

@@ -1,0 +1,13 @@
+html[data-theme="light"] {
+  header.container-fluid .display-2,
+  header.container-fluid h2,
+  header.container-fluid > * {
+    color: #004f83;
+  }
+
+  article h2:first-of-type {
+    margin-top: 1px !important;
+  }
+
+  @import "../../../../scss/modus-react-bootstrap";
+}

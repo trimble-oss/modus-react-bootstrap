@@ -1,0 +1,83 @@
+---
+title: Cards
+description: Cards provide a set of content which acts as an entry point to more detailed information.
+---
+
+import { graphql } from "gatsby"
+import {
+  CardsBasic,
+  CardsWithImage,
+  CardsCustomize,
+  CardsHeaderAndFooter,
+} from "../../examples/components/Cards"
+
+<Overview>
+  Cards provide a flexible and extensible content container with multiple
+  variants and options.
+</Overview>
+
+<CodeBlock title="Card Example" code={CardsBasic}>
+  Cards use a wrapper <code>&lt;Card&gt;</code> followed by a{" "}
+  <code>&lt;Card.Body&gt;</code> container. <code>&lt;Card.Title&gt;</code> and{" "}
+  <code>&lt;Card.Subtitle&gt;</code> are used to space out the title and
+  subtitle appropriately, and they can be customized to render heading tags by
+  passing
+  <code> &lt;h4&gt;, &lt;h5&gt;</code> to the <code>as</code> prop.
+</CodeBlock>
+
+<CodeBlock title="Card with Image" code={CardsWithImage}>
+  To add an image to the top of the card, use <code>&lt;Card.Img&gt;</code> with
+  a variant <code>top</code>.
+</CodeBlock>
+
+<CodeBlock title="Header and Footer" code={CardsHeaderAndFooter}>
+  Use <code>&lt;Card.Header&gt;, &lt;Card.Footer&gt;</code> to add header and
+  footer content.
+</CodeBlock>
+
+<CodeBlock title="Customizing Cards" code={CardsCustomize}>
+  Cards primarily serve as containers to organize content for your needs. They
+  can be combined with other UI elements and utility classes for a broad range
+  of customization.
+</CodeBlock>
+
+<LinkedHeading h="2" className="h1" id="cards-api">
+  API
+</LinkedHeading>
+<ComponentApi metadata={props.data.Card} />
+<ComponentApi metadata={props.data.CardBody} exportedBy={props.data.Card} />
+<ComponentApi metadata={props.data.CardImg} exportedBy={props.data.Card} />
+<ComponentApi
+  metadata={props.data.CardImgOverlay}
+  exportedBy={props.data.Card}
+/>
+
+<ComponentApi metadata={props.data.CardDeck} />
+<ComponentApi metadata={props.data.CardGroup} />
+<ComponentApi metadata={props.data.CardColumns} />
+
+export const query = graphql`
+  query CardQuery {
+    Card: componentMetadata(displayName: { eq: "Card" }) {
+      ...ComponentApi_metadata
+    }
+    CardBody: componentMetadata(displayName: { eq: "CardBody" }) {
+      ...ComponentApi_metadata
+    }
+    CardImg: componentMetadata(displayName: { eq: "CardImg" }) {
+      ...ComponentApi_metadata
+    }
+    CardImgOverlay: componentMetadata(displayName: { eq: "CardImgOverlay" }) {
+      ...ComponentApi_metadata
+    }
+    CardDeck: componentMetadata(displayName: { eq: "CardDeck" }) {
+      ...ComponentApi_metadata
+    }
+    CardGroup: componentMetadata(displayName: { eq: "CardGroup" }) {
+      ...ComponentApi_metadata
+    }
+    CardColumns: componentMetadata(displayName: { eq: "CardColumns" }) {
+      ...ComponentApi_metadata
+    }
+  }
+`

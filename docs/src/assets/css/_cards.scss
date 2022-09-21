@@ -1,0 +1,21 @@
+.card-blog-brief {
+  transition: 0.2s ease-in-out;
+  min-height: 140px;
+}
+
+.card-blog-brief .card-header {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #f1f1f6;
+  min-height: 129px;
+}
+
+.card-blog-brief:hover {
+  box-shadow: 0 0 8px #bfbfc6 !important;
+  transition: 0.2s ease-in-out;
+}
+
+.card-body .stretched-link {
+  min-height: 44px;
+}

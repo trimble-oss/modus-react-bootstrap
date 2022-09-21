@@ -1,0 +1,35 @@
+---
+title: Borders
+description: Use border utilities to quickly style the border and border-radius of an element. Great for images, buttons, or any other element.
+---
+
+import {
+  BordersAdditive,
+  BordersColor,
+  BordersRadius,
+  BordersSubtractive,
+} from "../../examples/utilities/Borders"
+
+<h2 id="border" className="h1 font-weight-bold">
+  Border
+  <a
+    className="header-link text-light text-decoration-none font-weight-normal"
+    href="#border"
+    aria-label="anchor"
+  ></a>
+</h2>
+<p>
+  Use border utilities to add or remove an element’s borders. Choose from all
+  borders or one at a time.
+</p>
+<CodeBlock title="Additive" code={BordersAdditive}></CodeBlock>
+
+<CodeBlock title="Subtractive" code={BordersSubtractive}></CodeBlock>
+
+<CodeBlock title="Border Color" code={BordersColor}>
+  Change the border color using utilities built on our theme colors.
+</CodeBlock>
+
+<CodeBlock title="Border Radius" code={BordersRadius}>
+  Add classes to an element to easily round its corners.
+</CodeBlock>

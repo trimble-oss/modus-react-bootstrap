@@ -1,0 +1,50 @@
+---
+title: Usage
+description: Demonstrate how to import and use the Modus React Bootstrap components.
+---
+
+import CodeHighlight from "../../common/CodeHighlight"
+import { UsageExample } from "../../examples/getting-started/Usage"
+
+<article id="main" className="pr-3">
+  <p>
+    You can use any of the components as demonstrated in the documentation.
+    Please refer to each component's{" "}
+    <a href="/components/cards/">demo page</a> to see how they should be
+    imported.
+  </p>
+  <h2 id="quick-start" className="h1 font-weight-bold mt-5">
+    Quick Start
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#quick-start"
+      aria-label="anchor"
+    ></a>
+  </h2>
+  <p>Here's a quick example to get you started, please note modus-icons references should be added as described in <a
+      href="/getting-started#stylesheets"
+    >
+      Getting Started
+    </a>
+    </p>
+
+<CodeHighlight code={UsageExample} />
+
+  <h3 id="demo" className="font-weight-bold mt-3">
+    Demo
+  </h3>
+  <div style={{ position: "relative", display: "flex" }}>
+    <iframe
+      src="https://codesandbox.io/embed/confident-benz-2dwlu?fontsize=14&hidenavigation=1&theme=dark"
+      style={{
+        width: "100%",
+        height: "500px",
+        border: 0,
+        borderRadius: "4px",
+        overflow: "hidden",
+      }}
+      title="confident-benz-2dwlu"
+      sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+    ></iframe>
+  </div>
+</article>

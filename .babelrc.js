@@ -1,4 +1,4 @@
-module.exports = api => {
+module.exports = (api) => {
   const env = api.env();
 
   let dev = false;

@@ -1,0 +1,208 @@
+---
+title: Dropdowns
+description: Dropdowns present a list of options that can be used to filter or sort existing content. They can also be used as menus. Their use as menus can be seen in tabs. At a smaller screen size, the tabs collapse into a dropdown.
+---
+
+import { graphql } from "gatsby"
+import {
+  DropdownsActive,
+  DropdownsColorVariants,
+  DropdownsDisabled,
+  DropdownsDividers,
+  DropdownsDirections,
+  DropdownsMenus,
+  DropdownsForms,
+  DropdownsHeaders,
+  DropdownsIconButton,
+  DropdownsMenuAlignment,
+  DropdownsBasic,
+  DropdownsSizes,
+  DropdownsSplitButton,
+  DropdownsText,
+} from "../../examples/components/Dropdowns"
+
+<Overview>
+  <p>
+    Please read this article when using dropdown menu for more styles and
+    JavaScript calls.{" "}
+    <a href="https://react-bootstrap-v4.netlify.app/components/dropdowns/">
+      React Bootstrap Dropdown
+    </a>
+    .
+  </p>
+  <p>
+    The basic Dropdown is composed of a wrapping Dropdown and inner{" "}
+    <code>&lt;DropdownMenu&gt;</code>, and <code>&lt;DropdownToggle&gt;</code>.
+    By default the <code>&lt;DropdownToggle&gt;</code> will render a{" "}
+    <code>Button</code> component and accepts all the same props and adding a
+    href prop will render an <code>&lt;a&gt; </code>
+    element.
+  </p>
+  <p>
+    React bootstrap also provides the <code>&lt;DropdownButton&gt;</code>{" "}
+    component to help reduce typing, provide a title prop and some{" "}
+    <code>DropdownItem</code>s.
+  </p>
+</Overview>
+
+<CodeBlock title="Simple Button Dropdowns" code={DropdownsBasic}></CodeBlock>
+
+<CodeBlock title="Color Variants" code={DropdownsColorVariants}>
+  Button Dropdowns can be any variety of button style and color. Simply use the
+  desired <code>variant</code>.
+</CodeBlock>
+
+<CodeBlock title="Split Button" code={DropdownsSplitButton}>
+  Split dropdown can be created by combining the <code>Dropdown</code>{" "}
+  components with another <code>Button</code>
+  and a <code>ButtonGroup</code>.
+</CodeBlock>
+
+<h3>Dropdown Button Sizing</h3>
+<p>
+  To change the size of the dropdown button use the prop{" "}
+  <code>size=sm, size=lg</code>.
+</p>
+
+<CodeBlock title="Icon Button Dropdowns" code={DropdownsIconButton}>
+  Icon buttons can also function as dropdowns. Simply set <code>bsPrefix</code>{" "}
+  to nothing to remove <code>dropdown-toggle</code> class and eliminate the
+  caret icon.
+</CodeBlock>
+
+<CodeBlock title="Dropdown Directions" code={DropdownsDirections}>
+  Trigger dropdown menus above, below, left, or to the right of their toggle
+  elements, with the <code>drop </code>prop and the values{" "}
+  <code>'up', 'down', 'left', 'right'</code>.
+</CodeBlock>
+
+<CodeBlock title="Menu Alignment" code={DropdownsMenuAlignment}>
+  By default, a dropdown menu is aligned to the left, but you can switch it by
+  passing right to the <code>align </code> prop on a <code>DropdownMenu </code>{" "}
+  or passing right to the <code>menuAlign </code> prop on the{" "}
+  <code>DropdownButton</code> or <code>DropdownsSplitButton</code> as seen
+  below.
+</CodeBlock>
+
+<CodeBlock bigtitle="Dropdown Menus" code={DropdownsMenus}>
+  You can optionally use <code>button</code> elements in your dropdowns instead
+  of links.
+</CodeBlock>
+
+<CodeBlock title="Sizes" code={DropdownsSizes}>
+  <p>
+    For niche cases, dropdown menus can be given a max-height using the
+    following classes:
+  </p>
+  <ul>
+    <li>
+      <code>.dropdown-menu-sm</code>- 140px
+    </li>
+    <li>
+      <code>.dropdown-menu-md</code> - 240px
+    </li>
+    <li>
+      <code>.dropdown-menu-lg</code> - 400px
+    </li>
+  </ul>
+</CodeBlock>
+
+<CodeBlock title="Active" code={DropdownsActive}>
+  Add an <code>DropdownsActive </code> prop to items to style them as
+  DropdownsActive.
+</CodeBlock>
+
+<CodeBlock title="Disabled" code={DropdownsDisabled}>
+  Add an <code>DropdownsDisabled </code> prop to items to style them as
+  DropdownsDisabled.
+</CodeBlock>
+
+<CodeBlock title="Headers" code={DropdownsHeaders}>
+  Add a header to label sections of actions in any dropdown menu.
+</CodeBlock>
+
+<CodeBlock title="Dividers" code={DropdownsDividers}>
+  Separate groups of related menu items with a divider.
+</CodeBlock>
+
+<CodeBlock title="Text" code={DropdownsText}>
+  Place any freeform DropdownsText within a dropdown menu with DropdownsText.{" "}
+  <strong>Note:</strong> you’ll likely need additional sizing styles to
+  constrain the menu width.
+</CodeBlock>
+
+<CodeBlock title="Forms" code={DropdownsForms}>
+  Put a form within a dropdown menu, or make it into a dropdown menu, and use
+  <a href="/utilities/padding-and-margin/">margin or padding utilities</a> to give
+  it the negative space you require.
+</CodeBlock>
+
+<LinkedHeading h="2" className="h1" id="dd-api">
+  API
+</LinkedHeading>
+
+<ComponentApi metadata={props.data.DropdownButton} />
+
+<ComponentApi metadata={props.data.SplitButton} />
+
+<ComponentApi metadata={props.data.Dropdown} />
+
+<ComponentApi
+  metadata={props.data.DropdownToggle}
+  exportedBy={props.data.Dropdown}
+/>
+
+<ComponentApi
+  metadata={props.data.DropdownMenu}
+  exportedBy={props.data.Dropdown}
+/>
+
+<ComponentApi
+  metadata={props.data.DropdownItem}
+  exportedBy={props.data.Dropdown}
+/>
+<ComponentApi
+  metadata={props.data.DropdownHeader}
+  exportedBy={props.data.Dropdown}
+/>
+<ComponentApi
+  metadata={props.data.DropdownDivider}
+  exportedBy={props.data.Dropdown}
+/>
+
+export const query = graphql`
+  query DropdownMDXQuery {
+    DropdownButton: componentMetadata(displayName: { eq: "DropdownButton" }) {
+      displayName
+      ...ComponentApi_metadata
+    }
+    SplitButton: componentMetadata(displayName: { eq: "SplitButton" }) {
+      displayName
+      ...ComponentApi_metadata
+    }
+    Dropdown: componentMetadata(displayName: { eq: "Dropdown" }) {
+      displayName
+      ...ComponentApi_metadata
+    }
+    DropdownToggle: componentMetadata(displayName: { eq: "DropdownToggle" }) {
+      displayName
+      ...ComponentApi_metadata
+    }
+    DropdownMenu: componentMetadata(displayName: { eq: "DropdownMenu" }) {
+      displayName
+      ...ComponentApi_metadata
+    }
+    DropdownItem: componentMetadata(displayName: { eq: "DropdownItem" }) {
+      displayName
+      ...ComponentApi_metadata
+    }
+    DropdownHeader: componentMetadata(displayName: { eq: "DropdownHeader" }) {
+      displayName
+      ...ComponentApi_metadata
+    }
+    DropdownDivider: componentMetadata(displayName: { eq: "DropdownDivider" }) {
+      displayName
+      ...ComponentApi_metadata
+    }
+  }
+`

@@ -1,0 +1,73 @@
+---
+title: File Upload DropZone
+description: File upload dropzone allows users to upload single or multiple files to the application by dragging and dropping.
+---
+
+import { graphql } from "gatsby"
+import {
+  FileUploadDropZoneBasic,
+  FileUploadDropZoneCustomValidation,
+} from "../../examples/components/FileUploadDropZone"
+
+<Overview>
+  File Upload Dropzone component allows users to upload content from their
+  computer or device into the application by dragging a file (or files) into a
+  target zone.
+</Overview>
+
+<CodeBlock title="Example" code={FileUploadDropZoneBasic} noInline={true}>
+  For a styled drag 'n' drop zone for uploading files use the{" "}
+  <code>&lt;FileUploadDropZone&gt;</code> component with an <code>id</code>. The
+  callback function <code> onFiles </code> fires when the files are added and it
+  contains files along with the current error value.
+  <br />
+  Uploaded files are validated using the input from props <code> multiple</code>
+  ,<code> maxFileCount </code> and <code> maxTotalFileSizeBytes </code> and an
+  appropriate error message is displayed if any validation fails.
+</CodeBlock>
+
+<div className="docs-callout docs-callout-warning p-3 pb-0 rounded-lg">
+  <code>FileUploadDropZone</code> component uses modus icons, refer to{" "}
+  <a href="/getting-started/">Getting Started</a> page on how to enable them.
+</div>
+
+<CodeBlock
+  title="Custom validation"
+  code={FileUploadDropZoneCustomValidation}
+  noInline={true}
+>
+  <>
+    By providing <code> validator </code> prop custom validation can be added as
+    shown in the example. The function accepts <code>FileList</code> object and
+    it should return null or the error message. The default validation will be
+    disabled while using <code> validator</code>.
+    <br />
+    <span class="font-weight-bold">Note:</span> Below example shows the custom
+    validation logic to verify single file upload.
+  </>
+</CodeBlock>
+
+<LinkedHeading h="2" className="h1" id="file-upload-zone-accessibility">
+  Accessibility
+</LinkedHeading>
+<p>
+  User can interact with File Upload Dropzone through keyboard using the{" "}
+  <code>tab</code> key (or <code>shift + tab</code> when tabbing backwards).
+  When the drop zone or browse link is in focus, pressing the <code>enter</code>/
+  <code>return</code> or <code>space</code> keys will open the default file picker.
+</p>
+
+<LinkedHeading h="2" className="h1" id="file-upload-zone-api">
+  API
+</LinkedHeading>
+<ComponentApi metadata={props.data.FileUploadDropZone} />
+
+export const query = graphql`
+  query FileUploadDropZoneQuery {
+    FileUploadDropZone: componentMetadata(
+      displayName: { eq: "FileUploadDropZone" }
+    ) {
+      ...ComponentApi_metadata
+    }
+  }
+`

@@ -1,0 +1,78 @@
+{
+  "name": "modus-react-bootstrap-guide",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Trimble Modus React Bootstrap Developer Guide",
+  "keywords": [
+    "gatsby"
+  ],
+  "homepage": "https://modus-react-bootstrap.trimble.com",
+  "bugs": {
+    "url": "https://github.com/trimble-oss/website-modus-react-bootstrap.trimble.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trimble-oss/website-modus-react-bootstrap.trimble.com.git"
+  },
+  "license": "MIT",
+  "author": "Trimble Inc.",
+  "scripts": {
+    "build": "yarn run lint && gatsby build",
+    "clean": "gatsby clean",
+    "develop": "gatsby build && gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "lint": "yarn run lint-css",
+    "lint-css": "stylelint \"src/assets/css/*.scss\"  --fix --customSyntax postcss-scss",
+    "start": "yarn develop"
+  },
+  "dependencies": {
+    "@restart/hooks": "^0.4.7",
+    "classnames": "^2.3.2",
+    "prop-types": "^15.8.1",
+    "react-live": "^2.4.1",
+    "react-router-dom": "^5.3.0",
+    "sass": "^1.54.9",
+    "styled-components": "^5.3.5"
+  },
+  "devDependencies": {
+    "@mdx-js/mdx": "^1.6.22",
+    "@mdx-js/react": "^1.6.22",
+    "@types/react-dom": "^18.0.6",
+    "@types/styled-components": "^5.1.25",
+    "ast-types": "^0.14.2",
+    "gatsby": "^4.17.0",
+    "gatsby-plugin-image": "^2.6.0",
+    "gatsby-plugin-lunr": "^1.5.2",
+    "gatsby-plugin-manifest": "^4.6.0",
+    "gatsby-plugin-mdx": "^3.5.2",
+    "gatsby-plugin-react-helmet": "^5.5.0",
+    "gatsby-plugin-sass": "^5.11.1",
+    "gatsby-remark-prismjs": "^6.17.0",
+    "gatsby-source-filesystem": "^4.6.0",
+    "gatsby-transformer-react-docgen": "^7.17.0",
+    "gatsby-transformer-remark": "^5.4.0",
+    "lodash": "^4.17.21",
+    "postcss-scss": "^4.0.5",
+    "prettier": "2.7.1",
+    "prismjs": "^1.28.0",
+    "react": "^17.0.2",
+    "react-docgen": "^5.4.3",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
+    "react-is": "^18.2.0",
+    "stylelint": "^14.11.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-standard-scss": "^5.0.0",
+    "ws": ">=8.8.1"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "resolutions": {
+    "nth-check": "^2.0.1",
+    "parse-url": "^8.1.0",
+    "sanitize-html": "^2.3.2",
+    "trim": "^0.0.3"
+  }
+}

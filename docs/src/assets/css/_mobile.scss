@@ -1,0 +1,23 @@
+/* iPhone 6/7/8 */
+@media (max-width: 414px) {
+  .navbar-nav .nav-item {
+    font-size: 0.7rem !important;
+    letter-spacing: -1px;
+  }
+}
+
+/* iPhone 6/7/8 */
+@media (max-width: 375px) {
+  .navbar-nav .nav-item {
+    font-size: 0.7rem !important;
+    letter-spacing: -1px;
+  }
+}
+
+/* iPhone 5 */
+@media (max-width: 320px) {
+  .navbar-nav a {
+    font-size: 0.7rem !important;
+    letter-spacing: -1px;
+  }
+}

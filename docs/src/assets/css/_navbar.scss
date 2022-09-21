@@ -1,0 +1,47 @@
+.navbar a {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.navbar .form-control {
+  font-size: 14px;
+}
+
+// 'frosted glass' effect on top navbar
+.fixed-top .navbar {
+  background-color: rgb(255 255 255 / 90%);
+  backdrop-filter: blur(6px);
+  z-index: 11111; // prevents overlapping navbar on mobile as scroll past
+}
+
+.navbar-brand,
+.navbar-brand a,
+.navbar-brand a:hover,
+.navbar-brand div {
+  color: #fff !important;
+  font-size: 13px;
+}
+
+.navbar-nav li a {
+  border-bottom: 2px solid transparent;
+  color: #fff;
+}
+
+.navbar-nav li a:hover {
+  color: #f1f1f1 !important;
+  border-bottom: 2px solid #7d808d;
+}
+
+// sets underline on top navbar on selected section
+body[data-url^="/device-support/"] .navbar-nav li a[href^="/getting-started/"],
+body[data-url^="/designers/"] .navbar-nav li a[href^="/getting-started/"],
+body[data-url^="/components/"] .navbar-nav li a[href^="/components/"],
+body[data-url^="/developers/"] .navbar-nav li a[href^="/getting-started/"],
+body[data-url^="/layout/"] .navbar-nav li a[href^="/layout/"],
+body[data-url^="/getting-started/"] .navbar-nav li a[href^="/getting-started/"],
+body[data-url^="/status/"] .navbar-nav li a[href^="/getting-started/"],
+body[data-url^="/whats-new/"] .navbar-nav li a[href^="/getting-started/"],
+body[data-url^="/foundations/"] .navbar-nav li a[href^="/foundations/"],
+body[data-url^="/utilities/"] .navbar-nav li a[href^="/utilities/"] {
+  border-bottom: 2px solid #005f9e;
+}
