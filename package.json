@@ -30,9 +30,9 @@
   "scripts": {
     "bootstrap": "yarn && yarn --cwd docs",
 
-    "build": "yarn run lint && yarn run build-js && yarn run build-css",
-    "build-js":"node tools/build.js && node tools/custom.js",
-    "build-css": "yarn run css-minify && copyfiles -a ./scss/**/* lib/css/",
+    "build": "yarn run build-js && yarn run build-css",
+    "build-js":"yarn run lint-js && node tools/build.js && node tools/custom.js",
+    "build-css": "yarn run lint-css && yarn run css-minify && copyfiles -a ./scss/**/* lib/css/",
     "build-types": "yarn tsc -d --emitDeclarationOnly --outDir types",
     "css-compile": "node-sass scss/modus-react-bootstrap.scss lib/css/dist/modus-react-bootstrap.css && node-sass scss/modus-react-bootstrap-dark.scss lib/css/dist/modus-react-bootstrap-dark.css && postcss lib/css/dist/*.css --config ./ --verbose --use autoprefixer -r",
     "css-minify": "yarn run css-compile && cleancss -O1 --output lib/css/dist/modus-react-bootstrap.min.css lib/css/dist/modus-react-bootstrap.css && cleancss -O1 --output lib/css/dist/modus-react-bootstrap-dark.min.css lib/css/dist/modus-react-bootstrap-dark.css",
@@ -44,10 +44,9 @@
     "build-docs": "yarn run clean-docs && yarn run lint-docs && cd docs && yarn run build",
     "clean-docs": "yarn --cwd docs clean",
     "lint-css-docs": "stylelint \"docs/src/assets/css/*.scss\"  --fix",
-    "lint-docs": "yarn run lint-js-docs && yarn run lint-css-docs",
-    "lint-js-docs": "eslint --ext tsx --ext ts --ext js docs/src && tsc --noEmit",
+    "lint-docs": "yarn run lint-css-docs",
 
-    "full": "yarn run build && yarn run build-docs && yarn run start",
+    "full": "yarn run bootstrap && yarn run build && yarn run build-docs && yarn run start",
 
     "prepublishOnly": "yarn run build",
     "release": "rollout",
