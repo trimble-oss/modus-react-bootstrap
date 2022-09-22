@@ -1,8 +1,8 @@
 lib/
 publish/
 coverage/
-www/.cache/
-www/public/
+docs/.cache/
+docs/public/
 .idea/
 
 # Logs
@@ -41,6 +41,7 @@ build/Release
 
 # Dependency directories
 node_modules/
+docs/node_modules/
 jspm_packages/
 
 # TypeScript v1 declaration files

@@ -28,17 +28,27 @@
     "url": "git@github.com:trimble-oss/modus-react-bootstrap.git"
   },
   "scripts": {
-    "bootstrap": "yarn --network-timeout 100000 && yarn --cwd docs --network-timeout 100000",
-    "build": "yarn run format && yarn run lint && node tools/build.js && node tools/custom.js && yarn run build-css && yarn run build-docs",
-    "build-css": "yarn run css-lint && yarn run css-minify && copyfiles -a ./scss/**/* lib/css/",
-    "build-docs": "yarn --cwd docs build",
+    "bootstrap": "yarn && yarn --cwd docs",
+
+    "build": "yarn run lint && yarn run build-js && yarn run build-css",
+    "build-js":"node tools/build.js && node tools/custom.js",
+    "build-css": "yarn run css-minify && copyfiles -a ./scss/**/* lib/css/",
     "build-types": "yarn tsc -d --emitDeclarationOnly --outDir types",
-    "clean-docs": "yarn --cwd docs clean",
     "css-compile": "node-sass scss/modus-react-bootstrap.scss lib/css/dist/modus-react-bootstrap.css && node-sass scss/modus-react-bootstrap-dark.scss lib/css/dist/modus-react-bootstrap-dark.css && postcss lib/css/dist/*.css --config ./ --verbose --use autoprefixer -r",
-    "css-lint": "stylelint \"scss/**/*.scss\" --fix",
     "css-minify": "yarn run css-compile && cleancss -O1 --output lib/css/dist/modus-react-bootstrap.min.css lib/css/dist/modus-react-bootstrap.css && cleancss -O1 --output lib/css/dist/modus-react-bootstrap-dark.min.css lib/css/dist/modus-react-bootstrap-dark.css",
-    "format": "eslint --ext tsx --ext ts src --fix",
-    "lint": "eslint --ext tsx --ext ts src && tsc --noEmit",
+    "format-js": "eslint --ext tsx --ext ts src --fix",
+    "lint": "yarn run lint-js && yarn run lint-css",
+    "lint-css": "stylelint \"scss/**/*.scss\" --fix",
+    "lint-js": "eslint --ext tsx --ext ts src && tsc --noEmit",
+
+    "build-docs": "yarn run clean-docs && yarn run lint-docs && cd docs && yarn run build",
+    "clean-docs": "yarn --cwd docs clean",
+    "lint-css-docs": "stylelint \"docs/src/assets/css/*.scss\"  --fix",
+    "lint-docs": "yarn run lint-js-docs && yarn run lint-css-docs",
+    "lint-js-docs": "eslint --ext tsx --ext ts --ext js docs/src && tsc --noEmit",
+
+    "full": "yarn run build && yarn run build-docs && yarn run start",
+
     "prepublishOnly": "yarn run build",
     "release": "rollout",
     "start": "yarn --cwd docs start"

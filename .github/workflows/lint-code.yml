@@ -28,9 +28,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           JAVASCRIPT_DEFAULT_STYLE: prettier
           VALIDATE_ALL_CODEBASE: false
+          VALIDATE_CSS: false
           VALIDATE_EDITORCONFIG: false
+          VALIDATE_JAVASCRIPT_ES: false
           VALIDATE_MARKDOWN: false
           VALIDATE_TYPESCRIPT_ES: false
           VALIDATE_TSX: false
-          VALIDATE_CSS: false
           FILTER_REGEX_EXCLUDE: .*sample-workspace/.*

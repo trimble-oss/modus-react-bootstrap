@@ -34,8 +34,11 @@ function ComponentApi({ heading, metadata, exportedBy }) {
         <a
           className="header-link text-light text-decoration-none font-weight-normal ml-2"
           href={`#${id}`}
-          aria-label="anchor" aria-hidden="true"
-        >#</a>
+          aria-label="anchor"
+          aria-hidden="true"
+        >
+          #
+        </a>
       </h3>
 
       <Code aria-label={`Import code for the ${name} component`}>

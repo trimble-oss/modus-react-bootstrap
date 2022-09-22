@@ -20,7 +20,14 @@
       "scss/double-slash-comment-empty-line-before": null,
       "scss/no-global-function-names": null,
       "scss/operator-no-unspaced": null,
+
+      
+      "at-rule-no-unknown": null,
+      "color-hex-length": null,
+      "no-invalid-position-at-import-rule": null,
+      "selector-id-pattern": null,
+
       "value-keyword-case":
-        ["lower", { "ignoreKeywords": ["Arial", "BlinkMacSystemFont", "Roboto"] }],
-    },
+        ["lower", { "ignoreKeywords": ["Arial", "BlinkMacSystemFont", "Roboto"] }]
+    }
 }
