@@ -45,3 +45,7 @@ After that you can run `yarn run bootstrap` to install all the needed dependenci
 ## Contributions
 
 See the [contributing guidelines](https://github.com/trimble-oss/modus-react-bootstrap/blob/main/CONTRIBUTING.md) for how to propose bugfixes and improvements.
+
+## Update Documentation
+
+The documentation [site](https://modus-react-bootstrap.trimble.com/) should always be in sync with the components, please refer to the [contributing guidelines](https://github.com/trimble-oss/modus-react-bootstrap/blob/main/CONTRIBUTING-docs.md) for any changes.

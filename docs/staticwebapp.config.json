@@ -14,5 +14,11 @@
     "X-Content-Type-Options": "nosniff",
     "X-Frame-Options": "SAMEORIGIN",
     "X-XSS-Protection": "0"
+  },
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/404/",
+      "statusCode": 404
+    }
   }
 }

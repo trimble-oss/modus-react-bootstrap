@@ -11,13 +11,13 @@ If possible please provide screenshots and/or screencasts of the proposed change
 
 ## Technologies
 
-- Node (>= v14)
+- Node.js (>= v14)
 - Yarn is the package manager, check out setup
   instructions [here](https://yarnpkg.com/en/docs/install) if you don't have it installed already.
 
 ### NPM
 
-We are hosting this package on the public NPM registry.
+We are hosting this package on the public npm registry.
 
 ## Proposing a Change
 
@@ -27,9 +27,9 @@ If you decide to fix an existing issue, please be sure to check the comment thre
 
 ### Developing a component
 
-Try and be consistent with the overall style and API of the library as a whole. Use Typescript to develop the components.
+Try and be consistent with the overall style and API of the library as a whole. Use TypeScript to develop the components.
 
-All components in Modus are built with accessibility in mind. If you are making changes to an existing component, make sure to follow the accessibility section in Modus styleguide for an example [Accordion accessibility](https://modus.trimble.com/components/accordions/#accessibility). For more help refer to [Modus guidelines](https://modus.trimble.com/foundations/accessibility/?q=acce#acce) on accessibility.
+All components in Modus are built with accessibility in mind. If you are making changes to an existing component, make sure to follow the accessibility section in Modus style guide for an example [Accordion accessibility](https://modus.trimble.com/components/accordions/#accessibility). For more help refer to [Modus guidelines](https://modus.trimble.com/foundations/accessibility/?q=acce#acce) on accessibility.
 
 ### Submitting a Pull Request
 
@@ -70,8 +70,7 @@ The team will review your pull request and either merge it, request changes to i
 
 ## Documentation
 
-Please update the docs with any API changes, the code and docs should always be in sync.
-The documentation is maintained in a separate [repository](https://github.com/trimble-oss/website-modus-react-bootstrap.trimble.com) which is a Gatsby project that uses [MDX](https://www.gatsbyjs.com/docs/how-to/routing/mdx/) and deployed to the [site](https://modus-react-bootstrap.trimble.com/).
+Please update the [documentation](https://github.com/trimble-oss/modus-react-bootstrap/tree/main/docs/src/pages/components) with the changes, the components and docs should always be in sync.
+The documentation is a Gatsby project that uses [MDX](https://www.gatsbyjs.com/docs/how-to/routing/mdx/) and deployed to the [site](https://modus-react-bootstrap.trimble.com/). It contains interactive examples and guides for the components.
 
-- Page with interactive examples and guides for each component is found within the `pages/components` directory.
-- To update the component API details shown on the page a copy of the component file has to added to this [path](https://github.com/trimble-oss/website-modus-react-bootstrap.trimble.com/tree/main/src/api-docs/modus-react-bootstrap) and it will reflect automatically in the API section.
+Please refer to the [contributing guidelines](https://github.com/trimble-oss/modus-react-bootstrap/blob/main/CONTRIBUTING-docs.md) for any changes.
