@@ -11,13 +11,13 @@ If possible please provide screenshots and/or screencasts of the proposed change
 
 ## Technologies
 
-- Node (>= v14)
+- Node.js (>= v14)
 - Yarn is the package manager, check out setup
   instructions [here](https://yarnpkg.com/en/docs/install) if you don't have it installed already.
 
 ### NPM
 
-We are hosting this package on the public NPM registry.
+We are hosting this package on the public npm registry.
 
 ## Proposing a Change
 
@@ -27,9 +27,9 @@ If you decide to fix an existing issue, please be sure to check the comment thre
 
 ### Developing a component
 
-Try and be consistent with the overall style and API of the library as a whole. Use Typescript to develop the components.
+Try and be consistent with the overall style and API of the library as a whole. Use TypeScript to develop the components.
 
-All components in Modus are built with accessibility in mind. If you are making changes to an existing component, make sure to follow the accessibility section in Modus styleguide for an example [Accordion accessibility](https://modus.trimble.com/components/accordions/#accessibility). For more help refer to [Modus guidelines](https://modus.trimble.com/foundations/accessibility/?q=acce#acce) on accessibility.
+All components in Modus are built with accessibility in mind. If you are making changes to an existing component, make sure to follow the accessibility section in Modus style guide for an example [Accordion accessibility](https://modus.trimble.com/components/accordions/#accessibility). For more help refer to [Modus guidelines](https://modus.trimble.com/foundations/accessibility/?q=acce#acce) on accessibility.
 
 ### Submitting a Pull Request
 
