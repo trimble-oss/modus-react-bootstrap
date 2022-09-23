@@ -1,0 +1,140 @@
+---
+title: Getting Started
+description: The Modus React Bootstrap is a React-based component library extended from react-bootstrap component library developed as a common, open source platform for all of Trimble’s web applications built on ReactJs. The framework is designed and managed by the Trimble UX Council.
+---
+
+import CodeHighlight from "../../common/CodeHighlight"
+import {
+  GettingStartedImportCSS,
+  GettingStartedImportModusReactBootstrap,
+  GettingStartedImportModusIcons,
+} from "../../examples/getting-started/GettingStarted"
+
+<article id="main" className="pr-3">
+  <p>
+    The Modus React Bootstrap is a React-based component library extended
+    from react-bootstrap component library developed as a common, open
+    source platform for all of Trimble’s web applications built on React.
+    The framework is designed and managed by the Trimble UX Council.
+  </p>
+  <h2 id="background" className="h1 font-weight-bold mt-5">
+    Background
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#background"
+      aria-label="anchor"
+    ></a>
+  </h2>
+  <p>
+    Modus React Bootstrap is built upon and extends the React Bootstrap
+    v1.6.x code framework combined with Modus CSS. You can use the Modus CSS
+    files as is, or integrate the SASS files into your own application if
+    you wish to modify it further.
+  </p>
+  <h2 id="install-with-npm" className="h1 font-weight-bold mt-5">
+    Install with npm
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#install-with-npm"
+      aria-label="anchor"
+    ></a>
+  </h2>
+  <p>
+    Install the Modus React Bootstrap framework in your Node.js powered apps with
+    npm (or yarn):
+  </p>
+  <CodeHighlight code="npm install @trimbleinc/modus-react-bootstrap" language="bash" />
+   <p>
+    Please note that <a href="https://www.npmjs.com/package/react">react</a> &gt;=
+    16.8.0 and <a href="https://www.npmjs.com/package/react-dom">react-dom</a>{" "}
+    &gt;= 16.8.0 are peer dependencies.
+  </p>
+  <h3 id="stylesheets" className="font-weight-bold mt-3">
+    Stylesheets
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#stylesheets"
+      aria-label="anchor"
+    ></a>
+  </h3>
+  <p>Modus React Bootstrap comes with its own style sheets extended from
+    <a  href="https://modus-bootstrap.trimble.com/getting-started/" rel="nofollow" > Modus Bootstrap v1.5.3
+    </a>. The compiled CSS files can be found in the <code>/css/dist</code> directory.
+  </p>
+
+<CodeHighlight code={GettingStartedImportCSS} />
+
+<h3 id="customize-sass" className="font-weight-bold mt-3">
+  Customize using Sass
+  <a
+    className="header-link text-light text-decoration-none font-weight-normal"
+    href="#customize-sass"
+    aria-label="anchor"
+  ></a>
+</h3>
+
+<p>
+  The Sass files will be found in the <code>/scss</code> directory. With Sass
+  files, you can begin to modify any of the Sass variables and maps in your
+  custom style sheet.
+</p>
+<p>
+  The main file to focus on is the <code>_light-theme.scss</code> file (and/or
+  <code>_dark-theme.scss</code> if you want a dark look).
+</p>
+
+<h3 id="icons" className="font-weight-bold mt-3">
+  Icons
+  <a
+    className="header-link text-light text-decoration-none font-weight-normal"
+    href="#icons"
+    aria-label="anchor"
+  ></a>
+</h3>
+
+<p>
+  Modus icons style sheet is also required to use the Modus React components:
+</p>
+<CodeHighlight code={GettingStartedImportModusIcons} language="html" />
+<p>
+  Learn more about{" "}
+  <a
+    href="https://modus-react-bootstrap.trimble.com/foundations/icons/"
+    rel="nofollow"
+  >
+    using the icons.
+  </a>
+</p>
+
+<h2 id="import-components" className="h1 font-weight-bold mt-5">
+  Importing Components
+  <a
+    className="header-link text-light text-decoration-none font-weight-normal"
+    href="#import-components"
+    aria-label="anchor"
+  ></a>
+</h2>
+<p>
+  Import individual components like as <code>{`@trimbleinc/modus-react-bootstrap/Button`}</code>{" "}
+  rather than the entire library. Doing so pulls in only the specific components
+  that you use, which can significantly reduce the amount of code you end up
+  sending to the client.
+</p>
+<CodeHighlight code={GettingStartedImportModusReactBootstrap} />
+
+  <h2 id="browser-support" className="h1 font-weight-bold mt-5">
+    Browser Support
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#browser-support"
+      aria-label="anchor"
+    ></a>
+  </h2>
+  <p>
+    Modus React Bootstrap supports all browsers supported by{" "}
+    <a href="https://modus-bootstrap.trimble.com/device-support/">
+      Modus Bootstrap
+    </a>
+    .
+  </p>
+</article>

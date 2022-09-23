@@ -1,0 +1,35 @@
+@media (min-width: 768px) {
+  #docs-nav {
+    display: block !important;
+  }
+
+  .menu-left .sticky-top {
+    border-bottom: 0 !important;
+  }
+
+  .sticky-offset {
+    overflow-y: auto;
+    max-height: 90vh;
+  }
+}
+
+.menu-left a {
+  font-size: 0.875rem;
+}
+
+.menu-left a:hover {
+  color: #00437b;
+}
+
+.menu-left a.active {
+  font-weight: bold;
+}
+
+// body[data-url^="/foundations/shadows"] .menu-left li a[href^="/foundations/shadows"]
+
+body[data-url^="/foundations/"] .menu-left a[href^="/layout/"],
+body[data-url^="/utilities/"] .menu-left a[href^="/utilities/layout/"],
+body[data-url^="/utilities/"] .menu-left a[href^="/utilities/icons/"],
+body[data-url^="/start/"] .menu-left a[href^="/layout/"] {
+  display: none;
+}

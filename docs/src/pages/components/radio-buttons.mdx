@@ -1,0 +1,47 @@
+---
+title: Radio Buttons
+description: Radio buttons are used when a list of two or more options are mutually exclusive, meaning the user must select only one option.
+---
+
+import { graphql } from "gatsby"
+import { RadioButtonsBasic } from "../../examples/components/RadioButtons"
+
+<Overview>
+  Radio buttons use the <code>Form.Check</code> with <code>type</code> prop as{" "}
+  <code>radio</code> as a wrapper and adding <code>custom</code> prop. Custom
+  checkbox and radio styles are achieved with a resourceful use of the{" "}
+  <code>:checked</code> selector and <code>:after</code> pseudo elements. By
+  default the checked and indeterminate icons use embedded svg icons from{" "}
+  <a href="https://useiconic.com/open">Open Iconic</a>.
+</Overview>
+
+<CodeBlock title="Radios" code={RadioButtonsBasic}></CodeBlock>
+
+<LinkedHeading h="2" className="h1" id="rb-api">
+  API
+</LinkedHeading>
+<ComponentApi metadata={props.data.Form} />
+<ComponentApi metadata={props.data.FormGroup} exportedBy={props.data.Form} />
+
+<ComponentApi metadata={props.data.FormCheck} exportedBy={props.data.Form} />
+<ComponentApi
+  metadata={props.data.FormCheckInput}
+  exportedBy={props.data.FormCheck}
+/>
+
+export const query = graphql`
+  query RadioButtonsQuery {
+    Form: componentMetadata(displayName: { eq: "Form" }) {
+      ...ComponentApi_metadata
+    }
+    FormGroup: componentMetadata(displayName: { eq: "FormGroup" }) {
+      ...ComponentApi_metadata
+    }
+    FormCheck: componentMetadata(displayName: { eq: "FormCheck" }) {
+      ...ComponentApi_metadata
+    }
+    FormCheckInput: componentMetadata(displayName: { eq: "FormCheckInput" }) {
+      ...ComponentApi_metadata
+    }
+  }
+`

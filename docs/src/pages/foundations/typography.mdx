@@ -1,0 +1,250 @@
+---
+title: Typography
+description: Typography can help create clear hierarchies, organize information, and guide users through a product or experience.
+---
+
+import {
+  TypographyHeadings,
+  TypographyTextStyles,
+  TypographyDisplayHeadings,
+} from "../../examples/foundations/Typography"
+
+<Overview guidelink="https://modus.trimble.com/foundations/typography/">
+  <p>
+    Trimble uses{" "}
+    <a
+      href="https://fonts.google.com/specimen/Open+Sans"
+      target="_blank"
+      rel="noopener"
+    >
+      Open Sans
+    </a>
+    , a humanist sans-serif typeface with good legibility and warmth. Featuring a
+    tall x-height and open forms, it is ideal for on-screen consumption. Open Sans
+    supports ISO Latin 1, Latin CE, Greek and Cyrillic character sets.
+  </p>
+  <p>
+    For Internationalization, support is included for RTL (right-to-left)
+    languages. Asian Syllabic, Abjad, Indic and other script languages will be
+    supported by sans-serif system font.
+  </p>
+</Overview>
+
+<h3 id="base-sizing" class="h2 font-weight-bold mt-3">
+  Base Sizing
+  <a
+    class="header-link text-light text-decoration-none font-weight-normal"
+    href="#base-sizing"
+    aria-label="anchor"
+  ></a>
+</h3>
+
+<ul>
+  <li>
+    The root font size is defined as <code>16px (1rem)</code>
+  </li>
+  <li>
+    Base body text is sized at <code>14px (.875rem)</code>
+  </li>
+  <li>
+    Small body text is sized at <code>12px (.75rem)</code>
+  </li>
+</ul>
+
+<h3 id="hierarchy-and-intent" class="h2 font-weight-bold mt-3">
+  Hierarchy and Intent
+  <a
+    class="header-link text-light text-decoration-none font-weight-normal"
+    href="#hierarchy-and-intent"
+    aria-label="anchor"
+  ></a>
+</h3>
+
+<p>
+  Consistency is key to creating an easily scannable interface for users. Each
+  level in the Trimble type hierarchy is defined with a specific color and
+  intent. Associating the typographic style to the intent in the interface
+  provides a visual pattern that is easy for users to skim.
+</p>
+
+<p>
+  The variations help keep type styles to a minimum, so consistency is easier to
+  achieve. Too many type styles make a layout unbalanced and difficult to
+  manage.
+</p>
+
+<h4 id="type-scale" class="h3 font-weight-bold mt-3">
+  Type Scale
+  <a
+    class="header-link text-light text-decoration-none font-weight-normal"
+    href="#type-scale"
+    aria-label="anchor"
+  ></a>
+</h4>
+
+<table class="table table-bordered bg-white">
+  <thead class="thead-light">
+    <tr>
+      <th>Category</th>
+      <th>Classes</th>
+      <th>Font Weight</th>
+      <th>Size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td scope="row">
+        <h1>H1 Heading</h1>
+      </td>
+      <td>
+        <code>.h1</code>
+      </td>
+      <td>Regular</td>
+      <td>24px</td>
+    </tr>
+    <tr>
+      <td scope="row">
+        <h2>H2 Heading</h2>
+      </td>
+      <td>
+        <code>.h2</code>
+      </td>
+      <td>Regular</td>
+      <td>20px</td>
+    </tr>
+    <tr>
+      <td scope="row">
+        <h3>H3 Heading</h3>
+      </td>
+      <td>
+        <code>.h3</code>
+      </td>
+      <td>Semi-Bold</td>
+      <td>18px</td>
+    </tr>
+    <tr>
+      <td scope="row">
+        <h4>H4 Heading</h4>
+      </td>
+      <td>
+        <code>.h4</code>
+      </td>
+      <td>Semi-Bold</td>
+      <td>16px</td>
+    </tr>
+    <tr>
+      <td scope="row">
+        <h5>H5 Heading</h5>
+      </td>
+      <td>
+        <code>.h5</code>
+      </td>
+      <td>Bold</td>
+      <td>14px</td>
+    </tr>
+    <tr>
+      <td scope="row">
+        <h6>H6 Heading</h6>
+      </td>
+      <td>
+        <code>.h6</code>
+      </td>
+      <td>Bold</td>
+      <td>12px</td>
+    </tr>
+    <tr>
+      <td scope="row">
+        <span class="lead lead-text">Lead Text</span>
+      </td>
+      <td>
+        <code>.lead</code>
+        <code>.lead-text</code>
+      </td>
+      <td>Regular</td>
+      <td>20px</td>
+    </tr>
+    <tr>
+      <td scope="row">
+        <span class="body-text">Body Text</span>
+      </td>
+      <td>
+        <code>.body-text</code>
+      </td>
+      <td>Regular</td>
+      <td>14px</td>
+    </tr>
+    <tr>
+      <td scope="row">
+        <span class="card-text">Card Text</span>
+      </td>
+      <td>
+        <code>.card-text</code>
+      </td>
+      <td>Regular</td>
+      <td>16px</td>
+    </tr>
+    <tr>
+      <td scope="row">
+        <span class="card-text-2">Card Text 2</span>
+      </td>
+      <td>
+        <code>.card-text-2</code>
+      </td>
+      <td>Semi-Bold</td>
+      <td>12px</td>
+    </tr>
+    <tr>
+      <td scope="row">
+        <span class="card-subtitle-1">Card Subtitle 1</span>
+      </td>
+      <td>
+        <code>.card-subtitle-1</code>
+      </td>
+      <td>Regular</td>
+      <td>16px</td>
+    </tr>
+    <tr>
+      <td scope="row">
+        <span class="card-subtitle-2">Card Subtitle 2</span>
+      </td>
+      <td>
+        <code>.card-subtitle-2</code>
+      </td>
+      <td>Bold</td>
+      <td>10px</td>
+    </tr>
+    <tr>
+      <td scope="row">
+        <span class="form-labels card-caption">
+          Form Labels &amp; Card Captions
+        </span>
+      </td>
+      <td>
+        <code>.form-labels</code>
+        <code>.card-caption</code>
+      </td>
+      <td>Regular</td>
+      <td>12px</td>
+    </tr>
+    <tr>
+      <td scope="row">
+        <small>Small</small>
+      </td>
+      <td>
+        <code>.small</code>
+      </td>
+      <td>Regular</td>
+      <td>12px</td>
+    </tr>
+  </tbody>
+</table>
+
+<CodeBlock title="Headings" code={TypographyHeadings}></CodeBlock>
+
+<CodeBlock title="Display headings " code={TypographyDisplayHeadings}>
+  When you need a heading to stand out, consider using a{" "}
+  <strong>display heading</strong>—a larger, slightly more opinionated heading
+  style. Keep in mind these headings are not responsive by default.
+</CodeBlock>
+
+<CodeBlock title="Text Styles" code={TypographyTextStyles}></CodeBlock>

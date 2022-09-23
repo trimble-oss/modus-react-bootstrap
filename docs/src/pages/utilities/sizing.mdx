@@ -1,0 +1,60 @@
+---
+title: Sizing
+description: Easily make an element as wide or as tall with our width and height utilities.
+---
+
+import CodeHighlight from "../../common/CodeHighlight"
+import {
+  SizingBasic,
+  SizingBasicMore,
+  SizingSvg,
+  SizingSvgMore,
+  SizingViewPort,
+} from "../../examples/utilities/Sizing"
+
+<h3 id="relative-to-the-parent" className="h2 font-weight-bold mt-3">
+  Relative to the parent
+  <a
+    className="header-link text-light text-decoration-none font-weight-normal"
+    href="#relative-to-the-parent"
+    aria-label="anchor"
+  ></a>
+</h3>
+<p>
+  Width and height utilities are generated from the <code>\$sizes</code> Sass
+  map in <code>\_variables.scss</code>. Includes support for <code>25%</code>,{" "}
+  <code>50%</code>, <code>75%</code>, <code>100%</code>, and
+  <code>auto</code> by default. Modify those values as you need to generate different
+  utilities here.
+</p>
+
+<CodeBlock code={SizingBasic}></CodeBlock>
+
+<CodeBlock code={SizingBasicMore}></CodeBlock>
+
+<p>
+  You can also use <code>max-width: 100%;</code> and{" "}
+  <code>max-height: 100%;</code> utilities as needed.
+</p>
+
+<CodeBlock code={SizingSvg}></CodeBlock>
+
+<CodeBlock code={SizingSvgMore}></CodeBlock>
+
+<h3 id="relative-to-the-viewport" className="h2 font-weight-bold mt-3">
+  Relative to the Viewport
+  <a
+    className="header-link text-light text-decoration-none font-weight-normal"
+    href="#relative-to-the-viewport"
+    aria-label="anchor"
+  ></a>
+</h3>
+<p>
+  You can also use utilities to set the width and height relative to the
+  viewport.
+</p>
+<CodeHighlight
+  style={{ backgroundColor: "#f6f8fa" }}
+  className="guide-example-block border-top border-gray-200"
+  code={SizingViewPort}
+/>

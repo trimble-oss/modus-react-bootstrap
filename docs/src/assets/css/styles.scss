@@ -1,0 +1,66 @@
+@import "theme-toggle";
+@import "data-theme-dark"; // color swatches
+@import "data-theme-light"; // color swatches
+@import "styleguide";
+@import "autocomplete"; // search autocomplete dropdown
+@import "article";
+@import "cards";
+@import "codefences"; // code syntax highlighting
+@import "color-preview"; // color swatches
+@import "ie11"; // IE 11 flexbox layout fixes
+@import "menu-left";
+@import "menu-right"; // 'On this page' menu
+@import "mobile"; // optimizations for xxs mobile screens
+@import "navbar";
+@import "print";
+@import "rfs";
+@import "icons-page";
+@import "skippy"; // 'skip to content' accessibility
+@import "footer";
+@import "utilities";
+@import "guide-layout";
+@import "component-examples";
+@import "examples";
+
+main {
+  min-height: 80vh;
+}
+
+.highlight {
+  font-size: 0.9rem;
+}
+
+.guide-code-static {
+  background-color: #f3f3f7 !important;
+}
+
+nav a {
+  color: #888;
+}
+
+nav nav#TableOfContents li {
+  margin-bottom: 8px;
+}
+
+nav nav#TableOfContents ul ul {
+  margin-top: 5px;
+}
+
+// wider than default page-width.
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1380px !important;
+  }
+}
+
+.bg-react {
+  background-color: #61dafb !important;
+}
+
+#example-mx-auto div {
+  background-color: #ddd;
+}
+
+.card-home {
+  min-height: 80px;
+}

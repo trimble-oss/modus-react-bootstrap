@@ -1,0 +1,46 @@
+---
+title: Spinners
+description: Spinners indicate progress by showing users a loading state.
+---
+
+import { graphql } from "gatsby"
+import { SpinnersBasic } from "../../examples/components/Spinners"
+
+<Overview>
+  <p>
+    Our spinners are built entirely using HTML and CSS. You can toggle their
+    visibility using JavaScript in you project. Their appearance, alignment, and
+    sizing can be easily customized with our utility classes.
+  </p>
+  <p>
+    For accessibility purposes, each loader here includes{" "}
+    <code>role="status"</code> and a nested{" "}
+    <code>&lt;span className="sr-only"&gt;Loading...&lt;/span&gt;</code>.
+  </p>
+</Overview>
+
+<p>Expected ways to use spinners:</p>
+<ul>
+  <li>Use the border spinners for a lightweight loading indicator.</li>
+  <li>
+    Spinners should be centered within its container unless inside of another
+    element like a button and use flexbox utilities, or text alignment utilities
+    for placement.
+  </li>
+</ul>
+
+<CodeBlock title="Example" code={SpinnersBasic}></CodeBlock>
+
+<LinkedHeading h="2" className="h1" id="spinners-api">
+  API
+</LinkedHeading>
+<ComponentApi metadata={props.data.metadata} />
+
+export const query = graphql`
+  query Spinner {
+    metadata: componentMetadata(displayName: { eq: "Spinner" }) {
+      displayName
+      ...ComponentApi_metadata
+    }
+  }
+`

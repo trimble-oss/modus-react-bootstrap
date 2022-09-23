@@ -1,0 +1,66 @@
+---
+title: Tabs
+description: Tabs are used to quickly navigate between views within the same context. They serve as a form of navigation between related content.
+---
+
+import { graphql } from "gatsby"
+import {
+  TabsBasic,
+  TabsSmall,
+  TabsWithContent,
+  TabsWithIcons,
+} from "../../examples/components/Tabs"
+
+<Overview>
+  Create dynamic tabbed interfaces, as described in the{" "}
+  <a href="https://www.w3.org/TR/wai-aria-practices/#tabpanel">
+    <abbr title="Web Accessibility Initiative">WAI</abbr>{" "}
+    <abbr title="Accessible Rich Internet Applications">ARIA</abbr> Authoring
+    Practices
+  </a>
+  . <code>Tabs</code> is a higher-level component for quickly creating a <code>
+    Nav
+  </code> matched with a set of <code>TabPane</code>s.
+</Overview>
+
+<CodeBlock title="Basic Tabs" code={TabsBasic}></CodeBlock>
+
+<CodeBlock title="Tabs with Icons" code={TabsWithIcons}></CodeBlock>
+
+<CodeBlock title="Small Tabs" code={TabsSmall}>
+  To use smaller variants of tabs, add the <code>.nav-tabs-sm</code> class.
+</CodeBlock>
+
+<CodeBlock title="Tabs with Content" code={TabsWithContent}>
+  No additional code is required to handle tabs with content.
+</CodeBlock>
+
+<LinkedHeading h="2" id="tabs-api" className="h1">
+  API
+</LinkedHeading>
+
+<ComponentApi metadata={props.data.Tabs} />
+<ComponentApi metadata={props.data.Tab} />
+<ComponentApi metadata={props.data.TabContainer} />
+<ComponentApi metadata={props.data.TabContent} />
+<ComponentApi metadata={props.data.TabPane} />
+
+export const query = graphql`
+  query TabsQuery {
+    Tabs: componentMetadata(displayName: { eq: "Tabs" }) {
+      ...ComponentApi_metadata
+    }
+    Tab: componentMetadata(displayName: { eq: "Tab" }) {
+      ...ComponentApi_metadata
+    }
+    TabContainer: componentMetadata(displayName: { eq: "TabContainer" }) {
+      ...ComponentApi_metadata
+    }
+    TabContent: componentMetadata(displayName: { eq: "TabContent" }) {
+      ...ComponentApi_metadata
+    }
+    TabPane: componentMetadata(displayName: { eq: "TabPane" }) {
+      ...ComponentApi_metadata
+    }
+  }
+`

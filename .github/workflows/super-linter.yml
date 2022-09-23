@@ -1,0 +1,39 @@
+# Purpose of this linter:
+# catch bugs/issues with some things like YML, XML, JSON formatting issues
+# set it to disable (not run) on things tested elsewhere (e.g. CSS and JS)
+#
+name: Super Linter
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Super Linter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Super Linter
+        uses: github/super-linter/slim@v4
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          JAVASCRIPT_DEFAULT_STYLE: prettier
+          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_CSS: false
+          VALIDATE_EDITORCONFIG: false
+          VALIDATE_JAVASCRIPT_ES: false
+          VALIDATE_JAVASCRIPT_STANDARD: false
+          VALIDATE_MARKDOWN: false
+          VALIDATE_TYPESCRIPT_ES: false
+          VALIDATE_TSX: false
+          VALIDATE_HTML: false
+          FILTER_REGEX_EXCLUDE: .*docs/.*

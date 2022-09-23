@@ -1,0 +1,68 @@
+---
+title: Position
+description: Use these shorthand utilities for quickly configuring the position of an element.
+---
+
+import { PositionBasic } from "../../examples/utilities/Position"
+import CodeHighlight from "../../common/CodeHighlight"
+
+<h3 id="common-values" className="h2 font-weight-bold mt-3">
+  Common Values
+  <a
+    className="header-link text-light text-decoration-none font-weight-normal"
+    href="#common-values"
+    aria-label="anchor"
+  ></a>
+</h3>
+<p>Quick positioning classes are available, though they are not responsive.</p>
+
+<CodeHighlight code={PositionBasic}></CodeHighlight>
+
+<h3 id="fixed-top" className="h2 font-weight-bold mt-3">
+  Fixed Top
+  <a
+    className="header-link text-light text-decoration-none font-weight-normal"
+    href="#fixed-top"
+    aria-label="anchor"
+  ></a>
+</h3>
+<p>
+  Position an element at the top of the viewport, from edge to edge. Be sure you
+  understand the ramifications of fixed position in your project; you may need
+  to add additional CSS.
+</p>
+<CodeHighlight code={`<div className="fixed-top">...</div>`}></CodeHighlight>
+
+<h3 id="fixed-bottom" className="h2 font-weight-bold mt-3">
+  Fixed Bottom
+  <a
+    className="header-link text-light text-decoration-none font-weight-normal"
+    href="#fixed-bottom"
+    aria-label="anchor"
+  ></a>
+</h3>
+<p>
+  Position an element at the bottom of the viewport, from edge to edge. Be sure
+  you understand the ramifications of fixed position in your project; you may
+  need to add additional CSS.
+</p>
+<CodeHighlight code={`<div className="fixed-bottom">...</div>`}></CodeHighlight>
+
+<h3 id="sticky-top" className="h2 font-weight-bold mt-3">
+  Sticky Top
+  <a
+    className="header-link text-light text-decoration-none font-weight-normal"
+    href="#sticky-top"
+    aria-label="anchor"
+  ></a>
+</h3>
+<p>
+  Position an element at the top of the viewport, from edge to edge, but only
+  after you scroll past it. The <code>.sticky-top</code> utility uses CSS’s{" "}
+  <code>position: sticky</code>, which isn’t fully{" "}
+  <a href="https://caniuse.com/css-sticky" target="_blank" rel="noopener">
+    supported in all browsers
+  </a>
+  .
+</p>
+<CodeHighlight code={`<div className="sticky-top">...</div>`}></CodeHighlight>

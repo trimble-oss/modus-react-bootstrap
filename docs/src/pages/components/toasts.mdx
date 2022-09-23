@@ -1,0 +1,37 @@
+---
+title: Toasts
+description: Toasts are types of alerts.
+---
+
+import { graphql } from "gatsby"
+import { ToastsBasic } from "../../examples/components/Toasts"
+
+<Overview>
+  Toasts are available for any length of text, as well as an optional dismiss
+  button. For proper styling, use one of the eight required contextual classes
+  (e.g., .<code>toast-success</code>). For inline dismissal, use the prop{" "}
+  <code>show</code> to set the visibility of the toast.
+</Overview>
+
+<CodeBlock title="Toasts" code={ToastsBasic}></CodeBlock>
+
+<LinkedHeading h="2" id="toasts-api" className="h1">
+  API
+</LinkedHeading>
+<ComponentApi metadata={props.data.Toast} />
+<ComponentApi metadata={props.data.ToastHeader} />
+<ComponentApi metadata={props.data.ToastBody} />
+
+export const query = graphql`
+  query ToastQuery {
+    Toast: componentMetadata(displayName: { eq: "Toast" }) {
+      ...ComponentApi_metadata
+    }
+    ToastHeader: componentMetadata(displayName: { eq: "ToastHeader" }) {
+      ...ComponentApi_metadata
+    }
+    ToastBody: componentMetadata(displayName: { eq: "ToastBody" }) {
+      ...ComponentApi_metadata
+    }
+  }
+`

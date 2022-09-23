@@ -1,0 +1,74 @@
+---
+title: Tooltips
+description: Tooltips provide a short description of a page element or control.
+---
+
+import { graphql } from "gatsby"
+import {
+  TooltipsBasic,
+  TooltipsPlacement,
+  TooltipsWithHtml,
+} from "../../examples/components/ToolTips"
+
+<Overview>
+  <ul>
+    <li>
+      The <code>&lt;Tooltip&gt;</code> component do not position itself. Instead
+      the <code>&lt;Overlay&gt;</code> (or <code>&lt;OverlayTrigger&gt;</code>)
+      components, inject <code>ref</code> and <code>style</code> props.
+    </li>
+    <li>
+      Tooltip expects specific props injected by the{" "}
+      <code>&lt;Overlay&gt;</code> component
+    </li>
+    <li>
+      Tooltips for <code>disabled</code> elements must be triggered on a wrapper
+      element.
+    </li>
+    <li>
+      <code>Overlay</code> is the fundamental component for positioning and
+      controlling tooltip visibility. It's a wrapper around Popper.js, that adds
+      support for transitions, and visibility toggling.
+    </li>
+  </ul>
+</Overview>
+
+<CodeBlock title="Tooltip examples" code={TooltipsBasic}>
+  You can pass the <code>Overlay</code> injected props directly to the Tooltip
+  component as shown in{" "}
+  <a
+    href="https://react-bootstrap-v4.netlify.app/components/overlays/#tooltips"
+    target="_blank"
+    rel="noopener"
+  >
+    React Bootstrap
+  </a>{" "}
+  Or pass a Tooltip element to <code>OverlayTrigger</code> instead.
+</CodeBlock>
+
+<CodeBlock title="Tooltip placement" code={TooltipsPlacement}>
+  Use <code>placement</code> prop on <code>OverlayTrigger</code> to set the
+  position for tooltip.
+</CodeBlock>
+
+<CodeBlock title="Tooltip with HTML" code={TooltipsWithHtml}>
+  <code>Tooltip</code> by default supports custom HTML.
+</CodeBlock>
+
+<LinkedHeading h="2" id="overlays-api" className="h1">
+  API
+</LinkedHeading>
+
+<ComponentApi metadata={props.data.OverlayTrigger} />
+<ComponentApi metadata={props.data.Tooltip} />
+
+export const query = graphql`
+  query OverlayQuery {
+    Tooltip: componentMetadata(displayName: { eq: "Tooltip" }) {
+      ...ComponentApi_metadata
+    }
+    OverlayTrigger: componentMetadata(displayName: { eq: "OverlayTrigger" }) {
+      ...ComponentApi_metadata
+    }
+  }
+`

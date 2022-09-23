@@ -1,0 +1,68 @@
+---
+title: Text
+description: Documentation and examples for common text utilities to control alignment, wrapping, weight, and more.
+---
+
+import {
+  TextBasicAlignment,
+  TextFont,
+  TextResetColor,
+  TextTransform,
+  TextWrappingOverflow,
+} from "../../examples/utilities/TextAlignment"
+
+<h3 id="TextAlignment" className="font-weight-bold mt-3">
+  Text Alignment
+  <a
+    className="header-link text-light text-decoration-none font-weight-normal ml-2"
+    target="TextAlignment"
+    aria-label="anchor"
+  ></a>
+</h3>
+<CodeBlock code={TextBasicAlignment}>
+  Easily realign text to components with text alignment classes.
+</CodeBlock>
+
+<CodeBlock title="Text Wrapping and Overflow" code={TextWrappingOverflow}>
+  <p>
+    Wrap text with a <code>.text-wrap</code> class.
+  </p>
+</CodeBlock>
+
+<p>
+  Prevent text from wrapping with a <code>.text-nowrap</code> class.
+</p>
+
+<CodeBlock title="Text Transform" code={TextTransform}>
+  Transform text in components with text capitalization classes.
+</CodeBlock>
+
+<CodeBlock title="Font Weight and Italics" code={TextFont}>
+  Quickly change the weight (boldness) of text or italicize text.
+</CodeBlock>
+
+<CodeBlock
+  title="Monospace"
+  code={`<p className="text-monospace">This is in monospace</p>`}
+>
+  <p>
+    Change a selection to our monospace font stack with{" "}
+    <code>.text-monospace</code>.
+  </p>
+</CodeBlock>
+
+<CodeBlock title="Reset Color" code={TextResetColor}>
+  <p>
+    Reset a text or link’s color with <code>.text-reset</code>, so that it
+    inherits the color from its parent.
+  </p>
+</CodeBlock>
+
+<CodeBlock
+  title="Text Decoration"
+  code={`<a href="#" className="text-decoration-none">Non-underlined link</a>`}
+>
+  <p>
+    Remove a text decoration with a <code>.text-decoration-none</code> class.
+  </p>
+</CodeBlock>

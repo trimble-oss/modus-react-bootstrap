@@ -1,0 +1,102 @@
+html[data-theme="dark"] {
+  .navbar-brand div,
+  .navbar a {
+    color: #f1f1f6 !important;
+  }
+
+  header.container-fluid {
+    background-color: #585c65;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 1441 334' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath fill='%23353a40' d='M0 0h1440v332H0z'/%3E%3Cpath fill='%23252a2e' d='M0 334V0h886z'/%3E%3Cpath fill='%23585c65' d='M1437.605 245l3.395 87H615z'/%3E%3C/g%3E%3C/svg%3E");
+    color: #f1f1f1;
+  }
+
+  header.container-fluid h1,
+  header.container-fluid h2 {
+    color: #f1f1f1;
+  }
+
+  main h1,
+  main h1 p,
+  main p.lead {
+    color: #f1f1f6 !important;
+  }
+
+  main .bg-light {
+    background-color: #222 !important;
+  }
+
+  svg.text-secondary {
+    color: #f1f1f6 !important;
+    filter: invert(1);
+  }
+
+  footer.footer {
+    background-color: #171c1e;
+    background-image: none !important;
+  }
+
+  .highlight {
+    background-color: #000 !important;
+  }
+
+  .highlight .c1 {
+    color: #666;
+  }
+
+  .highlight pre code {
+    color: #90939f !important;
+  }
+
+  .menu-right #TableOfContents li .active {
+    color: #cbcdd6 !important;
+  }
+
+  .menu-right a[href^="http"]::after,
+  article a:not(.stretched-link)[href^="http"]::after {
+    filter: invert(1);
+  }
+
+  .menu-right .btn svg {
+    filter: invert(0);
+  }
+
+  .sample-bg-select {
+    opacity: 0;
+    visibility: none;
+  }
+
+  article footer {
+    color: #f1f1f1;
+  }
+
+  .form-control {
+    font-size: inherit;
+  }
+
+  article table h3,
+  article h2:first-of-type {
+    margin-top: 1px !important;
+  }
+
+  code {
+    filter: brightness(300%);
+  }
+
+  main footer em {
+    color: #cbcdd6;
+  }
+
+  #example-navbar .navbar-brand img {
+    filter: brightness(9999%) saturate(0);
+  }
+
+  .card-color .card-body div.text-monospace {
+    display: none;
+  }
+
+  .modus-body .modus-sidebar .nav-link {
+    color: #f1f1f6;
+  }
+
+  @import "../../../../scss/modus-react-bootstrap-dark";
+}

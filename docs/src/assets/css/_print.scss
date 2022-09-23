@@ -1,0 +1,11 @@
+// Print optimizations
+
+@media print {
+  .badge {
+    border: 0;
+  }
+
+  .menu-left, .menu-right {
+    display: none;
+  }
+}

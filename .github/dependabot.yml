@@ -1,7 +1,16 @@
 version: 2
 updates:
   - package-ecosystem: npm
-    directory: "/"
+    directory: '/'
+    reviewers:
+      - msankaran0712
+    labels:
+      - dependencies
+    schedule:
+      interval: monthly
+    versioning-strategy: increase
+  - package-ecosystem: npm
+    directory: '/docs/'
     reviewers:
       - msankaran0712
     labels:
@@ -10,7 +19,7 @@ updates:
       interval: monthly
     versioning-strategy: increase
   - package-ecosystem: github-actions
-    directory: "/"
+    directory: '/'
     reviewers:
       - coliff
       - msankaran0712

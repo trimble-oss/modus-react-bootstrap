@@ -1,0 +1,54 @@
+---
+title: Embed
+description: Create responsive video or slideshow embeds based on the width of the parent by creating an intrinsic ratio that scales on any device.
+---
+
+import { EmbedAspectRatios, EmbedBasic } from "../../examples/utilities/Embed"
+
+<h3 id="about" className="h2 font-weight-bold mt-3">
+  About
+  <a
+    className="header-link text-light text-decoration-none font-weight-normal"
+    href="#about"
+    aria-label="anchor"
+  ></a>
+</h3>
+<p>
+  Rules are directly applied to <code>&lt;iframe&gt;</code>,{" "}
+  <code>&lt;embed&gt;</code>,<code>&lt;video&gt;</code>, and{" "}
+  <code>&lt;object&gt;</code> elements; optionally use an explicit descendant
+  class <code>.embed-responsive-item</code> when you want to match the styling
+  for other attributes.
+</p>
+<p>
+  <strong>Pro-Tip!</strong> You don’t need to include{" "}
+  <code>frameborder-"0"</code> in your
+  <code>&lt;iframe&gt;</code> as we override that for you.
+</p>
+
+<CodeBlock title="Example" code={EmbedBasic}>
+  Wrap any embed like an <code>&lt;iframe&gt;</code> in a parent element with{" "}
+  <code>.embed-responsive</code> and an aspect ratio. The{" "}
+  <code>.embed-responsive-item </code>isn’t strictly required, but we encourage
+  it.
+</CodeBlock>
+
+<h3 id="aspect-ratios" className="h2 font-weight-bold mt-3">
+  Aspect Ratios
+  <a
+    className="header-link text-light text-decoration-none font-weight-normal"
+    href="#aspect-ratios"
+    aria-label="anchor"
+  ></a>
+</h3>
+<p>
+  Aspect ratios can be customized with modifier classes. By default, the
+  following ratio classes are provided:
+</p>
+<div className="highlight">
+  <pre tabIndex={0} className="chroma">
+    <code className="language-text" data-lang="text">
+      {EmbedAspectRatios.trim()}
+    </code>
+  </pre>
+</div>

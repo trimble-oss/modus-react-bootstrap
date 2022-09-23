@@ -1,0 +1,29 @@
+// Internet Explorer 11 flexbox fix
+
+@media all and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  nav .justify-content-end {
+    justify-content: space-between !important;
+  }
+
+  .theme-toggle {
+    display: none;
+  }
+
+  header.container-fluid,
+  footer {
+    background-image: none !important;
+    color: #fff !important;
+  }
+
+  .navbar-main {
+    max-height: 70px;
+  }
+
+  .navbar-brand svg {
+    max-height: 29px;
+  }
+
+  .theme-toggle {
+    display: none;
+  }
+}

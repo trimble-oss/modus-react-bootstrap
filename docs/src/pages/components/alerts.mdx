@@ -1,0 +1,64 @@
+---
+title: Alerts
+description: Alerts provide contextual information adjacent to items on the visible page. There are four types - error, warning, success, or informational.
+---
+
+import { graphql } from "gatsby"
+import {
+  AlertsBasic,
+  AlertsWithLink,
+  AlertsWithButton,
+  AlertsDismissible,
+} from "../../examples/components/Alerts"
+
+<Overview>
+  Alerts are available for any length of text, as well as an optional dismiss
+  button. For proper styling, use one of the eight variants.
+</Overview>
+
+<CodeBlock title="Basic Alerts" code={AlertsBasic}></CodeBlock>
+
+<CodeBlock title="Alerts with Links" code={AlertsWithLink}>
+  For links, use the <code>&lt;Alert.Link&gt;</code> component to provide
+  matching colored links within any alert.
+</CodeBlock>
+
+<CodeBlock title="Alerts with Buttons" code={AlertsWithButton}></CodeBlock>
+
+<CodeBlock title="Dismissible Alerts" code={AlertsDismissible}>
+  Use the custom react component <code>AlertDismissible</code>.
+</CodeBlock>
+
+<LinkedHeading h="2" className="h1" id="alerts-api">
+  API
+</LinkedHeading>
+
+<ComponentApi metadata={props.data.Alert} />
+<ComponentApi
+  metadata={props.data.AlertHeading}
+  exportedBy={props.data.Alert}
+/>
+<ComponentApi metadata={props.data.AlertLink} exportedBy={props.data.Alert} />
+<ComponentApi metadata={props.data.AlertDismissible} />
+
+export const query = graphql`
+  query AlertQuery {
+    Alert: componentMetadata(displayName: { eq: "Alert" }) {
+      ...ComponentApi_metadata
+    }
+    AlertLink: componentMetadata(displayName: { eq: "AlertLink" }) {
+      ...ComponentApi_metadata
+    }
+    AlertHeading: componentMetadata(displayName: { eq: "AlertHeading" }) {
+      ...ComponentApi_metadata
+    }
+    AlertLink: componentMetadata(displayName: { eq: "AlertLink" }) {
+      ...ComponentApi_metadata
+    }
+    AlertDismissible: componentMetadata(
+      displayName: { eq: "AlertDismissible" }
+    ) {
+      ...ComponentApi_metadata
+    }
+  }
+`

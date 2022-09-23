@@ -1,0 +1,613 @@
+---
+title: Layout
+description: Besides the aesthetics and UI elements, the Modus Framework has an optional layout you can use for your web applications.
+---
+
+import { ModusLayoutScripts } from "../../common/ExternalDependencyHelper"
+import { LayoutModus } from "../../examples/layout/Layout"
+import routeImage from "../../assets/img/route.svg"
+import checkMarkOrangeImage from "../../assets/img/check-mark-orange.png"
+
+<article id="main" className="pr-3">
+  <ModusLayoutScripts />
+  <h2 id="basic-structure" className="h1 font-weight-bold mt-5">
+    Basic Structure
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#basic-structure"
+      aria-label="anchor"
+    ></a>
+  </h2>
+  <p>
+    The basic structure for our Modus Layout, including the sidebar, toolbar,
+    and panel, is as follows:
+  </p>
+  <div className="highlight">
+    <pre tabIndex={0} className="chroma">
+      <code className="language-text" data-lang="text">
+        {LayoutModus.trim()}
+      </code>
+    </pre>
+  </div>
+  <p>
+    The page should be wrapped in a <code>.modus-layout</code> to set up the
+    overall structure.
+  </p>
+  <p>
+    The top navbar is a standard Bootstrap
+    <code>nav.navbar.navbar-expand-lg</code> with an additional class of
+    <code>.modus-header</code> to apply the aesthetics. Please refer to the
+    <a href="https://getbootstrap.com/docs/4.6/components/navbar/">
+      Bootstrap Navbar Docs
+    </a>
+    for more information.
+  </p>
+  <p>
+    The <code>.modus-header</code> should be followed by
+    <code>.modus-body</code> to set up the left nav area and main content area.
+  </p>
+  <p>
+    After <code>.modus-body</code> should be
+    <code>nav.modus-sidebar</code> which contains a vertical nav list (more info
+    below).
+  </p>
+  <p>
+    The next sibling element after the <code>.modus-sidebar</code> should be
+    <code>.modus-content-rows</code> with an optional child of
+    <code>.modus-toolbar</code>.
+  </p>
+  <p>
+    After <code>.modus-content-rows</code> should be
+    <code>.modus-content-columns</code> with an optional child of
+    <code>.modus-panel</code>.
+  </p>
+  <p>
+    Your main content is housed within <code>.modus-content</code> inside of
+    <code>.modus-content-columns</code>.
+  </p>
+  <p>
+    After the <code>.modus-body</code>, the next element should be
+    <code>.modus-footer</code>.
+  </p>
+  <h3 id="interactive-example" className="h2 font-weight-bold mt-3">
+    Interactive Example
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#interactive-example"
+      aria-label="anchor"
+    ></a>
+  </h3>
+  <p>
+    To help illustrate how all the layout elements look when displayed we have
+    this interactive example.
+  </p>
+  <div className="guide-example-block">
+    <div
+      className="guide-sample position-relative p-0 border"
+      id="interactiveExample"
+      style={{ height: "600px", zIndex: 10 }}
+    >
+      <div className="modus-layout">
+        <nav
+          className="navbar nav navbar-expand-lg modus-header"
+          id="modusHeader"
+        >
+          <a id="menuButton" data-modus-item="menu-btn">
+            <i className="modus-icon material-icons menu-btn">menu</i>
+          </a>
+          <a href="#interactive-example" className="navbar-brand">
+            BRAND
+          </a>
+          <div className="navbar-nav mr-auto">
+            <div className="navbar-text">
+              <span className="h3">APPLICATION NAME</span>
+            </div>
+          </div>
+          <div className="collapse navbar-collapse">
+            <div className="navbar-nav ml-auto">
+              <a
+                href="#interactive-example"
+                className="btn btn-lg btn-icon-only btn-text-primary"
+              >
+                <i className="modus-icon material-icons">account_circle</i>
+              </a>
+              <a
+                href="#interactive-example"
+                className="btn btn-lg btn-icon-only btn-text-primary"
+              >
+                <i className="modus-icon material-icons">apps</i>
+              </a>
+            </div>
+          </div>
+        </nav>
+        <div
+          className="modus-body sidebar-closed"
+          data-modus-item="body"
+          id="modusBody"
+        >
+          <nav className="nav flex-column modus-sidebar" id="modusSidebar">
+            <ul>
+              <li>
+                <a href="#interactive-example" className="nav-link active">
+                  <span className="left-nav-icon">
+                    <i className="modus-icons">3d_buildings</i>
+                  </span>
+                  Nav Item 1
+                </a>
+              </li>
+              <li>
+                <a href="#interactive-example" className="nav-link">
+                  <span className="left-nav-icon">
+                    <i className="modus-icons">preview</i>
+                  </span>
+                  Nav Item 2
+                </a>
+              </li>
+              <li>
+                <a href="#interactive-example" className="nav-link">
+                  <span className="left-nav-icon">
+                    <i className="modus-icon material-icons">settings</i>
+                  </span>
+                  Nav Item 3
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div className="modus-content-rows" id="modusContentRows">
+            <div className="modus-toolbar" id="modusToolbar">
+              <form className="form-inline ml-3 mr-5">
+                <div className="form-group">
+                  <label className="mr-2">
+                    <strong>Profile</strong>
+                  </label>
+                  <select className="form-control">
+                    <option>Profile 1</option>
+                    <option>Profile 2</option>
+                    <option>Profile 3</option>
+                  </select>
+                </div>
+              </form>
+              <button className="btn btn-text-dark btn-lg btn-icon-only">
+                <i className="modus-icon material-icons">palette</i>
+              </button>
+              <button className="btn btn-text-dark btn-lg btn-icon-only">
+                <i className="modus-icons">calendar</i>
+              </button>
+              <button className="btn btn-text-dark btn-lg btn-icon-only">
+                <i className="modus-icon material-icons">settings</i>
+              </button>
+              <form
+                className="form-inline ml-5"
+                onSubmit={() => {
+                  return !1
+                }}
+              >
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search..."
+                />
+                <button className="btn btn-text-dark btn-lg btn-icon-only ml-2">
+                  <i className="modus-icon material-icons">search</i>
+                </button>
+              </form>
+            </div>
+            <div className="modus-content-columns" id="modusContentColumns">
+              <div className="modus-panel panel-lg shadow-sm" id="modusPanel">
+                <div className="panel-header">
+                  <div className="left-items ml-2">
+                    <div className="custom-control custom-switch">
+                      <input
+                        type="checkbox"
+                        checked
+                        className="custom-control-input"
+                        id="customSwitch"
+                        name="example1"
+                      />
+                      <label className="custom-control-label"></label>
+                    </div>
+                  </div>
+                  <h5>Panel Header</h5>
+                  <div className="right-items mr-2">
+                    <button className="btn btn-icon-only btn-text-dark">
+                      <i className="modus-icons">unloaded_orders</i>
+                    </button>
+                  </div>
+                </div>
+                <div className="panel-body" style={{ flexGrow: 1 }}>
+                  <div className="static-container">
+                    <div className="d-flex">
+                      <button className="btn btn-icon-only btn-text-dark">
+                        <i className="modus-icons">filter</i>
+                      </button>
+                      <button className="btn btn-icon-only btn-text-dark">
+                        <i className="modus-icons">layout</i>
+                      </button>
+                      <button className="btn btn-icon-only btn-text-dark">
+                        <i className="modus-icons">route_add</i>
+                      </button>
+                      <button className="btn btn-icon-only btn-text-dark disabled">
+                        <i className="modus-icons">finalize_route</i>
+                      </button>
+                      <button className="btn btn-icon-only btn-text-dark disabled">
+                        <i className="modus-icons">trim_fake_orders</i>
+                      </button>
+                    </div>
+                    <div className="d-flex">
+                      <button className="btn btn-icon-only btn-text-dark align-self-end">
+                        <i className="modus-icons">sort</i>
+                      </button>
+                    </div>
+                  </div>
+                  <div className="scroll-container p-2">
+                    <div className="card">
+                      <div className="card-body">
+                        <h5 className="card-title">Panel Content</h5>
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Explicabo asperiores doloremque dolorum qui
+                          ducimus quae eius alias perspiciatis, quod, libero
+                          fuga recusandae quidem molestias nobis non soluta.
+                          Doloremque, in iusto?
+                        </p>
+                      </div>
+                    </div>
+                    <div className="card mt-3">
+                      <div className="card-body">
+                        <h5 className="card-title">Panel Content</h5>
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Explicabo asperiores doloremque dolorum qui
+                          ducimus quae eius alias perspiciatis, quod, libero
+                          fuga recusandae quidem molestias nobis non soluta.
+                          Doloremque, in iusto?
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="panel-footer">Panel Footer</div>
+              </div>
+              <div className="modus-content p-5" id="modusContent">
+                <h1>Content</h1>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Voluptates vel nobis repellat officia, vitae perferendis quis
+                  hic at id dignissimos porro similique tempore consequatur
+                  repudiandae iste blanditiis tenetur facere minus.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Voluptates vel nobis repellat officia, vitae perferendis quis
+                  hic at id dignissimos porro similique tempore consequatur
+                  repudiandae iste blanditiis tenetur facere minus.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Voluptates vel nobis repellat officia, vitae perferendis quis
+                  hic at id dignissimos porro similique tempore consequatur
+                  repudiandae iste blanditiis tenetur facere minus.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Voluptates vel nobis repellat officia, vitae perferendis quis
+                  hic at id dignissimos porro similique tempore consequatur
+                  repudiandae iste blanditiis tenetur facere minus.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Voluptates vel nobis repellat officia, vitae perferendis quis
+                  hic at id dignissimos porro similique tempore consequatur
+                  repudiandae iste blanditiis tenetur facere minus.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="modus-footer">Modus Footer</div>
+      </div>
+    </div>
+  </div>
+  <h3 id="modus-sidebar" className="h2 font-weight-bold mt-3">
+    Modus Sidebar
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#modus-sidebar"
+      aria-label="anchor"
+    ></a>
+  </h3>
+  <p>
+    The Modus sidebar is a simple Bootstrap
+    <code>.nav flex-column</code> element with an additional
+    <code>.modus-sidebar</code> class for styling. Each
+    <code>.nav-link</code> should have an icon or image with a class of
+    <code>.left-nav-icon</code>.
+  </p>
+  <p>
+    The <code>.modus-body</code> should have a class of either
+    <code>.sidebar-open</code> or <code>.sidebar-closed</code> to open or close the
+    sidebar.
+  </p>
+  <p>
+    Toggling the sidebar is done through a menu button icon with an attribute of{" "}
+    <code>data-modus-item=“menu-btn”</code>. The
+    <code>.modus-body</code> should also have a corresponding attribute of
+    <code>data-modus-item=“body”</code>.
+  </p>
+  <div className="guide-example-block">
+    <div
+      className="guide-sample position-relative p-0 border"
+      style={{ height: "300px", zIndex: 10 }}
+      id="sidebarExample"
+    >
+      <div className="modus-layout">
+        <nav className="navbar navbar-expand-lg modus-header">
+          <a data-modus-item="menu-btn">
+            <i className="modus-icon material-icons menu-btn">menu</i>
+          </a>
+          <a href="#modus-sidebar" className="navbar-brand">
+            BRAND
+          </a>
+        </nav>
+        <div className="modus-body sidebar-open" data-modus-item="body">
+          <nav className="nav flex-column modus-sidebar">
+            <ul>
+              <li>
+                <a className="nav-link active" href="#modus-sidebar">
+                  <span className="left-nav-icon">
+                    <i className="material-icons">home</i>
+                  </span>
+                  Nav Item (Icon Font)
+                </a>
+              </li>
+              <li>
+                <a className="nav-link" href="#modus-sidebar">
+                  <span className="left-nav-icon">
+                    <svg height="24" width="24">
+                      <circle cx="12" cy="12" r="12" fill="#363545"></circle>
+                      <text
+                        fill="#fff"
+                        text-anchor="middle"
+                        font-size="9"
+                        font-weight="700"
+                        font-family="Open Sans"
+                        x="12"
+                        y="15"
+                      >
+                        SVG
+                      </text>
+                    </svg>
+                  </span>
+                  Nav Item (Inline SVG)
+                </a>
+              </li>
+              <li>
+                <a className="nav-link" href="#modus-sidebar">
+                  <span className="left-nav-icon">
+                    <img src={routeImage} height="24" width="24" alt="" />
+                  </span>
+                  Nav Item (SVG Image)
+                </a>
+              </li>
+              <li>
+                <a className="nav-link" href="#modus-sidebar">
+                  <span className="left-nav-icon">
+                    <img
+                      src={checkMarkOrangeImage}
+                      height="24"
+                      width="24"
+                      style={{ minWidth: "24px" }}
+                      alt=""
+                    />
+                  </span>
+                  Nav Item (PNG Image, 24x24)
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h3 id="modus-toolbar" className="h2 font-weight-bold mt-3">
+    Modus Toolbar
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#modus-toolbar"
+      aria-label="anchor"
+    ></a>
+  </h3>
+  <p>
+    Our framework includes an all purpose toolbar that can be inserted inside
+    your layout. Simply add <code>.modus-toolbar</code> inside
+    <code>.modus-content-rows</code>.
+  </p>
+  <p>
+    You can use our other components, such as buttons and form groups, inside{" "}
+    <code>.modus-toolbar</code> to add functionality to your application.
+  </p>
+  <div className="guide-example-block">
+    <div
+      className="guide-sample position-relative p-0 border"
+      style={{ zIndex: 10 }}
+      id="example-block2"
+    >
+      <div className="modus-layout">
+        <div className="modus-body">
+          <div className="modus-content-rows">
+            <div className="modus-toolbar">
+              <form className="form-inline ml-3 mr-5">
+                <div className="form-group">
+                  <label className="mr-2">
+                    <strong>Profile</strong>
+                  </label>
+                  <select className="form-control">
+                    <option>Profile 1</option>
+                    <option>Profile 2</option>
+                    <option>Profile 3</option>
+                  </select>
+                </div>
+              </form>
+              <button className="btn btn-text-dark btn-lg btn-icon-only">
+                <i className="modus-icon material-icons">palette</i>
+              </button>
+              <button className="btn btn-text-dark btn-lg btn-icon-only">
+                <i className="modus-icons">calendar</i>
+              </button>
+              <button className="btn btn-text-dark btn-lg btn-icon-only">
+                <i className="modus-icon material-icons">settings</i>
+              </button>
+              <form
+                className="form-inline ml-5"
+                onSubmit={() => {
+                  return !1
+                }}
+              >
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search..."
+                />
+                <button className="btn btn-text-dark btn-lg btn-icon-only ml-2">
+                  <i className="modus-icon material-icons">search</i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h3 id="modus-panel" className="h2 font-weight-bold mt-3">
+    Modus Panel
+    <a
+      className="header-link text-light text-decoration-none font-weight-normal"
+      href="#modus-panel"
+      aria-label="anchor"
+    ></a>
+  </h3>
+  <p>
+    Our framework also includes panels that can be inserted into your layout.
+    Simply add <code>.modus-panel</code> inside of
+    <code>.modus-content-columns</code> before <code>.modus-content</code>.
+  </p>
+  <p>
+    The panels come with <code>.panel-header</code>,<code>.panel-body</code>,
+    and <code>.panel-footer</code> classes for additional layout options.
+  </p>
+  <p>
+    Items can be aligned to the left or right of the
+    <code>.panel-header</code> by using either <code>.left-items</code> or
+    <code>.right-items</code> classes.
+  </p>
+  <p>
+    You also have the option of including <code>.static-container</code> and
+    <code>.scroll-container</code> inside the <code>.panel-body</code> for additional
+    functionality.
+  </p>
+  <p>
+    <strong>Note:</strong> Modus Panels must be given a <code>width</code> using
+    any of the following classes:
+  </p>
+  <ul>
+    <li>
+      <code>.panel-sm</code> (256px)
+    </li>
+    <li>
+      <code>.panel-md</code> (352px)
+    </li>
+    <li>
+      <code>.panel-lg</code> (448px)
+    </li>
+    <li>
+      <code>.panel-xl</code> (544px)
+    </li>
+  </ul>
+  <div className="guide-example-block">
+    <div
+      className="guide-sample position-relative p-0 border"
+      style={{ height: "400px", zIndex: 10 }}
+      id="example-block3"
+    >
+      <div className="modus-layout">
+        <div className="modus-body">
+          <div className="modus-content-rows">
+            <div className="modus-content-columns">
+              <div className="modus-panel panel-lg shadow-sm">
+                <div className="panel-header">
+                  <div className="left-items ml-2">
+                    <div className="custom-control custom-switch">
+                      <input
+                        type="checkbox"
+                        checked
+                        className="custom-control-input"
+                        id="exampleSwitch"
+                        name="exampleSwitch"
+                      />
+                      <label className="custom-control-label"></label>
+                    </div>
+                  </div>
+                  <h5>Panel Header</h5>
+                  <div className="right-items mr-2">
+                    <button className="btn btn-icon-only btn-text-dark">
+                      <i className="modus-icons">unloaded_orders</i>
+                    </button>
+                  </div>
+                </div>
+                <div className="panel-body" style={{ flexGrow: 1 }}>
+                  <div className="static-container">
+                    <div className="d-flex">
+                      <button className="btn btn-icon-only btn-text-dark">
+                        <i className="modus-icons">filter</i>
+                      </button>
+                      <button className="btn btn-icon-only btn-text-dark">
+                        <i className="modus-icons">layout</i>
+                      </button>
+                      <button className="btn btn-icon-only btn-text-dark">
+                        <i className="modus-icons">route_add</i>
+                      </button>
+                      <button className="btn btn-icon-only btn-text-dark disabled">
+                        <i className="modus-icons">finalize_route</i>
+                      </button>
+                      <button className="btn btn-icon-only btn-text-dark disabled">
+                        <i className="modus-icons">trim_fake_orders</i>
+                      </button>
+                    </div>
+                    <div className="d-flex">
+                      <button className="btn btn-icon-only btn-text-dark align-self-end">
+                        <i className="modus-icons">sort</i>
+                      </button>
+                    </div>
+                  </div>
+                  <div className="scroll-container p-2">
+                    <div className="card">
+                      <div className="card-body">
+                        <h5 className="card-title">Panel Content</h5>
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Explicabo asperiores doloremque dolorum qui
+                          ducimus quae eius alias perspiciatis, quod, libero
+                          fuga recusandae quidem molestias nobis non soluta.
+                          Doloremque, in iusto?
+                        </p>
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Explicabo asperiores doloremque dolorum qui
+                          ducimus quae eius alias perspiciatis, quod, libero
+                          fuga recusandae quidem molestias nobis non soluta.
+                          Doloremque, in iusto?
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="panel-footer">Panel Footer</div>
+              </div>
+              <div className="modus-content"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

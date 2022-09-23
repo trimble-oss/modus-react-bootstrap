@@ -1,0 +1,103 @@
+/* stylelint-disable function-no-unknown */
+.guide-scroll-container {
+  .tab-section > *:last-child,
+  .guide-section > *:last-child {
+    margin-bottom: 70vh;
+  }
+}
+
+.guide-scroll-container.has-sticky {
+  margin-top: 48px;
+}
+
+.guide-section,
+.tab-section {
+  margin: 40px 0 80px;
+  flex: 1;
+}
+
+.guide-tab-content {
+  table:not(.table) {
+    @extend .card;
+
+    display: flex;
+    background-color: transparent;
+    width: fit-content;
+
+    td,
+    th {
+      padding: 16px;
+      border-left: 1px solid #b7b9c3;
+
+      &:first-child {
+        border-left-width: 0;
+      }
+
+      p {
+        margin-bottom: 0;
+      }
+    }
+
+    tr:last-child td {
+      border-top: 1px solid #ddd;
+
+      p {
+        max-width: 300px;
+        color: theme-color("dark");
+      }
+    }
+  }
+
+  .tab-section > ul > li {
+    margin-bottom: 8px;
+  }
+
+  > h4 {
+    margin-top: 24px;
+  }
+}
+
+.tab-content {
+  display: flex;
+  flex-direction: column;
+
+  .tab-pane {
+    position: relative;
+  }
+}
+
+.tab-section {
+  img {
+    max-width: 100%;
+  }
+}
+
+.guide-example-block {
+  flex-direction: column;
+
+  .guide-content-sample {
+    padding: 40px 100px;
+
+    &.anatomy-display-container {
+      padding-left: 250px;
+    }
+  }
+
+  .guide-sample {
+    padding: 20px;
+
+    > .progress + .progress {
+      margin-top: 1rem;
+    }
+
+    > .spinner-rectangle-bounce {
+      margin-right: 1rem;
+    }
+  }
+}
+
+td.anatomy-cell {
+  height: 120px;
+  padding: 20px 80px 20px 230px;
+  vertical-align: middle;
+}

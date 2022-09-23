@@ -1,0 +1,18 @@
+{
+  "routes": [
+    {
+      "route": "/favicon.*",
+      "headers": {
+        "cache-control": "public, max-age=15770000"
+      }
+    }
+  ],
+  "globalHeaders": {
+    "Content-Security-Policy": "upgrade-insecure-requests",
+    "Permissions-Policy": "autoplay=()",
+    "Referrer-Policy": "no-referrer-when-downgrade",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  }
+}
