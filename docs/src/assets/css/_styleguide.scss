@@ -84,18 +84,18 @@ code {
   }
 }
 
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
   background: #f8f9fa;
   // box-shadow: $shadow-depth-1;
 }
 
 .pop-highlight {
-  //background-color: red !important;
+  // background-color: red !important;
   position: relative;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     display: block;
     border: 1px dashed rgb(255 0 0 / 100%);
@@ -139,7 +139,7 @@ pre[class*="language-"] {
   position: relative;
 
   &::after {
-    content: "NO";
+    content: 'NO';
     font-weight: bold;
     font-size: 14px;
     padding: 5px;

@@ -321,8 +321,7 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
     const toggleSingleCheckBoxSelection = useCallback(
       (event: any, nodeIdValue: number) => {
         const prevState = [...nodeCheckBoxSelected];
-        const newState =
-          prevState && prevState.includes(nodeIdValue) ? [] : [nodeIdValue];
+        const newState = prevState.includes(nodeIdValue) ? [] : [nodeIdValue];
         setNodeCheckBoxSelected(newState);
         if (onCheckBoxSelect) onCheckBoxSelect(event, newState);
       },

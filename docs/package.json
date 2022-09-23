@@ -17,12 +17,9 @@
   "license": "MIT",
   "author": "Trimble Inc.",
   "scripts": {
-    "build": "yarn run lint && gatsby build",
+    "build": "gatsby build",
     "clean": "gatsby clean",
     "develop": "gatsby build && gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "lint": "yarn run lint-css",
-    "lint-css": "stylelint \"src/assets/css/*.scss\"  --fix --customSyntax postcss-scss",
     "start": "yarn develop"
   },
   "dependencies": {
@@ -52,17 +49,12 @@
     "gatsby-transformer-react-docgen": "^7.17.0",
     "gatsby-transformer-remark": "^5.4.0",
     "lodash": "^4.17.21",
-    "postcss-scss": "^4.0.5",
-    "prettier": "2.7.1",
     "prismjs": "^1.28.0",
     "react": "^17.0.2",
     "react-docgen": "^5.4.3",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-is": "^18.2.0",
-    "stylelint": "^14.11.0",
-    "stylelint-config-prettier": "^9.0.3",
-    "stylelint-config-standard-scss": "^5.0.0",
     "ws": ">=8.8.1"
   },
   "peerDependencies": {
