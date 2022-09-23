@@ -2,7 +2,7 @@ lib/
 node_modules/**
 coverage/
 **/node_modules/**
-www/.cache
-www/public
-www/plugins
+docs/.cache
+docs/public
+docs/plugins
 **/*.d.ts

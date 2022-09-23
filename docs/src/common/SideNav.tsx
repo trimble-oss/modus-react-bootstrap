@@ -1,31 +1,25 @@
-import React from "react"
-import { useContext } from "react"
-import { Nav } from "../../../src"
+import React from 'react'
+import { useContext } from 'react'
+import { Nav } from '../../../src'
 
-import { Menu } from "./MenuConfiguration"
-import { MenuContext } from "./MenuContext"
+import { Menu } from './MenuConfiguration'
+import { MenuContext } from './MenuContext'
 
 interface NavSectionProps {
-  activeMenuKey: string
-  items: Menu[]
+  activeMenuKey?: string
+  items?: Menu[]
 }
-function NavSection({ activeMenuKey, items }: NavSectionProps) {
+function noop() {
+  // do nothing
+}
+const NavSection: React.FC<NavSectionProps> = ({ activeMenuKey, items }) => {
   return (
     <>
       {items && (
-        <Nav
-          activeKey={activeMenuKey}
-          as="ul"
-          onSelect={() => {}}
-          className="d-block"
-        >
-          {items.map(item => (
-            <Nav.Item key={item.key} as="li">
-              <Nav.Link
-                active={item.key == activeMenuKey}
-                href={item.path}
-                className="text-dark"
-              >
+        <Nav activeKey={activeMenuKey} as='ul' onSelect={noop} className='d-block'>
+          {items.map((item) => (
+            <Nav.Item key={item.key} as='li'>
+              <Nav.Link active={item.key === activeMenuKey} href={item.path} className='text-dark'>
                 {item.title}
               </Nav.Link>
             </Nav.Item>
@@ -36,12 +30,12 @@ function NavSection({ activeMenuKey, items }: NavSectionProps) {
   )
 }
 
-const SideNav = ({ ...props }) => {
-  const { current, menu } = useContext(MenuContext)
+const SideNav: React.FC<{ className: string }> = ({ className }) => {
+  const { current, menu } = useContext(MenuContext) || {}
 
   return (
-    <div {...props} className="sticky-top sticky-offset border-bottom">
-      <NavSection activeMenuKey={current.key} items={menu} />
+    <div className={className}>
+      <NavSection activeMenuKey={current?.key} items={menu} />
     </div>
   )
 }

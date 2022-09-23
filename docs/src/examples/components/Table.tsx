@@ -1,6 +1,6 @@
-import * as React from "react"
-import Table from "../../../../src/Table"
-import styled from "styled-components"
+import * as React from 'react'
+import Table from '../../../../src/Table'
+import styled from 'styled-components'
 
 type propType = {
   key: string
@@ -20,159 +20,153 @@ function sortFn(a, b) {
 }
 export const DataTableColumnAPIInfo = [
   {
-    key: "accessor",
-    type: "string",
+    key: 'accessor',
+    type: 'string',
     required: true,
-    description: "This is the unique ID for the column.",
+    description: 'This is the unique ID for the column.',
   },
   {
-    key: "Header",
-    type: "string | Function | React.Component => JSX",
-    description: "Used for rendering column header content.",
+    key: 'Header',
+    type: 'string | Function | React.Component => JSX',
+    description: 'Used for rendering column header content.',
   },
   {
-    key: "Cell",
-    type: "Function | React.Component => JSX",
-    description: "Used for rendering custom table body cell content.",
+    key: 'Cell',
+    type: 'Function | React.Component => JSX',
+    description: 'Used for rendering custom table body cell content.',
   },
   {
-    key: "width",
-    type: "number",
-    description: "Specifies the width for the column.",
+    key: 'width',
+    type: 'number',
+    description: 'Specifies the width for the column.',
   },
   {
-    key: "minWidth",
-    type: "number",
-    description: "Specifies the minimum width for the column.",
+    key: 'minWidth',
+    type: 'number',
+    description: 'Specifies the minimum width for the column.',
   },
   {
-    key: "maxWidth",
-    type: "number",
-    description: "Specifies the maximum width for the column.",
+    key: 'maxWidth',
+    type: 'number',
+    description: 'Specifies the maximum width for the column.',
   },
   {
-    key: "disableResizing",
-    type: "boolean",
-    description: "Disables resizing for the column.",
+    key: 'disableResizing',
+    type: 'boolean',
+    description: 'Disables resizing for the column.',
   },
   {
-    key: "sortBy",
-    type: "boolean",
-    description: "Enables sorting for the column.",
+    key: 'sortBy',
+    type: 'boolean',
+    description: 'Enables sorting for the column.',
   },
   {
-    key: "sortDescFirst",
-    type: "boolean",
+    key: 'sortDescFirst',
+    type: 'boolean',
     description:
-      "The first sort direction for this column will be descending instead of ascending.",
+      'The first sort direction for this column will be descending instead of ascending.',
   },
   {
-    key: "sortType",
-    type: "string | Function(rowA: <Row>, rowB: <Row>, columnId: String, desc: Bool)",
+    key: 'sortType',
+    type: 'string | Function(rowA: <Row>, rowB: <Row>, columnId: String, desc: Bool)',
     description:
       "String options are basic, datetime, alphanumeric. Default is alphanumeric. The resolved function from the this string/function will be used to sort the this column's data.",
   },
   {
-    key: "allowDrop",
-    type: "boolean",
-    description:
-      "Allows dropping over the column. Used when drag and drop columns.",
+    key: 'allowDrop',
+    type: 'boolean',
+    description: 'Allows dropping over the column. Used when drag and drop columns.',
   },
   {
-    key: "allowDrag",
-    type: "boolean",
-    description:
-      "Allows dragging of the column. Used when drag and drop columns.",
+    key: 'allowDrag',
+    type: 'boolean',
+    description: 'Allows dragging of the column. Used when drag and drop columns.',
   },
   {
-    key: "Filter",
-    type: "Function | React.Component => JSX",
+    key: 'Filter',
+    type: 'Function | React.Component => JSX',
     description: (
       <>
-        This function (or component) is used to render this column's filter UI.
-        It receives the table and column instance objects as props.
+        This function (or component) is used to render this column's filter UI. It receives the
+        table and column instance objects as props.
         <br />
-        Some of the props used for filter are: filterValue, preFilteredRows,
-        setFilter, render
+        Some of the props used for filter are: filterValue, preFilteredRows, setFilter, render
         <br />
         <ul>
           <li>filterValue: The current filter value of the column.</li>
           <li>
-            preFilteredRows: The array of rows that were originally passed to
-            this column's filter before filtering took place.
+            preFilteredRows: The array of rows that were originally passed to this column's filter
+            before filtering took place.
           </li>
+          <li>setFilter: Function to set the current filter value for the column.</li>
           <li>
-            setFilter: Function to set the current filter value for the column.
-          </li>
-          <li>
-            render: Function that takes a string value ex: 'Header' to render
-            the column header text.
+            render: Function that takes a string value ex: 'Header' to render the column header
+            text.
           </li>
         </ul>
       </>
     ),
   },
   {
-    key: "disableFilters",
-    type: "boolean",
-    description: "Filtering for the column will be disabled.",
+    key: 'disableFilters',
+    type: 'boolean',
+    description: 'Filtering for the column will be disabled.',
   },
 ].sort(sortFn) as propType[]
 
 export const DataTableColumnInstanceAPIInfo = [
   {
-    key: "canFilter",
-    description: "Denotes whether a column is filterable.",
-    type: "boolean",
+    key: 'canFilter',
+    description: 'Denotes whether a column is filterable.',
+    type: 'boolean',
   },
   {
-    key: "filterValue",
-    type: "any",
-    description: "The current filter value for the column.",
+    key: 'filterValue',
+    type: 'any',
+    description: 'The current filter value for the column.',
   },
   {
-    key: "preFilteredRows",
-    type: "Array<row>",
+    key: 'preFilteredRows',
+    type: 'Array<row>',
     description:
       "The array of rows that were originally passed to this column's filter before filtering took place.",
   },
   {
-    key: "filteredRows",
-    type: "Array<row>",
+    key: 'filteredRows',
+    type: 'Array<row>',
     description:
       "The resulting array of rows received from this column's filter after filtering took place.",
   },
   {
-    key: "canResize",
-    type: "boolean",
-    description: "Indicates if the column can be resized.",
+    key: 'canResize',
+    type: 'boolean',
+    description: 'Indicates if the column can be resized.',
   },
   {
-    key: "isResizing",
-    type: "boolean",
-    description: "Indicates if the column is currently being resized.",
+    key: 'isResizing',
+    type: 'boolean',
+    description: 'Indicates if the column is currently being resized.',
   },
   {
-    key: "canSort",
-    type: "boolean",
-    description: "Denotes whether a column is sortable.",
+    key: 'canSort',
+    type: 'boolean',
+    description: 'Denotes whether a column is sortable.',
   },
   {
-    key: "isSorted",
-    type: "boolean",
-    description: "Denotes whether this column is currently being sorted.",
+    key: 'isSorted',
+    type: 'boolean',
+    description: 'Denotes whether this column is currently being sorted.',
   },
   {
-    key: "sortedIndex",
-    type: "number",
+    key: 'sortedIndex',
+    type: 'number',
     description:
-      "If the column is currently sorted the index will be order of sorted columns. If not sorted the index will be -1.",
+      'If the column is currently sorted the index will be order of sorted columns. If not sorted the index will be -1.',
   },
   {
-    key: "isSortedDesc",
-    type: "boolean",
-    description:
-      "Denotes whether the column's sort direction is descending or not.",
+    key: 'isSortedDesc',
+    type: 'boolean',
+    description: "Denotes whether the column's sort direction is descending or not.",
   },
 ].sort(sortFn) as propType[]
 
@@ -1880,7 +1874,7 @@ function Example() {
 render(<Example />);`
 
 // for the data generator makeData function
-const range = len => {
+const range = (len) => {
   const arr = []
   for (let i = 0; i < len; i++) {
     arr.push(i)
@@ -1889,44 +1883,45 @@ const range = len => {
 }
 
 const names = [
-  "Mickey Mouse",
-  "Bugs Bunny",
-  "Homer Simpson",
-  "Fred Flintstone",
-  "Sponge Bob",
-  "Daffy Duck",
-  "Charlie Brown",
-  "Scooby Doo",
-  "Tom Cat",
-  "Jerry Mouse",
-  "Mighty Mouse",
-  "Wile E Coyote",
-  "Tweety Bird",
-  "Pink Panther",
-  "Road Runner",
-  "Patrick Star",
-  "Roger Rabbit",
-  "Papa Smurf",
-  "Buzz Lightyear",
+  'Mickey Mouse',
+  'Bugs Bunny',
+  'Homer Simpson',
+  'Fred Flintstone',
+  'Sponge Bob',
+  'Daffy Duck',
+  'Charlie Brown',
+  'Scooby Doo',
+  'Tom Cat',
+  'Jerry Mouse',
+  'Mighty Mouse',
+  'Wile E Coyote',
+  'Tweety Bird',
+  'Pink Panther',
+  'Road Runner',
+  'Patrick Star',
+  'Roger Rabbit',
+  'Papa Smurf',
+  'Buzz Lightyear',
 ]
 const newPerson = () => {
   const rand = Math.random()
   const namesIndex = Math.floor(rand * (names.length - 1))
-  const firstName = names[namesIndex].split(" ")[0]
-  const lastName = names[namesIndex].split(" ")[1]
+  const firstName = names[namesIndex].split(' ')[0]
+  const lastName = names[namesIndex].split(' ')[1]
   return {
     firstName,
     lastName,
     age: Math.floor(rand * 30),
     visits: Math.floor(rand * 100),
     progress: Math.floor(rand * 100),
-    status: rand > 0.66 ? "Verified" : rand > 0.33 ? "Pending" : "Rejected",
+    status: rand > 0.66 ? 'Verified' : rand > 0.33 ? 'Pending' : 'Rejected',
   }
 }
-export function MakeData(...lens) {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export function MakeData(...lens): unknown {
   const makeDataLevel = (depth = 0) => {
     const len = lens[depth]
-    return range(len).map(d => {
+    return range(len).map(() => {
       return {
         ...newPerson(),
         subRows: lens[depth + 1] ? makeDataLevel(depth + 1) : undefined,

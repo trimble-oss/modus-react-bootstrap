@@ -1,14 +1,16 @@
-import React from "react"
+import React from 'react'
 
-const Overview = props => (
+const Overview: unknown = (props) => (
   <>
-    <h2 className="h1 font-weight-bold" id="Overview">
+    <h2 className='h1 font-weight-bold' id='Overview'>
       Overview
       <a
-        className="header-link text-light text-decoration-none font-weight-normal ml-2"
-        href={"#Overview"}
-        aria-label="anchor"
-      ></a>
+        className='header-link text-light text-decoration-none font-weight-normal ml-2'
+        href={'#Overview'}
+        aria-label='anchor'
+      >
+        {' '}
+      </a>
     </h2>
     <p>{props.children}</p>
   </>
