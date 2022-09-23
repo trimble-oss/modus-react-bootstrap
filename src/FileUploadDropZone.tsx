@@ -422,7 +422,7 @@ const FileUploadDropZone = forwardRef<HTMLDivElement, FileUploadDropZoneProps>(
               </Form.File>{' '}
               to upload.
             </div>
-            {state && state.value === 'error' && (
+            {state.value === 'error' && (
               <div className="reset-btn-container">
                 <Button
                   variant="outline-secondary"
