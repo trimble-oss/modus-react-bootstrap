@@ -42,8 +42,6 @@ Yarn is the package manager, check out setup
 instructions [here](https://yarnpkg.com/en/docs/install) if you don't have it installed already.
 After that you can run `yarn run bootstrap` to install all the needed dependencies and build a local copy of the library with `yarn run build`.
 
-To test the changes on a browser locally you can use the test project **sample-workspace** and `yarn start` will start a development site.
-
 ## Contributions
 
 See the [contributing guidelines](https://github.com/trimble-oss/modus-react-bootstrap/blob/main/CONTRIBUTING.md) for how to propose bugfixes and improvements.
