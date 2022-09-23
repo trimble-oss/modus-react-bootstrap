@@ -70,8 +70,7 @@ The team will review your pull request and either merge it, request changes to i
 
 ## Documentation
 
-Please update the docs with any API changes, the code and docs should always be in sync.
-The documentation is maintained in a separate [repository](https://github.com/trimble-oss/website-modus-react-bootstrap.trimble.com) which is a Gatsby project that uses [MDX](https://www.gatsbyjs.com/docs/how-to/routing/mdx/) and deployed to the [site](https://modus-react-bootstrap.trimble.com/).
+Please update the [documentation](https://github.com/trimble-oss/modus-react-bootstrap/tree/main/docs/src/pages/components) with the changes, the components and docs should always be in sync.
+The documentation is a Gatsby project that uses [MDX](https://www.gatsbyjs.com/docs/how-to/routing/mdx/) and deployed to the [site](https://modus-react-bootstrap.trimble.com/). It contains interactive examples and guides for the components.
 
-- Page with interactive examples and guides for each component is found within the `pages/components` directory.
-- To update the component API details shown on the page a copy of the component file has to added to this [path](https://github.com/trimble-oss/website-modus-react-bootstrap.trimble.com/tree/main/src/api-docs/modus-react-bootstrap) and it will reflect automatically in the API section.
+Please refer to the [contributing guidelines](https://github.com/trimble-oss/modus-react-bootstrap/blob/main/CONTRIBUTING-docs.md) for any changes.
