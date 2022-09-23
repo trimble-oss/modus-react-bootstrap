@@ -2,7 +2,7 @@
 # catch bugs/issues with some things like YML, XML, JSON formatting issues
 # set it to disable (not run) on things tested elsewhere (e.g. CSS and JS)
 #
-name: Lint Code Base
+name: Super Linter
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    name: Lint Code Base
+    name: Super Linter
     runs-on: ubuntu-latest
 
     steps:
@@ -21,7 +21,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Lint Code Base
+      - name: Super Linter
         uses: github/super-linter/slim@v4
         env:
           DEFAULT_BRANCH: main
