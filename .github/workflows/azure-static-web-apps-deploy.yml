@@ -19,7 +19,7 @@ jobs:
         with:
           submodules: true
 
-      - run: yarn && cd docs && yarn && yarn run build
+      - run: yarn run deploy-docs
 
       - name: Build And Deploy
         id: builddeploy

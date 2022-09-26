@@ -1,15 +1,13 @@
-import React from "react"
-import CodePreview from "./CodePreview"
-import LinkedHeading from "./LinkedHeading"
-import * as PropTypes from "prop-types"
+import React from 'react'
+import CodePreview from './CodePreview'
+import LinkedHeading from './LinkedHeading'
 
-interface CodeBlockProps
-  extends Omit<React.HTMLProps<HTMLDivElement>, "scope" | "style"> {
+interface CodeBlockProps extends Omit<React.HTMLProps<HTMLDivElement>, 'scope' | 'style'> {
   bigtitle?: string
   title?: string
   subtitle1?: string
   subtitle2?: string
-  scope?: object
+  scope?: { [key: string]: never }
   code: string
   noInline?: boolean
   style?: string
@@ -17,7 +15,7 @@ interface CodeBlockProps
   previewOnly?: boolean
 }
 
-const CodeBlock = ({
+const CodeBlock: React.FunctionComponent<CodeBlockProps> = ({
   bigtitle,
   title,
   subtitle1,
@@ -30,70 +28,43 @@ const CodeBlock = ({
   hideCode,
   previewOnly,
   ...props
-}: CodeBlockProps) => {
-  const codePreview = (
-    code,
-    scope,
-    noInline,
-    style,
-    className,
-    previewOnly
-  ) => {
-    if (!code) return null
-    let codeText = code.trim().replace(";<", "<").replace(/>;$/, ">")
-
-    return (
-      <CodePreview
-        code={codeText}
-        scope={scope}
-        noInline={noInline}
-        style={style}
-        className={className}
-        hideCode={hideCode}
-        previewOnly={previewOnly}
-      ></CodePreview>
-    )
-  }
-
+}) => {
   return (
     <div>
       {bigtitle && (
-        <LinkedHeading h="2" className="h1" id={bigtitle.replace(/ /g, "")}>
+        <LinkedHeading h='2' className='h1' id={bigtitle.replace(/ /g, '')}>
           {bigtitle}
         </LinkedHeading>
       )}
       {title && (
-        <LinkedHeading h="3" id={title.replace(/ /g, "")}>
+        <LinkedHeading h='3' id={title.replace(/ /g, '')}>
           {title}
         </LinkedHeading>
       )}
       {subtitle1 && (
-        <LinkedHeading h="4" id={subtitle1.replace(/ /g, "")}>
+        <LinkedHeading h='4' id={subtitle1.replace(/ /g, '')}>
           {subtitle1}
         </LinkedHeading>
       )}
       {subtitle2 && (
-        <LinkedHeading h="5" id={subtitle2.replace(/ /g, "")}>
+        <LinkedHeading h='5' id={subtitle2.replace(/ /g, '')}>
           {subtitle2}
         </LinkedHeading>
       )}
       {props.children && <p>{props.children}</p>}
-      {codePreview(code, scope, noInline, style, className, previewOnly)}
+      {code && (
+        <CodePreview
+          code={code.trim().replace(';<', '<').replace(/>;$/, '>')}
+          scope={scope}
+          noInline={noInline}
+          style={style}
+          className={className}
+          hideCode={hideCode}
+          previewOnly={previewOnly}
+        ></CodePreview>
+      )}
     </div>
   )
 }
-
-const propTypes = {
-  bigtitle: PropTypes.string,
-  title: PropTypes.string,
-  subtitle1: PropTypes.string,
-  subtitle2: PropTypes.string,
-  scope: PropTypes.object,
-  code: PropTypes.string,
-  noInline: PropTypes.bool,
-  style: PropTypes.string,
-  codeOnly: PropTypes.bool,
-}
-CodeBlock.propTypes = propTypes
 
 export default CodeBlock

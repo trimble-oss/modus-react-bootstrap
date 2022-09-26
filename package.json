@@ -39,14 +39,16 @@
     "lint": "yarn run lint-js && yarn run lint-css",
     "lint-css": "stylelint \"scss/**/*.scss\" --fix",
     "lint-js": "eslint --ext tsx --ext ts src && tsc --noEmit",
-    "build-docs": "yarn run clean-docs && yarn run lint-docs && cd docs && yarn run build",
+    "build-docs": "cd docs && yarn run build",
     "clean-docs": "yarn --cwd docs clean",
+    "deploy-docs": "yarn run bootstrap && yarn run clean-docs && yarn run lint-docs && yarn run build-docs",
     "lint-css-docs": "stylelint \"docs/src/assets/css/*.scss\"  --fix",
-    "lint-docs": "yarn run lint-css-docs",
-    "full": "yarn run bootstrap && yarn run build && yarn run build-docs && yarn run start",
+    "lint-docs": "yarn run lint-js-docs && yarn run lint-css-docs",
+    "lint-js-docs": "eslint docs/src/**/*.{js,jsx,ts,tsx,json}",
+    "full": "yarn run bootstrap && yarn run build && yarn run clean-docs && yarn run lint-docs && yarn run build-docs && yarn run start",
     "prepublishOnly": "yarn run build",
     "release": "rollout",
-    "start": "yarn --cwd docs start"
+    "start": "yarn run clean-docs && yarn run lint-docs && yarn --cwd docs start"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --fix"

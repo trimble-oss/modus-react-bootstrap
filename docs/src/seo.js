@@ -1,7 +1,8 @@
-import React from "react"
-import { Helmet } from "react-helmet"
-import PropTypes from "prop-types"
-import { StaticQuery, graphql } from "gatsby"
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import React from 'react'
+import { Helmet } from 'react-helmet'
+import PropTypes from 'prop-types'
+import { StaticQuery, graphql } from 'gatsby'
 
 const query = graphql`
   query SEO {
@@ -21,24 +22,19 @@ const SEO = ({ title, description, pathname }) => (
     query={query}
     render={({
       site: {
-        siteMetadata: {
-          defaultTitle,
-          titleTemplate,
-          defaultDescription,
-          siteUrl,
-        },
+        siteMetadata: { defaultTitle, titleTemplate, defaultDescription, siteUrl },
       },
     }) => {
       const seo = {
         title: title ? `${title} | ${defaultTitle}` : defaultTitle,
         description: description || defaultDescription,
-        url: `${siteUrl}${pathname || "/"}`,
+        url: `${siteUrl}${pathname || '/'}`,
       }
 
       return (
         <>
           <Helmet title={seo.title} titleTemplate={titleTemplate}>
-            <meta name="description" content={seo.description} />
+            <meta name='description' content={seo.description} />
           </Helmet>
         </>
       )
