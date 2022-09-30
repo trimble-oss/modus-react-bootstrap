@@ -27,7 +27,9 @@ jobs:
           DEFAULT_BRANCH: main
           FILTER_REGEX_EXCLUDE: .*docs/.*
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LOG_LEVEL: NOTICE
           JAVASCRIPT_DEFAULT_STYLE: prettier
+          SUPPRESS_POSSUM: true
           VALIDATE_ALL_CODEBASE: false
           VALIDATE_CSS: false
           VALIDATE_EDITORCONFIG: false
