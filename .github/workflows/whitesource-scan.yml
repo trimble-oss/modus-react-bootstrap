@@ -5,11 +5,9 @@ on:
     - cron: '0 0 1 * *'
 
 jobs:
-  scan:
-    name: WhiteSource Scan Runner
+  hello_world_job:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
+    name: WhiteSource Scan Runner
 
     steps:
       - name: Checkout repository
