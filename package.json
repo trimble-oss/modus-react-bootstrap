@@ -120,7 +120,7 @@
     "eslint-plugin-react-hooks": "^4.6.0-next-327e4a1f9-20220613",
     "execa": "^5.0.0",
     "fs-extra": "^10.1.0",
-    "husky": "^7.0.4",
+    "husky": "^8.0.1",
     "node-sass": "^7.0.3",
     "postcss": "^8.4.16",
     "postcss-cli": "^10.0.0",
