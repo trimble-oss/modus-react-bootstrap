@@ -5,6 +5,7 @@
   "rules": {
     "import/extensions": "off",
     "prettier/prettier": "warn",
-    "@typescript-eslint/naming-convention": "off"
+    "@typescript-eslint/naming-convention": "off",
+    "react/no-unknown-property": [2, { "ignore": ["x-placement"] }]
   }
 }
