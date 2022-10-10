@@ -25,6 +25,7 @@
       "global-require": "off",
       "react/prop-types": "off",
       "react/no-unescaped-entities": "off",
+      "react/no-unknown-property": [2, { "ignore": ["charSet"] }],
       "import/no-webpack-loader-syntax": "off",
       "prefer-arrow-callback": "off",
       "jsx-a11y/label-has-associated-control": "off",
