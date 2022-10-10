@@ -5658,10 +5658,10 @@ gatsby-telemetry@^3.24.0:
     lodash "^4.17.21"
     node-fetch "^2.6.7"
 
-gatsby-transformer-react-docgen@^7.17.0:
-  version "7.23.0"
-  resolved "https://registry.yarnpkg.com/gatsby-transformer-react-docgen/-/gatsby-transformer-react-docgen-7.23.0.tgz#9ce3865c9f81e54f326f4b388b2d54995af6753b"
-  integrity sha512-VBZMvDn4KPA93SIZIcBFVyYFAOj9GlNHdbd+dBQ9fqEdImizfGY7E0mDSu52jK30R1YWjJz3fr2wNMu7yvgv7g==
+gatsby-transformer-react-docgen@^7.24.0:
+  version "7.24.0"
+  resolved "https://registry.yarnpkg.com/gatsby-transformer-react-docgen/-/gatsby-transformer-react-docgen-7.24.0.tgz#c4cb1e200c07239923e870acf5c21ed00ee94664"
+  integrity sha512-YSsXyTCHHirUASkwGGwQPwyZmsCTjQc+YINilmZu1d/fuLt5RfPKlUVO0V8EBiYCVYLAYe6jrdVv4nm/pQlrwg==
   dependencies:
     "@babel/code-frame" "^7.14.0"
     "@babel/runtime" "^7.15.4"
