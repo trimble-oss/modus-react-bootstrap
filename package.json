@@ -117,7 +117,7 @@
     "eslint-plugin-mocha": "^10.0.5",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
-    "eslint-plugin-react-hooks": "^4.6.0-next-327e4a1f9-20220613",
+    "eslint-plugin-react-hooks": "^5.0.0-next-8951c5fc9-20220915",
     "execa": "^5.0.0",
     "fs-extra": "^10.1.0",
     "husky": "^8.0.1",
