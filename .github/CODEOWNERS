@@ -1,0 +1,11 @@
+# About CODEOWNERS
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Folders
+
+* @msankaran0712
+
+# File Types
+
+*.html @coliff @msankaran0712
+*.scss @coliff @msankaran0712
