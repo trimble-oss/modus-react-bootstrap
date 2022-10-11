@@ -1,3 +1,7 @@
+## Unreleased
+
+- Fixes [bug](https://github.com/trimble-oss/modus-react-bootstrap/issues/114)
+
 ## v1.1.4 - 2022-08-19
 
 - Upgraded to [Modus Bootstrap v1.5.4](https://www.npmjs.com/package/@trimbleinc/modus-bootstrap), check the [Modus Bootstrap Release notes](https://modus-bootstrap.trimble.com/changelog/) for more details.

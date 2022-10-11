@@ -87,6 +87,13 @@ const DataTableHeaderCell = React.forwardRef<
     onToggleHideColumn(header.id, false);
   }, [onToggleHideColumn, header.id]);
 
+  const handleMouseDown = useCallback(
+    (event) => {
+      if (onHeaderDragStart && allowDrag) onHeaderDragStart(event, header);
+    },
+    [onHeaderDragStart, header],
+  );
+
   if (!header.isVisible) {
     return (
       <th className="hidden-column">
@@ -115,13 +122,6 @@ const DataTableHeaderCell = React.forwardRef<
       style: getFlexColumnStyles(header),
       title: '',
     },
-    allowDrag
-      ? {
-          onMouseDown(e) {
-            if (onHeaderDragStart) onHeaderDragStart(e, header);
-          },
-        }
-      : {},
   );
 
   return (
@@ -130,15 +130,21 @@ const DataTableHeaderCell = React.forwardRef<
         header.id === DATATABLE_CHECKBOX_SELECTOR_ID
           ? 'icon-only checkbox-selector-cell'
           : 'pr-2',
-        className,
         allowDrag && 'draggable',
+        header.isResizing && 'resizing',
+        className,
       )}
       ref={resolvedRef}
       onContextMenu={handleContextMenuClick}
       {...headerProps}
       {...props}
     >
-      <div className="d-flex w-100 h-100 align-items-center th-content">
+      <div
+        className="d-flex w-100 h-100 align-items-center th-content"
+        onMouseDown={handleMouseDown}
+        role="columnheader"
+        tabIndex={0}
+      >
         <div
           className="flex-grow-1 overflow-hidden"
           style={{

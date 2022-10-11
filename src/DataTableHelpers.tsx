@@ -18,7 +18,6 @@ export const checkBoxSelectionHook = <T extends Record<string, unknown>>(
   hooks: Hooks<T>,
   tableId: string,
   multipleRowSelection,
-  size?: string,
 ) => {
   hooks.visibleColumns.push((columns) => [
     {
@@ -27,7 +26,6 @@ export const checkBoxSelectionHook = <T extends Record<string, unknown>>(
       disableGroupBy: true,
       Cell: ({ row }: CellProps<T>) => (
         <IndeterminateCheckbox
-          size={size}
           {...row.getToggleRowSelectedProps()}
           id={`${tableId}_${DATATABLE_CHECKBOX_SELECTOR_ID}_row"${row.id}`}
         />
@@ -35,7 +33,6 @@ export const checkBoxSelectionHook = <T extends Record<string, unknown>>(
       ...(multipleRowSelection && {
         Header: ({ getToggleAllRowsSelectedProps }: HeaderProps<T>) => (
           <IndeterminateCheckbox
-            size={size}
             {...getToggleAllRowsSelectedProps()}
             id={`${tableId}_${DATATABLE_CHECKBOX_SELECTOR_ID}_header`}
           />

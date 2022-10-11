@@ -58,6 +58,10 @@ function useDataTableInstance<T extends Record<string, unknown>>(
     state: { pageIndex, pageSize, filters, globalFilter },
   } = tableInstance;
 
+  const isResizing = headerGroups.find((group) =>
+    group.headers.find((h) => h.isResizing),
+  );
+
   const filterColumns = useMemo(
     () =>
       allColumns
@@ -117,6 +121,7 @@ function useDataTableInstance<T extends Record<string, unknown>>(
     gotoPage,
     setPageSize,
     selectedFlatRows,
+    isResizing,
     state: { pageIndex, pageSize, filters, globalFilter },
     getAllHeadersInAGroup,
   };

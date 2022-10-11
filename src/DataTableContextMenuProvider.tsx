@@ -19,6 +19,7 @@ export const DataTableHeaderContextMenu = React.createContext<{
 
 export default function DataTableContextMenuProvider({
   children,
+  size,
   allColumns,
   toggleHideColumn,
   toggleHideAllColumns,
@@ -85,6 +86,7 @@ export default function DataTableContextMenuProvider({
       {renderUsingPortal(
         contextMenu ? (
           <ContextMenu
+            size={size}
             menu={contextMenu.items}
             anchorPointX={contextMenu.positionX}
             anchorPointY={contextMenu.positionY}
@@ -99,6 +101,7 @@ export default function DataTableContextMenuProvider({
 
 DataTableContextMenuProvider.propTypes = {
   children: PropTypes.node,
+  size: PropTypes.string,
   allColumns: PropTypes.any.isRequired,
   toggleHideColumn: PropTypes.func.isRequired,
   toggleHideAllColumns: PropTypes.func.isRequired,
