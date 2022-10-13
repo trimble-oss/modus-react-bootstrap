@@ -68,14 +68,22 @@
       &.drop-block {
         box-shadow: inset 2px 0 0 0 $col_red;
       }
+    }
 
-      &.draggable {
-        padding-left: 0;
+    &:not(.resizing) {
+      th.draggable > .th-content {
+        cursor: grab;
+      }
 
-        .th-content {
-          cursor: grab !important;
-          padding-left: 1rem;
-        }
+      th .modus-icons.material-icons.sorted,
+      th .modus-icons.material-icons.unsorted {
+        cursor: pointer;
+      }
+    }
+
+    &.resizing {
+      th {
+        cursor: ew-resize !important;
       }
     }
 
@@ -83,7 +91,6 @@
     th .modus-icons.material-icons.unsorted {
       vertical-align: text-bottom;
       font-size: 1rem;
-      cursor: pointer !important;
     }
 
     th .modus-icons.material-icons.unsorted {
@@ -198,4 +205,11 @@
   .mrb-table-pagination {
     border-top: 1px solid $table-border-color;
   }
+}
+
+.context-menu:not(.list-group-condensed)
+  .custom-checkbox
+  .custom-control-label {
+  line-height: 2;
+  font-size: inherit;
 }

@@ -278,7 +278,7 @@ function DataTable<T extends Record<string, unknown>>(
     !columns.find((col) => col.accessor === 'selector')
   ) {
     conditionalHooks.push((hooks) =>
-      checkBoxSelectionHook(hooks, id, multipleRowSelection, size),
+      checkBoxSelectionHook(hooks, id, multipleRowSelection),
     );
   }
 
@@ -299,6 +299,7 @@ function DataTable<T extends Record<string, unknown>>(
     selectedFlatRows,
     filterColumns,
     visibleColumns,
+    isResizing,
     state: { pageIndex, pageSize, filters, globalFilter },
     prepareRow,
     getTableProps,
@@ -372,12 +373,14 @@ function DataTable<T extends Record<string, unknown>>(
                 aria-rowcount={data.length}
                 className={classNames(
                   stickyFirstColumn && 'table-sticky-first-column',
+                  isResizing && 'resizing',
                 )}
               >
                 <thead className="bg-gray-light">
                   {headerGroups.map((headerGroup) => (
                     <tr {...headerGroup.getHeaderGroupProps()} role="row">
                       <DataTableContextMenuProvider
+                        size={size}
                         allColumns={allColumns}
                         toggleHideAllColumns={toggleHideAllColumns}
                         toggleHideColumn={toggleHideColumn}

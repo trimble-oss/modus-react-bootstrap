@@ -1,13 +1,16 @@
 import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import classNames from 'classnames';
 import Dropdown from './Dropdown';
 import { ContextMenuItem } from './types';
 
-interface ContextMenuProps extends Omit<React.HTMLProps<HTMLDivElement>, 'as'> {
+interface ContextMenuProps
+  extends Omit<React.HTMLProps<HTMLDivElement>, 'as' | 'size'> {
   menu: ContextMenuItem[];
   anchorPointX: string | number;
   anchorPointY: string | number;
+  size?: string;
   onClose: (...args: any[]) => void;
 }
 
@@ -22,13 +25,6 @@ const ContextMenuStyled = styled.div`
   .list-group-item + .dropdown-menu {
     padding: 0;
   }
-
-  span,
-  div,
-  label,
-  li {
-    font-size: 0.875rem;
-  }
 `;
 
 function ContextMenu(
@@ -36,7 +32,7 @@ function ContextMenu(
     ref?: React.Ref<HTMLDivElement>;
   },
 ): React.ReactElement {
-  const { menu, anchorPointX, anchorPointY, onClose, ...rest } = props;
+  const { menu, anchorPointX, anchorPointY, size, onClose, ...rest } = props;
   const ref = React.useRef<HTMLDivElement>(null);
 
   const handleClickOutside = useCallback(
@@ -61,7 +57,10 @@ function ContextMenu(
 
   return (
     <ContextMenuStyled
-      className="list-group"
+      className={classNames(
+        'context-menu list-group',
+        size === 'sm' && 'list-group-condensed',
+      )}
       ref={ref}
       style={{
         transform: `translate(calc(${anchorPointX}px), calc(${anchorPointY}px))`,
