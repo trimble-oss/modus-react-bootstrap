@@ -1,4 +1,4 @@
-name: WhiteSource Scan
+name: Mend Scan
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   scan:
-    name: WhiteSource Scan Runner
+    name: Mend Scan Runner
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -17,7 +17,7 @@ jobs:
         with:
           submodules: 'true'
 
-      - name: Run WhiteSource Scan Action
+      - name: Run Mend Scan Action
         uses: trimble-oss/gh-actions/mend-scanner@main
 
         with:
