@@ -1,3 +1,9 @@
+/**
+ * theme-toggle.js
+ * Modus React Bootstrap Guide
+ * Copyright (c) 2022 Trimble Inc.
+ */
+
 const storageKey = "theme-preference",
   getColorPreference = () =>
     localStorage.getItem(storageKey)

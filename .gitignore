@@ -95,5 +95,4 @@ typings/
 
 # SonarQube
 .scannerwork/
-sonar-project.properties
 
