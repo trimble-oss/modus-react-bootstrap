@@ -54,9 +54,9 @@ const Footer: React.FC<unknown> = () => {
             <ul className='list-unstyled'>
               <li className='my-3 my-sm-2'>
                 <a
-                  href='https://github.com/orgs/trimble-oss/repositories?q=react&type=source&language=&sort='
+                  href='https://github.com/trimble-oss/modus-react-bootstrap/'
                   target='_blank'
-                  rel='noopener noreferrer'
+                  rel='noopener'
                   className='py-2'
                 >
                   Contribute
@@ -66,7 +66,7 @@ const Footer: React.FC<unknown> = () => {
                 <a
                   href='https://modus.trimble.com/community/contact/'
                   target='_blank'
-                  rel='noopener noreferrer'
+                  rel='noopener'
                   className='py-2'
                 >
                   Contact Us
@@ -76,7 +76,7 @@ const Footer: React.FC<unknown> = () => {
                 <a
                   href='https://mail.google.com/chat/u/0/#chat/space/AAAAexugR1k'
                   target='_blank'
-                  rel='noopener noreferrer'
+                  rel='noopener'
                   className='py-2'
                 >
                   Google Chat Space
