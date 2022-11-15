@@ -58,7 +58,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "@babel/runtime": "^7.17.9",
+    "@babel/runtime": "^7.20.1",
     "@restart/context": "^2.1.4",
     "@restart/hooks": "^0.4.7",
     "@trimbleinc/modus-bootstrap": "^1.5.4",
