@@ -54,7 +54,7 @@ const Footer: React.FC<unknown> = () => {
             <ul className='list-unstyled'>
               <li className='my-3 my-sm-2'>
                 <a
-                  href='https://github.com/orgs/trimble-oss/repositories?q=react&type=source&language=&sort='
+                  href='https://github.com/trimble-oss/modus-react-bootstrap/'
                   target='_blank'
                   rel='noopener noreferrer'
                   className='py-2'
