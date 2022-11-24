@@ -1,6 +1,11 @@
-## Unreleased
+## v1.1.5 - 2022-11-24
 
-- Fixes [bug](https://github.com/trimble-oss/modus-react-bootstrap/issues/114)
+- Fixes [Table component - UI issues](https://github.com/trimble-oss/modus-react-bootstrap/issues/114)
+- Fixes below vulnerabilities,
+  - [Prototype pollution in webpack loader-utils - CVE-2022-37601](https://github.com/advisories/GHSA-76p3-8jx3-jpfq)
+  - [loader-utils is vulnerable to Regular Expression Denial of Service (ReDoS) via URL variable - CVE-2022-37603](https://github.com/advisories/GHSA-3rfm-jhwj-7488)
+  - [loader-utils is vulnerable to Regular Expression Denial of Service (ReDoS) - CVE-2022-37599](https://github.com/advisories/GHSA-hhq3-ff78-jv3g)
+  - [Uncaught exception in engine.io - CVE-2022-41940](https://github.com/advisories/GHSA-r7qp-cfhv-p84w)
 
 ## v1.1.4 - 2022-08-19
 

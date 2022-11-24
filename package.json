@@ -1,6 +1,6 @@
 {
   "name": "@trimbleinc/modus-react-bootstrap",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "The Modus React Bootstrap is a component library extended from Open Source library react-bootstrap developed as a common, open source platform for all of Trimble’s web applications built on React.",
   "keywords": [
     "modus",
@@ -28,7 +28,7 @@
     "url": "git@github.com:trimble-oss/modus-react-bootstrap.git"
   },
   "scripts": {
-    "bootstrap": "yarn && yarn --cwd docs",
+    "bootstrap": "yarn && yarn --cwd docs && yarn run audit",
     "build": "yarn run build-js && yarn run build-css",
     "build-js": "yarn run lint-js && node tools/build.js && node tools/custom.js",
     "build-css": "yarn run lint-css && yarn run css-minify && copyfiles -a ./scss/**/* lib/css/",
@@ -48,7 +48,8 @@
     "full": "yarn run bootstrap && yarn run build && yarn run clean-docs && yarn run lint-docs && yarn run build-docs && yarn run start",
     "prepublishOnly": "yarn run build",
     "release": "rollout",
-    "start": "yarn run clean-docs && yarn run lint-docs && yarn --cwd docs start"
+    "start": "yarn run clean-docs && yarn run lint-docs && yarn --cwd docs start",
+    "audit": "yarn audit && yarn audit --cwd docs"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --fix"
