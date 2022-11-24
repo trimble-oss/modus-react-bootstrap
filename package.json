@@ -122,7 +122,7 @@
     "fs-extra": "^10.1.0",
     "husky": "^8.0.1",
     "node-sass": "^8.0.0",
-    "postcss": "^8.4.16",
+    "postcss": "^8.4.19",
     "postcss-cli": "^10.0.0",
     "karma": "^6.3.17",
     "karma-chrome-launcher": "^3.1.1",
