@@ -91,7 +91,7 @@ const DataTableHeaderCell = React.forwardRef<
     (event) => {
       if (onHeaderDragStart && allowDrag) onHeaderDragStart(event, header);
     },
-    [onHeaderDragStart, header],
+    [onHeaderDragStart, allowDrag, header],
   );
 
   if (!header.isVisible) {
