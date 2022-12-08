@@ -285,7 +285,7 @@ pre[class*='language-'] {
 }
 
 @keyframes progress {
-  from {
+  0% {
     width: 0;
   }
 
@@ -293,7 +293,7 @@ pre[class*='language-'] {
     width: 100%;
   }
 
-  to {
+  100% {
     width: 100%;
   }
 }
