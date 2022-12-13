@@ -12,7 +12,7 @@ const HomePage: React.FC<{ location: any }> = ({ location }) => (
             <Row>
               <div className='col-12 col-lg-6 pt-5 mt-xl-5'>
                 <h1 className='text-trimble-blue mt-4 display-2 font-weight-bold text-center text-lg-left'>
-                  Modus React Bootstrap
+                  <span id='bigTitle'>Modus React Bootstrap</span>
                   <p
                     className='text-trimble-blue font-weight-light display-2'
                     style={{ lineHeight: '1.2' }}
@@ -64,7 +64,11 @@ const HomePage: React.FC<{ location: any }> = ({ location }) => (
                     </p>
                   </div>
                   <div className='mt-1'>
-                    <a href='/getting-started/' className='btn btn-primary rounded text-center'>
+                    <a
+                      href='/getting-started/'
+                      id='gettingstarted'
+                      className='btn btn-primary rounded text-center'
+                    >
                       Getting started »
                     </a>
                   </div>
@@ -145,7 +149,11 @@ const HomePage: React.FC<{ location: any }> = ({ location }) => (
                     </p>
                   </div>
                   <div className='text-center w-100'>
-                    <a href='/components/' className='btn btn-primary rounded text-center'>
+                    <a
+                      href='/components/'
+                      id='components'
+                      className='btn btn-primary rounded text-center'
+                    >
                       Components »
                     </a>
                   </div>
@@ -198,6 +206,7 @@ const HomePage: React.FC<{ location: any }> = ({ location }) => (
                     </p>
                   </div>
                   <Button
+                    id='subscribe'
                     onClick={(e) => {
                       window.open(
                         'https://docs.google.com/forms/d/e/1FAIpQLSc5-PBOzJjT2Q8r5Pg7BPYzae-rz5fg5ySSBcHwfhBneUkvWg/viewform',

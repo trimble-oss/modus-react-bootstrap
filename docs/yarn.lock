@@ -1953,6 +1953,11 @@
     escape-string-regexp "^2.0.0"
     lodash.deburr "^4.1.0"
 
+"@stencil/core@^2.13.0":
+  version "2.20.0"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.20.0.tgz#0e68b5b42e727233803291eb0367ab2b53f7f1f3"
+  integrity sha512-ka+eOW+dNteXIfLCRipNbbAlBEQjqJ2fkx3fxzlKgnNHEQMdZiuIjlWt63KzvOJStNeuADdQXo89BB1dC2VRUw==
+
 "@swc/helpers@^0.4.2":
   version "0.4.14"
   resolved "https://registry.yarnpkg.com/@swc/helpers/-/helpers-0.4.14.tgz#1352ac6d95e3617ccb7c1498ff019654f1e12a74"
@@ -10713,6 +10718,12 @@ trim@0.0.1, trim@^0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/trim/-/trim-0.0.3.tgz#05243a47a3a4113e6b49367880a9cca59697a20b"
   integrity sha512-h82ywcYhHK7veeelXrCScdH7HkWfbIT1D/CgYO+nmDarz3SGNssVBMws6jU16Ga60AJCRAvPV6w6RLuNerQqjg==
+
+"trimble-user-onboarding@file:trimble-user-onboarding-0.0.1.tgz":
+  version "0.0.1"
+  resolved "file:trimble-user-onboarding-0.0.1.tgz#5c6d80aaeea5474fe68f8100e45ee03fd378c7ab"
+  dependencies:
+    "@stencil/core" "^2.13.0"
 
 trough@^1.0.0:
   version "1.0.5"

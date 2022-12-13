@@ -23,7 +23,7 @@
     "start": "yarn develop",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
     "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
-    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc" 
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "dependencies": {
     "@restart/hooks": "^0.4.7",
@@ -32,7 +32,8 @@
     "react-live": "^2.4.1",
     "react-router-dom": "^6.4.3",
     "sass": "^1.56.1",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "trimble-user-onboarding": "file:trimble-user-onboarding-0.0.1.tgz"
   },
   "devDependencies": {
     "@mdx-js/mdx": "^1.6.22",
@@ -71,8 +72,8 @@
     "trim": "^0.0.3",
     "got": "^11.8.5",
     "minimatch": "^3.0.5",
-    "loader-utils":"^1.4.2",
-    "engine.io":"^6.2.1",
+    "loader-utils": "^1.4.2",
+    "engine.io": "^6.2.1",
     "decode-uri-component": "^0.2.1"
   }
 }

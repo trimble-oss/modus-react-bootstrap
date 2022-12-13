@@ -9,6 +9,7 @@ import '../assets/css/main.scss'
 import SEO from '../seo'
 import Banner from '../common/Banner'
 import ThemeContext from '../common/ThemeContext'
+import { defineCustomElements } from 'trimble-user-onboarding/loader'
 
 const propTypes = {
   location: PropTypes.object.isRequired,
@@ -63,6 +64,33 @@ const DefaultLayout: React.FC<LayoutProps> = ({ children, location, title, subti
     [theme, handleThemeChange],
   )
 
+  defineCustomElements()
+  React.useEffect(() => {
+    if (!(typeof window === 'undefined' || !window.document)) {
+      window.document.querySelector('onboarding-hotspot').options = [
+        {
+          element: window.document.querySelector('#gettingstarted'),
+          position: 'left',
+          color: 'primary',
+          message: 'Learn how to use a Modus React Bootstrap component step by step.',
+        },
+        {
+          element: window.document.querySelector('.sun-and-moon'),
+          position: 'right',
+          color: 'tertiary',
+          message: 'Check this out !! You can toggle the theme here.',
+        },
+        {
+          element: window.document.querySelector('#bigTitle'),
+          position: 'right',
+          color: 'warning',
+          message:
+            'Modus React Bootstrap is a React components library, goto components section for more details.',
+        },
+      ]
+    }
+  }, [])
+
   return (
     <MenuContext.Provider value={context}>
       <ThemeContext.Provider value={themeContext}>
@@ -71,6 +99,7 @@ const DefaultLayout: React.FC<LayoutProps> = ({ children, location, title, subti
         {banner && <Banner title={pageTitle} subtitle={pageSubtitle} />}
         {children}
         <Footer />
+        <onboarding-hotspot></onboarding-hotspot>
       </ThemeContext.Provider>
     </MenuContext.Provider>
   )

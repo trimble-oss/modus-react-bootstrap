@@ -1,3 +1,4 @@
 {
-    "editor.wordWrap": "wordWrapColumn"
+  "editor.wordWrap": "wordWrapColumn",
+  "WhiteSource Advise.Diff.BaseBranch": "main"
 }
