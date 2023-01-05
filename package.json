@@ -92,7 +92,7 @@
     "@react-bootstrap/eslint-config": "^2.0.0",
     "@types/react-table": "^7.7.12",
     "@types/styled-components": "^5.1.25",
-    "@typescript-eslint/eslint-plugin": "^5.44.0",
+    "@typescript-eslint/eslint-plugin": "^5.48.0",
     "@typescript-eslint/parser": "^5.44.0",
     "autoprefixer": "^10.4.13",
     "babel-loader": "^9.1.0",
