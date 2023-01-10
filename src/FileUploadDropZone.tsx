@@ -154,7 +154,7 @@ function validateFiles(
 
         if (
           acceptedTypes.has(type) ||
-          acceptedTypes.has(fileExtension.toLowerCase())
+          (fileExtension && acceptedTypes.has(fileExtension.toLowerCase()))
         ) {
           return false;
         }
