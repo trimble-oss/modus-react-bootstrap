@@ -24,12 +24,6 @@ export const ToastsBasic = `
       <i className="modus-icon material-icons">close</i>
     </button>
   </Toast>
-  <Toast className="toast-tertiary">
-    Aww yeah, you read a tertiary toast.
-    <button type="button" className="close" data-dismiss="toast">
-      <i className="modus-icon material-icons">close</i>
-    </button>
-  </Toast>
   <Toast className="toast-danger">
     Aww yeah, you read a danger toast.
     <button type="button" className="close" data-dismiss="toast">
