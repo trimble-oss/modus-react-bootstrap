@@ -74,6 +74,7 @@
     "loader-utils":"^1.4.2",
     "engine.io":"^6.2.1",
     "decode-uri-component": "^0.2.1",
-    "json5": "^2.2.2"     
+    "json5": "^2.2.2",
+    "ua-parser-js": "^0.7.33"     
   }
 }
