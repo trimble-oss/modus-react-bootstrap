@@ -35,7 +35,7 @@ const propTypes = {
   animation: PropTypes.bool,
 
   /**
-   * Auto hide the toast
+   * Auto hide the toast. Note: it will only trigger the `onClose` function, the show property should be manually set.
    */
   autohide: PropTypes.bool,
 
@@ -45,7 +45,7 @@ const propTypes = {
   delay: PropTypes.number,
 
   /**
-   * A Callback fired when the close button is clicked.
+   * A Callback fired when the in-built close button of `ToastHeader` is clicked.
    */
   onClose: PropTypes.func,
 
