@@ -4141,10 +4141,10 @@ eslint-plugin-react-hooks@^5.0.0-next-987292815-20221019:
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-5.0.0-next-fecc288b7-20221025.tgz#4fa9deacd62615855f1688d18fbeae4b983192e7"
   integrity sha512-uxKmkZ9xrQKJ3GbHDGsmMUO5XFzP4bTP3xiLwEmfvi16FIedz24q7czcREQbdQ+MRKcHUA9u247qAVYhsUM1yQ==
 
-eslint-plugin-react@^7.31.11:
-  version "7.32.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.32.1.tgz#88cdeb4065da8ca0b64e1274404f53a0f9890200"
-  integrity sha512-vOjdgyd0ZHBXNsmvU+785xY8Bfe57EFbTYYk8XrROzWpr9QBvpjITvAXt9xqcE6+8cjR/g1+mfumPToxsl1www==
+eslint-plugin-react@^7.32.2:
+  version "7.32.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.32.2.tgz#e71f21c7c265ebce01bcbc9d0955170c55571f10"
+  integrity sha512-t2fBMa+XzonrrNkyVirzKlvn5RXzzPwRHtMvLAtVZrt8oxgnTQaYbU6SXTOO1mwQgp1y5+toMSKInnzGr0Knqg==
   dependencies:
     array-includes "^3.1.6"
     array.prototype.flatmap "^1.3.1"
