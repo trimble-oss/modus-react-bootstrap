@@ -55,7 +55,7 @@ const ToastHeader: ToastHeader = React.forwardRef<
     }: ToastHeaderProps,
     ref,
   ) => {
-    bsPrefix = useBootstrapPrefix(bsPrefix, 'toast-header');
+    bsPrefix = useBootstrapPrefix(bsPrefix, 'toast-header w-100');
 
     const context = useContext(ToastContext);
 
@@ -67,16 +67,17 @@ const ToastHeader: ToastHeader = React.forwardRef<
 
     return (
       <div ref={ref} {...props} className={classNames(bsPrefix, className)}>
-        {children}
+        <div className="d-flex align-items-center justify-content-between">
+          {children}
 
-        {closeButton && (
-          <CloseButton
-            label={closeLabel}
-            onClick={handleClick}
-            className="ml-2 mb-1"
-            data-dismiss="toast"
-          />
-        )}
+          {closeButton && (
+            <CloseButton
+              label={closeLabel}
+              onClick={handleClick}
+              data-dismiss="toast"
+            />
+          )}
+        </div>
       </div>
     );
   },

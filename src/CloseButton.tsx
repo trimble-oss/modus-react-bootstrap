@@ -25,7 +25,9 @@ const CloseButton = React.forwardRef<HTMLButtonElement, CloseButtonProps>(
       onClick={onClick}
       {...props}
     >
-      <span aria-hidden="true">&times;</span>
+      <i className="modus-icons modus-icon" style={{ fontSize: '1rem' }}>
+        close
+      </i>
       <span className="sr-only">{label}</span>
     </button>
   ),

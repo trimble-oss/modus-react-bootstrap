@@ -1,10 +1,8 @@
 export const ToastsBasic = `
 <div>
   <Toast>
-    Aww yeah, you read a toast.
-    <button type="button" className="close" data-dismiss="toast">
-      <i className="modus-icon material-icons">close</i>
-    </button>
+  <Toast.Header> Aww yeah, you read a toast.
+ </Toast.Header>
   </Toast>
   <Toast className="toast-dark">
     Aww yeah, you read a dark toast.
