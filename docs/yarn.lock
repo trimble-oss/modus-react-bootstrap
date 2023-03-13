@@ -1911,10 +1911,10 @@
   resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.3.1.tgz#3bb0b6ddc0a276e8dc1138d08f63035e4e23e8bf"
   integrity sha512-+eun1Wtf72RNRSqgU7qM2AMX/oHp+dnx7BHk1qhK5ZHzdHTUU4LA1mGG1vT+jMc8sbhG3orvsfOmryjzx2PzQw==
 
-"@restart/hooks@^0.4.7":
-  version "0.4.8"
-  resolved "https://registry.yarnpkg.com/@restart/hooks/-/hooks-0.4.8.tgz#67ada92e36527956865ab9b1ddfb87d37aa1db42"
-  integrity sha512-Ivvp1FZ0Lja80iUTYAhbzy+stxwO7FbPHP95ypCtIh0wyOLiayQywXhVJ2ZYP5S1AjW2GmKHeRU4UglMwTG2sA==
+"@restart/hooks@^0.4.9":
+  version "0.4.9"
+  resolved "https://registry.yarnpkg.com/@restart/hooks/-/hooks-0.4.9.tgz#ad858fb39d99e252cccce19416adc18fc3f18fcb"
+  integrity sha512-3BekqcwB6Umeya+16XPooARn4qEPW6vNvwYnlofIYe6h9qG1/VeD7UvShCWx11eFz5ELYmwIEshz+MkPX3wjcQ==
   dependencies:
     dequal "^2.0.2"
 
@@ -9971,10 +9971,10 @@ sass-loader@^10.1.1:
     schema-utils "^3.0.0"
     semver "^7.3.2"
 
-sass@^1.56.1:
-  version "1.57.1"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.57.1.tgz#dfafd46eb3ab94817145e8825208ecf7281119b5"
-  integrity sha512-O2+LwLS79op7GI0xZ8fqzF7X2m/m8WFfI02dHOdsK5R2ECeS5F62zrwg/relM1rjSLy7Vd/DiMNIvPrQGsA0jw==
+sass@^1.58.3:
+  version "1.58.3"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.58.3.tgz#2348cc052061ba4f00243a208b09c40e031f270d"
+  integrity sha512-Q7RaEtYf6BflYrQ+buPudKR26/lH+10EmO9bBqbmPh/KeLqv8bjpTNqxe71ocONqXq+jYiCbpPUmQMS+JJPk4A==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
@@ -11698,10 +11698,10 @@ write-file-atomic@^3.0.0:
     signal-exit "^3.0.2"
     typedarray-to-buffer "^3.1.5"
 
-ws@>=8.11.0:
-  version "8.12.0"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-8.12.0.tgz#485074cc392689da78e1828a9ff23585e06cddd8"
-  integrity sha512-kU62emKIdKVeEIOIKVegvqpXMSTAMLJozpHZaJNDYqBjzlSYXQGviYwN1osDLJ9av68qHd4a2oSjd7yD4pacig==
+ws@>=8.12.1:
+  version "8.12.1"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-8.12.1.tgz#c51e583d79140b5e42e39be48c934131942d4a8f"
+  integrity sha512-1qo+M9Ba+xNhPB+YTWUlK6M17brTut5EXbcBaMRN5pH5dFrXz7lzz1ChFSUq3bOUl8yEvSenhHmYUNJxFzdJew==
 
 ws@~8.11.0:
   version "8.11.0"
