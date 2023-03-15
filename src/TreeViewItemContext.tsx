@@ -6,7 +6,7 @@
  */
 
 import * as React from 'react';
-import { TreeItem } from './types';
+import { TreeItem } from './TreeViewItem.types';
 
 interface TreeViewItemContextProps {
   parentId?: number;

@@ -17,8 +17,8 @@ import classNames from 'classnames';
 import * as PropTypes from 'prop-types';
 import Form from './Form';
 import Button from './Button';
-import { FileUploadDropZoneState } from './types';
 
+type FileUploadDropZoneState = 'default' | 'drop' | 'error' | 'disabled';
 export interface FileUploadDropZoneProps
   extends Omit<React.HTMLProps<HTMLDivElement>, 'children' | 'as'> {
   id: string;

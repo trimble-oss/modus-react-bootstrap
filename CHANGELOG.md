@@ -1,3 +1,13 @@
+## Unreleased
+
+### Features
+
+### Bugfixes
+
+### BREAKING CHANGES
+
+- **DataTable.filterPanel** function signature is modified to accept a single object.
+
 ## v1.1.5 - 2022-11-24
 
 - Fixes [Table component - UI issues](https://github.com/trimble-oss/modus-react-bootstrap/issues/114)
