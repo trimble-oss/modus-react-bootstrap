@@ -1,19 +1,3 @@
-## Unreleased
-
-### Features
-
-- Added `sortType` to the DataTable `columns` input object to support custom sorting function input
-- Added types `DataTableFilterProps`, `DataTableFilterPanelProps`, `DataTableColumn`, `DataTableColumnInstance`, and a few [more](https://github.com/trimble-oss/modus-react-bootstrap/blob/main/src/types.tsx).
-
-### Bugfixes
-
-- Fixes [Cross-realm object access in webpack 5](https://github.com/trimble-oss/modus-react-bootstrap/security/dependabot/48)
-- Fixes [Server-Side Request Forgery in Request](https://github.com/trimble-oss/modus-react-bootstrap/security/dependabot/50)
-
-### BREAKING CHANGES
-
-- **DataTable.filterPanel** function signature is modified to accept a single object.
-
 ## v1.1.5 - 2022-11-24
 
 - Fixes [Table component - UI issues](https://github.com/trimble-oss/modus-react-bootstrap/issues/114)
