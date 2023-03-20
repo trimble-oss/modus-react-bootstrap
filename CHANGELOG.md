@@ -9,6 +9,7 @@
 
 - Fixes [Cross-realm object access in webpack 5](https://github.com/trimble-oss/modus-react-bootstrap/security/dependabot/48)
 - Fixes [Server-Side Request Forgery in Request](https://github.com/trimble-oss/modus-react-bootstrap/security/dependabot/50)
+- Fixed **Message** component to accept a valid JSX element or a string value which will be automatically rendered as a Modus Icon.
 
 ### BREAKING CHANGES
 
