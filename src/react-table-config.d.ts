@@ -112,6 +112,8 @@ declare module "react-table" {
   }
 }
 
+
+
 // export type TableMouseEventHandler = (instance: TableInstance<T>) => MouseEventHandler
 
 export interface UseFlexLayoutColumnPropsCustom<D extends object = {}> {

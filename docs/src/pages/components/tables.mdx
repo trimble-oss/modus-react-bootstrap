@@ -3,7 +3,7 @@ title: Tables
 description: Tables display information in a grid-like format of rows and columns. They organize information in a way that’s easy to scan, so that users can look for patterns and insights.
 ---
 
-import { graphql } from "gatsby"
+import { graphql } from 'gatsby'
 import {
   TableBasic,
   TableHoverable,
@@ -13,6 +13,7 @@ import {
   MakeData as makeData,
   TableStyled,
   DataTableWithSorting,
+  DataTableWithCustomSorting,
   DataTableWithScroll,
   DataTableWithoutPagination,
   DataTableWithColumnResize,
@@ -28,78 +29,72 @@ import {
   DataTableWithDragAndDrop,
   DataTableColumnAPIInfo,
   DataTableColumnInstanceAPIInfo,
-} from "../../examples/components/Table"
-import Table from "../../../../src/Table"
+} from '../../examples/components/Table'
+import Table from '../../../../src/Table'
 
 <Overview>
-  Due to the widespread use of tables across third-party widgets like calendars
-  and date pickers, we’ve designed our tables to be opt-in. Use{" "}
-  <code>&lt;Table&gt;</code>, and extend with custom styles or our various
-  included modifier classes.
+  Due to the widespread use of tables across third-party widgets like calendars and date pickers,
+  we’ve designed our tables to be opt-in. Use <code>&lt;Table&gt;</code>, and extend with custom
+  styles or our various included modifier classes.
 </Overview>
 
-<CodeBlock hideCode={true} title="Basic Table" code={TableBasic}></CodeBlock>
+<CodeBlock hideCode={true} title='Basic Table' code={TableBasic}></CodeBlock>
 
-<CodeBlock hideCode={true} title="Hoverable Rows" code={TableHoverable}>
+<CodeBlock hideCode={true} title='Hoverable Rows' code={TableHoverable}>
   Add prop <code>hover </code> to enable a hover state on table rows within
   <code>&lt;tbody&gt;</code>.
 </CodeBlock>
 
 <CodeBlock
   hideCode={true}
-  title="Tables with Icons and Controls"
+  title='Tables with Icons and Controls'
   code={TableIconsControls}
 ></CodeBlock>
 
-<CodeBlock hideCode={true} title="Small Variants" code={TableSmall}>
-  All previous table styles are also available in a smaller variant, set prop{" "}
-  <code>size</code> to <code>sm</code>
+<CodeBlock hideCode={true} title='Small Variants' code={TableSmall}>
+  All previous table styles are also available in a smaller variant, set prop <code>size</code> to{' '}
+  <code>sm</code>
   <br />
   <br />
-  When using small variants of tables with icons and controls, don’t forget to use
-  the smaller variants of those icons and controls too!
+  When using small variants of tables with icons and controls, don’t forget to use the smaller variants
+  of those icons and controls too!
 </CodeBlock>
 
 <CodeBlock
   hideCode={true}
-  title="Basic Table with Sorting and other features"
+  title='Basic Table with Sorting and other features'
   code={TableWithSorting}
   scope={{ makeData, TableStyled }}
   noInline={true}
 >
-  This example demonstrates the use of <code> Table </code> component with
-  custom sorting and pagination. It also uses <code> TablePagination </code>{" "}
-  component which is basically a wrapper over{" "}
-  <a href="/components/pagination">Pagination</a> and designed to work with
-  Tables.
+  This example demonstrates the use of <code> Table </code> component with custom sorting and
+  pagination. It also uses <code> TablePagination </code> component which is basically a wrapper
+  over <a href='/components/pagination'>Pagination</a> and designed to work with Tables.
 </CodeBlock>
 
-<LinkedHeading h="2" className="h1" id="datatable">
+<LinkedHeading h='2' className='h1' id='datatable'>
   DataTable
 </LinkedHeading>
-<>
-  The <code> DataTable </code> component is a wrapper of <code> Table </code>{" "}
-  component with more features that can be turned on/off anytime through the
-  API.
-  <br />
-  <code>DataTable</code> requires two props:
-  <code> columns </code> which takes an array of header data and
-  <code> data </code> prop which takes an array of row data. The row data should
-  match the header information passed to columns prop. The objects passed in the
-  array to the <code> column </code> prop has a required key{" "}
-  <code> accessor </code> which is the column identifier and and the{" "}
-  <code> Header </code> key is used to set the column label, eg.
-  {`[{ Header: 'First Name', accessor: 'firstName' }]`}.
+
+<div>
+  <p>
+    <code> DataTable </code> is a wrapper around <code> Table </code>{" "}
+    component that accepts props <code> data </code> and <code> columns </code> for rendering rows and column headers.
+    The prop <code> columns </code> is an array of column objects and each column object must have  <code> Header </code> and <code> accessor </code> for rendering the table. Both <code> data </code> and <code> columns </code> should be memoized via <b> React.useMemo</b>.
+  </p>
+  <p>
+      <code> Header </code> accepts value of type {`'String | Function | React.Component => JSX'`} and is used for rendering header text. The <code> accessor </code> takes a string value and it should be the same key used in <code> data </code> object. The accessor also supports deeply nested values, eg. {`'info.name'`}. Refer to the examples below for how values for <code> data </code> and <code> columns </code> can be created.
+    </p>
 
   <div className="docs-callout docs-callout-warning p-3 pb-0 rounded-lg">
     <code>DataTable</code> component uses modus icons, refer to{" "}
     <a href="/getting-started/">Getting Started</a> page on how to enable them.
   </div>
-</>
+</div>
 
 <CodeBlock
   hideCode={true}
-  title="Table with Sorting"
+  title='Table with Sorting'
   code={DataTableWithSorting}
   noInline={true}
   scope={{
@@ -107,41 +102,51 @@ import Table from "../../../../src/Table"
   }}
 >
   Use the prop
-  <code> sortBy </code> on each column in the columns object. Sorting can be disabled
-  for the whole <code> DataTable </code> using the prop <code>
-    {" "}
-    disableSorting
-  </code>.
+  <code> sortBy </code> on each column object to enable/disable sorting for individual columns. And by
+  using <code> disableSorting </code> on the <code> DataTable</code>, sorting can be disabled for all
+  the columns.
 </CodeBlock>
+
 <CodeBlock
   hideCode={true}
-  title="Table with Scroll"
+  title='Table with Custom Sorting'
+  code={DataTableWithCustomSorting}
+  noInline={true}
+>
+  The <code>columns</code> object provides an option for custom sorting. As shown in the example
+  below,<code> sortType</code> which has a type <code>{`String | Function(rowA: <Row>, rowB: <Row>, columnId: String, desc: Bool)`}</code>{' '}
+  takes a function to compare 2 rows of data and order them correctly. The function must be memoized
+  and it should return 1 if rowA is larger, and -1 if rowB is larger.
+</CodeBlock>
+
+<CodeBlock
+  hideCode={true}
+  title='Table with Scroll'
   scope={{
     makeData,
   }}
   noInline={true}
   code={DataTableWithScroll}
 >
-  Setting height and width on <code> DataTable </code> will enable vertical and
-  horizontal scrolling.
+  Setting height and width on <code> DataTable </code> will enable vertical and horizontal
+  scrolling.
 </CodeBlock>
 
 <CodeBlock
   hideCode={true}
-  title="Table with and without Client-side Pagination"
+  title='Table with and without Client-side Pagination'
   scope={{
     makeData,
   }}
   noInline={true}
   code={DataTableWithoutPagination}
 >
-  Pagination is displayed by default, to disable it use the prop{" "}
-  <code> disablePagination </code>.
+  Pagination is displayed by default, to disable it use the prop <code> disablePagination </code>.
 </CodeBlock>
 
 <CodeBlock
   hideCode={true}
-  title="Table with Columns Resizing"
+  title='Table with Columns Resizing'
   scope={{
     makeData,
   }}
@@ -152,40 +157,38 @@ import Table from "../../../../src/Table"
   can be used to change column width. When hovering above the dividing line between two columns, there
   is a visual indicator that shows the column is adjustable. To disable resizing for a specific column
   use
-  <code> disableResizing </code> inside the columns object as shown in the
-  example.
+  <code> disableResizing </code> inside the columns object as shown in the example.
 </CodeBlock>
 
 <CodeBlock
   hideCode={true}
-  title="Table with Single Row Selection"
+  title='Table with Single Row Selection'
   scope={{
     makeData,
   }}
   code={DataTableWithSingleRowSelection}
   noInline={true}
 >
-  Row selection is enabled by default, to disable it use the prop{" "}
-  <code> disableRowSelection </code>.
+  Row selection is enabled by default, to disable it use the prop <code> disableRowSelection </code>.
 </CodeBlock>
 
 <CodeBlock
   hideCode={true}
-  title="Table with Multiple Row Selection"
+  title='Table with Multiple Row Selection'
   scope={{
     makeData,
   }}
   code={DataTableWithMultiRowSelection}
   noInline={true}
 >
-  Single row selection is the default, to enable multi-row selection use the
-  prop <code> multipleRowSelection</code>. Clicking on a row selects it and
-  clicking again undo the selection.
+  Single row selection is the default, to enable multi-row selection use the prop{' '}
+  <code> multipleRowSelection</code>. Clicking on a row selects it and clicking again undo the
+  selection.
 </CodeBlock>
 
 <CodeBlock
   hideCode={true}
-  title="Table with CheckBox Row Selection"
+  title='Table with CheckBox Row Selection'
   scope={{
     makeData,
   }}
@@ -193,13 +196,12 @@ import Table from "../../../../src/Table"
   noInline={true}
 >
   The prop <code> checkBoxRowSelection </code> on the
-  <code> DataTable </code> component add checkbox on each row's first cell to control
-  row selection.
+  <code> DataTable </code> component add checkbox on each row's first cell to control row selection.
 </CodeBlock>
 
 <CodeBlock
   hideCode={true}
-  title="Table with Custom CheckBox Row Selection"
+  title='Table with Custom CheckBox Row Selection'
   scope={{
     makeData,
   }}
@@ -213,61 +215,59 @@ import Table from "../../../../src/Table"
 
 <CodeBlock
   hideCode={true}
-  title="Table with Sticky First Column"
+  title='Table with Sticky First Column'
   scope={{
     makeData,
   }}
   code={DataTableWithStickyFirstColumn}
   noInline={true}
 >
-  Use the prop <code> stickyFirstColumn </code> on <code> DataTable </code>{" "}
-  component to make first column fixed.
+  Use the prop <code> stickyFirstColumn </code> on <code> DataTable </code> component to make first
+  column fixed.
 </CodeBlock>
 
 <CodeBlock
   hideCode={true}
-  title="Hiding Columns"
+  title='Hiding Columns'
   scope={{
     makeData,
   }}
   code={DataTableWithSorting}
   noInline={true}
 >
-  Right clicking on a column header gives a context menu option to collapse/show
-  columns. When a column is collapsed, a visual indicator with arrows is
-  displayed and clicking on it will show the column.
+  Right clicking on a column header gives a context menu option to collapse/show columns. When a
+  column is collapsed, a visual indicator with arrows is displayed and clicking on it will show the
+  column.
 </CodeBlock>
 
 <CodeBlock
   hideCode={true}
-  title="Filter Columns"
+  title='Filter Columns'
   scope={{
     makeData,
   }}
   code={DataTableWithColumnFilter}
   noInline={true}
 >
-  Use the field <code> Filter </code> on columns object to configure custom
-  filter control on each column and use the prop <code> FilterPanel </code> to
-  render it above the Table.
+  Use the field <code> Filter </code> on columns object to configure custom filter control on each
+  column and use the prop <code> FilterPanel </code> to render it above the Table.
 </CodeBlock>
 
 <CodeBlock
   hideCode={true}
-  title="Global Search"
+  title='Global Search'
   scope={{
     makeData,
   }}
   code={DataTableWithGlobalFilter}
   noInline={true}
 >
-  Using the prop <code> FilterPanel </code> a global search control can be
-  created.
+  Using the prop <code> FilterPanel </code> a global search control can be created.
 </CodeBlock>
 
 <CodeBlock
   hideCode={true}
-  title="Editable Cell"
+  title='Editable Cell'
   scope={{
     Editable,
     makeData,
@@ -275,34 +275,33 @@ import Table from "../../../../src/Table"
   code={DataTableWithCellEditable}
   noInline={true}
 >
-  Each cell can be customized to render custom control through{" "}
-  <code> Cell </code> prop inside columns object as shown below.
+  Each cell can be customized to render custom control through <code> Cell </code> prop inside
+  columns object as shown below.
 </CodeBlock>
 
 <CodeBlock
   hideCode={true}
-  title="Column Reordering by Drag and Drop"
+  title='Column Reordering by Drag and Drop'
   scope={{
     makeData,
   }}
   code={DataTableWithDragAndDrop}
   noInline={true}
 >
-  Use the props <code> allowDrag</code>, <code> allowDrop </code> to left click
-  and hold the column header to drag and drop the column in a new order. A
-  visual indicator is shown between the header cells where the column will be
-  dropped. If the drop operation is not allowed the line indicating the drop
-  location will be red.
+  Use the props <code> allowDrag</code>, <code> allowDrop </code> to left click and hold the column
+  header to drag and drop the column in a new order. A visual indicator is shown between the header
+  cells where the column will be dropped. If the drop operation is not allowed the line indicating
+  the drop location will be red.
 </CodeBlock>
 
-<LinkedHeading h="2" className="h1" id="table-api">
+<LinkedHeading h='2' className='h1' id='table-api'>
   API
 </LinkedHeading>
 <ComponentApi metadata={props.data.Table} />
 <ComponentApi metadata={props.data.DataTable} />
 <ComponentApi metadata={props.data.TablePagination} />
 
-<LinkedHeading h="3" id="DataTableColumn">
+<LinkedHeading h='3' id='DataTableColumn'>
   DataTableColumn
 </LinkedHeading>
 <Table bordered striped>
@@ -316,15 +315,15 @@ import Table from "../../../../src/Table"
   <tbody>
     {DataTableColumnAPIInfo.map((item, index) => (
       <tr key={index}>
-        <td className="text-monospace">{item.key}</td>
-        <td className="text-monospace">{item.type}</td>
+        <td className='text-monospace'>{item.key}</td>
+        <td className='text-monospace'>{item.type}</td>
         <td>{item.description}</td>
       </tr>
     ))}
   </tbody>
 </Table>
 
-<LinkedHeading h="3" id="DataTableColumnInstance">
+<LinkedHeading h='3' id='DataTableColumnInstance'>
   DataTableColumnInstance
 </LinkedHeading>
 <Table bordered striped>
@@ -338,8 +337,8 @@ import Table from "../../../../src/Table"
   <tbody>
     {DataTableColumnInstanceAPIInfo.map((item, index) => (
       <tr key={index}>
-        <td className="text-monospace">{item.key}</td>
-        <td className="text-monospace">{item.type}</td>
+        <td className='text-monospace'>{item.key}</td>
+        <td className='text-monospace'>{item.type}</td>
         <td>{item.description}</td>
       </tr>
     ))}
