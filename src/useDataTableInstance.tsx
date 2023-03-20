@@ -7,7 +7,7 @@
 
 import { useCallback, useMemo } from 'react';
 import { HeaderGroup, IdType, useAsyncDebounce, useTable } from 'react-table';
-import { DataTableColumnInstance } from './types';
+import { DataTableColumnInstance } from './DataTable.types';
 
 function useDataTableInstance<T extends Record<string, unknown>>(
   columns,
@@ -19,9 +19,10 @@ function useDataTableInstance<T extends Record<string, unknown>>(
   const normalizedColumns = useMemo(
     () =>
       columns.map((col) => {
-        const { sortBy, ...columnProps } = col;
-        columnProps.disableSortBy = !sortBy;
-        return columnProps;
+        const { sortBy, sortType, ...columnProps } = col;
+        const disableSortBy = !(sortBy || sortType);
+        const sortTypeProp = sortType ? { sortType } : {};
+        return { disableSortBy, ...sortTypeProp, ...columnProps };
       }),
     [columns],
   );
