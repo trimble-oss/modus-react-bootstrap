@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import classNames from 'classnames';
 import Dropdown from './Dropdown';
-import { ContextMenuItem } from './ContextMenu.types';
+import { ContextMenuItem } from './types';
 
 interface ContextMenuProps
   extends Omit<React.HTMLProps<HTMLDivElement>, 'as' | 'size'> {

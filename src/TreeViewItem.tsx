@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import TreeViewContext from './TreeViewContext';
 import TreeViewItemContext from './TreeViewItemContext';
-import { TreeItem } from './TreeViewItem.types';
+import { TreeItem } from './types';
 import { TreeViewItemStyled } from './TreeViewItemStyled';
 import useDescendants from './useTreeViewDescendants';
 import IndeterminateCheckbox from './IndeterminateCheckbox';

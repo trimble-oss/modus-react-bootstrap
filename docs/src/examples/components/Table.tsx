@@ -705,12 +705,12 @@ export const DataTableWithSorting = `function Example() {
     () => [
       {
         Header: "First Name",
-        accessor: "name.first",
+        accessor: "firstName",
         sortBy: true,
       },
       {
         Header: "Last Name",
-        accessor: "name.last",
+        accessor: "lastName",
         sortBy: true,
       },
       {
@@ -737,79 +737,9 @@ export const DataTableWithSorting = `function Example() {
     []
   )
 
-  const data = React.useMemo(() => [
-    { name: { first: 'Scooby', last: 'Doo' }, age: 11, visits: 11, status: 'Pending', progress: 11 },
-    { name: { first: 'Jerry', last: 'Mouse' }, age: 10, visits: 11, status: 'Pending', progress: 11 },
-    { name: { first: 'Daffy', last: 'Duck' }, age: 13, visits: 11, status: 'Pending', progress: 11 },
-    { name: { first: 'Wile', last: 'E' }, age: 9, visits: 11, status: 'Pending', progress: 11 },
-    { name: { first: 'Tweety', last: 'Bird' }, age: 1, visits: 11, status: 'Pending', progress: 11 },
-  ], [])
-
-  return (
-    <DataTable
-      id="dt_sorting"
-      columns={columns} bordered hover
-      pageSize={7}
-      pageSizeOptions={[7, 10, 25, 50]}
-      data={data}
-    ></DataTable>
-  );
-}
-
-render(<Example />);`
-
-export const DataTableWithCustomSorting = `function Example() {
-  const sortTypeFn = React.useMemo(
-    () =>
-      ({ values: { age: a } }, { values: { age: b } }, columnId, desc) => {
-        return a > b ? 1 : -1
-      },
-    [],
-  )
-
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "First Name",
-        accessor: "name.first",
-        sortBy: true,
-      },
-      {
-        Header: "Last Name",
-        accessor: "name.last",
-        sortBy: true,
-      },
-      {
-        Header: "Age",
-        accessor: "age",
-        sortType: sortTypeFn
-      },
-      {
-        Header: "Visits",
-        accessor: "visits",
-        sortBy: true,
-      },
-      {
-        Header: "Status",
-        accessor: "status",
-        sortBy: true,
-      },
-      {
-        Header: "Profile Progress Status",
-        accessor: "progress",
-        sortBy: true,
-      },
-    ],
-    []
-  )
-
-  const data = React.useMemo(() => [
-    { name: { first: 'Scooby', last: 'Doo' }, age: 11, visits: 11, status: 'Pending', progress: 11 },
-    { name: { first: 'Jerry', last: 'Mouse' }, age: 10, visits: 11, status: 'Pending', progress: 11 },
-    { name: { first: 'Daffy', last: 'Duck' }, age: 13, visits: 11, status: 'Pending', progress: 11 },
-    { name: { first: 'Wile', last: 'E' }, age: 9, visits: 11, status: 'Pending', progress: 11 },
-    { name: { first: 'Tweety', last: 'Bird' }, age: 1, visits: 11, status: 'Pending', progress: 11 },
-  ], [])
+  // makeData: a custom helper function to generate random rows
+  // for the demo purpose not implemented here in the example.
+  const data = React.useMemo(() => makeData(30), [])
 
   return (
     <DataTable
@@ -1447,21 +1377,20 @@ function SelectFilter({
   )
 }
 
-function FilterPanel({
-  filterColumns,
+function FilterPanel(
+  columns,
   activeFilters,
   resetFilter,
   resetAllFilters,
   globalFilter,
   setGlobalFilter
-}
 ) {
   const popover = (
     <Popover id="popover-basic" style={{ width: "500px", maxWidth: "500px" }}>
       <Popover.Content>
         <Container style={{ width: "100%" }} className="p-1">
           <Row xs={1} md={2}>
-            {filterColumns
+            {columns
               .map(column => (
                 <div key={column.id}>
                   <Col>{column.render("Filter")}</Col>
@@ -1500,7 +1429,7 @@ function FilterPanel({
         {activeFilters && activeFilters.length > 0 && (
           <div>
             Active Filters:
-            {filterColumns.map(column => {
+            {columns.map(column => {
               const filter = activeFilters.find(f => f.id === column.id)
               const value = filter && filter.value
               return (
@@ -1788,13 +1717,13 @@ export const DataTableWithCellEditable = `function Example() {
 render(<Example />);`
 
 export const DataTableWithGlobalFilter = `
-function GlobalFilterPanel({
-  filterColumns,
+function GlobalFilterPanel(
+  columns,
   filters,
   resetFilter,
   resetAllFilters,
   globalFilter,
-  setGlobalFilter}
+  setGlobalFilter
 ) {
   return (
     <Form.Group controlId="globalFilter1" className="w-50">
