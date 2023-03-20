@@ -13,7 +13,7 @@ import { Variant } from './types';
 export interface MessageProps extends React.HTMLProps<HTMLDivElement> {
   variant?: Variant;
   message?: string;
-  icon?: React.ReactElement;
+  icon?: React.ReactElement | string;
   show?: boolean;
 }
 
@@ -32,7 +32,7 @@ const propTypes = {
   label: PropTypes.string,
 
   /**
-   * Icon Element
+   * Icon must be either a valid JSX element or a modus icon, ex: 'info_outlined'. Icon: `ReactElement | string`
    *
    */
   icon: PropTypes.element,
@@ -54,6 +54,14 @@ const Message = forwardRef<HTMLDivElement, MessageProps>(
     { variant, message, icon, show, className, ...props }: MessageProps,
     ref,
   ) => {
+    const iconElement: React.ReactElement | undefined =
+      typeof icon === 'string' ? (
+        <i className="modus-icons" aria-hidden="true">
+          {icon}
+        </i>
+      ) : (
+        icon
+      );
     const msg = (
       <div
         {...props}
@@ -64,7 +72,7 @@ const Message = forwardRef<HTMLDivElement, MessageProps>(
           className,
         )}
       >
-        {icon && <i className="modus-icons">{icon}</i>}
+        {iconElement}
         {message}
         {props.children}
       </div>
