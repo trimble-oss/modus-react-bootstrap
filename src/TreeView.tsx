@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import _merge from 'lodash/merge';
 
-import { TreeItem } from './types';
+import { TreeItem } from './TreeViewItem.types';
 import TreeViewContext from './TreeViewContext';
 import TreeViewItemContext from './TreeViewItemContext';
 import useCustomState from './useCustomState';

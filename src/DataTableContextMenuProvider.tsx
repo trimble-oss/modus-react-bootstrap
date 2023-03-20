@@ -8,7 +8,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import Form from './Form';
-import { ContextMenuState } from './types';
+import { ContextMenuState } from './ContextMenu.types';
 import renderUsingPortal from './renderUsingPortal';
 import ContextMenu from './ContextMenu';
 import { DATATABLE_CHECKBOX_SELECTOR_ID } from './DataTableHelpers';
