@@ -6,7 +6,7 @@ export const MessagesBasic = `
     message="This is a primary message"
   ></Message>
   <Message
-    icon="help"
+    icon={<i className="modus-icons" aria-hidden="true">help</i>}
     variant="secondary"
     message="This is a secondary message"
   ></Message>
