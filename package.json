@@ -1,7 +1,7 @@
 {
   "name": "@trimbleinc/modus-react-bootstrap",
   "version": "1.1.5",
-  "description": "The Modus React Bootstrap is a component library extended from Open Source library react-bootstrap developed as a common, open source platform for all of Trimble’s web applications built on React.",
+  "description": "The Modus React Bootstrap is a component library extended from Open Source library react-bootstrap developed as a common, open source platform for all of Trimble’s web applications built on React. ",
   "keywords": [
     "modus",
     "react",
