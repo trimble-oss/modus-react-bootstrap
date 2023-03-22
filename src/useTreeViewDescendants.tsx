@@ -29,7 +29,7 @@ import {
   merge as _merge,
 } from 'lodash';
 import TreeViewItemContext from './TreeViewItemContext';
-import { TreeItem } from './types';
+import { TreeItem } from './TreeViewItem.types';
 
 type DescendantProviderParam = {
   nodeId: number;
