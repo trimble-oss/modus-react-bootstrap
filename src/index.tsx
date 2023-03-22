@@ -233,9 +233,10 @@ export { default as Table } from './Table';
 export type { TableProps } from './Table';
 
 // Modus React Bootstrap Components
+export type { DataTableColumn } from './types';
 
 export { default as DataTable } from './DataTable';
-export type { DataTableProps } from './DataTable.props';
+export type { DataTableProps } from './DataTable';
 
 export { default as TablePagination } from './TablePagination';
 export type { TablePaginationProps } from './TablePagination';
