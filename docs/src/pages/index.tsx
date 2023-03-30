@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Button, Container, Row } from '../../../src'
 import DefaultLayout from '../layouts/DefaultLayout'
-import modusLaptopPhone from '../assets/img/modus-laptop-phone.svg'
+import homePageImg from '../assets/img/modus-homepage.png'
 
 const HomePage: React.FC<{ location: any }> = ({ location }) => (
   <DefaultLayout location={location}>
@@ -26,10 +26,10 @@ const HomePage: React.FC<{ location: any }> = ({ location }) => (
                 </p>
               </div>
               <div className='col-10 col-sm-9 col-lg-6 mx-auto mt-lg-5 mb-n4'>
-                <div className='mt-lg-5'>
+                <div className='mt-lg-2'>
                   <img
-                    src={modusLaptopPhone}
-                    width='620'
+                    src={homePageImg}
+                    width='500'
                     height='395'
                     className='img-fluid text-center mx-auto mt-lg-5 mt-xl-1'
                     alt=''
