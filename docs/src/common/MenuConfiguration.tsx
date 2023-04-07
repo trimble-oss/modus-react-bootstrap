@@ -40,8 +40,8 @@ const foundationsMenu: Menu = {
     },
     {
       key: 'icons',
-      title: 'Icons',
-      subtitle: 'Guidance and suggestions for using external Modus icon library.',
+      title: 'Modus Icons',
+      path: 'https://modus-icons.trimble.com/',
     },
   ],
 }
@@ -382,7 +382,11 @@ const GetNavigationMenu = function (includeOnly?: string): Menu[] {
         }`,
         children: parent.children?.map((child) => {
           return {
-            path: parent.key === child.key ? `/${child.key}` : `/${parent.key}/${child.key}`,
+            path: child.path
+              ? child.path
+              : parent.key === child.key
+              ? `/${child.key}`
+              : `/${parent.key}/${child.key}`,
             key: child.key,
             title: child.title,
             subtitle: child.subtitle,
