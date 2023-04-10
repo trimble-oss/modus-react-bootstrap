@@ -52,7 +52,7 @@ const SearchBar: React.FC<unknown> = () => {
 
   const handleChange = useCallback(
     (e) => {
-      const userInput = e.target.value
+      const userInput = e.target.value as string
       setSearchQuery(userInput)
       if (userInput && userInput.length > 2 && window['__LUNR__']) {
         window['__LUNR__'].__loaded.then((lunr) => {
@@ -70,8 +70,22 @@ const SearchBar: React.FC<unknown> = () => {
               userInput +
               '~2^1',
           )
+
           const pages = refs.map(({ ref }) => lunr.en.store[ref])
-          setResults(pages)
+
+          // Add Modus Icons site in search
+          setResults(
+            userInput.startsWith('icon')
+              ? [
+                  {
+                    description: 'Open source icon library',
+                    title: 'Modus Icons',
+                    url: 'https://modus-icons.trimble.com/',
+                  },
+                  ...pages,
+                ]
+              : pages,
+          )
 
           if (pages.length > 0) {
             setShow(true)
@@ -115,17 +129,26 @@ const SearchBar: React.FC<unknown> = () => {
               ref={dropdownRef}
               className={`w-100 autocomplete-suggestions ${show && 'show'} pb-1 pt-1`}
             >
-              {results?.map((page, index) => (
-                <Dropdown.Item
-                  active={cursor > -1 && index === cursor}
-                  eventKey={page['title']}
-                  key={page['title']}
-                  href={page['url']}
-                  className='autocomplete-suggestion pl-2'
-                >
-                  » {page['title']}
-                </Dropdown.Item>
-              ))}
+              {results?.map((page, index) => {
+                const openInNewTab = (page['url'] as string)?.startsWith('http')
+                  ? {
+                      target: '_blank',
+                      rel: 'noopener',
+                    }
+                  : {}
+                return (
+                  <Dropdown.Item
+                    active={cursor > -1 && index === cursor}
+                    eventKey={page['title']}
+                    key={page['title']}
+                    href={page['url']}
+                    {...openInNewTab}
+                    className='autocomplete-suggestion pl-2'
+                  >
+                    » {page['title']}
+                  </Dropdown.Item>
+                )
+              })}
             </Dropdown.Menu>
           </Dropdown>
         </Form.Group>
