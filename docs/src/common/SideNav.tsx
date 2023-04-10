@@ -17,13 +17,26 @@ const NavSection: React.FC<NavSectionProps> = ({ activeMenuKey, items }) => {
     <>
       {items && (
         <Nav activeKey={activeMenuKey} as='ul' onSelect={noop} className='d-block'>
-          {items.map((item) => (
-            <Nav.Item key={item.key} as='li'>
-              <Nav.Link active={item.key === activeMenuKey} href={item.path} className='text-dark'>
-                {item.title}
-              </Nav.Link>
-            </Nav.Item>
-          ))}
+          {items.map((item) => {
+            const openInNewTab = item.path?.startsWith('http')
+              ? {
+                  target: '_blank',
+                  rel: 'noopener',
+                }
+              : {}
+            return (
+              <Nav.Item key={item.key} as='li'>
+                <Nav.Link
+                  active={item.key === activeMenuKey}
+                  href={item.path}
+                  className='text-dark'
+                  {...openInNewTab}
+                >
+                  {item.title}
+                </Nav.Link>
+              </Nav.Item>
+            )
+          })}
         </Nav>
       )}
     </>
