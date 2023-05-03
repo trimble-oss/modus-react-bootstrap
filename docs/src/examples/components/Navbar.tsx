@@ -12,14 +12,14 @@ export const NavbarBasic = `
   </Button>
   <Navbar.Brand className=" mr-auto ml-2" href="#">
     <img
-      src="https://modus-bootstrap.trimble.com/img/trimble-logo.svg"
+      src={TrimbleLogo}
       width="107"
       height="25"
       className="img-fluid d-none d-sm-block"
       alt="home"
     />
     <img
-      src="https://modus-bootstrap.trimble.com/img/trimble-icon.svg"
+      src={TrimbleIcon}
       className="d-block d-sm-none"
       height="25"
       width="25"
@@ -114,14 +114,14 @@ export const NavbarBlue = `
   </Button>
   <Navbar.Brand className=" mr-auto ml-2" href="#">
     <img
-      src="https://modus-bootstrap.trimble.com/img/trimble-logo-rev.svg"
+      src={TrimbleLogoRev}
       width="107"
       height="25"
       className="img-fluid d-none d-sm-block"
       alt="home"
     />
     <img
-      src="https://modus-bootstrap.trimble.com/img/trimble-icon-rev.svg"
+      src={TrimbleIconRev}
       className="d-block d-sm-none"
       height="25"
       width="25"
@@ -206,14 +206,14 @@ export const NavbarWithoutHamburger = `
 <Navbar collapseOnSelect expand="sm" id="example-navbar" className="border navbar-blue">
   <Navbar.Brand className=" mr-auto ml-2" href="#">
     <img
-      src="https://modus-bootstrap.trimble.com/img/trimble-logo-rev.svg"
+      src={TrimbleLogoRev}
       width="107"
       height="25"
       className="img-fluid d-none d-sm-block"
       alt="home"
     />
     <img
-      src="https://modus-bootstrap.trimble.com/img/trimble-icon-rev.svg"
+      src={TrimbleIconRev}
       className="d-block d-sm-none"
       height="25"
       width="25"

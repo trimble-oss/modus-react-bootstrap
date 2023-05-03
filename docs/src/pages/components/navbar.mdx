@@ -5,28 +5,34 @@ description: The navbar provides context through globally accessible menu option
 
 import { graphql } from 'gatsby'
 import { NavbarBasic, NavbarBlue, NavbarWithoutHamburger } from '../../examples/components/Navbar'
-import trimbleLogo from "../../assets/img/trimble-logo.svg"
-import trimbleIcon from "../../assets/img/trimble-icon.svg"
-import trimbleLogoRev from "../../assets/img/trimble-logo-rev.svg"
-import trimbleIconRev from "../../assets/img/trimble-icon-rev.svg"
+import TrimbleLogo from '../../assets/img/trimble-logo.svg'
+import TrimbleIcon from '../../assets/img/trimble-icon.svg'
+import TrimbleLogoRev from '../../assets/img/trimble-logo-rev.svg'
+import TrimbleIconRev from '../../assets/img/trimble-icon-rev.svg'
 
 <h2 className='h1 font-weight-bold' id='Overview'>
   Overview
 </h2>
-<CodeBlock style={{ padding: '0px' }} code={NavbarBasic, trimbleLogo, trimbleIcon}>
+<CodeBlock style={{ padding: '0px' }} scope={{ TrimbleLogo, TrimbleIcon }} code={NavbarBasic}>
   The navbar or the app header provides context through globally accessible menu options and
   positions a consistent component to connect various Trimble applications and contains the main
   navigation for your application.
 </CodeBlock>
 
-<CodeBlock title='Blue Variant' style={{ padding: '0px' }} code={NavbarBlue, trimbleLogoRev, trimbleIconRev}>
+<CodeBlock
+  title='Blue Variant'
+  style={{ padding: '0px' }}
+  scope={{ TrimbleLogoRev, TrimbleIconRev }}
+  code={NavbarBlue}
+>
   An alternative blue variant is available. Add the class `navbar-blue` to the navbar.
 </CodeBlock>
 
 <CodeBlock
   title='Navbar without Menu button'
   style={{ padding: '0px' }}
-  code={NavbarWithoutHamburger, trimbleLogoRev, trimbleIconRev}
+  scope={{ TrimbleLogoRev, TrimbleIconRev }}
+  code={NavbarWithoutHamburger}
 >
   You can omit the navbar menu button if it isn’t needed.
 </CodeBlock>
