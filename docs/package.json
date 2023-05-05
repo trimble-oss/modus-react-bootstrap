@@ -75,6 +75,7 @@
     "engine.io":"^6.2.1",
     "decode-uri-component": "^0.2.1",
     "json5": "^2.2.2",
-    "ua-parser-js": "^0.7.33"     
+    "ua-parser-js": "^0.7.33",
+    "yaml": "^2.2.2" 
   }
 }
