@@ -12,7 +12,7 @@ import {
 } from './helpers';
 
 export interface PopoverProps
-  extends React.ComponentPropsWithoutRef<'div'>,
+  extends Omit<React.ComponentPropsWithoutRef<'div'>, 'content'>,
     BsPrefixPropsWithChildren {
   id: string;
   placement?: Placement;

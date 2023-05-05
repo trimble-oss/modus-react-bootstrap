@@ -72,10 +72,9 @@
     "got": "^11.8.5",
     "minimatch": "^3.0.5",
     "loader-utils":"^1.4.2",
-    "engine.io":"^6.2.1",
+    "engine.io":"^6.4.2",
     "decode-uri-component": "^0.2.1",
     "json5": "^2.2.2",
-    "ua-parser-js": "^0.7.33",
-    "yaml": "^2.2.2" 
+    "ua-parser-js": "^0.7.33"
   }
 }
