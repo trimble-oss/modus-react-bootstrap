@@ -29,7 +29,7 @@
     "@restart/hooks": "^0.4.9",
     "classnames": "^2.3.2",
     "prop-types": "^15.8.1",
-    "react-live": "^2.4.1",
+    "react-live": "^4.1.1",
     "react-router-dom": "^6.11.1",
     "sass": "^1.62.1",
     "styled-components": "^5.3.10"
