@@ -13,7 +13,12 @@ import TrimbleIconRev from '../../assets/img/trimble-icon-rev.svg'
 <h2 className='h1 font-weight-bold' id='Overview'>
   Overview
 </h2>
-<CodeBlock style={{ padding: '0px' }} scope={{ TrimbleLogo, TrimbleIcon }} code={NavbarBasic}>
+<CodeBlock
+  style={{ padding: '0px' }}
+  hideCode={true}
+  scope={{ TrimbleLogo, TrimbleIcon }}
+  code={NavbarBasic}
+>
   The navbar or the app header provides context through globally accessible menu options and
   positions a consistent component to connect various Trimble applications and contains the main
   navigation for your application.
@@ -24,6 +29,7 @@ import TrimbleIconRev from '../../assets/img/trimble-icon-rev.svg'
   style={{ padding: '0px' }}
   scope={{ TrimbleLogoRev, TrimbleIconRev }}
   code={NavbarBlue}
+  hideCode={true}
 >
   An alternative blue variant is available. Add the class `navbar-blue` to the navbar.
 </CodeBlock>
@@ -33,6 +39,7 @@ import TrimbleIconRev from '../../assets/img/trimble-icon-rev.svg'
   style={{ padding: '0px' }}
   scope={{ TrimbleLogoRev, TrimbleIconRev }}
   code={NavbarWithoutHamburger}
+  hideCode={true}
 >
   You can omit the navbar menu button if it isn’t needed.
 </CodeBlock>

@@ -103,10 +103,9 @@ export const NavbarBasic = `
 export const NavbarBlue = `
 <Navbar collapseOnSelect expand="sm" id="example-navbar" className="border navbar-blue">
   <Button
-    variant="text-dark"
+    variant="icon-only"
     id="menuButton"
     size="lg"
-    className="btn-icon-only"
     data-modus-item="menu-btn"
     data-toggle="#"
   >
@@ -136,10 +135,9 @@ export const NavbarBlue = `
         overlay={<Tooltip id="notifytooltip">Notifications</Tooltip>}
       >
         <Button
-          variant="text-dark"
+          variant="icon-only"
           id="notifybtn"
           size="lg"
-          className="btn-icon-only"
         >
           <i className="modus-icon material-icons">notifications</i>
         </Button>
@@ -151,10 +149,9 @@ export const NavbarBlue = `
         overlay={<Tooltip id="helptooltip">Help</Tooltip>}
       >
         <Button
-          variant="text-dark"
+          variant="icon-only"
           id="helpbtn"
           size="lg"
-          className="btn-icon-only"
         >
           <i className="modus-icon material-icons">help</i>
         </Button>
@@ -165,10 +162,9 @@ export const NavbarBlue = `
         overlay={<Tooltip id="appstooltip">Apps</Tooltip>}
       >
         <Button
-          variant="text-dark"
+          variant="icon-only"
           id="appsbtn"
           size="lg"
-          className="btn-icon-only"
         >
           <i className="modus-icon material-icons">apps</i>
         </Button>
@@ -189,10 +185,9 @@ export const NavbarBlue = `
         }
       >
         <Button
-          variant="text-dark"
+          variant="icon-only"
           id="acntbtn"
           size="lg"
-          className="btn-icon-only"
         >
           <i className="modus-icon material-icons">account_circle</i>
         </Button>
@@ -228,10 +223,9 @@ export const NavbarWithoutHamburger = `
         overlay={<Tooltip id="notifytooltip">Notifications</Tooltip>}
       >
         <Button
-          variant="text-dark"
+          variant="icon-only"
           id="notifybtn"
           size="lg"
-          className="btn-icon-only"
         >
           <i className="modus-icon material-icons">notifications</i>
         </Button>
@@ -243,10 +237,9 @@ export const NavbarWithoutHamburger = `
         overlay={<Tooltip id="helptooltip">Help</Tooltip>}
       >
         <Button
-          variant="text-dark"
+          variant="icon-only"
           id="helpbtn"
           size="lg"
-          className="btn-icon-only"
         >
           <i className="modus-icon material-icons">help</i>
         </Button>
@@ -257,10 +250,9 @@ export const NavbarWithoutHamburger = `
         overlay={<Tooltip id="appstooltip">Apps</Tooltip>}
       >
         <Button
-          variant="text-dark"
+          variant="icon-only"
           id="appsbtn"
           size="lg"
-          className="btn-icon-only"
         >
           <i className="modus-icon material-icons">apps</i>
         </Button>
@@ -281,10 +273,9 @@ export const NavbarWithoutHamburger = `
         }
       >
         <Button
-          variant="text-dark"
+          variant="icon-only"
           id="acntbtn"
           size="lg"
-          className="btn-icon-only"
         >
           <i className="modus-icon material-icons">account_circle</i>
         </Button>
