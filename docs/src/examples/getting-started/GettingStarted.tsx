@@ -1,8 +1,7 @@
 export const GettingStartedImportModusIcons = `
-{/* For Modus icons, include the following references in your index.html*/}
+{/* Include the following references in your index.html*/}
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">';
-<link rel="stylesheet" href="https://modus.trimble.com/assets/0.5.1/fonts/modus-icons.css">';
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons/dist/modus-solid/fonts/modus-icons.css">
 `
 
 export const GettingStartedImportCSS = `
