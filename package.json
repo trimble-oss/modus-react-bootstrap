@@ -79,7 +79,7 @@
     "react-table": "^7.8.0",
     "react-transition-group": "^4.4.1",
     "styled-components": "^5.3.10",
-    "uncontrollable": "^7.2.1",
+    "uncontrollable": "^8.0.2",
     "warning": "^4.0.3"
   },
   "devDependencies": {
