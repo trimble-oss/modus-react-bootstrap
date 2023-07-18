@@ -28,7 +28,7 @@
     "url": "git@github.com:trimble-oss/modus-react-bootstrap.git"
   },
   "scripts": {
-    "bootstrap": "yarn && yarn --cwd docs && yarn run audit",
+    "bootstrap": "yarn && yarn --cwd docs",
     "build": "yarn run build-js && yarn run build-css",
     "build-js": "yarn run lint-js && node tools/build.js && node tools/custom.js",
     "build-css": "yarn run lint-css && yarn run css-minify && copyfiles -a ./scss/**/* lib/css/",
@@ -137,7 +137,7 @@
     "node-sass": "^8.0.0",
     "postcss": "^8.4.25",
     "postcss-cli": "^10.0.0",
-    "prettier": "^3.0.0",
+    "prettier": "^2.8.8",
     "process": "^0.11.10",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",

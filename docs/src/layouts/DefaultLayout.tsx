@@ -9,6 +9,7 @@ import '../assets/css/main.scss'
 import SEO from '../seo'
 import Banner from '../common/Banner'
 import ThemeContext from '../common/ThemeContext'
+import { ModusIconsScripts } from '../common/ExternalDependencyHelper'
 
 const propTypes = {
   location: PropTypes.object.isRequired,
@@ -67,6 +68,7 @@ const DefaultLayout: React.FC<LayoutProps> = ({ children, location, title, subti
     <MenuContext.Provider value={context}>
       <ThemeContext.Provider value={themeContext}>
         <SEO title={pageTitle} description={pageSubtitle} pathname={location.pathname} />
+        <ModusIconsScripts />
         <Header activePage={context.current} navigationMenu={navigationMenu} />
         {banner && <Banner title={pageTitle} subtitle={pageSubtitle} />}
         {children}

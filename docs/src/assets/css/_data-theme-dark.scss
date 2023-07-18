@@ -1,4 +1,4 @@
-html[data-theme="dark"] {
+html[data-theme='dark'] {
   .navbar-brand div,
   .navbar a {
     color: #f1f1f6 !important;
@@ -49,8 +49,8 @@ html[data-theme="dark"] {
     color: #cbcdd6 !important;
   }
 
-  .menu-right a[href^="http"]::after,
-  article a:not(.stretched-link)[href^="http"]::after {
+  .menu-right a[href^='http']::after,
+  article a:not(.stretched-link)[href^='http']::after {
     filter: invert(1);
   }
 
@@ -96,5 +96,9 @@ html[data-theme="dark"] {
     color: #f1f1f6;
   }
 
-  @import "../../../../scss/modus-react-bootstrap-dark";
+  .maintenance-mode-banner {
+    background-color: #252a2e;
+  }
+
+  @import '../../../../scss/modus-react-bootstrap-dark';
 }
