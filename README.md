@@ -1,4 +1,4 @@
-# Modus React Bootstrap
+# ⚠️⚠️**Modus React Bootstrap is moving to maintenance-only mode. Please migrate to [Modus Web Components](https://modus-web-components.trimble.com/?path=/story/introduction-welcome--page) for continued support.**
 
 **[Modus React Bootstrap](https://modus-react-bootstrap.trimble.com/getting-started/)** is a React-based component library extended from [React Bootstrap](https://react-bootstrap-v4.netlify.app/) developed as a common, open source platform for all of Trimble’s web applications built on React. The framework is designed and managed by the Trimble UX Council.
 
@@ -23,16 +23,12 @@ The main file to focus on is the `_light-theme.scss` file (and/or `_dark-theme.s
 
 ## Icons
 
-Modus icons are required for some of the components like `DataTable`, `FileUploadDropZone`, `TablePagination` and `TreeView`. To use the icons, include the following:
+Modus icons are required for the components. To use the icons, include the following:
 
 ```html
 <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/icon?family=Material+Icons"
-/>
-<link
-  rel="stylesheet"
-  href="https://modus.trimble.com/assets/fonts/modus-icons.css"
+  href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons/dist/modus-solid/fonts/modus-icons.css"
 />
 ```
 
