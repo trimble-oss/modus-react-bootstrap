@@ -75,6 +75,10 @@
     "engine.io":"^6.4.2",
     "decode-uri-component": "^0.2.1",
     "json5": "^2.2.2",
-    "ua-parser-js": "^0.7.33"
+    "ua-parser-js": "^0.7.33",
+    "sharp":"^0.32.6",
+    "postcss": "^8.4.31",
+    "axios": "^1.6.0",
+    "semver": "^7.5.2"
   }
 }
