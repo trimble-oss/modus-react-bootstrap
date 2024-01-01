@@ -32,7 +32,7 @@
     "react-live": "^2.4.1",
     "react-router-dom": "^6.11.1",
     "sass": "^1.62.1",
-    "styled-components": "^5.3.11"
+    "styled-components": "^6.1.6"
   },
   "devDependencies": {
     "@mdx-js/mdx": "^1.6.22",
