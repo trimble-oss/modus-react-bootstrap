@@ -108,7 +108,7 @@
     "cpy-cli": "^4.1.0",
     "cross-env": "^7.0.3",
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.7",
+    "enzyme-adapter-react-16": "^1.15.8",
     "eslint": "^8.28.0",
     "eslint-config-4catalyzer-typescript": "^3.2.0",
     "eslint-import-resolver-node": "^0.3.6",
