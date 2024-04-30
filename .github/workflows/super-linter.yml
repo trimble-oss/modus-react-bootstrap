@@ -31,6 +31,7 @@ jobs:
           JAVASCRIPT_DEFAULT_STYLE: prettier
           SUPPRESS_POSSUM: true
           VALIDATE_ALL_CODEBASE: false
+          VALIDATE_CHECKOV: false
           VALIDATE_CSS: false
           VALIDATE_EDITORCONFIG: false
           VALIDATE_HTML: false
