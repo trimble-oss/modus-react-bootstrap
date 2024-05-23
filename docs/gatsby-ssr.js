@@ -29,13 +29,7 @@ export const onRenderBody = ({ setHeadComponents }) => {
     <script
       key="polyfill"
       noModule={true}
-      src="https://polyfill.io/v3/polyfill.min.js"
-    />,
-    <script
-      key="plausible"
-      defer
-      data-domain="modus-react-bootstrap.trimble.com"
-      src="https://plausible.io/js/script.outbound-links.js"
+      src="https://polyfill-fastly.io/v3/polyfill.min.js"
     />,
   ])
 }
